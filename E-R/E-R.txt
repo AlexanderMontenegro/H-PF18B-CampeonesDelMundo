@@ -56,10 +56,3 @@ Notificación
 	mensaje
 	leida
 	fecha_creacion
-
-
-
-Armado en Sql Shell
-
-CREATE DATABASE campeones_del_mundo;
-\c campeones_del_mundo
