@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 // Components
 import ProductoCard from './ProductoCard';
+import HeroSection from "../HeroSection/HeroSection";
 
 // CSS
 import "../../css/homePage.css"
@@ -30,7 +31,8 @@ const HomePage = ({productos}) => {
                     <section className="barra__left">
                         {/* Logo */}
                         <Link className="logo" to={"/homePage"}>
-                            <h4 className="logo_nombre no-margin">LOGO</h4>
+                        <img className="logo_img" src="../../../public/img/fondo-logo-futbol_1195-244.png" alt="" />
+                           {/* <h4 className="logo_nombre no-margin">LOGO</h4> */}
                         </Link>
                     </section>
 
@@ -60,10 +62,10 @@ const HomePage = ({productos}) => {
 
                 <div className="header_titulo ">
                     {/* Titulo */}
-                    <h2 className="no-margin">Todos los Mundiales de la historia:</h2>
+                    {/*<h2 className="no-margin">Todos los Mundiales de la historia:</h2>
 
                     <p className="no-margin">Campeones, sedes y mejores jugadores</p>
-                </div>
+                */}</div>
             </header>
 
             {/* Header - FINAL */}
@@ -97,6 +99,7 @@ const HomePage = ({productos}) => {
                             </div>
                         </div>
                         
+                        <HeroSection />
 
 
                     {/* Contenedor para la lista de productos */}
