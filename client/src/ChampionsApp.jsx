@@ -14,9 +14,17 @@ import {
 import HomePage from './components/HomePage/HomePage';
 import LadingPage from './components/LadingPage/LadingPage';
 
+// Import Data (db)
+import { data } from './db/db';
+
 
 function ChampionsApp() {
     
+    // Data (db)
+    //console.log(data)
+
+    const [productos, setProductos] = useState(data);
+
     // Navigate y Location
     const navigate = useNavigate();
     const { pathname } = useLocation();
@@ -41,7 +49,7 @@ function ChampionsApp() {
                     path="/homePage"
                     element={
                         <>
-                            <HomePage />
+                            <HomePage productos={productos}/>
                         </>
                     }
                 ></Route>
