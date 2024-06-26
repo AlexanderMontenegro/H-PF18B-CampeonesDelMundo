@@ -1,0 +1,205 @@
+/* Lading Page */
+.header{
+    background-color: var(--negro);
+    background-image: url("../img/texturaFondo.jpg");
+
+    height: 15rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+/* Logo */
+.logo{
+    color: var(--blanco);
+
+}
+.logo_nombre{
+    font-weight: 400;
+}
+.logo_bold {
+    font-weight: 700;
+    color: var(--celeste)
+}
+.header_titulo {
+    text-align: center;
+    color: var(--blanco);
+    margin-top: 8rem;
+}
+.header-normal{
+    font-weight: lighter;
+}
+/* Titulo */
+@media (min-width: 768px) {
+    .header_texto {
+        margin-top: 15rem;
+    }
+}
+.barra {
+    padding-top: 4rem;
+}
+
+@media (min-width: 768px) {
+    .barra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+/* Navegacion */
+@media (min-width: 768px) {
+    .navegacion {
+        display: flex;
+        gap: 6rem;
+    }
+}
+.navegacion_enlace {
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--blanco);
+    /* border-radius: 1rem;
+    padding: 1rem 1rem; */
+    font-weight: bold;
+    /* margin: 1.5em; */
+    background-color: transparent;
+
+    &:hover{
+        background-color: var(--blanco);
+        color: var(--negro);
+        padding: 0.7rem 0.7rem; 
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+}
+
+/* Contenido */
+.layout__content{
+    position: relative;
+    min-width: 129rem;
+    width: 75%;
+    height: 100%;
+    min-height: 80vh;
+    margin: 10rem auto;
+    
+
+}
+.content__page{
+    min-height: 100%;
+    /* background-color: var(--colorPrincipal); */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;   
+}
+.content__about{
+    display: block;
+
+    height: 100%;
+    min-height: 100%;
+    padding: 0 8rem;
+    overflow: auto;  
+}
+
+.about__header,
+.services__header{
+    display: inline-block;
+    margin-bottom: 2.5rem;
+}
+.about__title,
+.services__title{
+    font-size: 3.7rem;
+    position: relative;
+}
+.service__description{
+    font-size: 2.1rem;
+    text-align: justify;
+}
+.title__color{
+    color: var(--celeste);
+}
+
+/* CSS - Biografia */
+.about__personalInfo{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+.personalInfo__bio{
+    flex-basis: 56%;
+    /* flex-basis: calc(56% - 8.4rem); */
+    margin-right: 3.4rem;
+}
+.personalInfo__description{
+    font-size: 2.1rem;
+    line-height: 3rem;
+    text-align: justify;
+}
+/* CSS - Fin Biografia */
+
+/* =================================*/
+
+/* CSS - Datos */
+.personalInfo__data{
+    /* flex-basis: 44%; */
+    flex-basis: calc(44% - 1.5rem);
+    margin-right: 2.5rem;
+    padding: 0 1.5rem;
+}
+
+.personalInfo__option{
+    margin-bottom: 1rem;
+
+    font-size: 2.1rem;
+    line-height: 3rem;
+    text-align: justify;
+}
+.personalInfo__title{
+    margin-right: 0.5rem;
+    color: var(--colorSecondary);
+    font-weight: 600;
+}
+.personalInfo__value{
+
+}
+/* CSS - Fin Datos */
+
+/* =================================*/
+
+/* CSS- Tecnologias*/
+.services__container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.services__service{
+    flex-basis: calc(50% - 3rem);
+    margin-right: 3rem;
+    margin-bottom: 2.5rem;
+}
+.service__img{
+    background-color: var(--colorSecondary);
+    size: 1.8rem;
+}
+    /*CSS - Figuras*/
+.gallery__item{
+    position: relative;
+    flex-basis: 33%;
+    padding: 0.7rem;
+}
+.gallery__containerImagen{
+    overflow: hidden;
+}
+.gallery__imagen{
+    transition: all 300ms ease-in-out;
+    background-size: cover;
+}
+.gallery__item:hover .gallery__image{
+    transform: scale(1.1);
+}
+    /*CSS - Fin Figuras*/
+
+/* CSS- Fin Tecnologias*/
