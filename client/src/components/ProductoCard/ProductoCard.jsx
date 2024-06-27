@@ -4,7 +4,6 @@ import "../../css/productocard.css"
 
 const ProductoCard = ({ producto }) => {
 
-  
   return (
     <div className="card__container">
       <img src={producto.imagen} alt={`${producto.tipo} ${producto.marca}`} className="card__image" />

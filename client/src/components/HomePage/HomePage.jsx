@@ -5,9 +5,11 @@ import { useNavigate, Link } from "react-router-dom";
 // Components
 import ProductoCard from '../ProductoCard/ProductoCard';
 import HeroSection from '../HeroSection/HeroSection';
+import Login from './Login';
+import Register from './Register';
 
 // CSS
-import "../../css/homePage.css"
+import "../../css/homePage.css";
 
 const HomePage = ({productos}) => {
 
@@ -32,7 +34,7 @@ const HomePage = ({productos}) => {
                         {/* Logo */}
                         <Link className="logo" to={"/homePage"}>
                             <h4 className="logo_nombre no-margin"></h4>
-                            <img   className='logo_img' src='img\fondo-logo-futbol_1195-244.png'/>
+                            <img className='logo_img' src='img\fondo-logo-futbol_1195-244.png'/>
                         </Link>
                     </section>
 
@@ -48,13 +50,64 @@ const HomePage = ({productos}) => {
                             <a className="navegacion_enlace">
                                 Productos
                             </a>
-                            {/* Carrito */}
+                            {/* Contacto */}
                             <a className="navegacion_enlace">
+                                Contacto
+                            </a>
+                            {/* Carrito */}
+                            {/* <a className="navegacion_enlace">
                                 Carrito
-                            </a>
-                            <a className="navegacion_enlace" onClick={handleEnterToLadingPage}>
+                            </a> */}
+                            
+                            <div className='carrito'>
+                                <img 
+                                    className="icono__fluid" 
+                                    src="../../../public/iconos/carrito.png" 
+                                    alt="imagen carrito"
+                                />
+
+                                <div id='carrito' className='carrito__container'>
+                                    <h4 className='text-center '>El carrito esta vacio</h4>
+                                    {/* <table className='carrito__table'>
+                                        <thead>
+                                            <th></th>
+                                         </thead>
+
+                                    </table> */}
+                                    <p className="text-end">Total pagar: <span className="fw-bold">$899</span></p>
+                                    <button className="icon__button">Vaciar Carrito</button>
+                                </div>
+                            </div>
+                            
+                            
+                            {/* Usuario */}
+                            {/* <a className="navegacion_enlace" onClick={handleEnterToLadingPage}>
                                 Usuario
-                            </a>
+                            </a> */}
+                            <div className='usuario'>
+                                <img 
+                                    className="icono__fluid" 
+                                    src="../../../public/iconos/usuario.png" 
+                                    alt="imagen carrito"
+                                />
+
+                                <div id='usuario' className='usuario__container'>
+                                    
+                                    <div className='icon__usuario'>
+                                        <Link className="logo" to={"/login"}>
+                                            <button className='icon__button'>Iniciar Sesion</button>
+                                            
+                                        </Link>
+                                        
+                                    </div>
+
+                                    <div className='icon__usuario'>
+                                        <Link className="logo" to={"/register"}>
+                                            <button className='icon__button'>Registrate</button>
+                                        </Link>                              
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
