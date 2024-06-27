@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import "../../css/productocard.css"
+import { Link } from 'react-router-dom';
 
 const ProductoCard = ({ producto }) => {
 
   
   return (
     <div className="card__container">
+      <Link to={`/product/${producto.id}`} className="card__link">Info</Link>
       <img src={producto.imagen} alt={`${producto.tipo} ${producto.marca}`} className="card__image" />
       <div className="card__details">
         <h3 className="card__title">{`${producto.tipo} ${producto.marca}`}</h3>

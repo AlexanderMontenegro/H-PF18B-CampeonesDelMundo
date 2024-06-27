@@ -75,3 +75,7 @@
   color: red/*var(--azul_Oscuro)*/; 
 }
 
+.card__link{
+  color: blue;
+  background-color: red;
+}

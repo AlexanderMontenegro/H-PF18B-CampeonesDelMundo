@@ -13,6 +13,8 @@ import {
 // Vistas (Views)
 import HomePage from './components/HomePage/HomePage';
 import LadingPage from './components/LadingPage/LadingPage';
+import ProductDetails from './components/ProductDetails/ProductDetails';
+import ProductoCard from './components/ProductoCard/ProductoCard';
 
 // Import Data (db)
 import { data } from './db/db';
@@ -53,6 +55,9 @@ function ChampionsApp() {
                         </>
                     }
                 ></Route>
+                <Route exact path="/" component={ProductoCard} />
+                <Route path="/product/:id" component={ProductDetails} />
+      
 
             </Routes>         
         </>
