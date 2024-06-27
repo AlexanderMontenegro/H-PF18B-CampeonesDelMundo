@@ -1,0 +1,76 @@
+
+.product-details-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: var(--blanco);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-image {
+    flex: 1 1 40%;
+  }
+  
+  .product-image img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .product-info {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-info h2 {
+    font-family: var(--fuenteHeading);
+    color: var(--azul);
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .product-info .price {
+    color: var(--azul_Oscuro);
+    font-size: 2.4rem;
+  }
+  
+  .product-info .description {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .quantity-selector {
+    width: 30%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+  }
+  
+  .add-to-cart-btn {
+    background-color: var(--crema);
+    color: var(--negro);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: var(--amarillo);
+  }
+  
+  .reviews-section {
+    margin-top: 2rem;
+  }
+  
+  .reviews-section h3 {
+    font-family: var(--fuenteHeading);
+    font-size: 2.8rem;
+    color: var(--azul_Oscuro);
+    margin-bottom: 1rem;
+  }
+  
