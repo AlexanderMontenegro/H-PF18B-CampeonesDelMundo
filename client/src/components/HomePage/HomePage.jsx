@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 // Components
 import ProductoCard from '../ProductoCard/ProductoCard';
+import HeroSection from '../HeroSection/HeroSection';
 
 // CSS
 import "../../css/homePage.css"
@@ -33,7 +34,6 @@ const HomePage = ({productos}) => {
                             <h4 className="logo_nombre no-margin">LOGO</h4>
                         </Link>
                     </section>
-
 
                     {/* Lado Derecho - Opciones*/}
                     <section className="barra__right">
@@ -67,6 +67,7 @@ const HomePage = ({productos}) => {
             </header>
 
             {/* Header - FINAL */}
+                    <HeroSection />
 
             {/* Main - INICIO */}
             <main>
