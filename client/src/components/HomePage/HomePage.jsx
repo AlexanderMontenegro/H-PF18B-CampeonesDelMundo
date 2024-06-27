@@ -31,7 +31,8 @@ const HomePage = ({productos}) => {
                     <section className="barra__left">
                         {/* Logo */}
                         <Link className="logo" to={"/homePage"}>
-                            <h4 className="logo_nombre no-margin">LOGO</h4>
+                            <h4 className="logo_nombre no-margin"></h4>
+                            <img   className='logo_img' src='img\fondo-logo-futbol_1195-244.png'/>
                         </Link>
                     </section>
 
