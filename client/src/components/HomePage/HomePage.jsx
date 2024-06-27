@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate, Link } from "react-router-dom";
 
 // Components
-import ProductoCard from '../ProductoCard/ProductoCard';
+import ProductoCard from './ProductoCard';
 
 // CSS
 import "../../css/homePage.css"
