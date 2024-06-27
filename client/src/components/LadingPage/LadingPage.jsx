@@ -12,7 +12,7 @@ const LadingPage = () => {
 
     return (
         <>
-            <button onClick={handleEnterToHomePage}>A HomePage</button>
+            <button onClick={handleEnterToHomePage}>A HomePage 3</button>
         </>
     )
 }
