@@ -4,7 +4,9 @@ import rootReducer from './reducer'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-export const store = createStore(
+const store = createStore(
     rootReducer,
     composeEnhancers(applyMiddleware(thunk)) //esta linea es para poder hacer peticiones al server
 )
+
+export default store; // Exportar store(tienda)

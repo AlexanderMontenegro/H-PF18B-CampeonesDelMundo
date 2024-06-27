@@ -16,6 +16,10 @@ import LadingPage from './components/LadingPage/LadingPage';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import ProductoCard from './components/ProductoCard/ProductoCard';
 
+// Components (Componentes)
+import Login from './components/HomePage/Login';
+import Register from './components/HomePage/Register';
+
 // Import Data (db)
 import { data } from './db/db';
 
@@ -58,6 +62,30 @@ function ChampionsApp() {
                 <Route exact path="/" component={ProductoCard} />
                 <Route path="/product/:id" component={ProductDetails} />
       
+
+
+                {/* 5.-Ruta - login */}
+                {/* Ruta para la página principal */}
+                <Route
+                    path="/login"
+                    element={
+                        <>
+                            <Login/>
+                        </>
+                    }
+                ></Route>
+
+                {/* 6.-Ruta - register */}
+                {/* Ruta para la página principal */}
+                <Route
+                    path="/register"
+                    element={
+                        <>
+                            <Register/>
+                        </>
+                    }
+                ></Route>
+
 
             </Routes>         
         </>

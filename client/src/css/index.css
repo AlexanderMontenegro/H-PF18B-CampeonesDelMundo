@@ -78,8 +78,11 @@ img {
 .no-padding {
   padding: 0;
 }
-.centrar-texto {
-  text-align: center;
+.text-end {
+  text-align: right !important;
 }
 
+.text-center {
+  text-align: center !important;
+}
 
