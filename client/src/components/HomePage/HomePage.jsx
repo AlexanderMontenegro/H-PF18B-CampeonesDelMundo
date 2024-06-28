@@ -62,7 +62,7 @@ const HomePage = ({productos}) => {
                             <div className='carrito'>
                                 <img 
                                     className="icono__fluid" 
-                                    src="../../../public/iconos/carrito.png" 
+                                    src="/iconos/carrito.png" 
                                     alt="imagen carrito"
                                 />
 
@@ -87,7 +87,7 @@ const HomePage = ({productos}) => {
                             <div className='usuario'>
                                 <img 
                                     className="icono__fluid" 
-                                    src="../../../public/iconos/usuario.png" 
+                                    src="iconos/usuario.png" 
                                     alt="imagen carrito"
                                 />
 

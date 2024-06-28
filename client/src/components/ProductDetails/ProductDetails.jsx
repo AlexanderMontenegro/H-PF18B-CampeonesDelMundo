@@ -1,42 +1,47 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'; 
-import "../../css/productdetails.css"
+import { useParams } from 'react-router-dom';
+import { data } from '../../db/db';
+import "../../css/productdetails.css";
+import HomePage from '../HomePage/HomePage';
+
+
 
 const ProductDetails = () => {
+  const { id } = useParams();
+  const product = data.find(item => item.id === parseInt(id, 10));
 
-    const product = useSelector(state => state.products.find(p => p.id === productId));
-
-    if (!product) {
-      return <p>Producto no encontrado</p>;
-    }
-    
-    return (
-
-        <div className="product-details-container">
-          <div className="product-image">
-            <img src={product.image} alt={product.name} />
-          </div>
-          <div className="product-info">
-            <h2>{product.name}</h2>
-            <p>Precio: ${product.price}</p>
-            {/* Aquí podrías mostrar la valoración y número de reviews si ya tienes esa información */}
-            <p>Descripción: {product.description}</p>
-            <select>
-              <option value="1">1</option> {/* Ejemplo de selector de cantidad */}
-              <option value="2">2</option>
-              {/* Más opciones de cantidad */}
-            </select>
-            <button>Agregar al Carrito</button>
-          </div>
-          <div className="reviews-section">
-            {/* Aquí implementa la sección de reviews */}
-            <h3>Reviews</h3>
-            {/* Lista de comentarios y puntuaciones */}
-          </div>
-        </div>
-      
-    );
+  if (!product) {
+    return <p>Producto no encontrado</p>;
   }
   
-  export default ProductDetails;
-  
+  return (
+   
+    
+    <div className="product-details-container">
+      <div className="product-image">
+        <img src={product.imagen} alt={product.tipo} />
+      </div>
+      <div className="product-info">
+        <h2>{product.tipo} - {product.marca}</h2>
+        <p>Precio: ${product.precio}</p>
+        <p>Valoración:</p>
+        <p>Descripción: {product.descripcion}</p>
+        <div className="product-sizes">
+          <label htmlFor="sizes">Talles:</label>
+          <select id="sizes">
+            {product.talles.map((talle, index) => (
+              <option key={index} value={talle}>{talle}</option>
+            ))}
+          </select>
+        </div>
+        <button className='button__carrito'>Agregar al Carrito</button>
+      </div>
+      <div className="reviews-section">
+        <h3>Reviews</h3>
+        {/* Lista de comentarios y puntuaciones */}
+      </div>
+    </div>
+  );
+}
+
+export default ProductDetails;
