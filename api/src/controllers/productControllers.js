@@ -234,7 +234,7 @@ const createProduct = async (
    
   
     // Asocia las categorías al producto
-    await newProduct.addCategorias(categoriaRecords);
+    await newProduct.addCategoria(categoriaRecords);
   
     return newProduct;
   };

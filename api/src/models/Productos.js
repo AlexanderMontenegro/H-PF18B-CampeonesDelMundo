@@ -1,11 +1,11 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const Productos = sequelize.define('Productos', {
+  sequelize.define('Productos', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       primaryKey: true,
-      autoIncrement: true,
+      defaultValue: DataTypes.UUIDV4,
     },
     descripcion: {
       type: DataTypes.TEXT,
@@ -48,7 +48,9 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
-  });
+  },
+  { timestamps: false }
+ );
 
-  return Productos;
+  
 };
