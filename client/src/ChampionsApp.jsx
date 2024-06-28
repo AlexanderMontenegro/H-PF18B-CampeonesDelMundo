@@ -60,7 +60,7 @@ function ChampionsApp() {
                     }
                 ></Route>
                 <Route exact path="/" component={ProductoCard} />
-                <Route path="/product/:id" component={ProductDetails} />
+                <Route path="/product/:id" element={<ProductDetails />} />
       
 
 
