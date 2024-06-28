@@ -128,13 +128,15 @@ const searchTipo = async (tipo) => {
   //------------------------------------------------------------------------------
 
   //BUSCAR POR ID
-const getProductId = async (idProducto) => {
+ const getProductId = async (idProducto, origin) => {
   let producto;
 
   // Obtener producto desde la API y mapear los datos
-  const apiProducto = (
-    await axios.get(`http://localhost:5000/productos/${idProducto}`)
-  ).data;
+  if (origin === "api") {
+    // Obtener conductor desde la API y mapear los datos
+    const apiProducto = (
+      await axios.get(`http://localhost:5000/productos/${idProducto}`)
+    ).data;
 
   producto = {
     id: apiProducto.id,
@@ -148,7 +150,7 @@ const getProductId = async (idProducto) => {
     categoria: apiProducto.categoria,
     created: false,
   };
-
+ } else {
   // Obtener producto desde la base de datos
   const dbProducto = await Productos.findByPk(idProducto, {
     include: [
@@ -176,10 +178,11 @@ const getProductId = async (idProducto) => {
       categoria: categorias,
       created: false,
     };
-  }
-
+   }
+ }
   return producto;
-};
+ };
+
 
 //------------------------------------------------------------------------------------------------------------
 
@@ -245,5 +248,5 @@ module.exports = {
   searchTipo,
   getProductId,
   deleteId,
-  createProduct
-};
+  createProduct,
+ }

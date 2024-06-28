@@ -19,17 +19,14 @@ const productGetHandler = async (req, res) => {
 };
 
 const getProductByIdHandler = async (req, res) => {
+  const { idProducto } = req.params;
+  const origin = isNaN(idProducto) ? "bdd" : "api";
+
   try {
-    const { idProducto } = req.params;
-    const producto = await getProductId(idProducto);
-
-    if (!producto) {
-      return res.status(404).json({ error: 'Producto no encontrado' });
-    }
-
+    const producto = await getProductId(idProducto, origin);
     res.status(200).json(producto);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
