@@ -112,12 +112,12 @@ const HomePage = ({productos}) => {
                     </section>
                 </div>
 
-                <div className="header_titulo ">
-                    {/* Titulo */}
+              {/*  <div className="header_titulo ">
+                    
                     <h2 className="no-margin">Todos los Mundiales de la historia:</h2>
 
                     <p className="no-margin">Campeones, sedes y mejores jugadores</p>
-                </div>
+                </div>*/}
             </header>
 
             {/* Header - FINAL */}
