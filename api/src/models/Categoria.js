@@ -1,21 +1,19 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  // Definir el modelo Producto
-  const Talle = sequelize.define('talle', {
+  const Categoria = sequelize.define('Categoria', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    talle: {
+    nombre: {
       type: DataTypes.STRING,
-      allowNull: true,  // Poner true ya que no todos los productos tienen el campo pais
+      allowNull: false,
     },
-  },
-   {
+  }, {
     timestamps: false,
   });
 
-  
+  return Categoria;
 };

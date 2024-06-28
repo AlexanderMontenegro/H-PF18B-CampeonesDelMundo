@@ -1,11 +1,29 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const Producto = sequelize.define('Productos', {
+  const Productos = sequelize.define('Productos', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+    },
+    descripcion: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    precio: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    activo: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: true,
     },
     tipo: {
       type: DataTypes.STRING,
@@ -15,15 +33,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    precio: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
-    },
     imagen: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    categoria: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -31,9 +41,15 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-  }, {
-    timestamps: false,
+    talles: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    },
+    created: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
   });
 
-  return Producto;
+  return Productos;
 };

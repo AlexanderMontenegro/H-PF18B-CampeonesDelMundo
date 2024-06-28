@@ -2,8 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
-const { getProductosHandlers } = require('../handlres/productHandlres');
+const productRouter = require("./productRouter");
+const categoriaRouter = require("./categoriaRouter")
 
-router.get('/productos', getProductosHandlers);
+router.use('/productos', productRouter);
+router.use("/categoria", categoriaRouter);
 
 module.exports = router;
