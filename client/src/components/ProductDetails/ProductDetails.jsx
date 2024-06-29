@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { data } from '../../db/db';
 import "../../css/productdetails.css";
-import HomePage from '../HomePage/HomePage';
+import Header from '../Header/Header';
 
 
 
@@ -15,7 +15,9 @@ const ProductDetails = () => {
   }
   
   return (
-   
+  <div>
+
+    <Header/>
     
     <div className="product-details-container">
       <div className="product-image">
@@ -41,6 +43,7 @@ const ProductDetails = () => {
         {/* Lista de comentarios y puntuaciones */}
       </div>
     </div>
+            </div>
   );
 }
 
