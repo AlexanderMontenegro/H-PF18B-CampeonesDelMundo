@@ -1,11 +1,12 @@
 
 
 //import actions 
-import {GET_PRODUCTS} from "./actions";
+import {GET_PRODUCTS, GET_CATEGORY} from "./actions";
  
 // state inicial
 const initialState = {
     allProducts:[],
+    allCategory:[],
 
   };
 
@@ -17,6 +18,11 @@ const initialState = {
                 ...state,
                 allProducts: payload,
               }; 
+        case GET_CATEGORY:
+                return {
+                    ...state,
+                    allCategory: payload,
+                  }; 
         
         default:
         return state;

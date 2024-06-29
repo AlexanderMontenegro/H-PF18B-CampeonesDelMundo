@@ -8,8 +8,11 @@ import ProductoCard from '../ProductoCard/ProductoCard';
 // CSS
 import "../../css/homePage.css"
 
-const HomePage = ({productos}) => {
+import { useSelector } from 'react-redux';
 
+const HomePage = () => {
+const productos = useSelector(state=>state.allProducts);
+console.log(productos);
 
     // NAVEGACIÓN
     // Obtener la función de navegación
@@ -54,6 +57,8 @@ const HomePage = ({productos}) => {
                             <a className="navegacion_enlace" onClick={handleEnterToLadingPage}>
                                 Usuario
                             </a>
+
+                            <Link to='/dashboard' className="navegacion_enlace">Dashboard</Link>
                         </div>
                     </section>
                 </div>

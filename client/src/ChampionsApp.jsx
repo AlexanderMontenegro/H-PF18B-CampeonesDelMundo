@@ -1,5 +1,5 @@
 // UseState y UseEffect
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // React-router-doom
 import {
@@ -17,17 +17,38 @@ import LadingPage from './components/LadingPage/LadingPage';
 // Import Data (db)
 import { data } from './db/db';
 
+import Dashboard from './components/Dashboard/Dashboard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategory, getProducts } from './Redux/actions';
+import Swal from 'sweetalert2';
+
 
 function ChampionsApp() {
+    const dispatch = useDispatch();
+    const stateProducts = useSelector(state=>state.allProducts);
     
     // Data (db)
     //console.log(data)
 
-    const [productos, setProductos] = useState(data);
+    const [productos, setProductos] = useState(stateProducts);
 
     // Navigate y Location
     const navigate = useNavigate();
     const { pathname } = useLocation();
+
+    useEffect(()=>{
+dispatch(getCategory());
+        dispatch(getProducts()).then(
+        Swal.fire({
+        icon: "success",
+        title: "Datos obtenidos desde el Back",
+        text: "",
+        timer: 5000
+      })
+        )
+
+    
+    }, []);
 
     return (
         <>
@@ -49,10 +70,12 @@ function ChampionsApp() {
                     path="/homePage"
                     element={
                         <>
-                            <HomePage productos={productos}/>
+                            {/* <HomePage productos={productos}/> home page va hacer uso del estado allProducts */}
+                            <HomePage/>
                         </>
                     }
                 ></Route>
+                <Route path='/dashboard/*' element={<Dashboard />} />
 
             </Routes>         
         </>
