@@ -77,3 +77,7 @@
     border-radius: 5px;
     align-items: center;
     }
+
+  label {
+    color: #00050a;
+  }
