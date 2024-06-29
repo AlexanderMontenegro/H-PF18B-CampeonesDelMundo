@@ -4,14 +4,21 @@ import { Link } from 'react-router-dom';
 
 // Components (Componentes)
 import Header from '../Header/Header';
-
+import Footer from '../Footer/Footer';
 // CSS
 import "../../css/loginYRegister.css";
 
-const Register = () => {
+const Register = ({carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito}) => {
     return (
         <>
-            <Header/>
+            <Header
+                carrito={carrito}
+                addToCarrito={addToCarrito}
+                removeFromCarrito={removeFromCarrito}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                clearCarrito={clearCarrito}
+            />
 
             <main>
                 {/* Titulo */}
@@ -158,6 +165,9 @@ const Register = () => {
                 </div>
                 
             </main>
+
+
+        <Footer/>
         </>
     )
 }

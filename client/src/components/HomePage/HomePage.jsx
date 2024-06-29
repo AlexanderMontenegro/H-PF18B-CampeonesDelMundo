@@ -1,18 +1,18 @@
-import React from 'react'
+import {React, useState} from 'react'
 
 import { useNavigate, Link } from "react-router-dom";
 
 // Components
 import ProductoCard from '../ProductoCard/ProductoCard';
-import {Footer} from '../Footer';
+// import {Footer} from '../Footer';
 import HeroSection from '../HeroSection/HeroSection';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 // CSS
 import "../../css/homePage.css";
 
-const HomePage = ({productos}) => {
-
+const HomePage = ({productos, carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito}) => {
 
     // NAVEGACIÓN
     // Obtener la función de navegación
@@ -30,7 +30,13 @@ const HomePage = ({productos}) => {
         <>
             {/* Header - INICIO */}
             
-            <Header/>
+            <Header 
+                carrito={carrito}
+                removeFromCarrito={removeFromCarrito}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                clearCarrito={clearCarrito}
+            />
 
             {/* Header - FINAL */}
                     <HeroSection />
@@ -74,6 +80,7 @@ const HomePage = ({productos}) => {
                             <ProductoCard
                                 key={producto.id}
                                 producto={producto}
+                                addToCarrito={addToCarrito}
                             />
                         ))}
                     </div>
