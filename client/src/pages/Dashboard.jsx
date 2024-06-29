@@ -1,6 +1,7 @@
 import React from 'react';
 import DashAdmin from "../components/DashAdmin/DashAdmin";
 import Header from '../components/Header/Header';
+import {Footer} from "../components/Footer/index"
 
 
 const Dashboard = () => {
@@ -8,13 +9,11 @@ const Dashboard = () => {
 <div>
 <Header/>
 
-    <div className="dashboard">
-      <h1>Panel Principal</h1>
-      
+    <div >
       <DashAdmin />
-      {/* Aquí pueden ir otros componentes del Dashboard */}
-    </div>
 
+    </div>
+<Footer/>
 
 </div>
   );
