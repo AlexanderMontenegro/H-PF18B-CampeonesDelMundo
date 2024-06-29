@@ -418,15 +418,3 @@ img{
 */
 /* CSS - Fin Cards */
 
-/* Footer - Inicio */
-.footer {
-    background-color: var(--negro);
-    /* padding-bottom: 3rem; */
-    width: 100%;
-    min-height: 10rem;
-
-    p{
-        color: white;
-    }
-}
-/* Footer - Final */
