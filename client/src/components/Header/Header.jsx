@@ -16,7 +16,7 @@ const Header = () => {
                     <h4 className="logo_nombre no-margin"></h4>
                     <img
                         className="logo_img"
-                        src="img\fondo-logo-futbol_1195-244.png"
+                        src="../../../public/img/fondo-logo-futbol_1195-244.png"
                     />
                 </Link>
                 </section>
@@ -39,7 +39,7 @@ const Header = () => {
                     <div className="carrito">
                     <img
                         className="icono__fluid"
-                        src="/iconos/carrito.png"
+                        src="../../../public/iconos/carrito.png"
                         alt="imagen carrito"
                     />
 
@@ -65,7 +65,7 @@ const Header = () => {
                     <div className="usuario">
                     <img
                         className="icono__fluid"
-                        src="iconos/usuario.png"
+                        src="../../../iconos/usuario.png"
                         alt="imagen carrito"
                     />
 
