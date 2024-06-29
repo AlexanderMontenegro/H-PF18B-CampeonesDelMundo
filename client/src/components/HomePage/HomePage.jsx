@@ -4,9 +4,11 @@ import { useNavigate, Link } from "react-router-dom";
 
 // Components
 import ProductoCard from '../ProductoCard/ProductoCard';
+import HeroSection from '../HeroSection/HeroSection';
+import Header from '../Header/Header';
 
 // CSS
-import "../../css/homePage.css"
+import "../../css/homePage.css";
 
 import { useSelector } from 'react-redux';
 
@@ -23,55 +25,16 @@ console.log(productos);
     const handleEnterToLadingPage = () => {
         navigate("/"); // Redirige a la ruta '/login'
     };
+    
+
 
     return (
         <>
             {/* Header - INICIO */}
-            <header className="header__homePage">
-                <div className="barra__container">
-                    {/* Lado Izquierdo - logo */}
-                    <section className="barra__left">
-                        {/* Logo */}
-                        <Link className="logo" to={"/homePage"}>
-                            <h4 className="logo_nombre no-margin">LOGO</h4>
-                        </Link>
-                    </section>
-
-
-                    {/* Lado Derecho - Opciones*/}
-                    <section className="barra__right">
-                        {/* Navegacion */}
-                        <div className="navegacion">
-                            {/* Inicio */}
-                            <a className="navegacion_enlace">
-                                Inicio
-                            </a>
-                            {/* Productos */}
-                            <a className="navegacion_enlace">
-                                Productos
-                            </a>
-                            {/* Carrito */}
-                            <a className="navegacion_enlace">
-                                Carrito
-                            </a>
-                            <a className="navegacion_enlace" onClick={handleEnterToLadingPage}>
-                                Usuario
-                            </a>
-
-                            <Link to='/dashboard' className="navegacion_enlace">Dashboard</Link>
-                        </div>
-                    </section>
-                </div>
-
-                <div className="header_titulo ">
-                    {/* Titulo */}
-                    <h2 className="no-margin">Todos los Mundiales de la historia:</h2>
-
-                    <p className="no-margin">Campeones, sedes y mejores jugadores</p>
-                </div>
-            </header>
-
+            
+            <Header/>
             {/* Header - FINAL */}
+                    <HeroSection />
 
             {/* Main - INICIO */}
             <main>
@@ -84,21 +47,21 @@ console.log(productos);
                             {/* Navegacion */}
                             <div className="navegacion">
                                 {/* Ropa */}
-                                <a className="navegacion_enlace">
+                                <Link className="navegacion_enlace">
                                     Ropa
-                                </a>
+                                </Link>
                                 {/* Calzados */}
-                                <a className="navegacion_enlace">
+                                <Link className="navegacion_enlace">
                                     Calzados
-                                </a>
+                                </Link>
                                 {/* Accesorios */}
-                                <a className="navegacion_enlace">
+                                <Link className="navegacion_enlace">
                                     Accesorios
-                                </a>
+                                </Link>
                                 {/* Marcas */}
-                                <a className="navegacion_enlace">
+                                <Link className="navegacion_enlace">
                                     Marcas
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         

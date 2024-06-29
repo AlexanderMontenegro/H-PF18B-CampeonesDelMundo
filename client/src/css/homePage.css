@@ -1,35 +1,4 @@
 /* Home Page */
-.header__homePage{
-    background-image: url("../img/img3.jpg");
-
-    height: 50rem;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-/* Logo */
-.logo{
-    color: var(--blanco);
-
-}
-.logo_nombre{
-    font-weight: 400;
-}
-.logo_bold {
-    font-weight: 700;
-}
-.header_titulo {
-    text-align: center;
-    color: var(--crema);
-    margin-top: 8rem;
-}
-.logo_img{
-    width: 250px;
-    height: 250px;
-    padding: 0;
-    margin: 0;
-    border: 0;
-}
 
 
 /* Seach bar*/
@@ -178,12 +147,12 @@ img{
 /* Titulo */
 @media (min-width: 768px) {
     .header_texto {
-        margin-top: 15rem;
+        margin-top: 13rem;
         
     }
 }
 .barra__container {
-    padding-top: 4rem;
+    padding-top: 0.5rem;
     
 }
 

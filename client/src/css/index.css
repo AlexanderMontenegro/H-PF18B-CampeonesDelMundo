@@ -12,13 +12,14 @@
   --amarillo: #FFD60A;
 
   /*2da Opcion*/
-  /*
-  --blanco: #FFFFFF;
   --anarajado: #FF9F1C;
   --piel: #FFBF69;
   --turquesa: #2EC4B6;
   --celeste_Opaco: #CBF3F0;
-  */
+
+  /*3ra Opcion*/
+  --celeste: #04B4E0;
+ 
 }
 /* Principales */
 html {
@@ -78,8 +79,37 @@ img {
 .no-padding {
   padding: 0;
 }
-.centrar-texto {
-  text-align: center;
+.text-end {
+  text-align: right !important;
 }
 
+.text-center {
+  text-align: center !important;
+}
 
+/* Iconos */
+.icono__fluid{
+  max-width: 100%;
+  height: auto;
+}
+.icono__container{
+  background-color: transparent;
+  border: none;
+  max-width: 4.5rem;
+  position: relative;
+  z-index: 100;
+
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.icono__content{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  gap: 2rem;
+  
+}
