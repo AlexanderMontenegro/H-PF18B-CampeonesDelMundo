@@ -1,0 +1,47 @@
+.dashboard-main {
+    padding: 2rem;
+    background-color: var(--blanco);
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .quick-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-item {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 30%;
+  }
+  
+  .stat-item h3 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .stat-item p {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  .add-product-button {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    background-color: var(--azul);
+    color: var(--blanco);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-product-button:hover {
+    background-color: var(--azul-oscuro);
+  }
+  

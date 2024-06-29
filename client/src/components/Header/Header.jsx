@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 // CSS 
 import "../../css/header.css"
 
+
 const Header = () => {
     return (
         <header className="header__homePage">
@@ -19,6 +20,7 @@ const Header = () => {
                         src="../../../public/img/fondo-logo-futbol_1195-244.png"
                     />
                 </Link>
+             
                 </section>
 
                 {/* Lado Derecho - Opciones*/}
@@ -30,7 +32,7 @@ const Header = () => {
                     {/* Productos */}
                     <a className="navegacion_enlace">Productos</a>
                     {/* Contacto */}
-                    <a className="navegacion_enlace">Contacto</a>
+                    <a className="navegacion_enlace">Contacto  </a>
                     {/* Carrito */}
                     {/* <a className="navegacion_enlace">
                                         Carrito
@@ -80,7 +82,17 @@ const Header = () => {
                             <Link className="logo" to={"/register"}>
                                 <button className="icon__button">Registrate</button>
                             </Link>
+
                         </div>
+
+                        <div className="icon__usuario">
+                            <Link className="logo" to="/dashboard">
+                                <button className="icon__button">Administrador</button>
+                            </Link>
+                            
+                        </div>
+
+                        
                     </div>
                     </div>
                 </div>
