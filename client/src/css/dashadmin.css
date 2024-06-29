@@ -1,0 +1,85 @@
+
+.dashboard-main {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  gap: 4rem;
+  padding: 2rem;
+  background-color: var(--blanco);
+  border: 1px solid var(--azul_Oscuro);
+  max-width: 80%;
+  margin: 0 auto;
+  
+}
+
+
+.stats,
+.gestionar-management {
+  flex: 1;
+}
+
+.stats {
+  background-color: var(--anarajado);
+  color: var(--blanco);
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 50%;
+}
+
+.stats h2 {
+  font-family: var(--fuenteHeading);
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+}
+
+.stats .listados button {
+  font-family: var(--fuenteParrafos);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--amarillo);
+  color: var(--negro);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.stats .listados button:hover {
+  background-color: var(--negro);
+  color: var(--blanco);
+}
+
+.gestionar-management {
+  background-color: var(--celeste);
+  color: var(--negro);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.gestionar-management h2 {
+  font-family: var(--fuenteHeading);
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+}
+
+.gestionar-management .gestion-items button {
+  font-family: var(--fuenteParrafos);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--crema);
+  color: var(--negro);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.gestionar-management .gestion-items button:hover {
+  background-color: var(--azul_Oscuro);
+  color: var(--blanco);
+}
