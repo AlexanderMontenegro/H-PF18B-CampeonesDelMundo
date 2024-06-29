@@ -27,10 +27,54 @@ import { data } from './db/db';
 
 function ChampionsApp() {
     
-    // Data (db)
-    //console.log(data)
-
+    // UseStates
     const [productos, setProductos] = useState(data);
+    const [carrito, setCarrito] = useState([]);
+    const MAX_ITEMS = 5
+    const MIN_ITEMS = 0
+
+    // FUNCIONES
+    const addToCarrito = (item) => {
+        const itemExist = carrito.findIndex(producto => producto.id === item.id)
+
+        if(itemExist >= 0) {    // el item ya existe
+            const updateCarrito = [...carrito];
+            updateCarrito[itemExist].quantity++;
+            setCarrito(updateCarrito);
+        } else{
+            item.quantity = 1;
+            setCarrito([...carrito, item]);
+        }
+    }
+
+    const removeFromCarrito = (id) => {
+        setCarrito(prevCarrito => prevCarrito.filter(producto => producto.id !== id ));
+    }
+
+    const decreaseQuantity = (id) => {
+        const updatedCarrito = carrito.map( item => {
+            if(item.id === id && item.quantity > MIN_ITEMS){
+                return {...item, quantity: item.quantity - 1}
+            }
+            return item;
+        })
+        setCarrito(updatedCarrito);
+    }
+
+    const increaseQuantity = (id) => {
+        const updatedCarrito = carrito.map( item => {
+            if(item.id === id && item.quantity < MAX_ITEMS){
+                return {...item, quantity: item.quantity + 1}
+            }
+            return item;
+        })
+        setCarrito(updatedCarrito);
+    }
+
+    const clearCarrito = () => {
+        setCarrito([]);
+    }
+    
 
     // Navigate y Location
     const navigate = useNavigate();
@@ -56,7 +100,15 @@ function ChampionsApp() {
                     path="/homePage"
                     element={
                         <>
-                            <HomePage productos={productos}/>
+                            <HomePage 
+                                productos={productos}
+                                carrito={carrito}
+                                addToCarrito={addToCarrito}
+                                removeFromCarrito={removeFromCarrito}
+                                increaseQuantity={increaseQuantity}
+                                decreaseQuantity={decreaseQuantity}
+                                clearCarrito={clearCarrito}
+                            />
                         </>
                     }
                 ></Route>
@@ -71,7 +123,14 @@ function ChampionsApp() {
                     path="/login"
                     element={
                         <>
-                            <Login/>
+                            <Login
+                                carrito={carrito}
+                                addToCarrito={addToCarrito}
+                                removeFromCarrito={removeFromCarrito}
+                                increaseQuantity={increaseQuantity}
+                                decreaseQuantity={decreaseQuantity}
+                                clearCarrito={clearCarrito}
+                            />
                         </>
                     }
                 ></Route>
@@ -82,16 +141,34 @@ function ChampionsApp() {
                     path="/register"
                     element={
                         <>
-                            <Register/>
+                            <Register
+                                carrito={carrito}
+                                addToCarrito={addToCarrito}
+                                removeFromCarrito={removeFromCarrito}
+                                increaseQuantity={increaseQuantity}
+                                decreaseQuantity={decreaseQuantity}
+                                clearCarrito={clearCarrito}
+                            />
                         </>
                     }
                 ></Route>
                 
 
-                <Route path="/dashboard" element={<Dashboard />} />
-
-
-            </Routes>         
+                <Route 
+                    path="/dashboard" 
+                    element={
+                        <>
+                            <Dashboard 
+                                carrito={carrito}
+                                addToCarrito={addToCarrito}
+                                removeFromCarrito={removeFromCarrito}
+                                increaseQuantity={increaseQuantity}
+                                decreaseQuantity={decreaseQuantity}
+                                clearCarrito={clearCarrito}
+                            />
+                        </>
+                    }
+                /></Routes>         
         </>
     )
 }

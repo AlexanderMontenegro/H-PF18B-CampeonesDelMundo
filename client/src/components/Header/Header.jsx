@@ -5,7 +5,12 @@ import { useNavigate, Link } from "react-router-dom";
 import "../../css/header.css"
 
 
-const Header = () => {
+const Header = ({carrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito}) => {
+
+    // Funciones
+    const isEmpty = () => carrito.length === 0;
+    const carritoTotal = () => carrito.reduce((total, item) => total + (item.quantity*item.precio), 0);
+
     return (
         <header className="header__homePage">
             <div className="barra__container">
@@ -41,22 +46,88 @@ const Header = () => {
                     <div className="carrito">
                     <img
                         className="icono__fluid"
-                        src="../../../public/iconos/carrito.png"
+                        src="iconos/carrito.png"
                         alt="imagen carrito"
                     />
 
                     <div id="carrito" className="carrito__container">
-                        <h4 className="text-center ">El carrito esta vacio</h4>
-                        {/* <table className='carrito__table'>
-                                                <thead>
-                                                    <th></th>
-                                                </thead>
+                        
+                        {isEmpty() ? (
+                            <h4 className="text-center ">El carrito esta vacio</h4>
+                        ) : (
+                            <>
+                            <table className='carrito__table'>
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Tipo</th>
+                                        <th>Marca</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        {carrito.map(producto => (
+                                            <tr key={producto.id}>
+                                                <td>
+                                                    <img 
+                                                        className="img-fluid" 
+                                                        src={producto.imagen}
+                                                        alt={`${producto.id, producto.tipo} imagen`}
+                                                    />
+                                                </td>
+                                                <td className=" cabecera__texto">{producto.tipo}</td>
+                                                <td className=" cabecera__texto">{producto.marca}</td>
+                                                <td className="cabecera__texto">
+                                                        ${producto.precio}
+                                                </td>
+                                                <td>
+                                                    <div className="cabecera__buttons cabecera__texto">
+                                                        <button
+                                                            type="button"
+                                                            className="cabecera__button"
+                                                            onClick={() => decreaseQuantity(producto.id)}
+                                                        >
+                                                            -
+                                                        </button>
+                                                            {producto.quantity}
+                                                        <button
+                                                            type="button"
+                                                            className="cabecera__button"
+                                                            onClick={() => increaseQuantity(producto.id)}
+                                                        >
+                                                            +
+                                                        </button>
+                                                    </div>
+                                                    
+                                                </td>
+                                                <td>
+                                                    <button                                               
+                                                        type="button"
+                                                        className="cabecera__cerrar"
+                                                        onClick={() => removeFromCarrito(producto.id)}
+                                                    >
+                                                        X
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                </tbody>
+                            </table>
+                            
+                            <p className="text-end">
+                                Total pagar: <span className="fw-bold">${carritoTotal()}</span>
+                            </p>
+                            <button className="icon__button" onClick={clearCarrito}>Vaciar Carrito</button>
 
-                                            </table> */}
-                        <p className="text-end">
-                        Total pagar: <span className="fw-bold">$899</span>
-                        </p>
-                        <button className="icon__button">Vaciar Carrito</button>
+                            </>
+                            
+                        )}
+                        
+
+                        
+
                     </div>
                     </div>
 

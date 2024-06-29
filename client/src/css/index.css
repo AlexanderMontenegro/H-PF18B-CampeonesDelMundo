@@ -19,6 +19,8 @@
 
   /*3ra Opcion*/
   --celeste: #04B4E0;
+  --rojo: #C70039;
+  --rojo_Oscuro: #581845;
  
 }
 /* Principales */
@@ -45,7 +47,7 @@ body {
 }
 .contenido_principal {
   width: min(100%, 50rem);
-  margin: 0 auto;
+  margin: auto auto;
 }
 a {
   text-decoration: none;
@@ -85,6 +87,12 @@ img {
 
 .text-center {
   text-align: center !important;
+}
+
+/* Imagenes */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Iconos */

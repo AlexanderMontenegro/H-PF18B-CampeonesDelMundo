@@ -41,6 +41,8 @@
     max-width: 4.5rem;
     position: relative;
     z-index: 100;
+
+
     
     /* filter: opacity(0.5) drop-shadow(0 0 0 black); */    
 }
@@ -65,7 +67,8 @@
 }
   
 #carrito img {
-    width: 30px;
+    width: 71px;
+    
 }
   
 #carrito .btn-danger {
@@ -145,3 +148,102 @@
     }
 }
 /* Iconos - Fin */
+
+/* Imagenes Carrito */
+.cabecera__container{
+    background-color: var(--anarajado);
+}
+.cabecera__buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.cabecera__texto{
+    font-weight: bold;
+}
+.cabecera__button{
+    text-align: center;
+    width: 100%;
+   
+    font-size: 2rem;
+    color: var(--negro);
+    background-color: var(--amarillo);
+    border-radius: 0.5rem;
+
+    padding: 0 1rem;
+
+    font-weight: bold;
+   
+
+    &:hover{
+        background-color: var(--azul_Oscuro);
+        transition: all 300ms ease-in-out;
+        color: var(--blanco);
+    }
+}
+.cabecera__cerrar{
+    text-align: center;
+    justify-content: start;
+    width: 100%;
+   
+    font-size: 1.8rem;
+    color: var(--blanco);
+    background-color: var(--rojo);
+    border-radius: 0.5rem;
+    
+    padding: 1.5rem;
+
+    font-weight: bold;
+   
+
+    &:hover{
+        background-color: var(--rojo_Oscuro);
+        transition: all 300ms ease-in-out;
+    }
+}
+.cabecera__centrar{
+    text-align: center;
+}
+
+
+
+/* Tabla */
+table.paleBlueRows {
+    font-family: "Times New Roman", Times, serif;
+    border: 1px solid #FFFFFF;
+    width: 350px;
+    height: 200px;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  table.paleBlueRows td, table.paleBlueRows th {
+    border: 1px solid #FFFFFF;
+    padding: 3px 2px;
+  }
+  table.paleBlueRows tbody td {
+    font-size: 13px;
+  }
+  table.paleBlueRows tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+  table.paleBlueRows thead {
+    background: #0B6FA4;
+    border-bottom: 5px solid #FFFFFF;
+  }
+  table.paleBlueRows thead th {
+    font-size: 17px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #FFFFFF;
+  }
+  table.paleBlueRows thead th:first-child {
+    border-left: none;
+  }
+  
+  table.paleBlueRows tfoot td {
+    font-size: 14px;
+  }
+
+ 

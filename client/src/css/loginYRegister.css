@@ -1,4 +1,12 @@
 /* Main - Login */
+.login__container{
+  display: flex;
+	justify-content: center;
+	align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
   .options-login {
     display: flex;
     align-items: center;
@@ -181,6 +189,7 @@
 	justify-content: center;
 	align-items: center;
   gap: 2rem;
+  padding: 2rem;
   }
   .register__left{
     width: 65rem;
