@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 // Components
 import ProductoCard from '../ProductoCard/ProductoCard';
+import {Footer} from '../Footer';
 import HeroSection from '../HeroSection/HeroSection';
 import Header from '../Header/Header';
 
@@ -93,9 +94,7 @@ const HomePage = ({productos}) => {
                  </div>
             </main>
 
-            <footer className='footer'>
-                <p className='no-margin'>&copy; 2024 World Champions - Todos los derechos Reservados</p>
-            </footer>
+            <Footer/>
            
 
         </>
