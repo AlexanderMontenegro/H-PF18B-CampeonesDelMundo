@@ -197,50 +197,41 @@ const deleteId = async (id) => {
 
 //--------------------------------------------------------------------------------------------------
 
-const createProduct = async (
-    tipo,
-    descripcion,
-    precio,
-    imagen,
-    marca,
-    pais,
-    talles,
-    categoria // Esta es una cadena de texto con los nombres de las categorías, separadas por comas
-  ) => {
-   
-  
-    // Encuentra o crea el producto en la base de datos
-    const [newProduct, created] = await Productos.findOrCreate({
-      where: {
-        tipo,
-        descripcion,
-        precio,
-        imagen,
-        marca,
-        pais,
-        talles,
-      },
-    });
-  
-    
-  
-    // Separa los nombres de las categorías en un array
-    const categoriaNombres = categoria.split(", ");
-  
-    // Encuentra los registros de categorías en la base de datos
-    const categoriaRecords = await Categoria.findAll({
-      where: {
-        nombre: categoriaNombres,
-      },
-    });
-  
-   
-  
-    // Asocia las categorías al producto
-    await newProduct.addCategoria(categoriaRecords);
-  
-    return newProduct;
-  };
+const createProduct = async (tipo, descripcion, precio, imagen, marca, pais, talles, categoria, stock) => {
+  // Encuentra o crea el producto en la base de datos
+  const [newProduct, created] = await Productos.findOrCreate({
+    where: {
+      tipo,
+      descripcion,
+      precio,
+      imagen,
+      marca,
+      pais,
+      talles,
+      stock,
+    },
+  });
+
+  // Separa los nombres de las categorías en un array
+  const nombre = categoria.split(", ");
+
+  // Encuentra los registros de categorías en la base de datos
+  const categoriaRecords = await Categoria.findAll({
+    where: {
+      nombre: nombre,
+    },
+  });
+
+  // Asocia las categorías al producto
+  await newProduct.addCategoria(categoriaRecords);
+
+  // Incluye las categorías asociadas en la respuesta
+  const productWithCategories = await Productos.findByPk(newProduct.id, {
+    include: Categoria,
+  });
+
+  return productWithCategories;
+};
   
 
 module.exports = {

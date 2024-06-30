@@ -46,10 +46,29 @@ const deleteIdHandler = async (req, res) => {
 
 const createProductHandler = async (req, res) => {
   try {
-    const { tipo, descripcion, precio, imagen, marca, pais, talles, categoria } = req.body;
-    
-    const newProduct = await createProduct(tipo, descripcion, precio, imagen, marca, pais, talles, categoria);
-    res.status(201).json(newProduct);
+    const { tipo, descripcion, precio, imagen, marca, pais, talles, categoria, stock } = req.body;
+
+    const newProduct = await createProduct(tipo, descripcion, precio, imagen, marca, pais, talles, categoria, stock);
+
+    // Mapea las categorías a una cadena de texto
+     newProduct.Categoria.map(cat => cat.nombre).join(", ");
+
+    // Crea la respuesta limpia
+    const productResponse = {
+      id: newProduct.id,
+      tipo: newProduct.tipo,
+      descripcion: newProduct.descripcion,
+      precio: newProduct.precio,
+      imagen: newProduct.imagen,
+      marca: newProduct.marca,
+      pais: newProduct.pais,
+      talles: newProduct.talles,
+      categoria: categoria,
+      stock: newProduct.stock,
+    };
+
+    console.log(productResponse);
+    res.status(201).json(productResponse);
   } catch (error) {
     console.error("Error al crear el producto:", error);
     res.status(500).json({ error: error.message });
