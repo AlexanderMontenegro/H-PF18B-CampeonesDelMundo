@@ -1,5 +1,5 @@
 // UseState y UseEffect
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // React-router-doom
 import {
@@ -15,20 +15,29 @@ import HomePage from './components/HomePage/HomePage';
 import LadingPage from './components/LadingPage/LadingPage';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import ProductoCard from './components/ProductoCard/ProductoCard';
-import Dashboard from "../src/pages/Dashboard"
+import DashboardPage from "../src/pages/DashboardPage"
 
 // Components (Componentes)
 import Login from './components/HomePage/Login';
 import Register from './components/HomePage/Register';
 
 // Import Data (db)
-import { data } from './db/db';
+// import { data } from './db/db';
+
+// import Dashboard from './components/Dashboard/Dashboard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategory, getProducts } from './Redux/actions';
+import Swal from 'sweetalert2';
 
 
 function ChampionsApp() {
+    const dispatch = useDispatch();
+    const stateProducts = useSelector(state=>state.allProducts);
     
-    // UseStates
-    const [productos, setProductos] = useState(data);
+    // Data (db)
+    //console.log(data)
+
+    const [productos, setProductos] = useState(stateProducts);
     const [carrito, setCarrito] = useState([]);
     const MAX_ITEMS = 5
     const MIN_ITEMS = 0
@@ -80,6 +89,20 @@ function ChampionsApp() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
+    useEffect(()=>{
+dispatch(getCategory());
+        dispatch(getProducts()).then(
+        Swal.fire({
+        icon: "success",
+        title: "Datos obtenidos desde el Back",
+        text: "",
+        timer: 5000
+      })
+        )
+
+    
+    }, []);
+
     return (
         <>
             <Routes>
@@ -100,6 +123,8 @@ function ChampionsApp() {
                     path="/homePage"
                     element={
                         <>
+                            {/* <HomePage productos={productos}/> home page va hacer uso del estado allProducts */}
+                            
                             <HomePage 
                                 productos={productos}
                                 carrito={carrito}
@@ -113,7 +138,16 @@ function ChampionsApp() {
                     }
                 ></Route>
                 <Route exact path="/" component={ProductoCard} />
-                <Route path="/product/:id" element={<ProductDetails />} />
+                <Route 
+                    path="/product/:id" 
+                    element={<ProductDetails 
+                        carrito={carrito}
+                        addToCarrito={addToCarrito}
+                        removeFromCarrito={removeFromCarrito}
+                        increaseQuantity={increaseQuantity}
+                        decreaseQuantity={decreaseQuantity}
+                        clearCarrito={clearCarrito}
+                    />} />
       
 
 
@@ -152,13 +186,15 @@ function ChampionsApp() {
                         </>
                     }
                 ></Route>
+
+                {/* <Route path='/dashboard/*' element={<Dashboard />} /> */}
                 
 
                 <Route 
-                    path="/dashboard" 
+                    path="/dashboard*" 
                     element={
                         <>
-                            <Dashboard 
+                            <DashboardPage 
                                 carrito={carrito}
                                 addToCarrito={addToCarrito}
                                 removeFromCarrito={removeFromCarrito}

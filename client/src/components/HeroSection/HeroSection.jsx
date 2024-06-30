@@ -4,6 +4,7 @@ import "../../css/herosection.css"
 
 
 function HeroSection() {
+
   return (
     <section className='hero-section'>
         

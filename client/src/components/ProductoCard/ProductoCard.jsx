@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import "../../css/productocard.css"
 import { Link } from 'react-router-dom';
 
-const ProductoCard = ({ producto, addToCarrito }) => {
+const ProductoCard = ({ producto, addToCarrito}) => {
 
   return (
     <div className="card__container">
