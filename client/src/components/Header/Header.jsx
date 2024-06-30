@@ -37,7 +37,8 @@ const Header = ({carrito, removeFromCarrito, increaseQuantity, decreaseQuantity,
                     {/* Productos */}
                     <a className="navegacion_enlace">Productos</a>
                     {/* Contacto */}
-                    <a className="navegacion_enlace">Contacto  </a>
+                    <a className="navegacion_enlace">Contacto</a>
+                    
                     {/* Carrito */}
                     {/* <a className="navegacion_enlace">
                                         Carrito

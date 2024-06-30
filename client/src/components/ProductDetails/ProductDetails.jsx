@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 
 
 
-const ProductDetails = () => {
+const ProductDetails = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity,decreaseQuantity,clearCarrito}) => {
   const { id } = useParams();
   const product = data.find(item => item.id === parseInt(id, 10));
 
@@ -17,7 +17,15 @@ const ProductDetails = () => {
   return (
   <div>
 
-    <Header/>
+    {/* <Header /> */}
+    <Header
+            carrito={carrito}
+            addToCarrito={addToCarrito}
+            removeFromCarrito={removeFromCarrito}
+            increaseQuantity={increaseQuantity}
+            decreaseQuantity={decreaseQuantity}
+            clearCarrito={clearCarrito}
+        />
     
     <div className="product-details-container">
       <div className="product-image">

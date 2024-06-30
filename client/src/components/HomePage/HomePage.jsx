@@ -1,18 +1,22 @@
-import {React, useState} from 'react'
+import { React, useState } from "react";
 
 import { useNavigate, Link } from "react-router-dom";
 
 // Components
-import ProductoCard from '../ProductoCard/ProductoCard';
+import ProductoCard from "../ProductoCard/ProductoCard";
 // import {Footer} from '../Footer';
-import HeroSection from '../HeroSection/HeroSection';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import HeroSection from "../HeroSection/HeroSection";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 // CSS
 import "../../css/homePage.css";
 
-const HomePage = ({productos, carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito}) => {
+import { useSelector } from "react-redux";
+
+const HomePage = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity,decreaseQuantity,clearCarrito}) => {
+    const productos = useSelector((state) => state.allProducts);
+    console.log(productos);
 
     // NAVEGACIÓN
     // Obtener la función de navegación
@@ -23,89 +27,74 @@ const HomePage = ({productos, carrito, addToCarrito, removeFromCarrito, increase
     const handleEnterToLadingPage = () => {
         navigate("/"); // Redirige a la ruta '/login'
     };
-    
-
 
     return (
         <>
-            {/* Header - INICIO */}
-            
-            <Header 
-                carrito={carrito}
-                removeFromCarrito={removeFromCarrito}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                clearCarrito={clearCarrito}
-            />
+        {/* Header - INICIO */}
 
-            {/* Header - FINAL */}
-                    <HeroSection />
+        {/* <Header /> */}
+        <Header
+            carrito={carrito}
+            removeFromCarrito={removeFromCarrito}
+            increaseQuantity={increaseQuantity}
+            decreaseQuantity={decreaseQuantity}
+            clearCarrito={clearCarrito}
+        />
 
-            {/* Main - INICIO */}
-            <main>
-                <div className="main-container">
-                    
-                    {/* Opciones de Countries */}
-                    <h2>Categorias</h2>
-            
-                        <div className='barra__right'>
-                            {/* Navegacion */}
-                            <div className="navegacion">
-                                {/* Ropa */}
-                                <Link className="navegacion_enlace">
-                                    Ropa
-                                </Link>
-                                {/* Calzados */}
-                                <Link className="navegacion_enlace">
-                                    Calzados
-                                </Link>
-                                {/* Accesorios */}
-                                <Link className="navegacion_enlace">
-                                    Accesorios
-                                </Link>
-                                {/* Marcas */}
-                                <Link className="navegacion_enlace">
-                                    Marcas
-                                </Link>
-                            </div>
-                        </div>
-                        
+        {/* Header - FINAL */}
+        <HeroSection />
 
+        {/* Main - INICIO */}
+        <main>
+            <div className="main-container">
+            {/* Opciones de Countries */}
+            <h2>Categorias</h2>
 
-                    {/* Contenedor para la lista de productos */}
-                    <h2>Productos Destacados</h2>
-                    {/* Cards */}
-                    <div className="product__list">
-                        {productos.map((producto) => (
-                            <ProductoCard
-                                key={producto.id}
-                                producto={producto}
-                                addToCarrito={addToCarrito}
-                            />
-                        ))}
-                    </div>
+            <div className="barra__right">
+                {/* Navegacion */}
+                <div className="navegacion">
+                {/* Ropa */}
+                <Link className="navegacion_enlace">Ropa</Link>
+                {/* Calzados */}
+                <Link className="navegacion_enlace">Calzados</Link>
+                {/* Accesorios */}
+                <Link className="navegacion_enlace">Accesorios</Link>
+                {/* Marcas */}
+                <Link className="navegacion_enlace">Marcas</Link>
+                </div>
+            </div>
 
-                    {/* Contenedor para la paginación */}
-                    {/* <div className="pagination-container">
-                        <Pagination
-                            currentPage={currentPage}
-                            totalPages={totalPages}
-                            onPageChange={handlePageChange}
-                        />
-                    </div> */}
+            {/* Contenedor para la lista de productos */}
+            <h2>Productos Destacados</h2>
+            {/* Cards */}
+            <div className="product__list">
+                {productos.map((producto) => (
+                <ProductoCard
+                    key={producto.id}
+                    producto={producto}
+                    addToCarrito={addToCarrito}
+                />
+                ))}
+            </div>
 
-                    {/* Mostrar detalles de un país seleccionado */}
-                    {/* {selectedCountryId && (
-                        <CountryDetail countryId={selectedCountryId} />
-                    )}    */}
-                 </div>
-            </main>
+            {/* Contenedor para la paginación */}
+            {/* <div className="pagination-container">
+                                <Pagination
+                                    currentPage={currentPage}
+                                    totalPages={totalPages}
+                                    onPageChange={handlePageChange}
+                                />
+                            </div> */}
 
-            <Footer/>
-           
+            {/* Mostrar detalles de un país seleccionado */}
+            {/* {selectedCountryId && (
+                                <CountryDetail countryId={selectedCountryId} />
+                            )}    */}
+            </div>
+        </main>
 
+        <Footer />
         </>
-    )
-}
-
-export default HomePage
+    );
+};
+export default HomePage;
