@@ -3,8 +3,11 @@ const {
   searchTipo,
   getProductId,
   deleteId,
-  createProduct
+  //createProduct
 } = require("../controllers/productControllers");
+
+const  createProduct  = require("../controllers/postCrontrolers");
+
 
 //el handle de todos los productos y tipos 
 const productGetHandler = async (req, res) => {
@@ -46,9 +49,9 @@ const deleteIdHandler = async (req, res) => {
 
 const createProductHandler = async (req, res) => {
   try {
-    const { tipo, descripcion, precio, imagen, marca, pais, talles, categoria } = req.body;
+    const { tipo, descripcion, precio, stock, imagen, marca, pais, talles, categoria } = req.body;
     
-    const newProduct = await createProduct(tipo, descripcion, precio, imagen, marca, pais, talles, categoria);
+    const newProduct = await createProduct(tipo, descripcion, precio, stock, imagen, marca, pais, talles, categoria);
     res.status(201).json(newProduct);
   } catch (error) {
     console.error("Error al crear el producto:", error);

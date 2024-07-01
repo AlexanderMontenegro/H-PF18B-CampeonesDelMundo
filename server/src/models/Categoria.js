@@ -15,5 +15,14 @@ module.exports = (sequelize) => {
     timestamps: false,
   });
 
+  // Definir la relación muchos a muchos
+  
+  Categoria.associate = function(models) {
+    Categoria.belongsToMany(models.Productos, {
+      through: 'ProductoCategorias',
+      as: 'productos',
+      foreignKey: 'categoriaId',
+    });
+  };
   return Categoria;
 };
