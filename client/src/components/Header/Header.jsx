@@ -33,7 +33,7 @@ const Header = ({carrito, removeFromCarrito, increaseQuantity, decreaseQuantity,
                 {/* Navegacion */}
                 <div className="navegacion">
                     {/* Inicio */}
-                    <a className="navegacion_enlace">Inicio</a>
+                    <Link className="navegacion_enlace" to={"/homePage"}>Inicio</Link>
                     {/* Productos */}
                     <a className="navegacion_enlace">Productos</a>
                     {/* Contacto */}

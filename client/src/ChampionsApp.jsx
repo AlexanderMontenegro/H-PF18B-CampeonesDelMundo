@@ -207,7 +207,7 @@ getAll();
                 
 
                 <Route 
-                    path="/dashboard*" 
+                    path="/dashboard/*" 
                     element={
                         <>
                             <DashboardPage 

@@ -1,8 +1,7 @@
 import React, { useState, useEffect} from "react";
 import validation from "./Validation";
 import "../../../css/createproducto.css";
-import { useSelector } from "react-redux";
-import styles from './CreateProduct.module.css';
+//import styles from './CreateProduct.module.css';
 import {useSelector, useDispatch } from "react-redux";
 import { getCategory, postNewProduct} from "..//..//..//Redux//actions";
 import Swal from "sweetalert2";
@@ -13,7 +12,6 @@ function createProduct (){
     const arrayCategoryGloblal = useSelector(state=>state.allCategory);
     const [arrayCategory, setArrayCategory] = useState(arrayCategoryGloblal);
     let arrayCat = [];
-    console.log(arrayCat)
 if(arrayCat.length<0){ console.log('enntro') }
    // window.location.reload();
     
@@ -155,58 +153,52 @@ const handleSubmit= async(event)=>{
                     onChange={handleChange}
                 />
                 {errors.marca && <p className="errors">{errors.marca}</p>}
-            </div>
-                {errors.marca && <p className={styles.errors}>{errors.marca}</p>}
-            </div>
-
-            <div className={styles.field}>
+</div>
+            <div className='field'>
       <label>Precio $</label> 
     <input 
     type="text" 
-        className={styles.form_style} 
+        className='form_style'
         name='precio' 
         value={newProduct.precio} 
         onChange={handleChange} />
-    {errors.precio&&<p className={styles.errors}>{errors.precio}</p>}
+    {errors.precio&&<p className='errors'>{errors.precio}</p>}
     </div>
 
-    <div className={styles.field}>
+    <div className='field'>
       <label>Stock</label> 
     <input 
     type="text" 
-        className={styles.form_style} 
+        className='form_style' 
         name='stock' 
         value={newProduct.stock} 
         onChange={handleChange} />
-    {errors.stock&&<p className={styles.errors}>{errors.stock}</p>}
+    {errors.stock&&<p className='errors'>{errors.stock}</p>}
     </div>
 
-    <div className={styles.field}>
+    <div className='field'>
                 <label>Talles</label>
                 <input 
         type="text" 
-        className={styles.form_style} 
+        className='form_style' 
         name='talles' 
         value={newProduct.talles} 
         onChange={handleChange}
         />
 
-    {errors.talles &&<p className={styles.errors}>{errors.talles}</p>}
+    {errors.talles &&<p className='errors'>{errors.talles}</p>}
 </div>
 
             <div className="field">
                 <label>Categoria</label>
-                {errors.categoria &&<p className={styles.errors}>{errors.categoria}</p>}
-                <select multiple name="categoria" value={opCat} onChange={handleCategoryChange}  className={styles.form_style}>
+                {errors.categoria &&<p className='errors'>{errors.categoria}</p>}
+                <select multiple name="categoria" value={opCat} onChange={handleCategoryChange}  className='form_style'>
     {arrayCategory.map((objeto) => (
           <option key={objeto.id} value={objeto.nombre} id={objeto.id}>
             {objeto.nombre}
           </option>
         ))}
     </select>
-
-    {errors.categoria &&<p className="errors">{errors.categoria}</p>}
-    
 
     <label>Opciones seleccionadas:</label>
         {opCat.map((opcion) => (
@@ -223,16 +215,14 @@ const handleSubmit= async(event)=>{
         value={newProduct.imagen} 
         onChange={handleChange} 
         placeholder="URL de imagen"/>
-    {newProduct.imagen && <img src={newProduct.imagen} alt="Vista previa de la imagen" 
-    style={{ maxWidth: '300px', maxHeight: '300px' }} />}
-    {errors.imagen!==''&&<p className="errors">{errors.imagen}</p>}
     {newProduct.imagen && <><br/><img src={newProduct.imagen} alt="Vista previa de la imagen" 
     style={{ maxWidth: '300px', maxHeight: '300px' }} /></>}
-    {errors.imagen&&<p className={styles.errors}>{errors.imagen}</p>}
+    {errors.imagen&&<p className='errors'>{errors.imagen}</p>}
     </div>
 
     <div className="field">
                 <label>Descripcion</label>
+                {errors.descripcion && <p className="errors">{errors.descripcion}</p>}
                 <textarea
                     rows='4'
                     cols='35'
@@ -241,13 +231,11 @@ const handleSubmit= async(event)=>{
                     value={newProduct.descripcion}
                     onChange={handleChange}
                 />
-                {errors.descripcion && <p className="errors">{errors.descripcion}</p>}
             </div>
 
-    <button onClick={handleSubmit}  className="btn" >Registrar</button>
-            <div className={styles.field}>
+            <div className='field'>
             <label>Pais</label> 
-    <select name='pais' value={newProduct.pais} onChange={handleChange}  className={styles.form_style}>
+    <select name='pais' value={newProduct.pais} onChange={handleChange}  className='form_style'>
     <option value='' disabled hidden>Selecciona Pais</option>
     {arrayPais.map((objeto) => (
           <option key={objeto.id} value={objeto.pais}>
@@ -255,15 +243,15 @@ const handleSubmit= async(event)=>{
           </option>
         ))}
     </select>
-    {errors.pais&&<p className={styles.errors}>{errors.pais}</p>}
+    {errors.pais&&<p className='errors'>{errors.pais}</p>}
             </div>
 
     <button onClick={handleSubmit} 
     disabled={Object.keys(errors).length === 0? false : true} 
-    className={`styles.btn ${ Object.keys(errors).length > 0? '.dis' : ''}`}>
+    className={`btn ${ Object.keys(errors).length > 0? 'dis' : ''}`}>
     Registrar</button>
         </form>
-    )
-}
+        )
+    }
 
 export default createProduct;
