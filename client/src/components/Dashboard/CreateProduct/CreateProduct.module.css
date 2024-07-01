@@ -81,3 +81,13 @@
   label {
     color: #00050a;
   }
+
+  .btn.dis {
+    background: #ff1100;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }

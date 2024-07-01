@@ -16,8 +16,7 @@ import { useSelector } from "react-redux";
 
 const HomePage = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity,decreaseQuantity,clearCarrito}) => {
     const productos = useSelector((state) => state.allProducts);
-    console.log(productos);
-
+console.log('Productos', productos)
     // NAVEGACIÓN
     // Obtener la función de navegación
     const navigate = useNavigate();

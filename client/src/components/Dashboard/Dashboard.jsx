@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Route, Routes } from "react-router-dom"
 import CreateProduct from "./CreateProduct/CreateProduct";
 import CreateCategory from "./CreateCategory/CreateCategory"
-import Header from '..//..//components//Header//Header';
+//import Header from '..//..//components//Header//Header';
 import style from './Dashboard.module.css'
 
 function Dashboard (){
