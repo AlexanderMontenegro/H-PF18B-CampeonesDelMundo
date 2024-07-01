@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import validation from "./Validation";
-import styles from './CreateProduct.module.css';
+import "../../../css/createproducto.css";
 import { useSelector } from "react-redux";
 
 
@@ -51,33 +51,33 @@ const handleSubmit=(event)=>{
 };
 
     return (
-        <form className={styles.form}>
-            <h3 className={styles.title}>Nuevo Producto</h3>
-            <div className={styles.field}>
+        <form className="form">
+            <h3 className="title">Nuevo Producto</h3>
+            <div className="field">
                 <label>Tipo</label>
                 <input
                     type="text"
-                    className={styles.form_style}
+                    className="form_style"
                     name='tipo'
                     value={newProduct.tipo}
                     onChange={handleChange}
                 />
-                {errors.tipo && <p className={styles.errors}>{errors.tipo}</p>}
+                {errors.tipo && <p className="errors">{errors.tipo}</p>}
             </div>
 
-            <div className={styles.field}>
+            <div className="field">
                 <label>Marca</label>
                 <input
                     type="text"
-                    className={styles.form_style}
+                    className="form_style"
                     name='marca'
                     value={newProduct.marca}
                     onChange={handleChange}
                 />
-                {errors.marca && <p className={styles.errors}>{errors.marca}</p>}
+                {errors.marca && <p className="errors">{errors.marca}</p>}
             </div>
 
-            <div className={styles.field}>
+            <div className="field">
                 <label>Categoria</label>
                 <select multiple name="categoria" value={opCat} onChange={handleCategoryChange}>
     {arrayCategory.map((objeto) => (
@@ -87,7 +87,7 @@ const handleSubmit=(event)=>{
         ))}
     </select>
 
-    {errors.categoria &&<p className={styles.errors}>{errors.categoria}</p>}
+    {errors.categoria &&<p className="errors">{errors.categoria}</p>}
 
     <label>Opciones seleccionadas:</label>
         
@@ -97,34 +97,34 @@ const handleSubmit=(event)=>{
 
             </div>
     
-      <div className={styles.field}>
+      <div className="field">
       <label>Imagen </label> 
     <input 
     type="text" 
-        className={styles.form_style} 
+        className="form_style"
         name='imagen' 
         value={newProduct.imagen} 
         onChange={handleChange} 
         placeholder="URL de imagen"/>
     {newProduct.imagen && <img src={newProduct.imagen} alt="Vista previa de la imagen" 
     style={{ maxWidth: '300px', maxHeight: '300px' }} />}
-    {errors.imagen!==''&&<p className={styles.errors}>{errors.imagen}</p>}
+    {errors.imagen!==''&&<p className="errors">{errors.imagen}</p>}
     </div>
 
-    <div className={styles.field}>
+    <div className="field">
                 <label>Descripcion</label>
                 <textarea
                     rows='4'
                     cols='35'
                     name="descripcion"
-                    className={styles.form_style}
+                    className="form_style"
                     value={newProduct.descripcion}
                     onChange={handleChange}
                 />
-                {errors.descripcion && <p className={styles.errors}>{errors.descripcion}</p>}
+                {errors.descripcion && <p className="errors">{errors.descripcion}</p>}
             </div>
 
-    <button onClick={handleSubmit}  className={styles.btn} >Registrar</button>
+    <button onClick={handleSubmit}  className="btn" >Registrar</button>
         </form>
     )
 }

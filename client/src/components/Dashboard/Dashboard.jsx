@@ -3,7 +3,7 @@ import { Link, Route, Routes } from "react-router-dom"
 import CreateProduct from "./CreateProduct/CreateProduct";
 import CreateCategory from "./CreateCategory/CreateCategory"
 import Header from '..//..//components//Header//Header';
-import style from './Dashboard.module.css'
+import "../../css/dashboard.css"
 
 function Dashboard (){
 
@@ -11,21 +11,28 @@ function Dashboard (){
         <>
         
         <div>
-                <div className={style.dashboard}>
-                <div className={style.options}>
+                <div className="dashboard">
+                <div className="options">
                     <Link to={"createproduct"} >
-                        <p> Crear Producto</p>
+                        <p> Gestion Producto</p>
                     </Link>
                     <Link to={"createcategory"} >
-                        <p> Crear Categoria</p>
+                        <p> Gestion Categoria</p>
                     </Link>
-                    <div className={style.list}>
+                    <Link to={"createproduct"} >
+                        <p> Gestion Usuario</p>
+                    </Link>
+                    <Link to={"createcategory"} >
+                        <p> Gestion Stock</p>
+                    </Link>
+                   
+                    <div className="list">
 
                     </div>
 
                 </div>
 
-                <div className={style.form}></div>
+                <div ></div>
                 <Routes>
                         <Route path='createproduct' element={<CreateProduct />} />
                         <Route path='createcategory' element={<CreateCategory />} />
