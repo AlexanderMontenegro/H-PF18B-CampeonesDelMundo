@@ -2,7 +2,9 @@ import React from "react";
 import { Link, Route, Routes } from "react-router-dom"
 import CreateProduct from "./CreateProduct/CreateProduct";
 import CreateCategory from "./CreateCategory/CreateCategory"
-import Header from '..//..//components//Header//Header';
+import StockAdmin from "./StockAdmin/StockAdmin";
+import UserAdmin from "./UserAdmin/UserAdmin";
+
 import "../../css/dashboard.css"
 
 function Dashboard (){
@@ -19,10 +21,10 @@ function Dashboard (){
                     <Link to={"createcategory"} >
                         <p> Gestion Categoria</p>
                     </Link>
-                    <Link to={"createproduct"} >
+                    <Link to={"useradmin"} >
                         <p> Gestion Usuario</p>
                     </Link>
-                    <Link to={"createcategory"} >
+                    <Link to={"stockadmin"} >
                         <p> Gestion Stock</p>
                     </Link>
                    
@@ -36,6 +38,9 @@ function Dashboard (){
                 <Routes>
                         <Route path='createproduct' element={<CreateProduct />} />
                         <Route path='createcategory' element={<CreateCategory />} />
+                        <Route path='useradmin' element={<UserAdmin />} />
+                        <Route path='stockadmin' element={<StockAdmin />} />
+                        
                     </Routes>
                 </div>
         </div>
