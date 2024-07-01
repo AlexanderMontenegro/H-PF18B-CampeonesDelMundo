@@ -4,7 +4,6 @@ import { useNavigate, Link } from "react-router-dom";
 
 // Components
 import ProductoCard from "../ProductoCard/ProductoCard";
-// import {Footer} from '../Footer';
 import HeroSection from "../HeroSection/HeroSection";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -85,11 +84,7 @@ const HomePage = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity,decre
                                     onPageChange={handlePageChange}
                                 />
                             </div> */}
-
-            {/* Mostrar detalles de un país seleccionado */}
-            {/* {selectedCountryId && (
-                                <CountryDetail countryId={selectedCountryId} />
-                            )}    */}
+            
             </div>
         </main>
 
