@@ -1,4 +1,6 @@
-.form {
+
+
+  .form {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -6,45 +8,51 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background: #fff;
+    border: 1px solid var(--azul_Oscuro); 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.title {
+  }
+  
+  .title {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
     text-align: center;
+    
   }
   
   .field {
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
+    border: 1px solid var(--azul_Oscuro); 
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+    border-radius: 8px;
+    background-color: #007bff8c;
   }
   
   .form_style {
+
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--azul_Oscuro); 
     border-radius: 8px;
     outline: none;
     transition: border 0.2s;
+    background-color:#fffffffd;
+
   }
   
   .form_style:focus {
-    border-color: #007bff;
+    border-color: #007bff; 
   }
   
   .errors {
     color: red;
     font-size: 0.875em;
   }
-  
   
   .show_hide_btn {
     position: absolute;
@@ -54,30 +62,37 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+    border-radius: 8px;
   }
   
-  
   .btn {
-    background: #007bff;
-    color: #fff;
+    background: #007bff; 
+    color: #fff; 
     padding: 10px 15px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+    border-radius: 8px;
   }
   
   .btn:hover {
-    background: #0056b3;
+    background: #0056b3; 
   }
-    
-  .id{
+  
+  .id {
     padding: 10px 50px;
-    background: #c9dbcc;
+    background: #808080; 
     border-radius: 5px;
     align-items: center;
-    }
-
-  label {
-    color: #00050a;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+    border-radius: 8px;
   }
+  
+  label {
+    color: var(--negro); 
+    
+  }
+  
