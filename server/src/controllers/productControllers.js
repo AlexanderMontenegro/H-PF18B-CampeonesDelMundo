@@ -222,7 +222,9 @@ const createProduct = async (
       },
     });
   
-    
+    if (!created) {  //todo....para que valide si el producto existe.
+      throw new Error('El producto ya existe');
+    }
   
     // Separa los nombres de las categorías en un array
     const categoriaNombres = categoria.split(", ");

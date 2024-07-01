@@ -58,6 +58,9 @@ const deleteCategoria = async (id) => {
   }
 };
 
+
+//Mepa que faltaria un update no? att.gonza
+
 module.exports = {
   deleteCategoria,
   createCategoria,

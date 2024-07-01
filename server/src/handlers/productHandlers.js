@@ -52,11 +52,18 @@ const createProductHandler = async (req, res) => {
     res.status(201).json(newProduct);
   } catch (error) {
     console.error("Error al crear el producto:", error);
-    res.status(500).json({ error: error.message });
+    if (error.message === 'El producto ya existe') {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(500).json({ error: error.message });
+    }
   }
 };
 
-
+/*catch (error) {
+    console.error("Error al crear el producto:", error);
+    res.status(500).json({ error: error.message });
+  } */
 
 
 module.exports = {

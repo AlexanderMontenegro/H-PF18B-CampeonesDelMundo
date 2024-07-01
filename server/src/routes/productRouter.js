@@ -6,7 +6,7 @@ const {
     createProductHandler 
 } = require("../handlers/productHandlers");
 
-
+const { validateProduct } = require('../middlewares/validation');
 
 const productRouter = Router();
 
@@ -15,8 +15,10 @@ const productRouter = Router();
 
 productRouter.get("/", productGetHandler);
 productRouter.get("/:idProducto", getProductByIdHandler);
-productRouter.post("/", createProductHandler);
+productRouter.post("/", validateProduct, createProductHandler);
 productRouter.delete("/:idProducto", deleteIdHandler);
 
+
+//Mepa que faltaria un update no? jajaj. att.Gonza
 
 module.exports = productRouter;
