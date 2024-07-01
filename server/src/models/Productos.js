@@ -1,7 +1,8 @@
+// models/Productos.js
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Productos', {
+  const Productos = sequelize.define('Productos', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -45,12 +46,20 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     created: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
-  },
-  { timestamps: false }
- );
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+  }, { timestamps: false });
 
-  
+  // Definir la relación muchos a muchos
+  Productos.associate = function(models) {
+    Productos.belongsToMany(models.Categoria, {
+      through: 'ProductoCategorias',
+      as: 'categorias',
+      foreignKey: 'productoId',
+    });
+  };
+
+  return Productos;
 };
+
