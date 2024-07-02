@@ -127,11 +127,7 @@ console.log('Productos', productos)
                                     onPageChange={handlePageChange}
                                 />
                             </div> */}
-
-            {/* Mostrar detalles de un país seleccionado */}
-            {/* {selectedCountryId && (
-                                <CountryDetail countryId={selectedCountryId} />
-                            )}    */}
+            
             </div>
         </main>
 
