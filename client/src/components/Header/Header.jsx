@@ -30,26 +30,19 @@ const Header = ({
           />
         </section>
 
-        {/* Lado Derecho - Opciones*/}
-        <section className="barra__right">
-          {/* Navegacion */}
-          <div className="navegacion">
-            {/* Inicio */}
-            <Link to={"/homepage"}>
-              <a className="navegacion_enlace">Inicio</a>
-            </Link>
-            {/* Productos */}
-
-            <Link to={"/"}>
-              <a className="navegacion_enlace">Productos</a>
-            </Link>
-            {/* Contacto */}
-
-            <Link to={"/"}>
-              <a className="navegacion_enlace">Contacto</a>
-            </Link>
-            {/* Carrito */}
-            {/* <a className="navegacion_enlace">
+                {/* Lado Derecho - Opciones*/}
+                <section className="barra__right">
+                {/* Navegacion */}
+                <div className="navegacion">
+                    {/* Inicio */}
+                    <Link className="navegacion_enlace" to={"/homePage"}>Inicio</Link>
+                    {/* Productos */}
+                    <a className="navegacion_enlace">Productos</a>
+                    {/* Contacto */}
+                    <a className="navegacion_enlace">Contacto</a>
+                    
+                    {/* Carrito */}
+                    {/* <a className="navegacion_enlace">
                                         Carrito
                                     </a> */}
 
