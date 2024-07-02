@@ -5,7 +5,7 @@ export const data = [
     "marca": "marathon",
     "precio": 11000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://media.marathon.store/products/ha0/h08/h00/10254988148766.jpg",
+    "imagen": "https://media.tycsports.com/files/2021/06/30/301191/tokio-2020_862x485.jpg?v=1",
     "categoria": "seleccionFutbol",
     "pais": "Peru"
   },
@@ -15,7 +15,7 @@ export const data = [
     "marca": "marathon",
     "precio": 9000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://media.marathon.store/products/h1d/h89/h00/10243804594206.jpg",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH-ROoIt9WH8y3IYl2BaCqfyt8vbcwXJCsbWYOjSc9WaKszCg9PwB6BlayyMH33U0z74&usqp=CAU",
     "categoria": "seleccionFutbol",
     "pais": "Peru"
   },
@@ -25,7 +25,7 @@ export const data = [
     "marca": "adidas",
     "precio": 79000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://afaar.vtexassets.com/arquivos/ids/156638-500-auto?v=638459540536700000&width=500&height=auto&aspect=true",
+    "imagen": "https://www.revista22.es/wp-content/uploads/2021/08/Tokyo-2020-Olympic-Games-20.jpg",
     "categoria": "seleccionFutbol",
     "pais": "Argentina"
   },
@@ -35,7 +35,7 @@ export const data = [
     "marca": "adidas",
     "precio": 45000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://afaar.vtexassets.com/arquivos/ids/156642-500-auto?v=638459560675430000&width=500&height=auto&aspect=true",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6n8rFnuWT3zVk3CyDA9PKlvPShQGrdP43Z_0euE2d9J4u78vxwN73LD-WGdIACMMG_EY&usqp=CAU",
     "categoria": "seleccionFutbol",
     "pais": "Argentina"
   },
@@ -45,7 +45,7 @@ export const data = [
     "marca": "marathon",
     "precio": 20000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://media.marathon.store/products/hbc/h09/h00/10015859179550.jpg",
+    "imagen": "https://www.lanacion.com.ar/resizer/v2/veronica-ravenna-competira-en-luge-es-la-unica-de-I5R4H4O6T5DD3DNAC4IHMCPG6Q.jpg?auth=2ba505d472ea0977123f0885e3d637d6d266f01ad68fb7026dc2e0a742e55e9c&width=420&height=280&quality=70&smart=true",
     "categoria": "seleccionFutbol",
     "pais": "Bolivia"
   },
@@ -55,7 +55,7 @@ export const data = [
     "marca": "marathon",
     "precio": 15000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://media.marathon.store/products/hab/h83/h00/9386436624414.jpg",
+    "imagen": "https://www.lavoz.com.ar/resizer/uzuUkNULCyGFy0yLNd1oqEvS2Z4=/0x0:0x0/980x640/filters:quality(80):format(webp)/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/MS6DBV7PXZEQ7LSP7TQWTQEJBA.jpeg",
     "categoria": "seleccionFutbol",
     "pais": "Bolivia"
   },
