@@ -37,7 +37,7 @@ const Header = ({
                     {/* Inicio */}
                     <Link className="navegacion_enlace" to={"/homePage"}>Inicio</Link>
                     {/* Productos */}
-                    <a className="navegacion_enlace">Productos</a>
+                    <Link className="navegacion_enlace"to={"/ProductPage"}>Productos</Link>
                     {/* Contacto */}
                     <a className="navegacion_enlace">Contacto</a>
                     
