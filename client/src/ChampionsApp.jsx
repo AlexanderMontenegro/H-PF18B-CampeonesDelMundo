@@ -98,12 +98,12 @@ function ChampionsApp() {
             await dispatch(getCategory()); 
             if(response.payload.length > 0)
                 {
-                    Swal.fire({
+/*                     Swal.fire({
                         icon: "success",
                         title: "Datos obtenidos desde el Back",
                         text: "",
                         timer: 5000
-                      })
+                      }) */
                 }
   }catch{
             Swal.fire({
