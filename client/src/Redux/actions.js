@@ -69,7 +69,7 @@ export const postCategory = (newCategory) => {
             catch (error) {
                 Swal.fire({
                     icon: "error",
-                    title: error,
+                    title: error.message,
                     text: "",
                     timer: 5000
                   })

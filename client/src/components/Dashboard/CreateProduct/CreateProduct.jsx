@@ -3,16 +3,17 @@ import validation from "./Validation";
 import "../../../css/createproducto.css";
 //import styles from './CreateProduct.module.css';
 import {useSelector, useDispatch } from "react-redux";
-import { getCategory, postNewProduct} from "..//..//..//Redux//actions";
+import { useNavigate } from "react-router-dom";
+import {postNewProduct} from "..//..//..//Redux//actions";
 import Swal from "sweetalert2";
 
 
 function createProduct (){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const arrayCategoryGloblal = useSelector(state=>state.allCategory);
     const [arrayCategory, setArrayCategory] = useState(arrayCategoryGloblal);
     let arrayCat = [];
-if(arrayCat.length<0){ console.log('enntro') }
    // window.location.reload();
     
 
@@ -55,10 +56,8 @@ if(arrayCat.length<0){ console.log('enntro') }
             event.preventDefault();
 
             if(event.target.name==='talles'){
-                console.log('fsfs')
                // event.target.value
                 const talles= event.target.value.split(',');
-                console.log('con split', talles)
                 setErrors(validation({...newProduct,[event.target.name] : talles}));
                 setNewProduct({...newProduct,[event.target.name]:talles});
             }else{
@@ -105,7 +104,6 @@ const stringCategoria = nombres.join(', ');
 //submit
 const handleSubmit= async(event)=>{
     event.preventDefault();
-    console.log(opCat)
     console.log(newProduct)
     const response = await dispatch(postNewProduct(newProduct)); 
     if(response.payload.data)
@@ -116,7 +114,9 @@ const handleSubmit= async(event)=>{
         text: "",
         timer: 3000
       }).then(() => {
-    //window.location.reload();
+                 // Redirigir después de que la alerta se cierre
+    navigate("/homePage"); // Cambia la URL al destino 
+    window.location.reload();
       });         
     }else{
             Swal.fire({
@@ -217,7 +217,9 @@ const handleSubmit= async(event)=>{
         placeholder="URL de imagen"/>
     {newProduct.imagen && <><br/><img src={newProduct.imagen} alt="Vista previa de la imagen" 
     style={{ maxWidth: '300px', maxHeight: '300px' }} /></>}
-    {errors.imagen&&<p className='errors'>{errors.imagen}</p>}
+    {errors.imagen && <p className='errors'>{errors.imagen}</p>}
+    {console.log('en el for',errors)}
+    { console.log('error de imagen',errors.imagen)}
     </div>
 
     <div className="field">
