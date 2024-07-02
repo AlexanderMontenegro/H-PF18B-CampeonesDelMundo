@@ -219,6 +219,7 @@ const handleSubmit= async(event)=>{
     style={{ maxWidth: '300px', maxHeight: '300px' }} /></>}
     {errors.imagen && <p className='errors'>{errors.imagen}</p>}
     {console.log('en el for',errors)}
+    { console.log('error de imagen',errors.imagen)}
     </div>
 
     <div className="field">

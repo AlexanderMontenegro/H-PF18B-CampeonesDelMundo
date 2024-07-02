@@ -180,20 +180,21 @@ img{
   
 }
 /* CSS - Fin Barra */
-
 /* Pagination */
-.pagination-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; /* Permite que los botones se envuelvan en dispositivos pequeños */
-}
-.pagination-button{
-    padding: 5px 10px;
-    margin: 0 5px;
-    border-radius: 5em;
-}
-
+/*
+    .pagination-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; 
+    }
+    .pagination-button{
+        padding: 5px 10px;
+        margin: 0 5px;
+        border-radius: 5em;
+    }
+    
+    */
 /* SearchBar */
 .container__ordenacion{
     display: flex;
@@ -290,7 +291,7 @@ img{
     background: linear-gradient(var(--celeste), var(--negro));
     /* gap: 2rem; */
 }
-
+/*
 .pagination-container{
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,143,38,1) 0%, rgba(150,126,197,1) 48%, rgba(0,255,222,1) 100%);
     margin-top: 50px;

@@ -36,7 +36,8 @@ if(imageUrlRegex.test(inputs.imagen)){
                 if (response.ok) {
                     console.log('La solicitud a la URL falló con estado:', response.status);
                     objeto.imagen = true;
-                    //errors.imagen='La solicitud a la URL falló';
+                    errorsO.imagen='La solicitud a la URL falló';
+                    return 0;
                 } else {
                     const contentType = response.headers.get('content-type');
         
@@ -51,11 +52,13 @@ if(imageUrlRegex.test(inputs.imagen)){
                         errorsO.imagen = 'La URL no contiene una imagen válida.';
                     }
                 }
-            } catch {
-                console.log('Error al verificar la URL de la imagen:');
-                errorsO.imagen = 'Error al verificar la URL de la imagen:'
+            } catch(error) {
+                console.log('Error al verificar la URL de la imagen:', error);
                 objeto.error =' Error al verificar la URL de la imagen';
+                return errorsO.imagen = 'Error al verificar la URL de la imagen:';
             }
+                
+                
         };
         
         // Objeto inicial con la URL a verificar
