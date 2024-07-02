@@ -65,7 +65,7 @@ export const data = [
     "marca": "nike",
     "precio": 60000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://static1.cdn-subsidesports.com/2/media/catalog/product/cache/8c1d2c81075bec58441bdd78446b18bb/2/a/2aade4ba0254572571ec61d244a7e403cda87c197391bbbb7bc1ae073a76e821.jpeg",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2d9f-Qh9u0RyEsgqxlidqpdkxwzKI9Lb-Og&s",
     "categoria": "seleccionFutbol",
     "pais": "Brasil"
   },
@@ -75,7 +75,7 @@ export const data = [
     "marca": "nike",
     "precio": 45000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwcf7e1fd2/products/NIDN0724-433/NIDN0724-433-1.JPG",
+    "imagen": "https://st1.uvnimg.com/e5/92/2e0669084784a6b0dd2db978172f/007-cuantos-deportes-hay-en-juegos-olimpicos-y-cuales-son.jpg",
     "categoria": "seleccionFutbol",
     "pais": "Brasil"
   },
@@ -85,7 +85,7 @@ export const data = [
     "marca": "puma",
     "precio": 25000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://pbs.twimg.com/media/Dbv5BtYX4AE6Mdj.jpg",
+    "imagen": "https://e00-especiales-marca.uecdn.es/juegos-olimpicos/images/enciclopedia/remog.jpg",
     "categoria": "seleccionFutbol",
     "pais": "Uruguay"
   },
@@ -95,7 +95,7 @@ export const data = [
     "marca": "puma",
     "precio": 20000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwc067fe3c/products/PU770286-01/PU770286-01-1.JPG",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTodiE4PJsiukeYXf4yE9Qsoa01FrsLUO8rOA&s",
     "categoria": "seleccionFutbol",
     "pais": "Uruguay"
   },
@@ -105,7 +105,7 @@ export const data = [
     "marca": "valpex",
     "precio": 15000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQauaobPstaUXERk2LxhCAErEI43z9ac4sNn4c0L4jUQx26NdIYu1LWW5Q2Q&s",
+    "imagen": "https://www.jugandoando.com.ar/wp-content/uploads/cuales-son-los-juegos-que-se-juegan-en-los-juegos-olimpicos-scaled.webp",
     "categoria": "indumentariaHombres"
   },
   {
@@ -114,7 +114,7 @@ export const data = [
     "marca": "muytu",
     "precio": 12000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV8xM1ih8HL1_NujZfEGMxk22-m5-trvVs46nMBTJBYzAI4IxUf8y3pYsvAF6H-sgMjhQ&usqp=CAU",
+    "imagen": "https://s.yimg.com/ny/api/res/1.2/PPSTNaoVQ0QXp0X1u4.OrQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM5NA--/https://s.yimg.com/os/creatr-uploaded-images/2022-02/4e5caee0-8480-11ec-979f-b6b04ac0135d",
     "categoria": "indumentariaHombres"
   },
   {
@@ -123,7 +123,7 @@ export const data = [
     "marca": "ostu",
     "precio": 17000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://www.ostu.com/dw/image/v2/BHFM_PRD/on/demandware.static/-/Sites-storefront_catalog_ostu/default/dwda5db632/images/hi-res/Todo/bermudas-deportivas-para-hombre-60100299-50673_2.jpg?sw=400&sh=400",
+    "imagen": "https://www.elcolectivo.com.ar/u/fotografias/m/2021/7/17/f425x230-3998_17980_23.jpg",
     "categoria": "indumentariaHombres"
   },
   {
@@ -132,7 +132,7 @@ export const data = [
     "marca": "urban luxury",
     "precio": 20000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://acdn.mitiendanube.com/stores/001/332/272/products/c2e4f912-a772-45db-a73a-7d7040de2f5a1-2e163dd55bca7afc7516350045510432-1024-1024.jpeg",
+    "imagen": "https://24horasyucatan.mx/wp-content/uploads/2023/07/Proyecto-nuevo-2023-07-15T104702.751.jpg",
     "categoria": "indumentariaHombres"
   },
   {
@@ -141,7 +141,7 @@ export const data = [
     "marca": "urban luxury",
     "precio": 18000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://http2.mlstatic.com/D_712161-MLA71809372534_092023-O.jpg",
+    "imagen": "https://imagenes.20minutos.es/files/image_640_360/uploads/imagenes/2023/10/13/canada-y-mexico-pelean-por-un-bronce-en-softbol-femenino-en-los-juegos-olimpicos-de-tokio-2020.jpeg",
     "categoria": "indumentariaHombres"
   },
   {
@@ -150,7 +150,7 @@ export const data = [
     "marca": "adidas",
     "precio": 60000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/14863cfe6c52471c9ebcae8000bdf9f8_9366/m-gg-big-bos-hd.jpg",
+    "imagen": "https://fotografias.lasexta.com/clipping/cmsimages01/2022/02/03/FFC2CB50-6A70-4377-96C9-996137A936FF/juegos-olimpicos-invierno-2022_96.jpg?crop=4096,2304,x0,y0&width=1200&height=675&optimize=low&format=webply",
     "categoria": "indumentariaHombres"
   },
   {
@@ -159,7 +159,7 @@ export const data = [
     "marca": "puma",
     "precio": 50000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://megasports.vteximg.com.br/arquivos/ids/221861-1000-1000/65705807000_0.jpg?v=638187058595670000",
+    "imagen": "https://i.blogs.es/9dea89/22127909114_38a095a9a9_z/450_1000.webp",
     "categoria": "indumentariaHombres"
   },
   {
@@ -168,7 +168,7 @@ export const data = [
     "marca": "adidas",
     "precio": 65000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUopxTjH4Z6DKKnwaXJQUvh9v_hx4tcaJEBFdkiXy_58Wrs5AiBQSt-7c7RvEIjcCX9m8&usqp=CAU",
+    "imagen": "https://img.olympics.com/images/image/private/t_s_w860/t_s_16_9_g_auto/f_auto/primary/le3v2vrznyqkygyzym5x",
     "categoria": "indumentariaHombres"
   },
   {
@@ -177,7 +177,7 @@ export const data = [
     "marca": "nike",
     "precio": 30000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://static1.cdn-subsidesports.com/2/media/catalog/product/cache/8c1d2c81075bec58441bdd78446b18bb/2/a/2aade4ba0254572571ec61d244a7e403cda87c197391bbbb7bc1ae073a76e821.jpeg",
+    "imagen": "https://images.pagina12.com.ar/styles/focal_3_2_960x640/public/2023-10/776862-criket-20argentina.jpg?h=bc26de37&itok=ODGHTCrc",
     "categoria": "seleccionFutbol",
     "pais": "Argentina"
   },
@@ -187,7 +187,7 @@ export const data = [
     "marca": "adidas",
     "precio": 35000,
     "talles": ["S", "M", "L", "XL"],
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ44mp9yUXQt6Z01y6-XCbbF7v1xFzjYmbIdORc-vPQcXa4nXo97qC0jz_vJlmDx6YPFTs&usqp=CAU",
+    "imagen": "https://www.panamsports.org/wp-content/uploads/2024/01/colombia-JJOO.webp",
     "categoria": "seleccionFutbol",
     "pais": "Argentina"
   }
