@@ -84,46 +84,8 @@ if(imageUrlRegex.test(inputs.imagen)){
             imagen: true});
         console.log('errors',errorsO)
         
-    }else{errorsO.imagen = "Formato de imagen no valida Permitido '.jpeg .png .jpg'"}
-  //async function auto(inputs){
-     //let res;
-    //res = await validarI(inputs.imagen, res)
-//console.log(res)  
-   // }
-
-    //auto(inputs)
-console.log()
-
- /*        (async function (){
-        try {
-            // Realizar una solicitud HEAD a la URL de la imagen
-            const response = await fetch(inputs.imagen, { method: 'HEAD' });
-        
-            // Verificar si la solicitud fue exitosa
-            if (!response.ok) {
-              console.log('La solicitud a la URL falló con estado:', response.status);
-              return false;
-            }
-        
-            // Obtener el tipo MIME de los encabezados de la respuesta
-            const contentType = response.headers.get('content-type');
-        
-            // Verificar si el tipo MIME es una imagen válida
-            if (contentType && contentType.startsWith('image/')) {
-              console.log(`La URL contiene una imagen válida de tipo: ${contentType}`);
-              return true;
-            } else {
-              console.log('La URL no contiene una imagen válida.');
-              return false;
-            }
-          } catch {
-            return false;
-          }
-    })() .then(result => (console.log('Resultado:', result), !result?errors.imagen= 'error':undefined))}
- */
-         
+    }else{errorsO.imagen = "Formato de imagen no valida Permitido '.jpeg .png .jpg'"}  
     
-
 
     //validation descripcion
     if(inputs.descripcion === '')
