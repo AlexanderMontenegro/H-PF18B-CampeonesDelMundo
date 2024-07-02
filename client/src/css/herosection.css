@@ -48,11 +48,12 @@
   transition: transform 0.3s ease;
   max-width: 90%;
   max-height: 80%;
+  height: 90px;
 }
 
 .carousel img {
-  height: 100px;
-  width: 200px;
+  height: 70px;
+  width: 50px;
   object-fit: cover;
   margin: 0 1rem;
   border: 1px solid var(--negro);
