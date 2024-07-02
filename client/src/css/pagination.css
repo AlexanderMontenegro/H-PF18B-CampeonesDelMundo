@@ -1,0 +1,33 @@
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  background-color: #FFD700 50%;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  margin: 0 10px;
+}
+
+.pagination-container{
+  background: linear-gradient(90deg, #000000 0%, #000000 25%, #FFD700 50%, #000000 75%, #000000 100%);
+  display: flex;
+  justify-content: center;
+  height: 5%;
+  
+}

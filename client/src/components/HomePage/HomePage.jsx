@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 // Components
 import ProductoCard from "../ProductoCard/ProductoCard";
+import Pagination from "../Pagination/Pagination"
 // import {Footer} from '../Footer';
 import HeroSection from "../HeroSection/HeroSection";
 import Header from "../Header/Header";
@@ -27,6 +28,26 @@ const HomePage = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity,decre
     const handleEnterToLadingPage = () => {
         navigate("/"); // Redirige a la ruta '/login'
     };
+
+/*Paginado*/
+
+    // Estados para la paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 12;
+
+  // Calcular el número total de páginas
+  const totalPages = Math.ceil(productos.length / productsPerPage);
+
+  // Obtener los productos para la página actual
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = productos.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);};
+
+
+
 
     return (
         <>
@@ -67,6 +88,8 @@ const HomePage = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity,decre
             {/* Contenedor para la lista de productos */}
             <h2>Productos Destacados</h2>
             {/* Cards */}
+
+            {/*
             <div className="product__list">
                 {productos.map((producto) => (
                 <ProductoCard
@@ -76,6 +99,26 @@ const HomePage = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity,decre
                 />
                 ))}
             </div>
+            */}
+
+<div className="product__list">
+            {currentProducts.map((producto) => (
+              <ProductoCard
+                key={producto.id}
+                producto={producto}
+                addToCarrito={addToCarrito}
+              />
+            ))}
+          </div>
+          <div className="pagination-container">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+
+
 
             {/* Contenedor para la paginación */}
             {/* <div className="pagination-container">
