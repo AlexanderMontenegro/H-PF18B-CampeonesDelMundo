@@ -1,8 +1,10 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export const GET_PRODUCTS = "GET_PRODUCTS"
 export const GET_CATEGORY = "GET_CATEGORY"
 export const POST_CATEGORY = "POST_CATEGORY"
+export const POST_PRODUCT = "POST_PRODUCT"
 
 
 export const getProducts = () => {
@@ -43,11 +45,34 @@ export const postCategory = (newCategory) => {
                 });
             }
             catch (error) {
-                error = {message:"Error en registrar categoria"};
+                Swal.fire({
+                    icon: "error",
+                    title: error,
+                    text: "",
+                    timer: 5000
+                  })
+            }
+        };
+    }
+
+    export const postNewProduct = (newProduct) => {
+        const endpoint = 'http://localhost:3001/productos'; //modificar de acuerdo a ruta del back
+
+        return async function (dispatch) {
+            try {
+                const response = await axios.post(endpoint, newProduct);
                 return dispatch({
-                    type:POST_CATEGORY,
-                    payload: error
-            });
+                    type: POST_PRODUCT,
+                    payload: response
+                });
+            }
+            catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: error,
+                    text: "",
+                    timer: 5000
+                  })
             }
         };
     }

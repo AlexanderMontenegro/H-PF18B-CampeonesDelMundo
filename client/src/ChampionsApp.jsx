@@ -90,15 +90,31 @@ function ChampionsApp() {
     const { pathname } = useLocation();
 
     useEffect(()=>{
-dispatch(getCategory());
-        dispatch(getProducts()).then(
-        Swal.fire({
-        icon: "success",
-        title: "Datos obtenidos desde el Back",
-        text: "",
-        timer: 5000
-      })
-        )
+
+        async function getAll()
+        {
+            try{      
+            const response = await dispatch(getProducts());
+            await dispatch(getCategory()); 
+            if(response.payload.length > 0)
+                {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Datos obtenidos desde el Back",
+                        text: "",
+                        timer: 5000
+                      })
+                }
+  }catch{
+            Swal.fire({
+                icon: "error",
+                title: "Error del servidor",
+                text: "",
+                timer: 5000
+              })
+        }
+        }
+getAll();
 
     
     }, []);
@@ -187,11 +203,11 @@ dispatch(getCategory());
                     }
                 ></Route>
 
-                {/* <Route path='/dashboard/*' element={<Dashboard />} /> */}
+                {/* <Route path='/footer' element={<Footer />} /> */}
                 
 
                 <Route 
-                    path="/dashboard*" 
+                    path="/dashboard/*" 
                     element={
                         <>
                             <DashboardPage 

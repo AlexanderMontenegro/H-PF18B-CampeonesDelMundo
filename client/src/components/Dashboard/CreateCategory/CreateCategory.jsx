@@ -12,13 +12,14 @@ function createCategory(){
     //submit
     async function handleSubmit(event){
         event.preventDefault();
-
-        const soloLetras = /^[a-zA-Z]+$/;
-        const testLetras = soloLetras.test(categoryName);
-        if(testLetras)
+        const regexCategoria = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;       
+        const test = regexCategoria.test(categoryName);
+        const existe = arrayCategory.some(objeto => objeto.nombre === categoryName);
+        if(test && !existe)
             {
+            
             const objCategory = {nombre:categoryName};
-            const response = await dispatch(postCategory(objCategory));  
+            const response = await dispatch(postCategory(objCategory)); 
 
     if(response.payload.data)
     {
@@ -32,12 +33,22 @@ window.location.reload();
   });         
     }
 }else{
+if(existe)
+    {
         Swal.fire({
             icon: "error",
-            title: 'Error al Registrar categoria debe ser solo letras',
+            title: 'Categoria ya Existe',
             text: "",
             timer: 3000
-          })   
+          }) 
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: 'Error al Registrar categoria debe ser letras',
+            text: "",
+            timer: 3000
+          })  
+        } 
     }
     };
 

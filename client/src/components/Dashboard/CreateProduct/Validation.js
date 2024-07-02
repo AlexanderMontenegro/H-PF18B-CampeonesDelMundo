@@ -29,5 +29,28 @@ export default function validation(inputs){
     if(inputs.descripcion === '')
     {errors.descripcion = 'Añade descripcion';}
 
+     //validation descripcion
+     if(inputs.pais === '')
+     {errors.pais = 'Selecciona Pais';}
+
+    //validation precio
+    const regexPrecio = /^\d+(\.\d+)?$/;
+    if(!regexPrecio.test(inputs.precio))
+    {errors.precio = 'Preciom no valido';}
+
+    //validation stock
+    const regexStock =/^-?\d+$/;
+    if(!regexStock.test(inputs.stock))
+    {errors.stock = 'Stock no Valido';}
+
+    //validation talles
+    const regexTalle =/^[a-zA-Z0-9]+(, ?[a-zA-Z0-9]+)*$/;
+    if(!regexTalle.test(inputs.talles))
+    {errors.talles = 'Talles no Validos Formato xxxx, xxxx';}
+
+        //validation categoria
+        if(inputs.categoria === '')
+        {errors.categoria = 'Selecciona una o mas categorias';}
+
 return errors;
 }
