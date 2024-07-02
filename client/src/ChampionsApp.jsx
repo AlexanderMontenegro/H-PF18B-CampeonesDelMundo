@@ -203,7 +203,7 @@ getAll();
                     }
                 ></Route>
 
-                {/* <Route path='/dashboard/*' element={<Dashboard />} /> */}
+                {/* <Route path='/footer' element={<Footer />} /> */}
                 
 
                 <Route 
