@@ -1,0 +1,58 @@
+.product-filter {
+  padding: 20px;
+  background-color: #0184c0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.filter-control {
+  flex: 1 1 300px; /* Ancho fijo para cada control, ajusta según tus necesidades */
+}
+
+.filter-control h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.select-container {
+  position: relative;
+}
+
+.select-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  appearance: none; /* Remove default arrow on Safari */
+  -webkit-appearance: none; /* Remove default arrow on Chrome */
+  -moz-appearance: none; /* Remove default arrow on Firefox */
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+.ButtonDiv {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #022952;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
