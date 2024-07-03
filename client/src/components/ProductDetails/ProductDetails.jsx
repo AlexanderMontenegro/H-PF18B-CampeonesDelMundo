@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { data } from '../../db/db';
 import "../../css/productdetails.css";
 import Header from '../Header/Header';
+import Footer from "../Footer/Footer"
 
 
 
@@ -51,6 +52,7 @@ const ProductDetails = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity
         {/* Lista de comentarios y puntuaciones */}
       </div>
     </div>
+    <Footer/>
             </div>
   );
 }

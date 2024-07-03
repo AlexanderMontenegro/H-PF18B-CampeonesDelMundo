@@ -1,5 +1,5 @@
 import React from 'react';
-import { data }  from "../../db/db";
+import { data }  from "../../db/dbherosections";
 import "../../css/herosection.css"
 
 
