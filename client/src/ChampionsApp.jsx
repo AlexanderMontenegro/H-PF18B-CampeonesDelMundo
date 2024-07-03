@@ -35,13 +35,23 @@ function ChampionsApp() {
   const dispatch = useDispatch();
   const stateProducts = useSelector((state) => state.allProducts);
 
-  // Data (db)
-  //console.log(data)
+  // Local Storage
+  const initialCarrito = () => {
+    const localStorageCarrito = localStorage.getItem('carrito')
 
+    return localStorageCarrito ? JSON.parse(localStorageCarrito) : [];
+  }
+
+  // UseState
   const [productos, setProductos] = useState(stateProducts);
-  const [carrito, setCarrito] = useState([]);
+  const [carrito, setCarrito] = useState(initialCarrito);
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 0;
+
+  // UseEffect
+  useEffect(() => {
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+  }, [carrito])
 
   // FUNCIONES
   const addToCarrito = (item) => {
@@ -87,6 +97,9 @@ function ChampionsApp() {
   const clearCarrito = () => {
     setCarrito([]);
   };
+
+  // Local Storage - Carrito
+  
 
   // Navigate y Location
   const navigate = useNavigate();
