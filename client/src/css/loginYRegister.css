@@ -1,17 +1,25 @@
 /* Main - Login */
 .login__container{
   display: flex;
+  align-items: center;
 	justify-content: center;
-	align-items: center;
-  gap: 2rem;
-  padding: 2rem;
 }
 
-  .options-login {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.login__content{
+  background-color: var(--colorFondo); 
+  width: 55rem;
+  min-height: 60rem;
+
+  border:  0.3rem solid var(--negro);
+  border-radius: 1.5rem;
+
+  margin-bottom: 2rem;
+}
+.options-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
   .option_link {
     font-size: 0.4rem;
   }
@@ -174,8 +182,19 @@
   .login__space{
     padding: 4rem 0;
 }
+.form__options{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* gap: 1rem; */
+
+  /* background-color: var(--celeste); */
+
+  /* margin: 1rem 0; */
+}
 .form__center{
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -183,14 +202,25 @@
 
   /* ===================================== */
   
-  /* CSS - Registro*/
-  .register__container{
+/* CSS - Registro*/
+.register__container{
 	display: flex;
 	justify-content: center;
 	align-items: center;
   gap: 2rem;
   padding: 2rem;
-  }
+}
+.register__content{
+  background-color: var(--colorFondo); 
+  width: 55rem;
+  min-height: 60rem;
+
+  border:  0.3rem solid var(--negro);
+  border-radius: 1.5rem;
+
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
   .register__left{
     width: 65rem;
     height: 68rem;
@@ -258,7 +288,7 @@
       width: 100%;
       height: 4.2rem;
       display: block;
-      border: 0.2rem solid var(--amarillo);
+      border: 0.2rem solid var(--azul);
       border-radius: 0.5rem;
       font-size: 1.5rem;
       padding: 1rem 1.2rem;
@@ -317,13 +347,16 @@
       }
   }
   .form__button{
-      margin-top: 1.5rem;
+      margin: 1.5rem 0;
       padding: 1rem 3rem;
-      font-size: 1.5rem;
+      font-size: 2rem;
       /* border: 0.2rem solid var(--celeste); */
       color: var(--negro);
       background-color: var(--amarillo);
-      border-radius: 1.7rem;
+
+      border:  0.3rem solid var(--negro);
+      border-radius: 1rem;
+
       box-shadow: 0 1rem 1rem -8px rgba(0 ,0 ,0 ,0.22); 
       transition: all 300ms ease-in-out;
       cursor: pointer;
