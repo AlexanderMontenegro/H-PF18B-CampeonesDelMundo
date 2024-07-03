@@ -1,5 +1,10 @@
-import React from "react";
+import {useState, React} from "react";
 import { useNavigate, Link } from "react-router-dom";
+
+// Components (Componentes)
+import Modal from "../Modal/Modal";
+import Login from "../HomePage/Login";
+import Register from "../HomePage/Register";
 
 // CSS
 import "../../css/header.css";
@@ -11,27 +16,35 @@ const Header = ({
   decreaseQuantity,
   clearCarrito,
 }) => {
+
+  // Use States
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // Funciones
   const isEmpty = () => carrito.length === 0;
   const carritoTotal = () =>
     carrito.reduce((total, item) => total + item.quantity * item.precio, 0);
 
+  // const modalLogin = () => {
+  //   setIsModalOpen(true);
+  // }
+
   return (
     <header className="header__homePage">
       <div className="barra__container">
         {/* Lado Izquierdo - logo */}
-        <section className="barra__left">
+        <div className="barra__left">
           {/* Logo */}
 
           <h4 className="logo_nombre no-margin"></h4>
           <img
             className="logo_img"
-            src="../../../public/img/fondo-logo-futbol_1195-244.png"
+            src="img/fondo-logo-futbol_1195-244.png"
           />
-        </section>
+        </div>
 
                 {/* Lado Derecho - Opciones*/}
-                <section className="barra__right">
+                <div className="barra__right">
                 {/* Navegacion */}
                 <div className="navegacion">
                     {/* Inicio */}
@@ -125,9 +138,16 @@ const Header = ({
                       Total pagar:{" "}
                       <span className="fw-bold">${carritoTotal()}</span>
                     </p>
-                    <button className="icon__button" onClick={clearCarrito}>
-                      Vaciar Carrito
-                    </button>
+                    
+                    <div>
+                      <button className="icon__button" onClick={clearCarrito}>
+                        Vaciar Carrito
+                      </button>
+                      <button className="icon__button">
+                        Comprar
+                      </button>
+                    </div>
+                    
                   </>
                 )}
               </div>
@@ -146,15 +166,29 @@ const Header = ({
 
               <div id="usuario" className="usuario__container">
                 <div className="icon__usuario">
-                  <Link className="logo" to={"/login"}>
+                  {/* <Link className="logo" to={"/login"}>
                     <button className="icon__button">Iniciar Sesion</button>
-                  </Link>
+                  </Link> */}
+                  <button className="icon__button" onClick={() => setIsModalOpen(true)}>Iniciar Sesion</button>
+
+                  {isModalOpen && (
+                    <Modal onClose={() => setIsModalOpen(false)}>
+                      <Login/>
+                    </Modal>
+                  )}
                 </div>
 
                 <div className="icon__usuario">
                   <Link className="logo" to={"/register"}>
                     <button className="icon__button">Registrate</button>
                   </Link>
+                  {/* <button className="icon__button" onClick={() => setIsModalOpen(true)}>Registrate</button>
+
+                  {isModalOpen && (
+                    <Modal onClose={() => setIsModalOpen(false)}>
+                      <Register/>
+                    </Modal>
+                  )} */}
                 </div>
 
                 <div className="icon__usuario">
@@ -165,7 +199,7 @@ const Header = ({
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
 
       {/*  <div className="header_titulo ">

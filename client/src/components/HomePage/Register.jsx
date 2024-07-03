@@ -18,14 +18,14 @@ const Register = ({
 }) => {
   return (
     <>
-      <Header
+      {/* <Header
         carrito={carrito}
         addToCarrito={addToCarrito}
         removeFromCarrito={removeFromCarrito}
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
         clearCarrito={clearCarrito}
-      />
+      /> */}
 
       <main>
         {/* Titulo */}
@@ -213,7 +213,7 @@ const Register = ({
           </div>
         </div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
