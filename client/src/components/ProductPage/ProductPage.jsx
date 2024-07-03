@@ -1,10 +1,13 @@
-import { React,useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import ProductoCard from "../ProductoCard/ProductoCard";
-import { useSelector } from "react-redux";
+import { getProducts, getCategory } from "../../Redux/actions";
 import "../../css/homePage.css";
 import Pagination from "../Pagination/Pagination";
+import Filter from "../Filter/Filter";
+import Searchbar from "../Searchbar/Searchbar";
 
 const ProductPage = ({
   carrito,
@@ -14,26 +17,36 @@ const ProductPage = ({
   clearCarrito,
   addToCarrito,
 }) => {
-  const productos = useSelector((state) => state.allProducts);
-  /*Paginado*/
+  const dispatch = useDispatch();
+  
 
-    // Estados para la paginación
-    const [currentPage, setCurrentPage] = useState(1);
-    const productsPerPage = 12;
-  
-    // Calcular el número total de páginas
-    const totalPages = Math.ceil(productos.length / productsPerPage);
-  
-    // Obtener los productos para la página actual
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = productos.slice(indexOfFirstProduct, indexOfLastProduct);
-  
-    const handlePageChange = (pageNumber) => {
-      setCurrentPage(pageNumber);};
+  // Cargar productos y categorías cuando el componente se monte
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getCategory());
+  }, [dispatch]);
+
+  // Obtener productos filtrados y ordenados desde el estado global
+  const productos = useSelector((state) => state.productos);
+
+  // Estados para la paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 12;
+
+  // Calcular el número total de páginas
+  const totalPages = Math.ceil(productos.length / productsPerPage);
+
+  // Obtener los productos para la página actual
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = productos.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
-    
       <Header
         carrito={carrito}
         removeFromCarrito={removeFromCarrito}
@@ -41,8 +54,9 @@ const ProductPage = ({
         decreaseQuantity={decreaseQuantity}
         clearCarrito={clearCarrito}
       />
-      <h4 className="text-center">PAGINA DE PRODUCTOS</h4>
-      <h3 className="text-center">SEARCHBAR</h3>
+      <h4 style={{ textAlign: 'center' }}>Buscador</h4>
+      <Searchbar/>
+      <Filter />      
       <div className="product__list">
         {currentProducts.map((producto) => (
           <ProductoCard
@@ -51,17 +65,14 @@ const ProductPage = ({
             addToCarrito={addToCarrito}
           />
         ))}
-        <div className="pagination-container">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
-        
-        
       </div>
-
+      <div className="pagination-container">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
       <Footer />
     </>
   );

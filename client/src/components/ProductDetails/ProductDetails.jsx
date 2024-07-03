@@ -28,6 +28,7 @@ const ProductDetails = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity
             decreaseQuantity={decreaseQuantity}
             clearCarrito={clearCarrito}
         />
+      
     
     <div className="product-details-container">
       <div className="product-image">
