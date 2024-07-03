@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { data } from '../../db/db';
+
+// CSS
 import "../../css/productdetails.css";
 import Header from '../Header/Header';
 import Footer from "../Footer/Footer"
@@ -46,7 +48,7 @@ const ProductDetails = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity
             ))}
           </select>
         </div>
-        <button className='button__carrito'>Agregar al Carrito</button>
+        <button className='button__carrito' onClick={() => addToCarrito(product)}>Agregar al Carrito</button>
       </div>
       <div className="reviews-section">
         <h3>Reviews</h3>

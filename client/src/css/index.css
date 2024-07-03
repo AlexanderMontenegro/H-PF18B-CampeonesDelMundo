@@ -21,6 +21,7 @@
   --celeste: #04B4E0;
   --rojo: #C70039;
   --rojo_Oscuro: #581845;
+  --colorFondo: #f5f5f5;
  
 }
 /* Principales */
@@ -98,7 +99,8 @@ img {
 /* Iconos */
 .icono__fluid{
   max-width: 100%;
-  height: auto;
+  /* height: auto; */
+  height: 3.5rem;
 }
 .icono__container{
   background-color: transparent;
@@ -111,7 +113,7 @@ img {
   flex-direction: row;
   text-align: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .icono__content{
   display: flex;
@@ -119,5 +121,19 @@ img {
   text-align: center;
   justify-content: center;
   gap: 2rem;
+
+  background-color: var(--celeste);
+  width: 20rem;
+
+  padding: 1rem 0;
+  color: var(--negro);
+/* 
+  border:  0.3rem solid var(--negro);
+  border-radius: 1.5rem; */
+  &:hover{
+    background-color: var(--amarillo);
+    color: var(--negro);
+    transition: all 300ms ease-in-out;
+  }
   
 }
