@@ -70,7 +70,7 @@ export const postNewProduct = (newProduct) => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: error,
+        title: 'Error en el servidor',
         text: "",
         timer: 5000,
       });
@@ -113,21 +113,3 @@ export const sort = (sortType) => {
       };
   }
 };
-        return async function (dispatch) {
-            try {
-                const response = await axios.post(endpoint, newProduct);
-                return dispatch({
-                    type: POST_PRODUCT,
-                    payload: response
-                });
-            }
-            catch (error) {
-                Swal.fire({
-                    icon: "error",
-                    title: error.message,
-                    text: "",
-                    timer: 5000
-                  })
-            }
-        };
-    }
