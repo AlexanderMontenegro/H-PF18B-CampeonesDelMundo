@@ -1,6 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import ChampionsApp from './ChampionsApp.jsx'
+
+// Bootstrap
+// import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
+
+
+// CSS
 import './css/index.css'
 
 import { BrowserRouter } from 'react-router-dom'
