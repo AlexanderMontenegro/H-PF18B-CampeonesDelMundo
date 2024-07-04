@@ -1,3 +1,4 @@
+
 // UseState y UseEffect
 import React, { useState, useEffect } from "react";
 
@@ -34,13 +35,23 @@ function ChampionsApp() {
   const dispatch = useDispatch();
   const stateProducts = useSelector((state) => state.allProducts);
 
-  // Data (db)
-  //console.log(data)
+  // Local Storage
+  const initialCarrito = () => {
+    const localStorageCarrito = localStorage.getItem('carrito')
 
+    return localStorageCarrito ? JSON.parse(localStorageCarrito) : [];
+  }
+
+  // UseState
   const [productos, setProductos] = useState(stateProducts);
-  const [carrito, setCarrito] = useState([]);
+  const [carrito, setCarrito] = useState(initialCarrito);
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 0;
+
+  // UseEffect
+  useEffect(() => {
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+  }, [carrito])
 
   // FUNCIONES
   const addToCarrito = (item) => {
@@ -87,6 +98,9 @@ function ChampionsApp() {
     setCarrito([]);
   };
 
+  // Local Storage - Carrito
+  
+
   // Navigate y Location
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -97,12 +111,12 @@ function ChampionsApp() {
         const response = await dispatch(getProducts());
         await dispatch(getCategory());
         if (response.payload.length > 0) {
-          Swal.fire({
+/*           Swal.fire({
             icon: "success",
             title: "Datos obtenidos desde el Back",
             text: "",
             timer: 5000,
-          });
+          }); */
         }
       } catch {
         Swal.fire({

@@ -92,7 +92,7 @@ export const postNewProduct = (newProduct) => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: error,
+        title: 'Error en el servidor',
         text: "",
         timer: 5000,
       });
