@@ -1,0 +1,35 @@
+.barra__right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 10rem 0;
+  
+}
+
+
+.navegacion_enlace {
+    display: block;
+    text-align: center;
+   
+    font-size: 1.8rem;
+    color: var(--negro);
+    background-color: var(--amarillo);
+    border-radius: 0.5rem;
+
+    font-weight: bold;
+    padding: 0.7rem 0.7rem; 
+
+    &:hover{
+        background-color: var(--azul_Oscuro);
+        color: var(--blanco);
+        transition: all 300ms ease-in-out;
+    }
+}
+
+.main-container{
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
