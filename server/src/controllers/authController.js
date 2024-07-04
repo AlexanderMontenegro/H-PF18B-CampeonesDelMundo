@@ -8,7 +8,7 @@ exports.register = async (req, res) => {
     const { name, email, password, role } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 8);
 
-    const user = await User.create({ name, email, password: hashedPassword, role });
+    await User.create({ name, email, password: hashedPassword, role });
     res.status(201).send({ message: 'User registered successfully!' });
   } catch (error) {
     res.status(500).send({ message: 'Error registering user', error: error.message });
