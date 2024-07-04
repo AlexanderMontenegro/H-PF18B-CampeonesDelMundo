@@ -60,11 +60,14 @@ const Header = ({
                                     </a> */}
 
             <div className="carrito">
-              <img
-                className="icono__fluid"
-                src="iconos/carrito.png"
-                alt="imagen carrito"
-              />
+              <Link className="logo" to={"/Orden"}>
+                <img
+                  className="icono__fluid"
+                  src="iconos/carrito.png"
+                  alt="imagen carrito"
+                />
+              </Link>
+              
 
               <div id="carrito" className="carrito__container">
                 {isEmpty() ? (
@@ -142,9 +145,6 @@ const Header = ({
                     <div>
                       <button className="icon__button" onClick={clearCarrito}>
                         Vaciar Carrito
-                      </button>
-                      <button className="icon__button">
-                        Comprar
                       </button>
                     </div>
                     
