@@ -1,7 +1,8 @@
-import { GET_PRODUCTS, GET_CATEGORY, FILTER_PRODUCTO, NO_FILTER, SORT_PRICE_ASCENDING_ORDER, SORT_PRICE_DESCENDING_ORDER, NO_SORT } from "./actions";
+import { GET_PRODUCTS, GET_CATEGORY, FILTER_PRODUCTO, NO_FILTER, SORT_PRICE_ASCENDING_ORDER, SORT_PRICE_DESCENDING_ORDER, NO_SORT, GET_DETAILS } from "./actions";
 
 // state inicial
 const initialState = {
+  details:null,
   allProducts: [],
   allCategory: [],
   productos: [],
@@ -11,6 +12,11 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case GET_DETAILS:
+      return {
+        ...state,
+        details:payload,        
+      }
     case GET_PRODUCTS:
       return {
         ...state,

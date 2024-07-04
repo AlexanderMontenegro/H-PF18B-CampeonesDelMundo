@@ -1,61 +1,66 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { data } from '../../db/db';
-
-// CSS
+import { connect } from 'react-redux';
+import { getDetails } from '../../Redux/actions'; // Ajusta la ruta según tu estructura de archivos
 import "../../css/productdetails.css";
 import Header from '../Header/Header';
 
-
-
-const ProductDetails = ({carrito,addToCarrito,removeFromCarrito,increaseQuantity,decreaseQuantity,clearCarrito}) => {
+const ProductDetails = ({carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito, product, getDetails}) => {
   const { id } = useParams();
-  const product = data.find(item => item.id === parseInt(id, 10));
+
+  useEffect(() => {
+    getDetails(id);
+  }, [id, getDetails]);
 
   if (!product) {
     return <p>Producto no encontrado</p>;
   }
   
   return (
-  <div>
-
-    {/* <Header /> */}
-    <Header
-            carrito={carrito}
-            addToCarrito={addToCarrito}
-            removeFromCarrito={removeFromCarrito}
-            increaseQuantity={increaseQuantity}
-            decreaseQuantity={decreaseQuantity}
-            clearCarrito={clearCarrito}
-        />
-      
+    <div>
+      <Header
+        carrito={carrito}
+        addToCarrito={addToCarrito}
+        removeFromCarrito={removeFromCarrito}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+        clearCarrito={clearCarrito}
+      />
     
-    <div className="product-details-container">
-      <div className="product-image">
-        <img src={product.imagen} alt={product.tipo} />
-      </div>
-      <div className="product-info">
-        <h2>{product.tipo} - {product.marca}</h2>
-        <p>Precio: ${product.precio}</p>
-        <p>Valoración:</p>
-        <p>Descripción: {product.descripcion}</p>
-        <div className="product-sizes">
-          <label htmlFor="sizes">Talles:</label>
-          <select id="sizes">
-            {product.talles.map((talle, index) => (
-              <option key={index} value={talle}>{talle}</option>
-            ))}
-          </select>
+      <div className="product-details-container">
+        <div className="product-image">
+          <img src={product.imagen} alt={product.tipo} />
         </div>
-        <button className='button__carrito' onClick={() => addToCarrito(product)}>Agregar al Carrito</button>
-      </div>
-      <div className="reviews-section">
-        <h3>Reviews</h3>
-        {/* Lista de comentarios y puntuaciones */}
+        <div className="product-info">
+          <h2>{product.tipo} - {product.marca}</h2>
+          <p>Precio: ${product.precio}</p>
+          <p>Valoración:</p>
+          <p>Descripción: {product.descripcion}</p>
+          <div className="product-sizes">
+            <label htmlFor="sizes">Talles:</label>
+            <select id="sizes">
+              {product.talles.map((talle, index) => (
+                <option key={index} value={talle}>{talle}</option>
+              ))}
+            </select>
+          </div>
+          <button className='button__carrito'>Agregar al Carrito</button>
+        </div>
+        <div className="reviews-section">
+          <h3>Reviews</h3>
+          {/* Lista de comentarios y puntuaciones */}
+        </div>
       </div>
     </div>
-            </div>
   );
-}
+};
 
-export default ProductDetails;
+const mapStateToProps = (state) => ({
+  product: state.details,
+});
+
+const mapDispatchToProps = {
+  getDetails,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
