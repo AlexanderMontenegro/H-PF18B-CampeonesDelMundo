@@ -71,7 +71,7 @@ setNewProduct({...newProduct,[event.target.name]:event.target.value})}
     event.preventDefault();
     const name = Array.from(event.target.selectedOptions, (option) =>option.value);
     let id = Array.from(event.target.selectedOptions, (option) =>option.id);
-    id = parseInt(id[0], 10);
+    id = parseInt(id[0+1], 10);
     let obj = {nombre:name[0],id:id}
     setOpCat(opCat=>[...opCat, obj]);
     arrayCat=opCat.concat([obj]);

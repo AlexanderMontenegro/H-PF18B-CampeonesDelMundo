@@ -1,18 +1,12 @@
-import { React, useState } from "react";
-
-import { useNavigate, Link } from "react-router-dom";
-
-// Components
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProductoCard from "../ProductoCard/ProductoCard";
 import Pagination from "../Pagination/Pagination";
-// import {Footer} from '../Footer';
 import HeroSection from "../HeroSection/HeroSection";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-
-// CSS
+import Category from "../Category/Category"; // Corregido el nombre del componente Category
 import "../../css/homePage.css";
-
 import { useSelector } from "react-redux";
 
 const HomePage = ({
@@ -25,17 +19,9 @@ const HomePage = ({
 }) => {
   const productos = useSelector((state) => state.allProducts);
   console.log("Productos", productos);
-  // NAVEGACIÓN
-  // Obtener la función de navegación
+
+  // Navegación
   const navigate = useNavigate();
-
-  // 1.-Nav - Hacia Activities
-  // ----------------------------
-  const handleEnterToLadingPage = () => {
-    navigate("/"); // Redirige a la ruta '/login'
-  };
-
-  /*Paginado*/
 
   // Estados para la paginación
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,9 +44,7 @@ const HomePage = ({
 
   return (
     <>
-      {/* Header - INICIO */}
-
-      {/* <Header /> */}
+      {/* Header */}
       <Header
         carrito={carrito}
         removeFromCarrito={removeFromCarrito}
@@ -69,66 +53,42 @@ const HomePage = ({
         clearCarrito={clearCarrito}
       />
 
-      {/* Header - FINAL */}
+      {/* Hero Section */}
       <HeroSection />
 
-      {/* Main - INICIO */}
-      <main>
-        <div className="main-container">
-          {/* Opciones de Countries */}
-          <h2>Categorias</h2>
+      {/* Main */}
+      <main className="main-container">
+        {/* Categorías */}
+        <Category />
 
-          <div className="barra__right no-padding">
-            {/* Navegacion */}
-            <div className="navegacion">
-              {/* Ropa */}
-              <Link className="navegacion_enlace">Ropa</Link>
-              {/* Calzados */}
-              <Link className="navegacion_enlace">Calzados</Link>
-              {/* Accesorios */}
-              <Link className="navegacion_enlace">Accesorios</Link>
-              {/* Marcas */}
-              <Link className="navegacion_enlace">Marcas</Link>
-            </div>
-          </div>
-
-          {/* Contenedor para la lista de productos */}
-          <h2>Productos Destacados</h2>
+        {/* Contenedor para la lista de productos */}
+        <div className="product__list">
           {/* Cards */}
-
-          {/*
-            <div className="product__list">
-                {productos.map((producto) => (
-                <ProductoCard
-                    key={producto.id}
-                    producto={producto}
-                    addToCarrito={addToCarrito}
-                />
-                ))}
-            </div>
-            */}
-
-          <div className="product__list">
-            {currentProducts.map((producto) => (
-              <ProductoCard
-                key={producto.id}
-                producto={producto}
-                addToCarrito={addToCarrito}
-              />
-            ))}
-          </div>
-          <div className="pagination-container">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
+          <div/>
+         
+          {currentProducts.map((producto) => (
+            <ProductoCard
+              key={producto.id}
+              producto={producto}
+              addToCarrito={addToCarrito}
             />
-          </div>
+          ))}
+        </div>
+
+        {/* Paginación */}
+        <div className="pagination-container">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </main>
 
+      {/* Footer */}
       <Footer />
     </>
   );
 };
+
 export default HomePage;

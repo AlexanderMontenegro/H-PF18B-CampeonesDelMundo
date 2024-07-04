@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getDetails } from '../../Redux/actions'; // Ajusta la ruta según tu estructura de archivos
 import "../../css/productdetails.css";
 import Header from '../Header/Header';
+import Footer from "../Footer/Footer"
 
 const ProductDetails = ({carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito, product, getDetails}) => {
   const { id } = useParams();
