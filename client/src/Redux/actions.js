@@ -5,8 +5,28 @@ export const GET_PRODUCTS = "GET_PRODUCTS"
 export const GET_CATEGORY = "GET_CATEGORY"
 export const POST_CATEGORY = "POST_CATEGORY"
 export const POST_PRODUCT = "POST_PRODUCT"
+export const GET_DETAILS = "GET_DETAILS"
 
-
+///********************************************** */
+export const getDetails = (id) => {
+    return async function (dispatch) {
+      try {
+        const response = await axios.get(`http://localhost:3001/productos/${id}`);
+        if (response.status === 200) {
+          const producto = response.data;
+          return dispatch({
+            type: GET_DETAILS,
+            payload: producto,
+          });
+        } else {
+          console.error('Error: Producto no encontrado');
+        }
+      } catch (error) {
+        console.error('Error en la solicitud:', error);
+      }
+    };
+  };
+//******************************************************** */
 export const getProducts = () => {
     return async function (dispatch) {
         
