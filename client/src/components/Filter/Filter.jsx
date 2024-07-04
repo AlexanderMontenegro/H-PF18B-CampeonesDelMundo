@@ -1,26 +1,60 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByProducto, sort } from "../../Redux/actions";
+import { filterByProducto, filterByCategoria, filterByMarca, sort } from "../../Redux/actions";
 import "../../css/filter.css";
 
 export const Filter = () => {
   const dispatch = useDispatch();
   const { productos } = useSelector((state) => state);
 
-  // Obtener marcas únicas
+  // Obtener tipos únicos
   const uniqueProductos = productos.reduce((acc, current) => {
-    if (!acc.find(item => item.tipo === current.tipo)) {
+    if (!acc.find((item) => item.tipo === current.tipo)) {
       acc.push(current);
     }
     return acc;
   }, []);
 
-  const handleFilterChange = (e) => {
+  // Obtener categorias únicas
+  const uniqueCategorias = productos.reduce((acc, current) => {
+    if (!acc.find((item) => item.categoria === current.categoria)) {
+      acc.push(current);
+    }
+    return acc;
+  }, []);
+
+  // Obtener marcas únicas
+  const uniqueMarcas = productos.reduce((acc, current) => {
+    if (!acc.find((item) => item.marca === current.marca)) {
+      acc.push(current);
+    }
+    return acc;
+  }, []);
+
+  const handleProductoChange = (e) => {
     const { value } = e.target;
     if (value !== "none") {
       dispatch(filterByProducto(value));
     } else {
       dispatch(filterByProducto("none"));
+    }
+  };
+
+  const handleCategoriaChange = (e) => {
+    const { value } = e.target;
+    if (value !== "none") {
+      dispatch(filterByCategoria(value));
+    } else {
+      dispatch(filterByCategoria("none"));
+    }
+  };
+
+  const handleMarcaChange = (e) => {
+    const { value } = e.target;
+    if (value !== "none") {
+      dispatch(filterByMarca(value));
+    } else {
+      dispatch(filterByMarca("none"));
     }
   };
 
@@ -36,9 +70,14 @@ export const Filter = () => {
   return (
     <div className="product-filter">
       <div className="filter-controls">
+        
         <div className="filter-control">
-          <h4>Filtro</h4>
-          <select name="producto" id="productFilter" onChange={handleFilterChange}>
+          <h4>Filtro por tipo</h4>
+          <select
+            name="producto"
+            id="productFilter"
+            onChange={handleProductoChange}
+          >
             <option value="none">None</option>
             {uniqueProductos.map((producto) => (
               <option value={producto.tipo} key={producto.id}>
@@ -47,9 +86,39 @@ export const Filter = () => {
             ))}
           </select>
         </div>
-        <div className="ButtonDiv">
-          <button onClick={handleFilterChange}>Filtrar</button>
+        
+        <div className="filter-control">
+          <h4>Filtro por categoria</h4>
+          <select
+            name="categoria"
+            id="categoryFilter"
+            onChange={handleCategoriaChange}
+          >
+            <option value="none">None</option>
+            {uniqueCategorias.map((producto) => (
+              <option value={producto.categoria} key={producto.id}>
+                {producto.categoria}
+              </option>
+            ))}
+          </select>
         </div>
+        
+        <div className="filter-control">
+          <h4>Filtro por marca</h4>
+          <select
+            name="marca"
+            id="brandFilter"
+            onChange={handleMarcaChange}
+          >
+            <option value="none">None</option>
+            {uniqueMarcas.map((producto) => (
+              <option value={producto.marca} key={producto.id}>
+                {producto.marca}
+              </option>
+            ))}
+          </select>
+        </div>
+        
         <div className="filter-control">
           <h4>Ordenar</h4>
           <select name="sort" onChange={handleOrderChange}>
@@ -57,9 +126,6 @@ export const Filter = () => {
             <option value="ratingAsc">precio menor a mayor</option>
             <option value="ratingDesc">precio mayor a menor</option>
           </select>
-        </div>
-        <div className="ButtonDiv">
-          <button onClick={handleOrderChange}>Ordenar</button>
         </div>
       </div>
     </div>
