@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { postCategory} from "..//..//..//Redux//actions";
 import Swal from "sweetalert2";
-import style from './CreateCategory.module.css';
+import "../../../css/createcategoria.css";
 
 function createCategory(){
     const [categoryName, setCategoryName] = useState('');
@@ -53,20 +53,20 @@ if(existe)
     };
 
     return (
-        <div className={style.UpdateCategorias}>
-        <form onSubmit={handleSubmit} className={style.form}>
+        <div className="UpdateCategorias">
+        <form onSubmit={handleSubmit} className="form">
             <input
                 type="text"
                 value={categoryName}
                 onChange={(e) => setCategoryName(e.target.value)}
-                className={style.input}
+                className="input"
                 placeholder="Nombre Categoria"
             />
-            <button type="submit" className={style.button}>Crear Categoria </button>
+            <button type="submit" className="button">Crear Categoria </button>
         </form>
-        <div className={style.categoryList}>
+        <div className="categoryList">
             {arrayCategory.map((category) => (
-                <div key={category.id} className={style.categoryItem}>
+                <div key={category.id} className="categoryItem">
                     {category.nombre}
                 </div>
             ))}
