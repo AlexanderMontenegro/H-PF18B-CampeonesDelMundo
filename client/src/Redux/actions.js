@@ -8,11 +8,12 @@ export const POST_PRODUCT = "POST_PRODUCT";
 export const GET_DETAILS = "GET_DETAILS";
 
 export const FILTER_PRODUCTO = "FILTER_PRODUCTO";
+export const FILTER_CATEGORIA = "FILTER_CATEGORIA";
+export const FILTER_MARCAS = "FILTER_MARCAS";
 export const NO_FILTER = "NO_FILTER";
 export const SORT_PRICE_ASCENDING_ORDER = "SORT_PRICE_ASCENDING_ORDER";
 export const SORT_PRICE_DESCENDING_ORDER = "SORT_PRICE_DESCENDING_ORDER";
 export const NO_SORT = "NO_SORT";
-
 
 export const getDetails = (id) => {
   return async function (dispatch) {
@@ -25,14 +26,13 @@ export const getDetails = (id) => {
           payload: producto,
         });
       } else {
-        console.error('Error: Producto no encontrado');
+        console.error("Error: Producto no encontrado");
       }
     } catch (error) {
-      console.error('Error en la solicitud:', error);
+      console.error("Error en la solicitud:", error);
     }
   };
 };
-
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -92,7 +92,7 @@ export const postNewProduct = (newProduct) => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: 'Error en el servidor',
+        title: "Error en el servidor",
         text: "",
         timer: 5000,
       });
@@ -104,6 +104,32 @@ export const filterByProducto = (producto) => {
   if (producto !== "none") {
     return {
       type: FILTER_PRODUCTO,
+      payload: producto,
+    };
+  } else {
+    return {
+      type: NO_FILTER,
+    };
+  }
+};
+//FILTER CATEGORIA
+export const filterByCategoria = (producto) => {
+  if (producto !== "none") {
+    return {
+      type: FILTER_CATEGORIA,
+      payload: producto,
+    };
+  } else {
+    return {
+      type: NO_FILTER,
+    };
+  }
+};
+//FILTER MARCA
+export const filterByMarca = (producto) => {
+  if (producto !== "none") {
+    return {
+      type: FILTER_MARCAS,
       payload: producto,
     };
   } else {
