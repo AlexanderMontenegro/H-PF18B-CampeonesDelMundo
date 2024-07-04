@@ -278,5 +278,4 @@ module.exports = {
   searchTipo,
   getProductId,
   deleteId,
-  
- }
+}  
