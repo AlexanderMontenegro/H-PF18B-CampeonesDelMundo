@@ -28,6 +28,10 @@ const Register = ({
       /> */}
 
       <main>
+        
+
+
+
         {/* Titulo */}
         <h2 className="text-center">Cree una Cuenta con Nosotros</h2>
 
@@ -40,7 +44,7 @@ const Register = ({
 
               {/* Datos de la Cuenta */}
               <section className="form__top">
-                <h4>Datos de la Cuenta</h4>
+                <h4 className="h4">Datos de la Cuenta</h4>
 
                 {/* Email */}
                 <div className="form__group">
@@ -81,7 +85,7 @@ const Register = ({
 
               {/* Datos del Usuario */}
               <section className="form__bottom">
-                <h4>Datos del Usuario</h4>
+                <h4 className="h4">Datos del Usuario</h4>
                 <div className="form__name">
                   {/* Nombres */}
                   <div className="form__group">
@@ -159,63 +163,73 @@ const Register = ({
               <p className="text-center">— O registrese con —</p>
 
               {/* Opciones de Logeo */}
-              <div className="form__options">
+
+              <div className="form__optionsL">
                 <Link
-                  className="icono__content"
+                  className="icono__contentL"
                   to={"https://www.google.com/?hl=es"}
                 >
-                  <div className="icono__container">
+                  <div className="icono__containerL">
                     <img
-                      className="icono__fluid"
+                      className="icono__fluidL"
                       src="iconos/icon_google.png"
                       alt="icon Google"
                     />
+                    {/*
                     <h4 className="no-margin no-pading">Google</h4>
+                     */}
                   </div>
                 </Link>
 
-                <Link className="icono__content">
-                  <div className="icono__container">
+                <Link className="icono__contentL">
+                  <div className="icono__containerL">
                     <img
-                      className="icono__fluid"
+                      className="icono__fluidL"
                       src="iconos/icon_outlook.png"
                       alt="icon Outlook"
                     />
+                    {/*
                     <h4 className="no-margin no-pading">Outlook</h4>
+                     */}
                   </div>
                 </Link>
-              </div>
-
-              <div className="form__options">
-                <Link className="icono__content">
-                  <div className="icono__container">
+              
+                <Link className="icono__contentL">
+                  <div className="icono__containerL">
                     <img
-                      className="icono__fluid"
+                      className="icono__fluidL"
                       src="iconos/icon_facebook.png"
                       alt="icon Facebook"
                     />
+                    {/*
                     <h4 className="no-margin no-pading">Facebook</h4>
+                     */}
                   </div>
                 </Link>
 
-                <Link className="icono__content">
-                  <div className="icono__container">
+                <Link className="icono__contentL">
+                  <div className="icono__containerL">
                     <img
-                      className="icono__fluid"
+                      className="icono__fluidL"
                       src="iconos/icon_github.png"
                       alt="icon Github"
                     />
+                    {/*
                     <h4 className="no-margin no-pading">Github</h4>
+                     */}
                   </div>
                 </Link>
               </div>
             </form>
           </div>
         </div>
+        
+        
       </main>
       {/* <Footer /> */}
     </>
   );
+  
 };
 
 export default Register;

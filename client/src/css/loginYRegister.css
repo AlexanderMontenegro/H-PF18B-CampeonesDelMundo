@@ -1,11 +1,12 @@
-/* Estilos para el contenedor de login */
+
 .login__container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20%;
-  background-color: var(--azul);
-}
+  height: auto;
+  width: auto;
+ /* background-color: var(--azul);
+*/}
 
 /* Estilos para el contenido del login */
 .login__content {
@@ -44,17 +45,37 @@
   align-items: center;
   gap: 2rem;
   padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 /* Estilos para el contenido del registro */
 .register__content {
-  background-color: var(--colorFondo); 
+  width: 55rem;
+  padding-bottom: 2rem;
+  background-color: var(--azul);
   width: 55rem;
   min-height: 60rem;
   border: 0.3rem solid var(--negro);
   border-radius: 1.5rem;
-  padding-bottom: 2rem;
   margin-bottom: 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
 }
 
 .register__left {
@@ -87,6 +108,7 @@
   margin-bottom: 0.5rem;
   padding: 0 3.8rem;
   height: auto;
+  
 }
 
 .form__bottom {
@@ -181,7 +203,7 @@
   background-color: var(--amarillo);
   border: 0.3rem solid var(--negro);
   border-radius: 1rem;
-  box-shadow: 0 1rem 1rem -8px rgba(0 ,0 ,0 ,0.22); 
+  box-shadow: 0 1rem 1rem -8px rgba(0, 0, 0, 0.22);
   transition: all 300ms ease-in-out;
   cursor: pointer;
   font-weight: bolder;
@@ -231,4 +253,16 @@
 
 .text-center{
   color: var(--amarillo);
+  display: flex;
+  justify-content: space-around;
+}
+
+.form__center {
+  display: flex;
+  justify-content: space-around;
+}
+
+.h4{
+  display: flex;
+  justify-content: space-around;
 }

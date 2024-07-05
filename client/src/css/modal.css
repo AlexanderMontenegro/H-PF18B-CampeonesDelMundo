@@ -1,6 +1,4 @@
 
-/* Estilos para el modal */
-
 .modal__container {
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
@@ -21,9 +19,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   min-width: 89%;
   min-height: 90%;
-  background: rgb(4, 180, 224);
+  /*background: rgb(4, 180, 224);
   background: radial-gradient(circle, rgba(4, 180, 224, 1) 13%, rgba(229, 230, 231, 1) 100%);
-}
+*/
+  }
 
 .modal__button {
   display: inline-block;
