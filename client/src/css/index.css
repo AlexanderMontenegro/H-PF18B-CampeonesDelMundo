@@ -12,14 +12,16 @@
   --naranja: #ff9f1c;
   --piel: #ffbf69;
   --turquesa: #2ec4b6;
-  --celesteOpaco: #cbf3f0;
+  --celesteOpaco: #003566;
 
   --celeste: #04b4e0;
   --rojo: #c70039;
   --rojoOscuro: #581845;
-  --colorFondo: #f5f5f5;
+  --colorFondo: #a5a3a3;
 
   --banner: url("../img/img3.jpg");
+  --imgfondo: url("../img/papelitosDark.png")
+  
 }
 
 html {
@@ -27,12 +29,54 @@ html {
   font-size: 62.5%; 
 }
 
+/* Variables para el modo oscuro */
+:root[data-theme='dark'] {
+  --blanco: #000814;
+  --negro: #ffffff;
+  --azulOscuro: #003566;
+  --azul: #001d3d;
+  --crema: #ffc300;
+  --amarillo: #ffd60a;
+
+  --naranja: #ff9f1c;
+  --piel: #ffbf69;
+  --turquesa: #2ec4b6;
+  --celesteOpaco: #cbf3f0;
+
+  --celeste: #04b4e0;
+  --rojo: #c70039;
+  --rojoOscuro: #581845;
+  --colorFondo: #000814;
+
+  --imgfondo: url("../img/papelitos.png")
+  
+}
+
+
+body {
+  font-family: var(--fuenteParrafos);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin: 0;
+
+  place-items: center;
+  background-image: var(--imgfondo);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+}
+
+
 body {
   font-family: var(--fuenteParrafos);
   font-size: 1.6rem;
   line-height: 1.5;
   margin: 0;
   place-items: center; 
+  background-image: var(--imgfondo);
+  height: 100%;
 }
 
 /* Estilo para encabezados */
