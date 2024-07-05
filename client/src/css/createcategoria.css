@@ -1,4 +1,76 @@
+.UpdateCategorias {
+  display: flex;
+  justify-content: center; 
+  gap: 15px;
+}
 
+.FormCategories {
+  display: flex;
+  justify-content: center; 
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+  border-radius: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  max-height: 50%;
+  border: none;
+  box-shadow: none;
+  border-radius: none;
+}
+
+.input {
+  padding: 0.5rem;
+  border: #808080;
+  border-radius: 0.25rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+}
+
+.button {
+  padding: 0.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+  border-radius: 8px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 5px;
+}
+
+.categoryItem {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+  border-radius: 8px;
+  margin: 5px;
+  background-color: #007bff8c;
+}
+
+.categoryItem:hover {
+  background-color: #f0f0f0;
+}
+
+
+/*
 .UpdateCategorias {
     display: flex;
     justify-content: center; 

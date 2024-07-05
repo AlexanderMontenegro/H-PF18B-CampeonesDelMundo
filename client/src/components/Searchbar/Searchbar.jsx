@@ -1,5 +1,6 @@
 import React, { useState} from "react";
-import "../../css/searchbar.css"; // Importa tu archivo CSS de estilos
+import "../../css/searchbar.css"; 
+import Filter from "../Filter/Filter";
 
 const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,6 +22,7 @@ const SearchBar = ({ onSearch }) => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
+      <Filter/>
     </div>
   );
 };

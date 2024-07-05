@@ -25,7 +25,7 @@ const HomePage = ({
 
   // Estados para la paginación
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 12;
+  const productsPerPage = 10;
 
   // Calcular el número total de páginas
   const totalPages = Math.ceil(productos.length / productsPerPage);
@@ -44,6 +44,10 @@ const HomePage = ({
 
   return (
     <>
+
+      {/* Hero Section */}
+      <div className="hero__category">
+
       {/* Header */}
       <Header
         carrito={carrito}
@@ -52,20 +56,19 @@ const HomePage = ({
         decreaseQuantity={decreaseQuantity}
         clearCarrito={clearCarrito}
       />
-
-      {/* Hero Section */}
       <HeroSection />
 
-      {/* Main */}
-      <main className="main-container">
-        {/* Categorías */}
         <Category />
+      </div>
+      {/* Main */}
+      <main /*className="main-container"*/>
+        {/* Categorías */}
 
         {/* Contenedor para la lista de productos */}
         <div className="product__list">
           {/* Cards */}
           <div/>
-         
+
           {currentProducts.map((producto) => (
             <ProductoCard
               key={producto.id}
