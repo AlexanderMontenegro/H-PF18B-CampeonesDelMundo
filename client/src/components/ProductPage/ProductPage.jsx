@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import ProductoCard from "../ProductoCard/ProductoCard";
 import { getProducts, getCategory } from "../../Redux/actions";
-import "../../css/homePage.css";
+import "../../css/productpage.css";
 import Pagination from "../Pagination/Pagination";
 import Filter from "../Filter/Filter";
 import Searchbar from "../Searchbar/Searchbar";
@@ -47,25 +47,31 @@ const ProductPage = ({
 
   return (
     <>
+    <div className="productpage__header">
       <Header
         carrito={carrito}
         removeFromCarrito={removeFromCarrito}
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
         clearCarrito={clearCarrito}
-      />
+        />
+        </div>
+        
       <h4 style={{ textAlign: 'center' }}>Buscador</h4>
+      
+      <div className="searchbar__filter">
       <Searchbar/>
-      <Filter />      
+     {/* <Filter /> */}     
       <div className="product__list">
         {currentProducts.map((producto) => (
           <ProductoCard
-            key={producto.id}
-            producto={producto}
-            addToCarrito={addToCarrito}
+          key={producto.id}
+          producto={producto}
+          addToCarrito={addToCarrito}
           />
         ))}
       </div>
+        </div>
       <div className="pagination-container">
         <Pagination
           currentPage={currentPage}

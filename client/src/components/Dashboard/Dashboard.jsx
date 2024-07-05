@@ -3,14 +3,17 @@ import { Link, Route, Routes } from "react-router-dom"
 import CreateProduct from "./CreateProduct/CreateProduct";
 import CreateCategory from "./CreateCategory/CreateCategory"
 import StockAdmin from "./StockAdmin/StockAdmin";
+
 import UserAdmin from "./UserAdmin/UserAdmin";
 
 import "../../css/dashboard.css"
+
 
 function Dashboard (){
 
     return (
         <>
+        
         
         <div>
                 <div className="dashboard">

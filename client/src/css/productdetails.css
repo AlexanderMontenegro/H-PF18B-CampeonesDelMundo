@@ -1,3 +1,249 @@
+/* Estilos para la página de detalles del producto */
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  background-color: var(--blanco);
+  color: var(--negro);
+}
+
+.product-image {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 2rem;
+  border-radius: var(--radius);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.product-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--negro);
+}
+
+.product-price {
+  font-size: 2rem;
+  color: var(--azul_Oscuro);
+}
+
+.product-description {
+  font-size: 1.6rem;
+  color: var(--negro);
+}
+
+.product-quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-quantity-label {
+  font-size: 1.6rem;
+  color: var(--negro);
+}
+
+.product-quantity-input {
+  width: 50px;
+  padding: 0.5rem;
+  border: 1px solid var(--negro);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.product-add-to-cart {
+  padding: 1rem 2rem;
+  background-color: var(--azul);
+  color: var(--blanco);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s;
+}
+
+.product-add-to-cart:hover {
+  background-color: var(--azul_Oscuro);
+}
+
+@media (max-width: 768px) {
+  .product-details {
+    padding: 1rem;
+  }
+
+  .product-title {
+    font-size: 2rem;
+  }
+
+  .product-price {
+    font-size: 1.6rem;
+  }
+
+  .product-description {
+    font-size: 1.4rem;
+  }
+
+  .product-add-to-cart {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-image {
+    max-width: 100%;
+  }
+
+  .product-title {
+    font-size: 1.8rem;
+  }
+
+  .product-price {
+    font-size: 1.4rem;
+  }
+
+  .product-description {
+    font-size: 1.2rem;
+  }
+
+  .product-add-to-cart {
+    padding: 0.5rem 1rem;
+  }
+}
+
+
+/*
+.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+}
+
+.product-image {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.product-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--negro);
+}
+
+.product-price {
+  font-size: 2rem;
+  color: var(--azul_Oscuro);
+}
+
+.product-description {
+  font-size: 1.6rem;
+  color: var(--negro);
+}
+
+.product-quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-quantity-label {
+  font-size: 1.6rem;
+  color: var(--negro);
+}
+
+.product-quantity-input {
+  width: 50px;
+  padding: 0.5rem;
+  border: 1px solid var(--negro);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.product-add-to-cart {
+  padding: 1rem 2rem;
+  background-color: var(--azul);
+  color: var(--blanco);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s;
+}
+
+.product-add-to-cart:hover {
+  background-color: var(--azul_Oscuro);
+}
+
+/* Media queries para diseño responsivo */
+@media (max-width: 768px) {
+  .product-details {
+    padding: 1rem;
+  }
+
+  .product-title {
+    font-size: 2rem;
+  }
+
+  .product-price {
+    font-size: 1.6rem;
+  }
+
+  .product-description {
+    font-size: 1.4rem;
+  }
+
+  .product-add-to-cart {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-image {
+    max-width: 100%;
+  }
+
+  .product-title {
+    font-size: 1.8rem;
+  }
+
+  .product-price {
+    font-size: 1.4rem;
+  }
+
+  .product-description {
+    font-size: 1.2rem;
+  }
+
+  .product-add-to-cart {
+    padding: 0.5rem 1rem;
+  }
+}
+
+
+/*
 .product-details-container {
   display: grid;
   display: grid;
@@ -58,7 +304,7 @@ button {
   font-size: 1.6rem;
   cursor: pointer;
   margin-top: 1rem;
-  border-radius: 8px; /* Añadir bordes redondeados al botón */
+  border-radius: 8px; 
 }
 
 button:hover {

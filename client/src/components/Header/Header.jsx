@@ -48,11 +48,11 @@ const Header = ({
                 {/* Navegacion */}
                 <div className="navegacion">
                     {/* Inicio */}
-                    <Link className="navegacion_enlace" to={"/homePage"}>Inicio</Link>
+                    <Link className="navegacion_enlaceC" to={"/homePage"}>Inicio</Link>
                     {/* Productos */}
-                    <Link className="navegacion_enlace"to={"/ProductPage"}>Productos</Link>
+                    <Link className="navegacion_enlaceC"to={"/ProductPage"}>Productos</Link>
                     {/* Contacto */}
-                    <a className="navegacion_enlace">Contacto</a>
+                    <a className="navegacion_enlaceC">Contacto</a>
                     
                     {/* Carrito */}
                     {/* <a className="navegacion_enlace">
@@ -62,13 +62,13 @@ const Header = ({
             <div className="carrito">
               <img
                 className="icono__fluid"
-                src="iconos/carrito.png"
+                src="../../../public/iconos/carrito2.png"
                 alt="imagen carrito"
               />
 
               <div id="carrito" className="carrito__container">
                 {isEmpty() ? (
-                  <h4 className="text-center ">El carrito esta vacio</h4>
+                  <h4 className="navegacion_enlaceC">El carrito esta vacio</h4>
                 ) : (
                   <>
                     <table className="carrito__table">
@@ -160,7 +160,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../../../iconos/usuario.png"
+                src="../../../public/iconos/usuario2.png"
                 alt="imagen carrito"
               />
 

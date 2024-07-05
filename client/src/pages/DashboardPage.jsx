@@ -8,7 +8,9 @@ import Dashboard from '../components/Dashboard/Dashboard';
 const DashboardPage = ({carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito}) => {
   return (
 <div>
-<Header
+  <div className="productpage__header">
+  
+<Header 
   carrito={carrito}
   addToCarrito={addToCarrito}
   removeFromCarrito={removeFromCarrito}
@@ -16,9 +18,10 @@ const DashboardPage = ({carrito, addToCarrito, removeFromCarrito, increaseQuanti
   decreaseQuantity={decreaseQuantity}
   clearCarrito={clearCarrito}
 />
+  </div>
 
     <div >
-      <Dashboard 
+      <Dashboard c
         carrito={carrito}
         addToCarrito={addToCarrito}
         removeFromCarrito={removeFromCarrito}
