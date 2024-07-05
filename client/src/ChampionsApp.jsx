@@ -22,6 +22,7 @@ import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
 // Components (Componentes)
 import Login from "./components/HomePage/Login";
 import Register from "./components/HomePage/Register";
+import Nosotros from "./components/Nosotros/Nosotros";
 
 // Import Data (db)
 // import { data } from './db/db';
@@ -266,6 +267,13 @@ function ChampionsApp() {
             </>
           }
         />
+        <Route path="/contacto"
+        element={<Nosotros/>}>
+
+        </Route>
+
+
+
       </Routes>
     </>
   );

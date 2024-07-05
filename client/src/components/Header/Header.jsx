@@ -52,8 +52,8 @@ const Header = ({
                     {/* Productos */}
                     <Link className="navegacion_enlaceC"to={"/ProductPage"}>Productos</Link>
                     {/* Contacto */}
-                    <a className="navegacion_enlaceC">Contacto</a>
-                    
+                    {/* <a className="navegacion_enlaceC">Contacto</a> */}
+                    <Link className="navegacion_enlaceC"to={"/contacto"}>Contacto</Link>
                     {/* Carrito */}
                     {/* <a className="navegacion_enlace">
                                         Carrito
