@@ -51,11 +51,12 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
-  overflow-x: none;
+  overflow-x: none;  
   transition: transform 0.3s ease;
-  max-width: 90%;
+  max-width: 80%;
   height: 90px;
 }
+
 
 .carousel img {
   height: 100%;

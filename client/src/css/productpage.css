@@ -1,11 +1,10 @@
-/* Estilos para la página de detalles del producto */
 
 .productpage__header {
   background-image: url("../img/img3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 45rem; /* Ajustar según tus necesidades */
+  height: 45rem; 
   position: relative;
 }
 
@@ -71,10 +70,12 @@
 }
 
 .searchbar__filter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    flex-direction: column;
+
 }
 
 .searchbar__filter select {
@@ -126,6 +127,9 @@
     font-size: 1.6rem;
   }
 }
+
+
+
 
 
 /*

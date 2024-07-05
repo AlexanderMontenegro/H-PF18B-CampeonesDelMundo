@@ -3,13 +3,27 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin: 2rem auto;
+  margin: 25px auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: 80%;
   padding: 2rem;
-  border: 1px solid var(--azul_Oscuro);
-  box-shadow: var(--shadow);
-  border-radius: var(--radius);
+  border: 1px solid var(--negro);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  background-color: var(--azulOscuro);
+  color: var(--blanco);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.options {
+  display: flex;
+  flex-direction: row;
+  color: var(--negro);
+ 
 }
 
 .dashboard-header {
@@ -80,6 +94,24 @@
   .dashboard-statistics-item {
     padding: 1rem;
   }
+}
+
+.p__d {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 50px;
+  width: 100%;
+  max-width: 80%;
+  padding: 2rem;
+  border: 1px solid var(--negro);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  background-color: var(--crema);
+  color: var(--negro); 
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 

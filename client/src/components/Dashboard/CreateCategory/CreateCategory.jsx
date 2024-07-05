@@ -54,7 +54,7 @@ if(existe)
 
     return (
         <div className="UpdateCategorias">
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={handleSubmit} className="form__cc">
             <input
                 type="text"
                 value={categoryName}
@@ -62,7 +62,9 @@ if(existe)
                 className="input"
                 placeholder="Nombre Categoria"
             />
-            <button type="submit" className="button">Crear Categoria </button>
+
+            <button type="submit" className="button__cc">Crear Categoria </button>
+            <button type="delete" className="button__cc">Eliminar Categoria </button>
         </form>
         <div className="categoryList">
             {arrayCategory.map((category) => (

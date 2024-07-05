@@ -1,7 +1,8 @@
 .UpdateCategorias {
   display: flex;
   justify-content: center; 
-  gap: 15px;
+  gap: 150px;
+
 }
 
 .FormCategories {
@@ -14,7 +15,7 @@
   border-radius: 8px;
 }
 
-.form {
+.form__cc{
   display: flex;
   flex-direction: column;
   max-width: 50%;
@@ -22,6 +23,8 @@
   border: none;
   box-shadow: none;
   border-radius: none;
+  align-items: stretch;
+  justify-content: space-evenly;
 }
 
 .input {
@@ -31,7 +34,7 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
 }
 
-.button {
+.button__cc {
   padding: 0.5rem;
   background-color: #007bff;
   color: white;
@@ -40,9 +43,11 @@
   cursor: pointer;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
   border-radius: 8px;
+  width: 300px;
+  height: 100px;
 }
 
-.button:hover {
+.button_cc:hover {
   background-color: #0056b3;
 }
 
@@ -66,7 +71,7 @@
 }
 
 .categoryItem:hover {
-  background-color: #f0f0f0;
+  background-color: var(--celeste);
 }
 
 

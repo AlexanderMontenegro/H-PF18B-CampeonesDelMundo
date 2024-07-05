@@ -72,13 +72,13 @@ export const Filter = () => {
       <div className="filter-controls">
         
         <div className="filter-control">
-          <h4>Filtro por tipo</h4>
+          <h4 className="h4">TIPO</h4>
           <select
             name="producto"
             id="productFilter"
             onChange={handleProductoChange}
           >
-            <option value="none">None</option>
+            <option value="none"> </option>
             {uniqueProductos.map((producto) => (
               <option value={producto.tipo} key={producto.id}>
                 {producto.tipo}
@@ -88,13 +88,13 @@ export const Filter = () => {
         </div>
         
         <div className="filter-control">
-          <h4>Filtro por categoria</h4>
+          <h4 className="h4">CATEGORIA</h4>
           <select
             name="categoria"
             id="categoryFilter"
             onChange={handleCategoriaChange}
           >
-            <option value="none">None</option>
+            <option value="none"> </option>
             {uniqueCategorias.map((producto) => (
               <option value={producto.categoria} key={producto.id}>
                 {producto.categoria}
@@ -104,13 +104,13 @@ export const Filter = () => {
         </div>
         
         <div className="filter-control">
-          <h4>Filtro por marca</h4>
+          <h4 className="h4">MARCA</h4>
           <select
             name="marca"
             id="brandFilter"
             onChange={handleMarcaChange}
           >
-            <option value="none">None</option>
+            <option value="none"> </option>
             {uniqueMarcas.map((producto) => (
               <option value={producto.marca} key={producto.id}>
                 {producto.marca}
@@ -120,9 +120,9 @@ export const Filter = () => {
         </div>
         
         <div className="filter-control">
-          <h4>Ordenar</h4>
+          <h4 className="h4">PRECIOS</h4>
           <select name="sort" onChange={handleOrderChange}>
-            <option value="none">None</option>
+            <option value="none"> </option>
             <option value="ratingAsc">precio menor a mayor</option>
             <option value="ratingDesc">precio mayor a menor</option>
           </select>
