@@ -61,7 +61,7 @@ const ProductPage = ({
       
       <div className="searchbar__filter">
       <Searchbar/>
-     {/* <Filter /> */}     
+      <Filter />     
       <div className="product__list">
         {currentProducts.map((producto) => (
           <ProductoCard

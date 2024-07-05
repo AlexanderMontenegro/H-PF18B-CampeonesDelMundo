@@ -14,6 +14,7 @@ export const NO_FILTER = "NO_FILTER";
 export const SORT_PRICE_ASCENDING_ORDER = "SORT_PRICE_ASCENDING_ORDER";
 export const SORT_PRICE_DESCENDING_ORDER = "SORT_PRICE_DESCENDING_ORDER";
 export const NO_SORT = "NO_SORT";
+export const SEARCH_PRODUCTS_BY_TYPE = "SEARCH_PRODUCTS_BY_TYPE";
 
 export const getDetails = (id) => {
   return async function (dispatch) {
@@ -160,4 +161,19 @@ export const sort = (sortType) => {
         type: NO_SORT,
       };
   }
+};
+export const searchProductsByType = (tipo) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/productos?tipo=${tipo}`
+      );
+      return dispatch({
+        type: SEARCH_PRODUCTS_BY_TYPE,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+  };
 };
