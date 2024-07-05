@@ -1,6 +1,7 @@
+
 .product-filter {
   padding: 20px;
-  background-color: #0184c0;
+  background-color: var(--color-primary);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   margin-bottom: 20px;
@@ -19,7 +20,7 @@
 .filter-control h4 {
   margin-bottom: 10px;
   font-size: 16px;
-  color: #333;
+  color: var(--color-text);
 }
 
 .select-container {
@@ -45,6 +46,72 @@
 
 button {
   padding: 12px 20px;
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-button-bg-hover);
+}
+
+@media (max-width: 768px) {
+  .filter-control {
+    flex: 1 1 100%; /* Adaptar a pantalla pequeña */
+  }
+}
+
+
+
+/*.product-filter {
+  padding: 20px;
+  background-color: #0184c0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.filter-control {
+  flex: 1 1 300px; }
+
+.filter-control h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.select-container {
+  position: relative;
+}
+
+.select-container select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+.ButtonDiv {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  padding: 12px 20px;
   background-color: #022952;
   color: rgb(255, 255, 255);
   border: none;
@@ -56,3 +123,22 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+
+/*
+.filtro__container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+
+    padding: 2.5rem;
+}
+
+.filtro-title{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,143,38,1) 0%, rgba(150,126,197,1) 48%, rgba(0,255,222,1) 100%);
+    display: flex;
+    justify-content: center;
+}
+*/

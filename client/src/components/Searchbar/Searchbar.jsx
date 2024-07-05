@@ -22,6 +22,7 @@ const SearchBar = () => {
         value={searchTerm}
         onChange={handleSearchChange}
       />
+      <Filter/>
     </div>
   );
 };

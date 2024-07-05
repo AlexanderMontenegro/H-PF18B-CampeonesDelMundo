@@ -4,11 +4,11 @@ import "../../css/categoria.css"
 
 function Category() {
   return (
-    <div className="main-container">
+    <div className="container_scategoria">
       {/* Opciones de Categorías */}
-      <h2>Categorías</h2>
+    {/*  <h2 className='h2'>Categorías</h2>*/}
 
-      <div className="barra__right no-padding">
+      <div className="barra_categoria">
         {/* Navegación */}
         <div className="navegacion">
           {/* Ropa */}
