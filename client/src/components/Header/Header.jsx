@@ -143,9 +143,6 @@ const Header = ({
                       <button className="icon__button" onClick={clearCarrito}>
                         Vaciar Carrito
                       </button>
-                      <button className="icon__button">
-                        Comprar
-                      </button>
                     </div>
                     
                   </>

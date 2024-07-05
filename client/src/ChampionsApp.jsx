@@ -30,6 +30,7 @@ import Register from "./components/HomePage/Register";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory, getProducts } from "./Redux/actions";
 import Swal from "sweetalert2";
+import Orden from "./components/Orden/Orden";
 
 function ChampionsApp() {
   const dispatch = useDispatch();
@@ -164,6 +165,26 @@ function ChampionsApp() {
             </>
           }
         ></Route>
+        {/* 2.-Ruta SPA - HomePage */}
+        {/* Ruta para la página principal */}
+          <Route
+            path="/orden"
+            element={
+              <>
+                <Orden
+                  carrito={carrito}
+                  addToCarrito={addToCarrito}
+                  removeFromCarrito={removeFromCarrito}
+                  increaseQuantity={increaseQuantity}
+                  decreaseQuantity={decreaseQuantity}
+                  clearCarrito={clearCarrito}
+                />
+              </>
+            }
+          >
+
+          </Route>
+
         <Route exact path="/" component={ProductoCard} />
         <Route
           path="/product/:id"
@@ -220,6 +241,7 @@ function ChampionsApp() {
             <>
               <ProductPage
                 carrito={carrito}
+                addToCarrito={addToCarrito}
                 removeFromCarrito={removeFromCarrito}
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}

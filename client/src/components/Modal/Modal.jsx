@@ -6,11 +6,15 @@ import '../../css/modal.css'
 const Modal = ({ children, onClose }) => {
     return (
         <div className='modal__container'>
-            {children}
+            <div className='modal__content'>
 
-            <div className='item__cerrar'>
-                <button className='modal__button no-margin' onClick={onClose}>X</button>
+                {children}
             </div>
+            
+            <div className='item__cerrar'>
+                    <button className='modal__button no-margin' onClick={onClose}>X</button>
+                </div>
+
         </div>
      
     );
