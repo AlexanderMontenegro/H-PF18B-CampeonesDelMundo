@@ -28,13 +28,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%; /* Ajustar ancho al 100% del contenedor padre */
-  margin-top: 1rem; /* Ajustar margen superior si es necesario */
+  width: 100%; 
+  margin-top: 1rem; 
 }
 
 .option_link {
   font-size: 0.4rem;
-  /* Añadir estilos adicionales si es necesario */
+
 }
 
 

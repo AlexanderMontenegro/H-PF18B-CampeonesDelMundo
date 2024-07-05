@@ -35,34 +35,3 @@
   color: #aaaaaa;
 }
 
-
-
-
-/*
-.search-bar-container {
-  .search-bar-container {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-}
-  }
-  
-  .search-bar-input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s ease;
-  }
-  
-  .search-bar-input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  .search-bar-input::placeholder {
-    color: #aaaaaa;
-  }
-
-  

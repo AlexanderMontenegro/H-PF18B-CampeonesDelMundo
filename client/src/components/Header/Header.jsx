@@ -30,7 +30,7 @@ const Header = ({
   // }
 
   return (
-    <header className="header__homePageH">
+    <header className="header__homePage">
       <div className="barra__container">
         {/* Lado Izquierdo - logo */}
         <div className="barra__left">
@@ -52,7 +52,7 @@ const Header = ({
                     {/* Productos */}
                     <Link className="navegacion_enlaceC"to={"/ProductPage"}>Productos</Link>
                     {/* Contacto */}
-                    <a className="navegacion_enlaceC"to={"/contacto"}>Contacto</a>
+                    <a className="navegacion_enlaceC">Contacto</a>
                     
                     {/* Carrito */}
                     {/* <a className="navegacion_enlace">
@@ -60,11 +60,14 @@ const Header = ({
                                     </a> */}
 
             <div className="carrito">
-              <img
-                className="icono__fluid"
-                src="../../../public/iconos/carrito2.png"
-                alt="imagen carrito"
-              />
+              <Link className="logo" to={"/Orden"}>
+                <img
+                  className="icono__fluid"
+                  src="iconos/carrito2.png"
+                  alt="imagen carrito"
+                />
+              </Link>
+              
 
               <div id="carrito" className="carrito__container">
                 {isEmpty() ? (
