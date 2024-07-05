@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Components (Componentes)
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 // CSS
 import "../../css/loginYRegister.css";
+
+import validation from './Validation';
+import { postUser } from "../../Redux/actions";
+import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
 const Register = ({
   carrito,
@@ -16,6 +21,56 @@ const Register = ({
   decreaseQuantity,
   clearCarrito,
 }) => {
+
+const dispatch = useDispatch();
+const navigate = useNavigate();
+  const [user, setUser] = useState({
+    email:'',
+    password:'',
+    name:'',
+    confirmPassword:'',
+    address:'',
+    cellphone:''  
+  });
+  const [errors, setErrors] = useState({email:'Escribi tu Email'});
+
+// Manejador del estado principal
+function handleChange(event) {      
+event.preventDefault();
+
+
+
+setErrors(validation({...user,[event.target.name] : event.target.value}));
+setUser({...user,[event.target.name]:event.target.value})
+}
+
+//submit
+const handleSubmit= async (event)=>{
+  event.preventDefault();
+  const response = await dispatch(postUser(user));
+  if(response.payload.user)
+      {
+     Swal.fire({
+      icon: "success",
+      title: response.payload.message,
+      text: "",
+      timer: 3000
+    }).then(() => {
+      // Redirigir después de que la alerta se cierre
+      navigate("/login"); // Cambia la URL al destino 
+      window.location.reload();
+    });         
+      }else{
+          Swal.fire({
+              icon: "error",
+              title: response.payload.message,
+              text: "",
+              timer: 3000
+            })   
+      }
+
+};
+  
   return (
     <>
       <Header
@@ -50,12 +105,14 @@ const Register = ({
                     placeholder="Email"
                     type="email"
                     name="email"
+                    value={user.email}
+                    onChange={handleChange}
                   />
                   <label className="form__label" htmlFor="email">
                     Email
                   </label>
 
-                  {/* {errors.password ? <span>{errors.password}</span>: null} */}
+                  {errors.email ? <span>{errors.email}</span>: null}
                 </div>
 
                 {/* Password */}
@@ -64,8 +121,12 @@ const Register = ({
                     className="form__input"
                     placeholder="Password"
                     type="password"
+                    name='password'
+                    value={user.password}
+                    onChange={handleChange}
                   />
                   <label className="form__label">Password</label>
+                  {errors.password ? <span>{errors.password}</span>: null}
                 </div>
 
                 {/* Confirmar Password */}
@@ -74,8 +135,12 @@ const Register = ({
                     className="form__input"
                     placeholder="Confirm Password"
                     type="password"
+                    name='confirmPassword'
+                    value={user.confirmPassword}
+                    onChange={handleChange}
                   />
                   <label className="form__label">Confirma tu Password</label>
+                  {errors.confirmPassword ? <span>{errors.confirmPassword}</span>: null}
                 </div>
               </section>
 
@@ -91,31 +156,70 @@ const Register = ({
                       placeholder="Nombres"
                       type="text"
                       name="name"
+                      value={user.name}
+                      onChange={handleChange}
                     />
                     <label className="form__label" htmlFor="name">
                       Nombres
                     </label>
+                    {errors.name ? <span>{errors.name}</span>: null}
+                  </div>
+
+                    {/* Direccion */}
+                    <div className="form__group">
+                    <input
+                      className="form__input"
+                      id="address"
+                      placeholder="Direccion"
+                      type="text"
+                      name="address"
+                      value={user.address}
+                      onChange={handleChange}
+                    />
+                    <label className="form__label" htmlFor="name">
+                      Direccion
+                    </label>
+                    {errors.address ? <span>{errors.address}</span>: null}
+                  </div>
+
+                    {/* celular*/}
+                    <div className="form__group">
+                    <input
+                      className="form__input"
+                      id="cellphone"
+                      placeholder="Direccion"
+                      type="text"
+                      name="cellphone"
+                      value={user.cellphone}
+                      onChange={handleChange}
+                    />
+                    <label className="form__label" htmlFor="name">
+                      Celular
+                    </label>
+                    {errors.cellphone ? <span>{errors.cellphone}</span>: null}
                   </div>
 
                   {/* Apellidos */}
-                  <div className="form__country form__group">
+{/*                   <div className="form__country form__group">
                     <input
                       className="form__input"
                       id="lastName"
                       placeholder="Apellidos"
                       type="text"
                       name="lastName"
+                      value={user.lastName}
                     />
                     <label className="form__label" htmlFor="lastName">
                       Apellidos
                     </label>
-                  </div>
-                </div>
+                    {errors.lastName ? <span>{errors.lastName}</span>: null}
+                  </div>*/}
+                </div> 
 
                 {/* Pais y Continente */}
-                <div className="form__country">
+               {/*  <div className="form__country"> */}
                   {/* Continente */}
-                  <div className="form__group">
+{/*                   <div className="form__group">
                     <select
                       className="form__select"
                       id="continent"
@@ -129,9 +233,9 @@ const Register = ({
                       <option value="Oceania">Oceania</option>
                     </select>
                   </div>
-
+ */}
                   {/* Pais */}
-                  <div className="form__group">
+{/*                   <div className="form__group">
                     <input
                       className="form__input"
                       id="country"
@@ -143,17 +247,19 @@ const Register = ({
                     <label className="form__label" htmlFor="country">
                       País
                     </label>
-                  </div>
-                </div>
-              </section>
+                  </div> */}
+               {/*  </div> */}
+              </section> 
 
               {/* Button - Registre su Cuenta*/}
               <div className="form__center">
-                <Link to={"/homePage"}>
-                    <button type="submit" className="form__button">
+                    <button 
+                    onClick={handleSubmit} 
+                    type="submit" 
+                    className="form__button"
+                    disabled={Object.keys(errors).length === 0? false : true} >
                     Registre su Cuenta
                     </button>
-                </Link> 
               </div>
 
               <p className="text-center">— O registrese con —</p>

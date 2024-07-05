@@ -28,7 +28,7 @@ import Register from "./components/HomePage/Register";
 
 // import Dashboard from './components/Dashboard/Dashboard';
 import { useDispatch, useSelector } from "react-redux";
-import { getCategory, getProducts } from "./Redux/actions";
+import { getCategory, getProducts, setUser } from "./Redux/actions";
 import Swal from "sweetalert2";
 
 function ChampionsApp() {
@@ -116,6 +116,15 @@ function ChampionsApp() {
     }
     getAll();
   }, []);
+
+  useEffect(() => {
+    const userJSON = window.localStorage.getItem('User');
+    console.log('userJSON', userJSON);
+    if (userJSON) {
+    const user = JSON.parse(userJSON);
+    dispatch(setUser(user));     
+    }
+}, []);
 
   return (
     <>

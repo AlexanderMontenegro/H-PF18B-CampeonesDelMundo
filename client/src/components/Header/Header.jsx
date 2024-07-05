@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 
 // CSS
 import "../../css/header.css";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const Header = ({
   carrito,
@@ -15,6 +17,24 @@ const Header = ({
   const isEmpty = () => carrito.length === 0;
   const carritoTotal = () =>
     carrito.reduce((total, item) => total + item.quantity * item.precio, 0);
+  const user = useSelector(state=>state.user)
+  const navigate = useNavigate();
+
+  const closeSession = () => {
+    localStorage.clear();
+
+   // navigate("/")
+    Swal.fire({
+        icon: "success",
+        title: "Cerrando session...",
+        text: "",
+        timer: 3000
+    }).then(() => {
+        // Redirigir después de que la alerta se cierre
+        navigate("/homePage"); // Cambia la URL al destino 
+        window.location.reload();
+    });
+}
 
   return (
     <header className="header__homePage">
@@ -133,6 +153,10 @@ const Header = ({
               </div>
             </div>
 
+{/* aqui su nombre del usuario */}
+{user&&<p  className="icono__fluid">{user.name}</p>}
+
+
             {/* Usuario */}
             {/* <a className="navegacion_enlace" onClick={handleEnterToLadingPage}>
                                         Usuario
@@ -143,19 +167,26 @@ const Header = ({
                 src="../../../iconos/usuario.png"
                 alt="imagen carrito"
               />
+<div id="usuario" className="usuario__container">
 
-              <div id="usuario" className="usuario__container">
+                {!user &&              
                 <div className="icon__usuario">
                   <Link className="logo" to={"/login"}>
                     <button className="icon__button">Iniciar Sesion</button>
                   </Link>
-                </div>
+                </div> }
 
+                {!user &&                 
                 <div className="icon__usuario">
                   <Link className="logo" to={"/register"}>
                     <button className="icon__button">Registrate</button>
                   </Link>
-                </div>
+                </div> }
+
+                {user &&                 
+                <div className="icon__usuario">
+                    <button className="icon__button" onClick={closeSession}>Cerrar Sesion</button>
+                </div> }
 
                 <div className="icon__usuario">
                   <Link className="logo" to="/dashboard">

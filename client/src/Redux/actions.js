@@ -11,10 +11,13 @@ export const NO_FILTER = "NO_FILTER";
 export const SORT_PRICE_ASCENDING_ORDER = "SORT_PRICE_ASCENDING_ORDER";
 export const SORT_PRICE_DESCENDING_ORDER = "SORT_PRICE_DESCENDING_ORDER";
 export const NO_SORT = "NO_SORT";
+export const POST_USER = "POST_USER";
+export const POST_LOGIN = 'POST_LOGIN';
+export const SET_USER = 'SET_USER';
 
 export const getProducts = () => {
   return async function (dispatch) {
-    const endpoint = "http://localhost:3001/productos"; //modificar de acuerdo a ruta del back
+    const endpoint = "/productos"; //modificar de acuerdo a ruta del back
 
     const response = await axios.get(endpoint);
     return dispatch({
@@ -26,7 +29,7 @@ export const getProducts = () => {
 
 export const getCategory = () => {
   return async function (dispatch) {
-    const endpoint = "http://localhost:3001/categoria"; //modificar de acuerdo a ruta del back
+    const endpoint = "/categoria"; //modificar de acuerdo a ruta del back
 
     const response = await axios.get(endpoint);
     return dispatch({
@@ -37,7 +40,7 @@ export const getCategory = () => {
 };
 
 export const postCategory = (newCategory) => {
-  const endpoint = "http://localhost:3001/categoria"; //modificar de acuerdo a ruta del back
+  const endpoint = "/categoria"; //modificar de acuerdo a ruta del back
 
   return async function (dispatch) {
     try {
@@ -58,7 +61,7 @@ export const postCategory = (newCategory) => {
 };
 
 export const postNewProduct = (newProduct) => {
-  const endpoint = "http://localhost:3001/productos"; //modificar de acuerdo a ruta del back
+  const endpoint = "/productos"; //modificar de acuerdo a ruta del back
 
   return async function (dispatch) {
     try {
@@ -113,3 +116,49 @@ export const sort = (sortType) => {
       };
   }
 };
+
+
+export const postUser = (user) => {
+  const endpoint = '/auth/register';
+  return async function (dispatch) {
+      try {
+          const response = await axios.post(endpoint, user);
+          return dispatch({
+              type: POST_USER,
+              payload: response.data
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:POST_USER,
+              payload: error
+      });
+      }
+  }
+};
+
+export const postLogin = (login) => {
+  const endpointLogin = '/auth/login';
+  return async function (dispatch) {
+      try {
+          const response = await axios.post(endpointLogin, login);
+          return dispatch({
+              type: POST_LOGIN,
+              payload: response.data
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:POST_LOGIN,
+              payload: error
+      });
+      }
+  };
+};
+
+export const setUser = (data) => {
+  return {
+      type: SET_USER,
+      payload: data
+  }
+}
