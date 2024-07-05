@@ -113,7 +113,8 @@
   gap: 2rem;
   flex-wrap: wrap;
   padding: 20px;
-  max-height: 50%;
+height: 100%;
+margin: 0;
 }
 
 /*

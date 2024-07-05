@@ -30,7 +30,7 @@ const Header = ({
   // }
 
   return (
-    <header className="header__homePage">
+    <header className="header__homePageH">
       <div className="barra__container">
         {/* Lado Izquierdo - logo */}
         <div className="barra__left">
@@ -52,7 +52,7 @@ const Header = ({
                     {/* Productos */}
                     <Link className="navegacion_enlaceC"to={"/ProductPage"}>Productos</Link>
                     {/* Contacto */}
-                    <a className="navegacion_enlaceC">Contacto</a>
+                    <a className="navegacion_enlaceC"to={"/contacto"}>Contacto</a>
                     
                     {/* Carrito */}
                     {/* <a className="navegacion_enlace">

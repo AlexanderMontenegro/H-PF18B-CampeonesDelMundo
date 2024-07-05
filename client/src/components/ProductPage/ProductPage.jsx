@@ -18,7 +18,6 @@ const ProductPage = ({
   addToCarrito,
 }) => {
   const dispatch = useDispatch();
-  
 
   // Cargar productos y categorías cuando el componente se monte
   useEffect(() => {
@@ -31,7 +30,7 @@ const ProductPage = ({
 
   // Estados para la paginación
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 12;
+  const productsPerPage = 10;
 
   // Calcular el número total de páginas
   const totalPages = Math.ceil(productos.length / productsPerPage);
@@ -39,7 +38,10 @@ const ProductPage = ({
   // Obtener los productos para la página actual
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = productos.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = productos.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -47,29 +49,35 @@ const ProductPage = ({
 
   return (
     <>
-    <div className="productpage__header">
-      <Header
-        carrito={carrito}
-        removeFromCarrito={removeFromCarrito}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        clearCarrito={clearCarrito}
+      <div className="productpage__header">
+        <Header
+          carrito={carrito}
+          removeFromCarrito={removeFromCarrito}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+          clearCarrito={clearCarrito}
         />
-        </div>
-        
-      <h4 style={{ textAlign: 'center' }}>Buscador</h4>
-      
+      </div>
+      <div className="productpage__full">
+
+
+      {/*<h4 style={{ textAlign: 'center' }}>Buscador</h4>
+       */}
       <div className="searchbar__filter">
-      <Searchbar/>
-      <Filter />     
-      <div className="product__list">
-        {currentProducts.map((producto) => (
-          <ProductoCard
-          key={producto.id}
-          producto={producto}
-          addToCarrito={addToCarrito}
-          />
-        ))}
+        <div className="combinado__syf">
+          <Searchbar />
+          <Filter />
+        </div>
+
+        <div className="product__list">
+          {currentProducts.map((producto) => (
+            <ProductoCard
+              key={producto.id}
+              producto={producto}
+              addToCarrito={addToCarrito}
+            />
+          ))}
+        </div>
       </div>
         </div>
       <div className="pagination-container">
