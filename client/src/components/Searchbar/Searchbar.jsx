@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { searchProductsByType } from "../../Redux/actions";
-import "../../css/searchbar.css"; // Importa tu archivo CSS de estilos
+import React, { useState} from "react";
+import "../../css/searchbar.css"; 
+import Filter from "../Filter/Filter";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const dispatch = useDispatch();
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    dispatch(searchProductsByType(term)); // Despacha la acción de búsqueda
+    onSearch(term); // Llama a la función de búsqueda pasada como prop
   };
+  
+  
 
   return (
     <div className="search-bar-container">
       <input
         type="text"
-        placeholder="Buscar por tipo de producto..."
+        placeholder="Buscar..."
         className="search-bar-input"
         value={searchTerm}
         onChange={handleSearchChange}

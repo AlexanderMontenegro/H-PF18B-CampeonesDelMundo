@@ -9,7 +9,6 @@ import {
   SORT_PRICE_DESCENDING_ORDER,
   NO_SORT,
   GET_DETAILS,
-  SEARCH_PRODUCTS_BY_TYPE,
 } from "./actions";
 
 // state inicial
@@ -40,11 +39,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allCategory: payload,
-      };
-    case SEARCH_PRODUCTS_BY_TYPE:
-      return {
-        ...state,
-        productos: payload,
       };
     // Filters
     case NO_FILTER:
