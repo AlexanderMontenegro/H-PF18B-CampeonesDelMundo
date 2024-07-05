@@ -9,6 +9,7 @@ server.use(morgan("dev"));
 server.use(express.json());
 server.use(cors());
 server.use('/api', router);
+server.use(router)
 
 
 
