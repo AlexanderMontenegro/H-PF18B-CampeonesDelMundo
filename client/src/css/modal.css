@@ -1,0 +1,66 @@
+
+.modal__container {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal__content {
+  color: var(--blanco);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  min-width: 89%;
+  min-height: 90%;
+
+  }
+
+.modal__button {
+  display: inline-block;
+  color: var(--negro);
+  background-color: var(--celeste);
+  text-align: justify;
+  padding: 0.7rem;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  transition: all 300ms ease-in-out;
+  border-radius: 0.7rem;
+  width: 4rem;
+}
+
+.modal__button:hover {
+  background-color: var(--azul_Oscuro);
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--blanco);
+}
+
+.modal__items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding-top: 3.5rem;
+}
+
+.modal__countryDetail,
+.modal__activities {
+  flex: 1; /* Hacer que los contenedores tomen el mismo ancho */
+  background: rgb(245, 245, 245);
+  background: radial-gradient(circle, rgba(245, 245, 245, 1) 86%, rgba(4, 180, 224, 1) 100%);
+  min-height: 73rem;
+  border: 0.2rem solid var(--negro);
+  border-radius: 2rem;
+  text-align: justify;
+  padding: 0 3rem;
+  color: var(--negro);
+}
+

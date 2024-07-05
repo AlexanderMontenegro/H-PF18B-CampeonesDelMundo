@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import ProductoCard from "../ProductoCard/ProductoCard";
 import { getProducts, getCategory } from "../../Redux/actions";
-import "../../css/homePage.css";
+import "../../css/productpage.css";
 import Pagination from "../Pagination/Pagination";
 import Filter from "../Filter/Filter";
 import Searchbar from "../Searchbar/Searchbar";
@@ -18,7 +18,6 @@ const ProductPage = ({
   addToCarrito,
 }) => {
   const dispatch = useDispatch();
-  
 
   // Cargar productos y categorías cuando el componente se monte
   useEffect(() => {
@@ -31,7 +30,7 @@ const ProductPage = ({
 
   // Estados para la paginación
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 12;
+  const productsPerPage = 10;
 
   // Calcular el número total de páginas
   const totalPages = Math.ceil(productos.length / productsPerPage);
@@ -39,7 +38,10 @@ const ProductPage = ({
   // Obtener los productos para la página actual
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = productos.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = productos.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -47,25 +49,37 @@ const ProductPage = ({
 
   return (
     <>
-      <Header
-        carrito={carrito}
-        removeFromCarrito={removeFromCarrito}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        clearCarrito={clearCarrito}
-      />
-      <h4 style={{ textAlign: 'center' }}>Buscador</h4>
-      <Searchbar/>
-      <Filter />      
-      <div className="product__list">
-        {currentProducts.map((producto) => (
-          <ProductoCard
-            key={producto.id}
-            producto={producto}
-            addToCarrito={addToCarrito}
-          />
-        ))}
+      <div className="productpage__header">
+        <Header
+          carrito={carrito}
+          removeFromCarrito={removeFromCarrito}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+          clearCarrito={clearCarrito}
+        />
       </div>
+      <div className="productpage__full">
+
+
+      {/*<h4 style={{ textAlign: 'center' }}>Buscador</h4>
+       */}
+      <div className="searchbar__filter">
+        <div className="combinado__syf">
+          <Searchbar />
+          <Filter />
+        </div>
+
+        <div className="product__list">
+          {currentProducts.map((producto) => (
+            <ProductoCard
+              key={producto.id}
+              producto={producto}
+              addToCarrito={addToCarrito}
+            />
+          ))}
+        </div>
+      </div>
+        </div>
       <div className="pagination-container">
         <Pagination
           currentPage={currentPage}

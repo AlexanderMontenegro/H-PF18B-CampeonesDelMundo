@@ -4,18 +4,36 @@
   overflow: hidden;
   margin: 5px;
   margin-bottom: 20px;
-  width: 300px; 
+  width: 300px;
   height: 500px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1); 
-  background-color: var(--blanco); 
+  background-color: var(--blanco);
+  border-radius: 30px;
+  background: var(--celesteOpaco);
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+}
+
+.card__container:hover {
+  transform: scale(1.2);
 }
 
 .card__image {
-  border-bottom: 1px solid var(--negro);
+  margin: auto;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 30px;
   max-width: 90%;
   max-height: 50%;
-  margin: 10px;
+  border-radius: 30px;
+}
 
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .card__details {
@@ -50,42 +68,51 @@
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
 .card__cart-button:hover,
 .card__fav-button:hover {
-  background-color: gray; 
+  background-color: gray;
 }
 
 .card__fav-button {
   background-color: transparent;
   color: var(--azul_Oscuro);
   position: relative;
-  transition: color 0.3s ease; 
+  transition: color 0.3s ease;
 }
 
 .card__fav-button::before {
-  content: '\2665'; 
+  content: "\2665";
   position: absolute;
-  left: -20px; 
-  color: var(--negro); 
-  transition: color 0.3s ease; 
+  left: -20px;
+  color: var(--negro);
+  transition: color 0.3s ease;
 }
 
 .card__fav-button:hover::before {
-  color: red/*var(--azul_Oscuro)*/; 
+  color: red;
 }
 
-.ico_detalle{
-    width: 10%;
-    height: 10%;
-    padding: 0;
-    margin: 0;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 1); 
+.ico_detalle {
+  width: 10%;
+  height: 10%;
+  padding: 0;
+  margin: 0;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
 }
 
-
-/****************/
-
+.product__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(var(--celeste), var(--negro));
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 20px;
+height: 100%;
+margin: 0;
+}

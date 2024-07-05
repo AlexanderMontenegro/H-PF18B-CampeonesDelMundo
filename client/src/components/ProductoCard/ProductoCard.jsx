@@ -7,7 +7,8 @@ const ProductoCard = ({ producto, addToCarrito}) => {
 
   return (
     <div className="card__container">
-    <Link to={`/product/${producto.id}`} className="card__link"> <img src={producto.imagen} alt={`${producto.tipo} ${producto.marca}`} className="card__image" /></Link>
+    <Link to={`/product/${producto.id}`} className="card__link">
+     <img src={producto.imagen} alt={`${producto.tipo} ${producto.marca}`} className="card__image" /></Link>
 
 
       <div className="card__details">

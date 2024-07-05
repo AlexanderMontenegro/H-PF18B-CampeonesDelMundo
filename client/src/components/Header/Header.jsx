@@ -1,5 +1,10 @@
-import React from "react";
+import {useState, React} from "react";
 import { useNavigate, Link } from "react-router-dom";
+
+// Components (Componentes)
+import Modal from "../Modal/Modal";
+import Login from "../HomePage/Login";
+import Register from "../HomePage/Register";
 
 // CSS
 import "../../css/header.css";
@@ -13,6 +18,10 @@ const Header = ({
   decreaseQuantity,
   clearCarrito,
 }) => {
+
+  // Use States
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // Funciones
   const isEmpty = () => carrito.length === 0;
   const carritoTotal = () =>
@@ -36,30 +45,33 @@ const Header = ({
     });
 }
 
+  // const modalLogin = () => {
+  //   setIsModalOpen(true);
+  // }
   return (
     <header className="header__homePage">
       <div className="barra__container">
         {/* Lado Izquierdo - logo */}
-        <section className="barra__left">
+        <div className="barra__left">
           {/* Logo */}
 
           <h4 className="logo_nombre no-margin"></h4>
           <img
             className="logo_img"
-            src="../../../public/img/fondo-logo-futbol_1195-244.png"
+            src="img/fondo-logo-futbol_1195-244.png"
           />
-        </section>
+        </div>
 
                 {/* Lado Derecho - Opciones*/}
-                <section className="barra__right">
+                <div className="barra__right">
                 {/* Navegacion */}
                 <div className="navegacion">
                     {/* Inicio */}
-                    <Link className="navegacion_enlace" to={"/homePage"}>Inicio</Link>
+                    <Link className="navegacion_enlaceC" to={"/homePage"}>Inicio</Link>
                     {/* Productos */}
-                    <Link className="navegacion_enlace"to={"/ProductPage"}>Productos</Link>
+                    <Link className="navegacion_enlaceC"to={"/ProductPage"}>Productos</Link>
                     {/* Contacto */}
-                    <a className="navegacion_enlace">Contacto</a>
+                    <a className="navegacion_enlaceC">Contacto</a>
                     
                     {/* Carrito */}
                     {/* <a className="navegacion_enlace">
@@ -67,15 +79,18 @@ const Header = ({
                                     </a> */}
 
             <div className="carrito">
-              <img
-                className="icono__fluid"
-                src="iconos/carrito.png"
-                alt="imagen carrito"
-              />
+              <Link className="logo" to={"/Orden"}>
+                <img
+                  className="icono__fluid"
+                  src="iconos/carrito2.png"
+                  alt="imagen carrito"
+                />
+              </Link>
+              
 
               <div id="carrito" className="carrito__container">
                 {isEmpty() ? (
-                  <h4 className="text-center ">El carrito esta vacio</h4>
+                  <h4 className="navegacion_enlaceC">El carrito esta vacio</h4>
                 ) : (
                   <>
                     <table className="carrito__table">
@@ -145,17 +160,17 @@ const Header = ({
                       Total pagar:{" "}
                       <span className="fw-bold">${carritoTotal()}</span>
                     </p>
-                    <button className="icon__button" onClick={clearCarrito}>
-                      Vaciar Carrito
-                    </button>
+                    
+                    <div>
+                      <button className="icon__button" onClick={clearCarrito}>
+                        Vaciar Carrito
+                      </button>
+                    </div>
+                    
                   </>
                 )}
               </div>
             </div>
-
-{/* aqui su nombre del usuario */}
-{user&&<p  className="icono__fluid">{user.name}</p>}
-
 
             {/* Usuario */}
             {/* <a className="navegacion_enlace" onClick={handleEnterToLadingPage}>
@@ -164,29 +179,36 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../../../iconos/usuario.png"
+                src="../../../public/iconos/usuario2.png"
                 alt="imagen carrito"
               />
-<div id="usuario" className="usuario__container">
 
-                {!user &&              
+              <div id="usuario" className="usuario__container">
                 <div className="icon__usuario">
-                  <Link className="logo" to={"/login"}>
+                  {/* <Link className="logo" to={"/login"}>
                     <button className="icon__button">Iniciar Sesion</button>
-                  </Link>
-                </div> }
+                  </Link> */}
+                  <button className="icon__button" onClick={() => setIsModalOpen(true)}>Iniciar Sesion</button>
 
-                {!user &&                 
+                  {isModalOpen && (
+                    <Modal onClose={() => setIsModalOpen(false)}>
+                      <Login/>
+                    </Modal>
+                  )}
+                </div>
+
                 <div className="icon__usuario">
                   <Link className="logo" to={"/register"}>
                     <button className="icon__button">Registrate</button>
                   </Link>
-                </div> }
+                  {/* <button className="icon__button" onClick={() => setIsModalOpen(true)}>Registrate</button>
 
-                {user &&                 
-                <div className="icon__usuario">
-                    <button className="icon__button" onClick={closeSession}>Cerrar Sesion</button>
-                </div> }
+                  {isModalOpen && (
+                    <Modal onClose={() => setIsModalOpen(false)}>
+                      <Register/>
+                    </Modal>
+                  )} */}
+                </div>
 
                 <div className="icon__usuario">
                   <Link className="logo" to="/dashboard">
@@ -196,7 +218,7 @@ const Header = ({
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
 
       {/*  <div className="header_titulo ">

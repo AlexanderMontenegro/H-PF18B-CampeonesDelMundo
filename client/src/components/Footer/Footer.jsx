@@ -5,6 +5,8 @@ import "../../css/footer.css";
 export const Footer = () => {
   return (
     <footer className="footer">
+
+
       <div className="footer-column">
         <img
           className="logo_img"

@@ -5,15 +5,40 @@ export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_CATEGORY = "GET_CATEGORY";
 export const POST_CATEGORY = "POST_CATEGORY";
 export const POST_PRODUCT = "POST_PRODUCT";
+export const GET_DETAILS = "GET_DETAILS";
 
 export const FILTER_PRODUCTO = "FILTER_PRODUCTO";
+export const FILTER_CATEGORIA = "FILTER_CATEGORIA";
+export const FILTER_MARCAS = "FILTER_MARCAS";
 export const NO_FILTER = "NO_FILTER";
 export const SORT_PRICE_ASCENDING_ORDER = "SORT_PRICE_ASCENDING_ORDER";
 export const SORT_PRICE_DESCENDING_ORDER = "SORT_PRICE_DESCENDING_ORDER";
 export const NO_SORT = "NO_SORT";
+export const SEARCH_PRODUCTS_BY_TYPE = "SEARCH_PRODUCTS_BY_TYPE";
+
 export const POST_USER = "POST_USER";
 export const POST_LOGIN = 'POST_LOGIN';
 export const SET_USER = 'SET_USER';
+
+export const getDetails = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/productos/${id}`);
+      if (response.status === 200) {
+        const producto = response.data;
+        return dispatch({
+          type: GET_DETAILS,
+          payload: producto,
+        });
+      } else {
+        console.error("Error: Producto no encontrado");
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+  };
+};
+
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -73,7 +98,7 @@ export const postNewProduct = (newProduct) => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: 'Error en el servidor',
+        title: "Error en el servidor",
         text: "",
         timer: 5000,
       });
@@ -85,6 +110,32 @@ export const filterByProducto = (producto) => {
   if (producto !== "none") {
     return {
       type: FILTER_PRODUCTO,
+      payload: producto,
+    };
+  } else {
+    return {
+      type: NO_FILTER,
+    };
+  }
+};
+//FILTER CATEGORIA
+export const filterByCategoria = (producto) => {
+  if (producto !== "none") {
+    return {
+      type: FILTER_CATEGORIA,
+      payload: producto,
+    };
+  } else {
+    return {
+      type: NO_FILTER,
+    };
+  }
+};
+//FILTER MARCA
+export const filterByMarca = (producto) => {
+  if (producto !== "none") {
+    return {
+      type: FILTER_MARCAS,
       payload: producto,
     };
   } else {
@@ -116,6 +167,22 @@ export const sort = (sortType) => {
       };
   }
 };
+export const searchProductsByType = (tipo) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `/productos?tipo=${tipo}`
+      );
+      return dispatch({
+        type: SEARCH_PRODUCTS_BY_TYPE,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+  };
+};
+
 
 
 export const postUser = (user) => {

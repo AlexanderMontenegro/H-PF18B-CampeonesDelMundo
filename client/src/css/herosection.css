@@ -1,18 +1,25 @@
+
 .hero-section {
-  background-color: var(--azul);
-  color: var(--blanco);
-  padding: 0;
+  background-color: var(--azulOscuro);
+  color: var(--blanco); 
+  padding: 2rem;
   text-align: center;
   display: flex;
+  margin: 25px auto; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 5%; 
+  max-width: 80%;
+  border-radius: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--negro);
+  
 }
 
 .hero-content {
   max-width: 80%;
   margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .hero-content h1 {
@@ -44,28 +51,25 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
-  overflow-x: none;
+  overflow-x: none;  
   transition: transform 0.3s ease;
-  max-width: 90%;
-  max-height: 80%;
+  max-width: 80%;
   height: 90px;
 }
 
+
 .carousel img {
-  height: 70px;
-  width: 50px;
+  height: 100%;
+  width: 4%;
   object-fit: cover;
   margin: 0 1rem;
   border: 1px solid var(--negro);
   border-radius: 10px;
-  overflow: hidden;
-  margin: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
-  background-color: var(--blanco);
+  transition: transform 0.3s ease;
 }
 
 .carousel img:hover {
-  transform: scale(2.9);
+  transform: scale(1.9);
   border-radius: 10px;
 }
+

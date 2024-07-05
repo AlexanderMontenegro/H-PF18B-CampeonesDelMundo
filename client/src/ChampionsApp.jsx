@@ -1,4 +1,3 @@
-
 // UseState y UseEffect
 import React, { useState, useEffect } from "react";
 
@@ -18,6 +17,7 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import ProductoCard from "./components/ProductoCard/ProductoCard";
 import DashboardPage from "../src/pages/DashboardPage";
 import ProductPage from "../src/components/ProductPage/ProductPage";
+import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
 
 // Components (Componentes)
 import Login from "./components/HomePage/Login";
@@ -30,18 +30,29 @@ import Register from "./components/HomePage/Register";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory, getProducts, setUser } from "./Redux/actions";
 import Swal from "sweetalert2";
+import Orden from "./components/Orden/Orden";
 
 function ChampionsApp() {
   const dispatch = useDispatch();
   const stateProducts = useSelector((state) => state.allProducts);
 
-  // Data (db)
-  //console.log(data)
+  // Local Storage
+  const initialCarrito = () => {
+    const localStorageCarrito = localStorage.getItem("carrito");
 
+    return localStorageCarrito ? JSON.parse(localStorageCarrito) : [];
+  };
+
+  // UseState
   const [productos, setProductos] = useState(stateProducts);
-  const [carrito, setCarrito] = useState([]);
+  const [carrito, setCarrito] = useState(initialCarrito);
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 0;
+
+  // UseEffect
+  useEffect(() => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
 
   // FUNCIONES
   const addToCarrito = (item) => {
@@ -88,6 +99,8 @@ function ChampionsApp() {
     setCarrito([]);
   };
 
+  // Local Storage - Carrito
+
   // Navigate y Location
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -98,7 +111,7 @@ function ChampionsApp() {
         const response = await dispatch(getProducts());
         await dispatch(getCategory());
         if (response.payload.length > 0) {
-/*           Swal.fire({
+          /*           Swal.fire({
             icon: "success",
             title: "Datos obtenidos desde el Back",
             text: "",
@@ -128,6 +141,7 @@ function ChampionsApp() {
 
   return (
     <>
+        <DarkModeToggle />
       <Routes>
         {/* 1.-Ruta Principal - LadingPage */}
         {/* Ruta para la página de inicio */}
@@ -160,6 +174,24 @@ function ChampionsApp() {
             </>
           }
         ></Route>
+        {/* 2.-Ruta SPA - HomePage */}
+        {/* Ruta para la página principal */}
+        <Route
+          path="/orden"
+          element={
+            <>
+              <Orden
+                carrito={carrito}
+                addToCarrito={addToCarrito}
+                removeFromCarrito={removeFromCarrito}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                clearCarrito={clearCarrito}
+              />
+            </>
+          }
+        ></Route>
+
         <Route exact path="/" component={ProductoCard} />
         <Route
           path="/product/:id"
@@ -216,6 +248,7 @@ function ChampionsApp() {
             <>
               <ProductPage
                 carrito={carrito}
+                addToCarrito={addToCarrito}
                 removeFromCarrito={removeFromCarrito}
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}

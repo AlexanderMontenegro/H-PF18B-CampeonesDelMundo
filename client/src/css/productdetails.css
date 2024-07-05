@@ -1,94 +1,122 @@
-.product-details-container {
-  display: grid;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 2rem;
+/* Estilos para la página de detalles del producto */
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
   background-color: var(--blanco);
   color: var(--negro);
-  border: 1px solid var(--azul_Oscuro);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  width: 80%;
-  margin: 0 auto;
 }
 
-.product-image img {
+.product-image {
   width: 100%;
-  height: auto;
-  border-radius: 8px; /
+  max-width: 500px;
+  margin-bottom: 2rem;
+  border-radius: var(--radius);
 }
 
 .product-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
 }
 
-.product-info h2 {
-  font-size: 2.8rem;
-  font-family: var(--fuenteHeading);
-  margin-bottom: 1rem;
+.product-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--negro);
 }
 
-.product-info p {
+.product-price {
+  font-size: 2rem;
+  color: var(--azul_Oscuro);
+}
+
+.product-description {
   font-size: 1.6rem;
-  margin: 0.5rem 0;
+  color: var(--negro);
 }
 
-.product-sizes {
-  margin: 1rem 0;
+.product-quantity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.product-sizes label {
+.product-quantity-label {
   font-size: 1.6rem;
-  margin-right: 0.5rem;
+  color: var(--negro);
 }
 
-.product-sizes select {
+.product-quantity-input {
+  width: 50px;
   padding: 0.5rem;
-  font-size: 1.6rem;
+  border: 1px solid var(--negro);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-button {
+.product-add-to-cart {
+  padding: 1rem 2rem;
   background-color: var(--azul);
   color: var(--blanco);
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
+  border-radius: var(--radius);
   cursor: pointer;
-  margin-top: 1rem;
-  border-radius: 8px; /* Añadir bordes redondeados al botón */
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s;
 }
 
-button:hover {
+.product-add-to-cart:hover {
   background-color: var(--azul_Oscuro);
 }
 
-.reviews-section {
-  grid-column: 1 / -1;
-  margin-top: 2rem;
+@media (max-width: 768px) {
+  .product-details {
+    padding: 1rem;
+  }
+
+  .product-title {
+    font-size: 2rem;
+  }
+
+  .product-price {
+    font-size: 1.6rem;
+  }
+
+  .product-description {
+    font-size: 1.4rem;
+  }
+
+  .product-add-to-cart {
+    padding: 0.8rem 1.5rem;
+  }
 }
 
-.reviews-section h3 {
-  font-size: 2.4rem;
-  font-family: var(--fuenteHeading);
-  margin-bottom: 1rem;
-}
+@media (max-width: 480px) {
+  .product-image {
+    max-width: 100%;
+  }
 
+  .product-title {
+    font-size: 1.8rem;
+  }
 
-.button__carrito{
-  background-color: var(--azul);
-  color: var(--blanco);
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 50%;
+  .product-price {
+    font-size: 1.4rem;
+  }
 
-}
+  .product-description {
+    font-size: 1.2rem;
+  }
 
-.button__carrito:hover{
-  background-color: gray; 
+  .product-add-to-cart {
+    padding: 0.5rem 1rem;
+  }
 }
