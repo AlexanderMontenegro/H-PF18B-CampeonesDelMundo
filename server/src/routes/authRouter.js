@@ -5,8 +5,8 @@ const verifyToken = require('../middlewares/authMiddleware');
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
-router.get('/protected', verifyToken, (req, res) => {
+/* router.get('/protected', verifyToken, (req, res) => {
   res.status(200).send({ auth: true, message: 'Access granted.' });
-});
+}); */
 
 module.exports = router;
