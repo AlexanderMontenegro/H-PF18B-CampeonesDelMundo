@@ -1,11 +1,10 @@
 
-/* Estilos para la página de inicio */
-
 .header__homePage ul {
     display: flex;
     padding: 0;
     width: 400%;
     animation: slide 20s infinite alternate ease-in-out;
+  
   }
   
   .header__homePage li {
@@ -16,7 +15,6 @@
   
   .hero__category {
     background-image: url("../img/img3.jpg");
-    /*background-image: url("../../public/img/banderas-paises.png");*/
     background-size: cover;
     background-position: center;
     width: 100%;

@@ -78,6 +78,8 @@ const HomePage = ({
           ))}
         </div>
 
+        
+
         {/* Paginación */}
         <div className="pagination-container">
           <Pagination
