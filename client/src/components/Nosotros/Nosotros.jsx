@@ -5,42 +5,42 @@ import "../../css/nosotros.css"
 function Nosotros() {
   const integrantes = [
     {
-      nombre: 'Alexander Montenegro',
+      nombre: 'Alexander Montenegro-',
       email: 'Alexandermontenegro0691@gmail.com',
       linkedin: 'https://www.linkedin.com/in/alexander-montenegro/',
       github: 'https://www.github.com/AlexanderMontenegro',
       foto: 'https://avatars.githubusercontent.com/u/146051902?v=4',
     },
     {
-      nombre: 'Lucas Tagliapietra',
+      nombre: 'Lucas Tagliapietra-',
       email: 'lucastagliapietra@hotmail.com',
       linkedin: 'Falta',
       github: 'https://github.com/lucastagliapietra19',
       foto: 'https://avatars.githubusercontent.com/u/118776762?v=4',
     },
     {
-        nombre: 'Joshua Avalo',
+        nombre: 'Joshua Avalo-',
         email: 'avalojoshua83@gmail.com',
         linkedin: 'Falta',
         github: 'https://github.com/joshuaavalo',
         foto: 'https://avatars.githubusercontent.com/u/106624318?v=4',
     },
     {
-        nombre: 'Richard Pereira',
+        nombre: 'Richard Pereira-',
         email: 'richrdpere123@gmail.com',
         linkedin: 'Falta',
         github: 'https://github.com/richrdPere',
         foto: 'https://avatars.githubusercontent.com/u/162060136?v=4',
     },
     {
-        nombre: 'Santiago Palacio',
+        nombre: 'Santiago Palacio-',
         email: 'spa497@gmail.com',
         linkedin: 'Falta',
         github: 'https://github.com/SPalacioAhun',
         foto: 'https://avatars.githubusercontent.com/u/123433608?v=4',
     },
     {
-        nombre: 'Erik Neuman Erik Neuman',
+        nombre: 'Erik Neuman Erik Neuman-',
         email: 'neuman10327033@gmail.com',
         linkedin: 'Falta',
         github: 'https://github.com/NeumanGallardo',
