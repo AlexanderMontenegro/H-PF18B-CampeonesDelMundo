@@ -1,7 +1,7 @@
 import React from 'react';
 
 // CSS
-import '../../css/modal.css'
+import '../../css/modal2.css'
 
 const Modal = ({ children, onClose }) => {
     return (
