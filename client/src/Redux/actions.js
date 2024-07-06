@@ -19,6 +19,7 @@ export const SEARCH_PRODUCTS_BY_TYPE = "SEARCH_PRODUCTS_BY_TYPE";
 export const POST_USER = "POST_USER";
 export const POST_LOGIN = 'POST_LOGIN';
 export const SET_USER = 'SET_USER';
+export const POST_IMAGE = 'POST_IMAGE'
 
 export const getDetails = (id) => {
   return async function (dispatch) {
@@ -229,3 +230,52 @@ export const setUser = (data) => {
       payload: data
   }
 }
+
+export const postImageLocal = (image) => {
+  const endpoint = '/api/images/upload';
+  return async function (dispatch) {
+      try {
+        const formData = new FormData();
+        formData.append('image', image);
+          const response = await axios.post(endpoint, formData,
+            {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          }
+          );
+          return dispatch({
+              type: POST_IMAGE,
+              payload: response.data
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:POST_IMAGE,
+              payload: error
+      });
+      }
+  }
+};
+
+export const postImageRemota = (imageUrl) => {
+  const endpoint = '/api/images/upload-from-url';
+  return async function (dispatch) {
+   // const formData = new FormData();
+    //formData.append('file', imageUrl);
+    //formData.append('upload_preset', 'YOUR_UPLOAD_PRESET');
+      try {
+          const response = await axios.post(endpoint, {imageUrl});
+          return dispatch({
+              type: POST_IMAGE,
+              payload: response.data
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:POST_IMAGE,
+              payload: error
+      });
+      }
+  }
+};

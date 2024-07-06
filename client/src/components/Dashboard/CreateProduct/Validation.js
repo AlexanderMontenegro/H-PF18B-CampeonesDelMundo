@@ -23,13 +23,15 @@ export default function validation(inputs){
         errorsO.marca = 'Debe tener mas de 3 caracteres'}
 
     //validacion imagen 
+    if(inputs.imagen==='')
+        {errorsO.imagen='Subi una imagen o pega Url de Imagen'}
 //     const regexImg = /^data:image\/(png|jpeg|jpg);base64,/;
-const imageUrlRegex = /\.(jpeg|jpg|png)$/;
-if(imageUrlRegex.test(inputs.imagen)){
+/* const imageUrlRegex = /\.(jpeg|jpg|png)$/;
+if(imageUrlRegex.test(inputs.imagen)){ */
         //errors.imagen = 'Inserta URL de Imagen Formato valido "png, jpeg, jpg" ';
         //errors.imagen = false;
     
-        const imagenValidator = async (objeto) => {
+/*         const imagenValidator = async (objeto) => {
             try {
                 const response = await fetch(objeto.url, { method: 'HEAD' });
         
@@ -59,7 +61,7 @@ if(imageUrlRegex.test(inputs.imagen)){
             }
                 
                 
-        };
+        }; */
         
         // Objeto inicial con la URL a verificar
         //const objetoInicial = {
@@ -68,7 +70,7 @@ if(imageUrlRegex.test(inputs.imagen)){
         //};
         
         // Función para verificar y actualizar el objeto
-        const verificarYActualizar = async (objeto) => {
+  /*       const verificarYActualizar = async (objeto) => {
             await imagenValidator(objeto);
             console.log('errors sfsdsd', errorsO)
         
@@ -87,7 +89,7 @@ if(imageUrlRegex.test(inputs.imagen)){
             imagen: true});
         console.log('errors',errorsO)
         
-    }else{errorsO.imagen = "Formato de imagen no valida Permitido '.jpeg .png .jpg'"}  
+    }else{errorsO.imagen = "Formato de imagen no valida Permitido '.jpeg .png .jpg'"}   */
     
 
     //validation descripcion
