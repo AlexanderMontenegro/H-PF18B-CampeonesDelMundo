@@ -266,3 +266,27 @@
   display: flex;
   justify-content: space-around;
 }
+
+
+    /* visivilidad de password*/
+
+    .input_password_container {
+      width: 100%;
+      display: inline-block;
+
+    }
+
+    .eye {
+      width: 25px;
+      height: 25px;
+    }
+
+    .show_hide_btn {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }

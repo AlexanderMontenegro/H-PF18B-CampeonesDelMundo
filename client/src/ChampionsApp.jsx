@@ -19,7 +19,6 @@ import DashboardPage from "../src/pages/DashboardPage";
 import ProductPage from "../src/components/ProductPage/ProductPage";
 import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
 
-import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
 
 // Components (Componentes)
 import Login from "./components/HomePage/Login";
@@ -36,7 +35,6 @@ import { getCategory, getProducts, setUser } from "./Redux/actions";
 import Swal from "sweetalert2";
 import Orden from "./components/Orden/Orden";
 import Privacy from "./components/Privacy/Privacy";
-import Orden from "./components/Orden/Orden";
 
 function ChampionsApp() {
   const dispatch = useDispatch();
@@ -49,25 +47,13 @@ function ChampionsApp() {
     return localStorageCarrito ? JSON.parse(localStorageCarrito) : [];
   };
 
-  // UseState
-  // Local Storage
-  const initialCarrito = () => {
-    const localStorageCarrito = localStorage.getItem("carrito");
-
-    return localStorageCarrito ? JSON.parse(localStorageCarrito) : [];
-  };
 
   // UseState
   const [productos, setProductos] = useState(stateProducts);
   const [carrito, setCarrito] = useState(initialCarrito);
-  const [carrito, setCarrito] = useState(initialCarrito);
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 0;
 
-  // UseEffect
-  useEffect(() => {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-  }, [carrito]);
 
   // UseEffect
   useEffect(() => {
@@ -119,9 +105,6 @@ function ChampionsApp() {
     setCarrito([]);
   };
 
-  // Local Storage - Carrito
-
-  // Local Storage - Carrito
 
   // Navigate y Location
   const navigate = useNavigate();
@@ -290,7 +273,6 @@ function ChampionsApp() {
             <>
               <ProductPage
                 carrito={carrito}
-                addToCarrito={addToCarrito}
                 addToCarrito={addToCarrito}
                 removeFromCarrito={removeFromCarrito}
                 increaseQuantity={increaseQuantity}

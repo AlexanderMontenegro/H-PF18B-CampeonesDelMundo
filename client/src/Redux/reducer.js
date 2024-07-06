@@ -10,6 +10,7 @@ import {
   NO_SORT,
   GET_DETAILS,
   SEARCH_PRODUCTS_BY_TYPE,
+  SET_USER
 } from "./actions";
 
 // state inicial
@@ -19,6 +20,7 @@ const initialState = {
   allCategory: [],
   productos: [],
   preSortProductos: [],
+  user:null
 };
 
 const rootReducer = (state = initialState, action) => {

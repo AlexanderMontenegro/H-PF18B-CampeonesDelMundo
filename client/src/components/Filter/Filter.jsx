@@ -58,25 +58,6 @@ export const Filter = ({ onFilterChange }) => {
     } else {
       dispatch(filterByMarca("none"));
     }
-    onFilterChange();
-  };
-
-  const handleCategoriaChange = (e) => {
-    const { value } = e.target;
-    if (value !== "none") {
-      dispatch(filterByCategoria(value));
-    } else {
-      dispatch(filterByCategoria("none"));
-    }
-  };
-
-  const handleMarcaChange = (e) => {
-    const { value } = e.target;
-    if (value !== "none") {
-      dispatch(filterByMarca(value));
-    } else {
-      dispatch(filterByMarca("none"));
-    }
   };
 
   const handleOrderChange = (e) => {
