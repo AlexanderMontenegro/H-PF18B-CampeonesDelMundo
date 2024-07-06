@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: auto;
+  height: 90%;
   width: auto;
  /* background-color: var(--azul);
 */}
@@ -48,12 +48,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: auto;
   width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 60%;
+  margin: 10px;
 }
 
 /* Estilos para el contenido del registro */
@@ -74,7 +74,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 50%;
 
 }
 

@@ -26,7 +26,7 @@
   .modal__button {
     display: inline-block;
     color: var(--negro);
-    background-color: var(--celeste);
+    background-color: var(--rojo);
     text-align: justify;
     padding: 0.7rem;
     font-size: 1.7rem;
