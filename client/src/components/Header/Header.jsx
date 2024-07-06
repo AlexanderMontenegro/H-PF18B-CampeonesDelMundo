@@ -39,7 +39,7 @@ const Header = ({
           <h4 className="logo_nombre no-margin"></h4>
           <img
             className="logo_img"
-            src="img/fondo-logo-futbol_1195-244.png"
+            src="../../../public/img/fondo-logo-futbol_1195-244.png"
           />
         </div>
 
@@ -63,7 +63,7 @@ const Header = ({
               <Link className="logo" to={"/Orden"}>
                 <img
                   className="icono__fluid"
-                  src="iconos/carrito2.png"
+                  src="/public/iconos/carrito2.png"
                   alt="imagen carrito"
                 />
               </Link>

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getDetails } from '../../Redux/actions'; // Ajusta la ruta según tu estructura de archivos
+import { getDetails } from '../../Redux/actions';
 import "../../css/productdetails.css";
+import "../../css/header.css"
 import Header from '../Header/Header';
-import Footer from "../Footer/Footer"
+import Footer from "../Footer/Footer";
 
-const ProductDetails = ({carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito, product, getDetails}) => {
+const ProductDetails = ({ carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito, product, getDetails }) => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,10 +17,11 @@ const ProductDetails = ({carrito, addToCarrito, removeFromCarrito, increaseQuant
   if (!product) {
     return <p>Producto no encontrado</p>;
   }
-  
+
   return (
+    
     <div>
-      <Header
+      <Header 
         carrito={carrito}
         addToCarrito={addToCarrito}
         removeFromCarrito={removeFromCarrito}
@@ -27,16 +29,15 @@ const ProductDetails = ({carrito, addToCarrito, removeFromCarrito, increaseQuant
         decreaseQuantity={decreaseQuantity}
         clearCarrito={clearCarrito}
       />
-    
+      <div className='container__pd'>
       <div className="product-details-container">
         <div className="product-image">
           <img src={product.imagen} alt={product.tipo} />
         </div>
         <div className="product-info">
-          <h2>{product.tipo} - {product.marca}</h2>
-          <p>Precio: ${product.precio}</p>
-          <p>Valoración:</p>
-          <p>Descripción: {product.descripcion}</p>
+          <h2 className="product-title">{product.tipo} - {product.marca}</h2>
+          <p className="product-price"> ${product.precio}</p>
+          <p className="product-description">Descripción <br/> {product.descripcion}</p>
           <div className="product-sizes">
             <label htmlFor="sizes">Talles:</label>
             <select id="sizes">
@@ -45,7 +46,7 @@ const ProductDetails = ({carrito, addToCarrito, removeFromCarrito, increaseQuant
               ))}
             </select>
           </div>
-          <button className='button__carrito'>Agregar al Carrito</button>
+          <button className="product-add-to-cart">Agregar al Carrito</button>
         </div>
         <div className="reviews-section">
           <h3>Reviews</h3>
@@ -53,6 +54,8 @@ const ProductDetails = ({carrito, addToCarrito, removeFromCarrito, increaseQuant
         </div>
       </div>
     </div>
+      <Footer />
+</div>
   );
 };
 

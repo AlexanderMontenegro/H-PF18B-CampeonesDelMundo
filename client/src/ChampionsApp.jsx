@@ -19,10 +19,12 @@ import DashboardPage from "../src/pages/DashboardPage";
 import ProductPage from "../src/components/ProductPage/ProductPage";
 import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
 
+
 // Components (Componentes)
 import Login from "./components/HomePage/Login";
 import Register from "./components/HomePage/Register";
 import Nosotros from "./components/Nosotros/Nosotros";
+
 
 // Import Data (db)
 // import { data } from './db/db';
@@ -32,6 +34,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategory, getProducts } from "./Redux/actions";
 import Swal from "sweetalert2";
 import Orden from "./components/Orden/Orden";
+import Privacy from "./components/Privacy/Privacy";
 
 function ChampionsApp() {
   const dispatch = useDispatch();
@@ -252,8 +255,7 @@ function ChampionsApp() {
 
         {/* <Route path='/footer' element={<Footer />} /> */}
 
-        <Route
-          path="/dashboard/*"
+        <Route path="/dashboard/*"
           element={
             <>
               <DashboardPage
@@ -267,12 +269,15 @@ function ChampionsApp() {
             </>
           }
         />
+
+        
+
         <Route path="/contacto"
         element={<Nosotros/>}>
 
         </Route>
 
-
+        <Route path="/privacidad" element={<Privacy/>}/>
 
       </Routes>
     </>
