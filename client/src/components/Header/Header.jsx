@@ -215,6 +215,12 @@ const Header = ({
                     <button className="icon__button">Administrador</button>
                   </Link>
                 </div>
+
+                  {user&&
+                  <div className="icon__usuario">
+                    <button onClick={closeSession} className="icon__button">Cerrar Session</button>
+                  </div>}
+
               </div>
             </div>
           </div>

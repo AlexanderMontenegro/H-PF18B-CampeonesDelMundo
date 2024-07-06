@@ -261,9 +261,6 @@ export const postImageLocal = (image) => {
 export const postImageRemota = (imageUrl) => {
   const endpoint = '/api/images/upload-from-url';
   return async function (dispatch) {
-   // const formData = new FormData();
-    //formData.append('file', imageUrl);
-    //formData.append('upload_preset', 'YOUR_UPLOAD_PRESET');
       try {
           const response = await axios.post(endpoint, {imageUrl});
           return dispatch({

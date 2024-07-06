@@ -22,9 +22,11 @@ export default function validation(inputs){
     if (!regex3.test(inputs.marca)) {
         errorsO.marca = 'Debe tener mas de 3 caracteres'}
 
-    //validacion imagen 
+    //validacion imagen con cloudinary
     if(inputs.imagen==='')
         {errorsO.imagen='Subi una imagen o pega Url de Imagen'}
+
+    //validacion imagen
 //     const regexImg = /^data:image\/(png|jpeg|jpg);base64,/;
 /* const imageUrlRegex = /\.(jpeg|jpg|png)$/;
 if(imageUrlRegex.test(inputs.imagen)){ */
