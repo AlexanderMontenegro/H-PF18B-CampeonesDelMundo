@@ -50,7 +50,7 @@
 .card__name {
   font-family: var(--fuenteParrafos);
   font-size: 1.6rem;
-  color: var(--negro);
+  color: var(--azul_Oscuro);
   margin-bottom: 5px;
 }
 

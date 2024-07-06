@@ -20,7 +20,7 @@ const ProductoCard = ({ producto, addToCarrito}) => {
             className="card__cart-button"
             onClick={() => addToCarrito(producto)}
             >Agregar al Carrito</button>
-          <button className="card__fav-button">Favoritos</button>
+          {/*<button className="card__fav-button">Favoritos</button>*/}
         </div>
       </div>
     </div>

@@ -38,12 +38,13 @@ const Orden = ({
                 clearCarrito={clearCarrito}
             />
 
-            <main className='contenedor'>
-                <h1 className='text-start'>Orden</h1>
+            <main className='contenedor__or'>
 
-                <div className='contenido_principal orden__container'>
+               {/* <h1 className='text-start'>Orden</h1>*/}
+
+                <div className='contenido_principal__or'>
                     <div>
-                        <h2>Productos</h2>
+                      {/*   <h2>Productos</h2> */}
 
                         {isEmpty() ? (
                         <h4 className="text-center ">El carrito esta vacio</h4>
@@ -86,7 +87,7 @@ const Orden = ({
                                                 className="btn btn-dark"
                                                 onClick={() => decreaseQuantity(producto.id)}
                                             >
-                                            -
+                                            - 
                                             </button>
                                             {producto.quantity}
                                             <button
@@ -94,7 +95,7 @@ const Orden = ({
                                                 className="btn btn-dark"
                                                 onClick={() => increaseQuantity(producto.id)}
                                             >
-                                            +
+                                            + 
                                             </button>
                                         </div>
                                     </td>
@@ -112,31 +113,35 @@ const Orden = ({
                             </tbody>
                             </table>
 
-                            <p className="text-end">
-                            Total pagar:{" "}
-                            <span className="fw-bold">${carritoTotal()}</span>
-                            </p>
                             
-                            <div>
-                                <button className="btn btn-dark w-100 mt-3 p-2" onClick={clearCarrito}>
-                                    Vaciar Carrito
-                                </button>
-                            </div>
                             
                         </>
                         )}
 
                     </div>
 
-                    <div>
-                        <h2>Pago</h2>
+                    <div className='pago__total'>
+                            <div>
+                                <button className="btn__or" onClick={clearCarrito}>
+                                    Vaciar Carrito
+                                </button>
+                            </div>
+                        {/*<h2>Pago</h2>*/}
 
-                        <p>Total:</p>
+                       {/*} <p>Total:</p> */}
+                    <div className='suma__total'>
 
-                        <button className='btn btn-primary'>Comprar</button>
+                            <p className="btn__or_txt">
+                            Total pagar{" "}
+                            <span className="btn__or_2">${carritoTotal()}</span>
+                            </p>
+                    </div>
+
+                        <button className='btn__or'>Comprar</button>
 
                         <h3></h3>
                     </div>
+                    
                 </div>
             </main>
 

@@ -16,15 +16,10 @@ export const SORT_PRICE_DESCENDING_ORDER = "SORT_PRICE_DESCENDING_ORDER";
 export const NO_SORT = "NO_SORT";
 export const SEARCH_PRODUCTS_BY_TYPE = "SEARCH_PRODUCTS_BY_TYPE";
 
-export const POST_USER = "POST_USER";
-export const POST_LOGIN = 'POST_LOGIN';
-export const SET_USER = 'SET_USER';
-export const POST_IMAGE = 'POST_IMAGE'
-
 export const getDetails = (id) => {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`/productos/${id}`);
+      const response = await axios.get(`http://localhost:3001/productos/${id}`);
       if (response.status === 200) {
         const producto = response.data;
         return dispatch({
@@ -39,7 +34,6 @@ export const getDetails = (id) => {
     }
   };
 };
-
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -172,7 +166,7 @@ export const searchProductsByType = (tipo) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `/productos?tipo=${tipo}`
+        `http://localhost:3001/productos?tipo=${tipo}`
       );
       return dispatch({
         type: SEARCH_PRODUCTS_BY_TYPE,
@@ -182,97 +176,4 @@ export const searchProductsByType = (tipo) => {
       console.error("Error en la solicitud:", error);
     }
   };
-};
-
-
-
-export const postUser = (user) => {
-  const endpoint = '/auth/register';
-  return async function (dispatch) {
-      try {
-          const response = await axios.post(endpoint, user);
-          return dispatch({
-              type: POST_USER,
-              payload: response.data
-          });
-      }
-      catch (error) {
-          return dispatch({
-              type:POST_USER,
-              payload: error
-      });
-      }
-  }
-};
-
-export const postLogin = (login) => {
-  const endpointLogin = '/auth/login';
-  return async function (dispatch) {
-      try {
-          const response = await axios.post(endpointLogin, login);
-          return dispatch({
-              type: POST_LOGIN,
-              payload: response.data
-          });
-      }
-      catch (error) {
-          return dispatch({
-              type:POST_LOGIN,
-              payload: error
-      });
-      }
-  };
-};
-
-export const setUser = (data) => {
-  return {
-      type: SET_USER,
-      payload: data
-  }
-}
-
-export const postImageLocal = (image) => {
-  const endpoint = '/api/images/upload';
-  return async function (dispatch) {
-      try {
-        const formData = new FormData();
-        formData.append('image', image);
-          const response = await axios.post(endpoint, formData,
-            {
-              headers: {
-                  'Content-Type': 'multipart/form-data'
-              }
-          }
-          );
-          return dispatch({
-              type: POST_IMAGE,
-              payload: response.data
-          });
-      }
-      catch (error) {
-          return dispatch({
-              type:POST_IMAGE,
-              payload: error
-      });
-      }
-  }
-};
-
-export const postImageRemota = (imageUrl) => {
-  const endpoint = '/api/images/upload-from-url';
-  return async function (dispatch) {
-      try {
-          const response = await axios.post(endpoint, {imageUrl});
-          return dispatch({
-              type: POST_IMAGE,
-              payload: response.data
-          });
-      }
-      catch (error) {
-          return dispatch({
-              type:POST_IMAGE,
-              payload: error
-      });
-      }
-  }
 };

@@ -1,5 +1,11 @@
 import {useState, React} from "react";
+import {useState, React} from "react";
 import { useNavigate, Link } from "react-router-dom";
+
+// Components (Componentes)
+import Modal from "../Modal/Modal";
+import Login from "../HomePage/Login";
+import Register from "../HomePage/Register";
 
 // Components (Componentes)
 import Modal from "../Modal/Modal";
@@ -18,6 +24,10 @@ const Header = ({
   decreaseQuantity,
   clearCarrito,
 }) => {
+
+  // Use States
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   // Use States
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,6 +63,7 @@ const Header = ({
       <div className="barra__container">
         {/* Lado Izquierdo - logo */}
         <div className="barra__left">
+        <div className="barra__left">
           {/* Logo */}
 
           <h4 className="logo_nombre no-margin"></h4>
@@ -61,14 +72,18 @@ const Header = ({
             src="img/fondo-logo-futbol_1195-244.png"
           />
         </div>
+        </div>
 
                 {/* Lado Derecho - Opciones*/}
+                <div className="barra__right">
                 <div className="barra__right">
                 {/* Navegacion */}
                 <div className="navegacion">
                     {/* Inicio */}
                     <Link className="navegacion_enlaceC" to={"/homePage"}>Inicio</Link>
+                    <Link className="navegacion_enlaceC" to={"/homePage"}>Inicio</Link>
                     {/* Productos */}
+                    <Link className="navegacion_enlaceC"to={"/ProductPage"}>Productos</Link>
                     <Link className="navegacion_enlaceC"to={"/ProductPage"}>Productos</Link>
                     {/* Contacto */}
                     <a className="navegacion_enlaceC">Contacto</a>
@@ -90,6 +105,7 @@ const Header = ({
 
               <div id="carrito" className="carrito__container">
                 {isEmpty() ? (
+                  <h4 className="navegacion_enlaceC">El carrito esta vacio</h4>
                   <h4 className="navegacion_enlaceC">El carrito esta vacio</h4>
                 ) : (
                   <>
@@ -167,6 +183,13 @@ const Header = ({
                       </button>
                     </div>
                     
+                    
+                    <div>
+                      <button className="icon__button" onClick={clearCarrito}>
+                        Vaciar Carrito
+                      </button>
+                    </div>
+                    
                   </>
                 )}
               </div>
@@ -180,13 +203,23 @@ const Header = ({
               <img
                 className="icono__fluid"
                 src="../../../public/iconos/usuario2.png"
+                src="../../../public/iconos/usuario2.png"
                 alt="imagen carrito"
               />
 
               <div id="usuario" className="usuario__container">
                 <div className="icon__usuario">
                   {/* <Link className="logo" to={"/login"}>
+                  {/* <Link className="logo" to={"/login"}>
                     <button className="icon__button">Iniciar Sesion</button>
+                  </Link> */}
+                  <button className="icon__button" onClick={() => setIsModalOpen(true)}>Iniciar Sesion</button>
+
+                  {isModalOpen && (
+                    <Modal onClose={() => setIsModalOpen(false)}>
+                      <Login/>
+                    </Modal>
+                  )}
                   </Link> */}
                   <button className="icon__button" onClick={() => setIsModalOpen(true)}>Iniciar Sesion</button>
 
@@ -201,6 +234,13 @@ const Header = ({
                   <Link className="logo" to={"/register"}>
                     <button className="icon__button">Registrate</button>
                   </Link>
+                  {/* <button className="icon__button" onClick={() => setIsModalOpen(true)}>Registrate</button>
+
+                  {isModalOpen && (
+                    <Modal onClose={() => setIsModalOpen(false)}>
+                      <Register/>
+                    </Modal>
+                  )} */}
                   {/* <button className="icon__button" onClick={() => setIsModalOpen(true)}>Registrate</button>
 
                   {isModalOpen && (
@@ -224,6 +264,7 @@ const Header = ({
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 

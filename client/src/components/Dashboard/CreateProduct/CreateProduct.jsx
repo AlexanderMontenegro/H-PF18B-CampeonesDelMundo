@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import validation from "./Validation";
 import "../../../css/createproducto.css";
+import { useSelector, useDispatch } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { postNewProduct, postImageLocal, postImageRemota } from "..//..//..//Redux//actions";
 import Swal from "sweetalert2";
 
+function createProduct() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const arrayCategoryGloblal = useSelector((state) => state.allCategory);
+  const [arrayCategory, setArrayCategory] = useState(arrayCategoryGloblal);
+  let arrayCat = [];
+  // window.location.reload();
 function createProduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,10 +36,39 @@ function createProduct() {
     { id: 9, pais: "Uruguay" },
     { id: 10, pais: "Venezuela" },
   ];
+  //predeterminado array pais
+  const arrayPais = [
+    { id: 1, pais: "Argentina" },
+    { id: 2, pais: "Bolivia" },
+    { id: 3, pais: "Brasil" },
+    { id: 4, pais: "Chile" },
+    { id: 5, pais: "Colombia" },
+    { id: 6, pais: "Ecuador" },
+    { id: 7, pais: "Paraguay" },
+    { id: 8, pais: "Peru" },
+    { id: 9, pais: "Uruguay" },
+    { id: 10, pais: "Venezuela" },
+  ];
 
   //estado opciones categoria
   const [opCat, setOpCat] = useState([]);
+  //estado opciones categoria
+  const [opCat, setOpCat] = useState([]);
 
+  // Estado principal
+  const [newProduct, setNewProduct] = useState({
+    tipo: "",
+    marca: "",
+    imagen: "",
+    descripcion: "",
+    pais: "",
+    precio: "",
+    stock: "",
+    talles: [],
+    categoria: "",
+  });
+  // Estado de errores
+  const [errors, setErrors] = useState({ tipo: "Completa los datos" });
   // Estado principal
   const [newProduct, setNewProduct] = useState({
     tipo: "",
@@ -49,6 +87,9 @@ function createProduct() {
   // Manejador del estado principal
   function handleChange(event) {
     event.preventDefault();
+  // Manejador del estado principal
+  function handleChange(event) {
+    event.preventDefault();
 
     if (event.target.name === "talles") {
       // event.target.value
@@ -62,7 +103,20 @@ function createProduct() {
       setNewProduct({ ...newProduct, [event.target.name]: event.target.value });
     }
   }
+    if (event.target.name === "talles") {
+      // event.target.value
+      const talles = event.target.value.split(",");
+      setErrors(validation({ ...newProduct, [event.target.name]: talles }));
+      setNewProduct({ ...newProduct, [event.target.name]: talles });
+    } else {
+      setErrors(
+        validation({ ...newProduct, [event.target.name]: event.target.value })
+      );
+      setNewProduct({ ...newProduct, [event.target.name]: event.target.value });
+    }
+  }
 
+  // Manejar el cambio de las opciones seleccionadas categoria
   // Manejar el cambio de las opciones seleccionadas categoria
   const handleCategoryChange = (event) => {
     event.preventDefault();
@@ -81,10 +135,26 @@ function createProduct() {
     //convertir array a strin separado por ,
     // Obtener solo los nombres de los objetos
     const nombres = arrayCat.map((item) => item.nombre);
+    const nombres = arrayCat.map((item) => item.nombre);
 
     // Convertir array de nombres a un string separado por comas
     const stringCategoria = nombres.join(", ");
+    // Convertir array de nombres a un string separado por comas
+    const stringCategoria = nombres.join(", ");
 
+    // Crear un elemento div simulado como target
+    const target = document.createElement("div");
+    target.name = "categoria"; // Puedes agregar propiedades al target si es necesario
+    target.value = stringCategoria;
+    // Crear un evento personalizado con un target personalizado
+    const eventoPersonalizado = new Event("eventoConTarget", {
+      bubbles: true,
+      cancelable: true,
+    });
+    // Agregar el target simulado al evento
+    Object.defineProperty(eventoPersonalizado, "target", { value: target });
+    // Llamar a la función para manejar el evento
+    handleChange(eventoPersonalizado);
     // Crear un elemento div simulado como target
     const target = document.createElement("div");
     target.name = "categoria"; // Puedes agregar propiedades al target si es necesario
@@ -102,14 +172,22 @@ function createProduct() {
 
   //submit
   const handleSubmit = async (event) => {
+  //submit
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(newProduct);
+    const response = await dispatch(postNewProduct(newProduct));
+    if (response.payload.data) {
+      Swal.fire({
     console.log(newProduct);
     const response = await dispatch(postNewProduct(newProduct));
     if (response.payload.data) {
       Swal.fire({
         icon: "success",
         title: "Registro de Producto Exitoso",
+        title: "Registro de Producto Exitoso",
         text: "",
+        timer: 3000,
         timer: 3000,
       }).then(() => {
         // Redirigir después de que la alerta se cierre
@@ -187,7 +265,43 @@ function createProduct() {
         />
         {errors.tipo && <p className="errors">{errors.tipo}</p>}
       </div>
+  return (
+    <form className="form__c">
+      <h3 className="title">Nuevo Producto</h3>
+      <div className="field">
+        <label>Tipo</label>
+        <input
+          type="text"
+          className="form_style"
+          name="tipo"
+          value={newProduct.tipo}
+          onChange={handleChange}
+        />
+        {errors.tipo && <p className="errors">{errors.tipo}</p>}
+      </div>
 
+      <div className="field">
+        <label>Marca</label>
+        <input
+          type="text"
+          className="form_style"
+          name="marca"
+          value={newProduct.marca}
+          onChange={handleChange}
+        />
+        {errors.marca && <p className="errors">{errors.marca}</p>}
+      </div>
+      <div className="field">
+        <label>Precio $</label>
+        <input
+          type="text"
+          className="form_style"
+          name="precio"
+          value={newProduct.precio}
+          onChange={handleChange}
+        />
+        {errors.precio && <p className="errors">{errors.precio}</p>}
+      </div>
       <div className="field">
         <label>Marca</label>
         <input
@@ -222,7 +336,26 @@ function createProduct() {
         />
         {errors.stock && <p className="errors">{errors.stock}</p>}
       </div>
+      <div className="field">
+        <label>Stock</label>
+        <input
+          type="text"
+          className="form_style"
+          name="stock"
+          value={newProduct.stock}
+          onChange={handleChange}
+        />
+        {errors.stock && <p className="errors">{errors.stock}</p>}
+      </div>
 
+      <div className="field">
+        <label>Talles</label>
+        <input
+          type="text"
+          className="form_style"
+          name="talles"
+          value={newProduct.talles}
+          onChange={handleChange}
       <div className="field">
         <label>Talles</label>
         <input
@@ -233,6 +366,8 @@ function createProduct() {
           onChange={handleChange}
         />
 
+        {errors.talles && <p className="errors">{errors.talles}</p>}
+      </div>
         {errors.talles && <p className="errors">{errors.talles}</p>}
       </div>
 
@@ -252,9 +387,30 @@ function createProduct() {
             </option>
           ))}
         </select>
+      <div className="field">
+        <label>Categoria</label>
+        {errors.categoria && <p className="errors">{errors.categoria}</p>}
+        <select
+          multiple
+          name="categoria"
+          value={opCat}
+          onChange={handleCategoryChange}
+          className="form_style"
+        >
+          {arrayCategory.map((objeto) => (
+            <option key={objeto.id} value={objeto.nombre} id={objeto.id}>
+              {objeto.nombre}
+            </option>
+          ))}
+        </select>
 
         <label>Opciones seleccionadas:</label>
+        <label>Opciones seleccionadas:</label>
         {opCat.map((opcion) => (
+          <p key={opcion.id}>{opcion.nombre}</p>
+        ))}
+      </div>
+
           <p key={opcion.id}>{opcion.nombre}</p>
         ))}
       </div>
@@ -304,7 +460,51 @@ function createProduct() {
           onChange={handleChange}
         />
       </div>
+      <div className="field">
+        <label>Descripcion</label>
+        {errors.descripcion && <p className="errors">{errors.descripcion}</p>}
+        <textarea
+          rows="4"
+          cols="35"
+          name="descripcion"
+          className="form_style"
+          value={newProduct.descripcion}
+          onChange={handleChange}
+        />
+      </div>
 
+      <div className="field">
+        <label>Pais</label>
+        <select
+          name="pais"
+          value={newProduct.pais}
+          onChange={handleChange}
+          className="form_style"
+        >
+          <option value="" disabled hidden>
+            Selecciona Pais
+          </option>
+          {arrayPais.map((objeto) => (
+            <option key={objeto.id} value={objeto.pais}>
+              {objeto.pais}
+            </option>
+          ))}
+        </select>
+        {errors.pais && <p className="errors">{errors.pais}</p>}
+      </div>
+<div className="btn__cp">
+      <button
+        onClick={handleSubmit}
+        disabled={Object.keys(errors).length === 0 ? false : true}
+        className={`btn ${Object.keys(errors).length > 0 ? "dis" : ""}`}
+        >
+        Registrar
+      </button>
+        
+          </div>
+    </form>
+  );
+}
       <div className="field">
         <label>Pais</label>
         <select
@@ -339,3 +539,4 @@ function createProduct() {
 }
 
 export default createProduct;
+

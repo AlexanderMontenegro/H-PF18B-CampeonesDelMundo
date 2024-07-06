@@ -12,7 +12,7 @@
   --naranja: #ff9f1c;
   --piel: #ffbf69;
   --turquesa: #2ec4b6;
-  --celesteOpaco: #003566;
+  --celesteOpaco: #6E9C98;
 
   --celeste: #04b4e0;
   --rojo: #c70039;
@@ -20,8 +20,8 @@
   --colorFondo: #a5a3a3;
 
   --banner: url("../img/img3.jpg");
-  --imgfondo: url("../img/papelitosDark.png")
-  
+  --imgfondo: url("../img/papelitosDark.png");
+
 }
 
 html {
@@ -33,7 +33,7 @@ html {
 :root[data-theme='dark'] {
   --blanco: #000814;
   --negro: #ffffff;
-  --azulOscuro: #003566;
+  --azulOscuro: #085ba8;
   --azul: #001d3d;
   --crema: #ffc300;
   --amarillo: #ffd60a;
@@ -48,26 +48,8 @@ html {
   --rojoOscuro: #581845;
   --colorFondo: #000814;
 
-  --imgfondo: url("../img/papelitos.png")
-  
+  --imgfondo: url("../img/papelitos.png");
 }
-
-
-body {
-  font-family: var(--fuenteParrafos);
-  font-size: 1.6rem;
-  line-height: 1.5;
-  margin: 0;
-
-  place-items: center;
-  background-image: var(--imgfondo);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
-}
-
 
 body {
   font-family: var(--fuenteParrafos);
@@ -76,10 +58,16 @@ body {
   margin: 0;
   place-items: center; 
   background-image: var(--imgfondo);
-  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+ /* height: 100vh;*/
+  width: 100vw;
+  max-width: 100%;
+  max-height: 100%;
 }
 
-/* Estilo para encabezados */
+/* Estilo de encabezados */
 h1, h2, h3, h4 {
   font-family: var(--fuenteHeading);
   line-height: 1.2;
@@ -94,7 +82,10 @@ h4 { font-size: 2.8rem; }
 /* Imágenes responsivas */
 img {
   max-width: 100%; 
-  
+}
+
+p{
+  font-size: var(h1);
 }
 
 /* Estilo de enlaces sin subrayado */
@@ -108,15 +99,34 @@ a {
 .centrar-texto { text-align: center; }
 
 /* Media queries para diseño responsivo */
-@media (max-width: 768px) {
-  h1 { font-size: 3.6rem; }
-  h2 { font-size: 3.2rem; }
-  h3 { font-size: 2.8rem; }
-  h4 { font-size: 2.4rem; }
+@media (max-width: 360px) {
+  /* Estilos para pantallas muy pequeñas */
+  h1 { font-size: 3.2rem; }
+  h2 { font-size: 2.8rem; }
+  h3 { font-size: 2.4rem; }
+  h4 { font-size: 2rem; }
 }
-@media (max-width: 480px) {
-  h1 { font-size: 2.8rem; }
-  h2 { font-size: 2.4rem; }
-  h3 { font-size: 2rem; }
-  h4 { font-size: 1.8rem; }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Estilos para tabletas en vertical */
+  body {
+    font-size: 1.4rem;
+  }
+  h1 { font-size: 4rem; }
+  h2 { font-size: 3.6rem; }
+  h3 { font-size: 3rem; }
+  h4 { font-size: 2.6rem; }
 }
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* Estilos para tabletas en horizontal */
+  body {
+    font-size: 1.5rem;
+  }
+  h1 { font-size: 4.4rem; }
+  h2 { font-size: 4rem; }
+  h3 { font-size: 3.4rem; }
+  h4 { font-size: 3rem; }
+}
+
+

@@ -5,7 +5,7 @@ import Pagination from "../Pagination/Pagination";
 import HeroSection from "../HeroSection/HeroSection";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Category from "../Category/Category"; // Corregido el nombre del componente Category
+import Category from "../Category/Category"; 
 import "../../css/homePage.css";
 import { useSelector } from "react-redux";
 
