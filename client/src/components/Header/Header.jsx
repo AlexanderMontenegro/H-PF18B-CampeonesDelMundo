@@ -189,7 +189,7 @@ const Header = ({
                   {/* <Link className="logo" to={"/login"}>
                     <button className="icon__button">Iniciar Sesion</button>
                   </Link> */}
-                  <button className="icon__button" onClick={() => setIsModalOpen(true)}>Iniciar Sesion</button>
+                  <button className="icon__button" onClick={() => setIsModalOpen(true)}>Iniciar Sesion/Registrate</button>
 
                   {isModalOpen && (
                     <Modal onClose={() => setIsModalOpen(false)}>
@@ -197,7 +197,7 @@ const Header = ({
                     </Modal>
                   )}
                 </div>
-
+{/* 
                 <div className="icon__usuario">
                   <Link className="logo" to={"/register"}>
                     <button className="icon__button">Registrate</button>
@@ -208,9 +208,9 @@ const Header = ({
                     <Modal onClose={() => setIsModalOpen(false)}>
                       <Register/>
                     </Modal>
-                  )} */}
+                  )} 
                 </div>
-
+                */}
                 <div className="icon__usuario">
                   <Link className="logo" to="/dashboard">
                     <button className="icon__button">Administrador</button>

@@ -88,7 +88,7 @@ const handleSubmit= async (event)=>{
 
 
         {/* Titulo */}
-        <h2 className="text-center">Cree una Cuenta con Nosotros</h2>
+        {/*<h2 className="text-center">Cree una Cuenta con Nosotros</h2>*/}
 
         <div className="register__container">
           <div className="register__content">
