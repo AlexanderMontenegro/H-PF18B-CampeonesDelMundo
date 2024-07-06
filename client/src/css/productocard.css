@@ -1,0 +1,118 @@
+.card__container {
+  border: 1px solid var(--negro);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 5px;
+  margin-bottom: 20px;
+  width: 300px;
+  height: 500px;
+  background-color: var(--blanco);
+  border-radius: 30px;
+  background: var(--celesteOpaco);
+  box-shadow: 7px 7px 15px #bebebe, -7px -7px 15px #ffffff;
+}
+
+.card__container:hover {
+  transform: scale(1.2);
+}
+
+.card__image {
+  margin: auto;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 30px;
+  max-width: 90%;
+  max-height: 50%;
+  border-radius: 30px;
+}
+
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.card__details {
+  padding: 15px;
+}
+
+.card__title {
+  font-family: var(--fuenteHeading);
+  font-size: 2.8rem;
+  color: var(--azul_Oscuro);
+  margin-bottom: 10px;
+}
+
+.card__name {
+  font-family: var(--fuenteParrafos);
+  font-size: 1.6rem;
+  color: var(--azul_Oscuro);
+  margin-bottom: 5px;
+}
+
+.card__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.card__cart-button,
+.card__fav-button {
+  background-color: var(--azul);
+  color: var(--blanco);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card__cart-button:hover,
+.card__fav-button:hover {
+  background-color: gray;
+}
+
+.card__fav-button {
+  background-color: transparent;
+  color: var(--azul_Oscuro);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.card__fav-button::before {
+  content: "\2665";
+  position: absolute;
+  left: -20px;
+  color: var(--negro);
+  transition: color 0.3s ease;
+}
+
+.card__fav-button:hover::before {
+  color: red;
+}
+
+.ico_detalle {
+  width: 10%;
+  height: 10%;
+  padding: 0;
+  margin: 0;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
+}
+
+.product__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(var(--celeste), var(--negro));
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 20px;
+height: 100%;
+margin: 0;
+}
