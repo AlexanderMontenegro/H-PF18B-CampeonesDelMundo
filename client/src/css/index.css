@@ -21,6 +21,7 @@
 
   --banner: url("../img/img3.jpg");
   --imgfondo: url("../img/papelitosDark.png");
+
 }
 
 html {
@@ -81,6 +82,10 @@ h4 { font-size: 2.8rem; }
 /* Imágenes responsivas */
 img {
   max-width: 100%; 
+}
+
+p{
+  font-size: var(h1);
 }
 
 /* Estilo de enlaces sin subrayado */
