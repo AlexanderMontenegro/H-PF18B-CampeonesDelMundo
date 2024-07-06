@@ -3,7 +3,7 @@ import validation from "./Validation";
 import "../../../css/createproducto.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postNewProduct } from "..//..//..//Redux//actions";
+import { postNewProduct, postImageLocal, postImageRemota } from "..//..//..//Redux//actions";
 import Swal from "sweetalert2";
 
 function createProduct() {
@@ -71,7 +71,7 @@ function createProduct() {
       (option) => option.value
     );
     let id = Array.from(event.target.selectedOptions, (option) => option.id);
-    id = parseInt(id[0 + 1], 10);
+    id = parseInt(id[0], 10);
     let obj = { nombre: name[0], id: id };
     setOpCat((opCat) => [...opCat, obj]);
     arrayCat = opCat.concat([obj]);
@@ -125,6 +125,53 @@ function createProduct() {
       });
     }
   };
+
+  const handleImageLocal = async (event) => {
+    event.preventDefault();
+    const image = event.target.files[0];
+    const response = await dispatch(postImageLocal(image));
+    const imageUrl = response.payload.imageUrl;
+    console.log('response imagen', imageUrl);
+    
+    if(imageUrl){
+    // Crear un elemento div simulado como target
+    const target = document.createElement("div");
+    target.name = "imagen"; // Puedes agregar propiedades al target si es necesario
+    target.value = imageUrl;
+    // Crear un evento personalizado con un target personalizado
+    const eventoPersonalizado = new Event("eventoConTarget", {
+      bubbles: true,
+      cancelable: true,
+    });
+    // Agregar el target simulado al evento
+    Object.defineProperty(eventoPersonalizado, "target", { value: target });
+    // Llamar a la función para manejar el evento
+    handleChange(eventoPersonalizado);}
+  };
+
+  const handleImageRemota = async (event) => {
+    event.preventDefault();
+    const image = event.target.value;
+    const response = await dispatch(postImageRemota(image));
+    const imageUrl = response.payload.imageUrl
+    console.log('response imagen', imageUrl);
+    
+    if(imageUrl){
+        // Crear un elemento div simulado como target
+        const target = document.createElement("div");
+        target.name = "imagen"; // Puedes agregar propiedades al target si es necesario
+        target.value = imageUrl;
+        // Crear un evento personalizado con un target personalizado
+        const eventoPersonalizado = new Event("eventoConTarget", {
+          bubbles: true,
+          cancelable: true,
+        });
+        // Agregar el target simulado al evento
+        Object.defineProperty(eventoPersonalizado, "target", { value: target });
+        // Llamar a la función para manejar el evento
+        handleChange(eventoPersonalizado);}
+  };
+
 
   return (
     <form className="form__c">
@@ -214,14 +261,25 @@ function createProduct() {
 
       <div className="field">
         <label>Imagen </label>
-        <input
+        {errors.imagen && <p className="errors">{errors.imagen}</p>}
+        <input 
+        type="file"
+         className="form_style"
+        accept="image/*" 
+        onChange={handleImageLocal} 
+        name="imagen"
+        id="imagen"
+        multiple
+      />
+         <input
           type="text"
           className="form_style"
-          name="imagen"
-          value={newProduct.imagen}
-          onChange={handleChange}
+          name="imageUrl"
+          onChange={handleImageRemota}
           placeholder="URL de imagen"
         />
+
+
         {newProduct.imagen && (
           <>
             <br />
@@ -232,9 +290,6 @@ function createProduct() {
             />
           </>
         )}
-        {errors.imagen && <p className="errors">{errors.imagen}</p>}
-        {console.log("en el for", errors)}
-        {console.log("error de imagen", errors.imagen)}
       </div>
 
       <div className="field">

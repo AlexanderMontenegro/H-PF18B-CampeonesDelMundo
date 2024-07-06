@@ -8,6 +8,8 @@ import Register from "../HomePage/Register";
 
 // CSS
 import "../../css/header.css";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const Header = ({
   carrito,
@@ -20,15 +22,33 @@ const Header = ({
   // Use States
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
   // Funciones
   const isEmpty = () => carrito.length === 0;
   const carritoTotal = () =>
     carrito.reduce((total, item) => total + item.quantity * item.precio, 0);
+  const user = useSelector(state=>state.user)
+  const navigate = useNavigate();
+
+  const closeSession = () => {
+    localStorage.clear();
+
+   // navigate("/")
+    Swal.fire({
+        icon: "success",
+        title: "Cerrando session...",
+        text: "",
+        timer: 3000
+    }).then(() => {
+        // Redirigir después de que la alerta se cierre
+        navigate("/homePage"); // Cambia la URL al destino 
+        window.location.reload();
+    });
+}
 
   // const modalLogin = () => {
   //   setIsModalOpen(true);
   // }
-
   return (
     <header className="header__homePage">
       <div className="barra__container">
@@ -196,6 +216,11 @@ const Header = ({
                     <button className="icon__button">Administrador</button>
                   </Link>
                 </div>
+
+                {user&&
+                  <div className="icon__usuario">
+                    <button onClick={closeSession} className="icon__button">Cerrar Session</button>
+                  </div>}
               </div>
             </div>
           </div>

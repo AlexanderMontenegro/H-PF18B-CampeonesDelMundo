@@ -80,7 +80,8 @@
   color: var(--turquesa);
 }
 
-.product-sizes select {
+.product-quantity-input {
+  width: 50px;
   padding: 0.5rem;
   border: 1px solid var(--negro);
   border-radius: 5px;

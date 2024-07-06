@@ -31,7 +31,7 @@ import Nosotros from "./components/Nosotros/Nosotros";
 
 // import Dashboard from './components/Dashboard/Dashboard';
 import { useDispatch, useSelector } from "react-redux";
-import { getCategory, getProducts } from "./Redux/actions";
+import { getCategory, getProducts, setUser } from "./Redux/actions";
 import Swal from "sweetalert2";
 import Orden from "./components/Orden/Orden";
 import Privacy from "./components/Privacy/Privacy";
@@ -47,11 +47,13 @@ function ChampionsApp() {
     return localStorageCarrito ? JSON.parse(localStorageCarrito) : [];
   };
 
+
   // UseState
   const [productos, setProductos] = useState(stateProducts);
   const [carrito, setCarrito] = useState(initialCarrito);
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 0;
+
 
   // UseEffect
   useEffect(() => {
@@ -103,7 +105,6 @@ function ChampionsApp() {
     setCarrito([]);
   };
 
-  // Local Storage - Carrito
 
   // Navigate y Location
   const navigate = useNavigate();
@@ -115,6 +116,7 @@ function ChampionsApp() {
         const response = await dispatch(getProducts());
         await dispatch(getCategory());
         if (response.payload.length > 0) {
+          /*           Swal.fire({
           /*           Swal.fire({
             icon: "success",
             title: "Datos obtenidos desde el Back",
@@ -134,8 +136,18 @@ function ChampionsApp() {
     getAll();
   }, []);
 
+  useEffect(() => {
+    const userJSON = window.localStorage.getItem('User');
+    console.log('userJSON', userJSON);
+    if (userJSON) {
+    const user = JSON.parse(userJSON);
+    dispatch(setUser(user));     
+    }
+}, []);
+
   return (
     <>
+        <DarkModeToggle />
         <DarkModeToggle />
       <Routes>
         {/* 1.-Ruta Principal - LadingPage */}
@@ -169,6 +181,24 @@ function ChampionsApp() {
             </>
           }
         ></Route>
+        {/* 2.-Ruta SPA - HomePage */}
+        {/* Ruta para la página principal */}
+        <Route
+          path="/orden"
+          element={
+            <>
+              <Orden
+                carrito={carrito}
+                addToCarrito={addToCarrito}
+                removeFromCarrito={removeFromCarrito}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                clearCarrito={clearCarrito}
+              />
+            </>
+          }
+        ></Route>
+
         {/* 2.-Ruta SPA - HomePage */}
         {/* Ruta para la página principal */}
         <Route

@@ -5,7 +5,7 @@ import "../../css/filter.css";
 
 export const Filter = ({ onFilterChange }) => {
   const dispatch = useDispatch();
-  const { productos } = useSelector((state) => state);
+  const  productos = useSelector((state) => state.productos);
 
   // Obtener tipos únicos
   const uniqueProductos = productos.reduce((acc, current) => {
@@ -58,7 +58,6 @@ export const Filter = ({ onFilterChange }) => {
     } else {
       dispatch(filterByMarca("none"));
     }
-    onFilterChange();
   };
 
   const handleOrderChange = (e) => {
