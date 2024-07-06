@@ -46,6 +46,9 @@ const ProductPage = ({
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const handleFilterChange =() =>{
+    setCurrentPage(1);
+  }
 
   return (
     <>
@@ -66,7 +69,7 @@ const ProductPage = ({
       <div className="searchbar__filter">
         <div className="combinado__syf">
           <Searchbar />
-          <Filter />
+          <Filter onFilterChange={handleFilterChange} />
         </div>
 
         <div className="product__list">

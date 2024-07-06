@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterByProducto, filterByCategoria, filterByMarca, sort } from "../../Redux/actions";
 import "../../css/filter.css";
 
-export const Filter = () => {
+export const Filter = ({ onFilterChange }) => {
   const dispatch = useDispatch();
   const { productos } = useSelector((state) => state);
 
@@ -38,6 +38,7 @@ export const Filter = () => {
     } else {
       dispatch(filterByProducto("none"));
     }
+    onFilterChange();
   };
 
   const handleCategoriaChange = (e) => {
@@ -47,6 +48,7 @@ export const Filter = () => {
     } else {
       dispatch(filterByCategoria("none"));
     }
+    onFilterChange();
   };
 
   const handleMarcaChange = (e) => {
@@ -56,6 +58,7 @@ export const Filter = () => {
     } else {
       dispatch(filterByMarca("none"));
     }
+    onFilterChange();
   };
 
   const handleOrderChange = (e) => {
@@ -65,6 +68,7 @@ export const Filter = () => {
     } else {
       dispatch(sort("none"));
     }
+    onFilterChange();
   };
 
   return (
