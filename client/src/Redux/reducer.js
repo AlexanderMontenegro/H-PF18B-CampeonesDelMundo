@@ -10,7 +10,11 @@ import {
   NO_SORT,
   GET_DETAILS,
   SEARCH_PRODUCTS_BY_TYPE,
-  SET_USER
+  SET_USER,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
 } from "./actions";
 
 // state inicial
@@ -20,7 +24,10 @@ const initialState = {
   allCategory: [],
   productos: [],
   preSortProductos: [],
-  user:null
+  isAuthenticated: false,
+  user: null,
+  loading: false,
+  error: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -43,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allCategory: payload,
       };
-      case SEARCH_PRODUCTS_BY_TYPE:
+    case SEARCH_PRODUCTS_BY_TYPE:
       return {
         ...state,
         productos: payload,
@@ -108,8 +115,36 @@ const rootReducer = (state = initialState, action) => {
 
     case SET_USER:
       return {
-        ...state, user:payload
-    }
+        ...state,
+        user: payload,
+      };
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+        loading: false,
+        error: null,
+      };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+        loading: false,
+        error: action.error,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+      };
 
     default:
       return state;

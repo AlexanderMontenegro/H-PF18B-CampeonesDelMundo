@@ -1,25 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-// Components
 import Modal from "../Modal/Modal";
 import Register from "../HomePage/Register";
-
-// CSS
 import "../../css/loginYRegister.css";
-
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import validation from "./Validation";
-import { postLogin } from "../../Redux/actions";
+import { postLogin, loginWithGoogle } from "../../Redux/actions";
 import Swal from "sweetalert2";
 
-const Login = ({ onClose }) => {
+const Login = ({
+  carrito,
+  removeFromCarrito,
+  addToCarrito,
+  increaseQuantity,
+  decreaseQuantity,
+  clearCarrito,
+}) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const loading = useSelector((state) => state.loading);
+  const error = useSelector((state) => state.error);
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
-  //manejador del estado principal login
+  const signInWithGoogle = () => {
+    console.log("Google sign-in button clicked");  // Línea de depuración
+    dispatch(loginWithGoogle());
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/homePage");
+    }
+  }, [isAuthenticated, navigate]);
+
+  // Manejador del estado principal login
   function handleChange(event) {
     event.preventDefault();
     setErrors(
@@ -37,7 +53,7 @@ const Login = ({ onClose }) => {
     setPasswordVisible(!passwordVisible);
   }
 
-  //submit
+  // Submit
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await dispatch(postLogin(login));
@@ -49,21 +65,16 @@ const Login = ({ onClose }) => {
         title: response.payload.message,
         text: "",
         timer: 3000,
-      }).then(() => {
-        // Redirigir después de que la alerta se cierre
-        //navigate("/login"); // Cambia la URL al destino
       });
     }
 
-    //Guardar en el storage
+    // Guardar en el storage
     if (response.payload.user) {
       console.log(response.payload.user);
       window.localStorage.setItem(
         "User",
         JSON.stringify(response.payload.user)
       );
-      const userDispatch = response.payload.user;
-      //dispatch(setUser(userDispatch));
       Swal.fire({
         icon: "success",
         title: response.payload.message,
@@ -76,6 +87,7 @@ const Login = ({ onClose }) => {
       });
     }
   };
+
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -87,161 +99,117 @@ const Login = ({ onClose }) => {
   };
 
   return (
-    <div className="login__container">
-      <div className="login__content">
-        <form className="login__space">
-          <div className="modal__cerrar">
-            <button className="modal__button no-margin" onClick={onClose}>
-              X
-            </button>
+    <div>
+      <main>
+        <div className="login__container">
+          <div className="login__content">
+            <form className="login__space" onSubmit={handleSubmit}>
+              <h3 className="text-center">- Inicia Sesión -</h3>
+
+              {/* Datos de la Cuenta */}
+              <section className="form__top">
+                {/* Email */}
+                <div className="form__group">
+                  <input
+                    className="form__input"
+                    id="email"
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    value={login.email}
+                    onChange={handleChange}
+                  />
+                  <label className="form__label" htmlFor="email">
+                    Email
+                  </label>
+                  {errors.email && <span>{errors.email}</span>}
+                </div>
+
+                {/* Password */}
+                <div className="form__group">
+                  <div className="input_password_container">
+                    <input
+                      className="form__input"
+                      placeholder="Password"
+                      name="password"
+                      value={login.password || ""}
+                      onChange={handleChange}
+                      type={passwordVisible ? "text" : "password"}
+                    />
+                    <button
+                      className="show_hide_btn"
+                      type="button"
+                      onClick={togglePasswordVisibility}
+                    >
+                      {passwordVisible ? (
+                        <img
+                          className="eye"
+                          src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844441-eye-see-show-view-watch_110305.png"
+                          alt="Show"
+                        />
+                      ) : (
+                        <img
+                          className="eye"
+                          src="https://cdn.icon-icons.com/icons2/2065/PNG/512/view_hide_icon_124813.png"
+                          alt="Hide"
+                        />
+                      )}
+                    </button>
+                    <label className="form__label" htmlFor="password">
+                      Password
+                    </label>
+                  </div>
+                  {errors.password && <span>{errors.password}</span>}
+                </div>
+
+                <Link to="#">
+                  <p className="p__l">¿Olvido su Contraseña?</p>
+                </Link>
+
+                {/* Button - Iniciar Sesion */}
+                <div className="form__center">
+                  <button type="submit" className="form__button">
+                    Iniciar Sesión
+                  </button>
+                </div>
+
+                <p className="text-center">— O inicie sesión con —</p>
+
+                <div className="form__optionsL">
+                  <button type="button" className="icono__contentL" onClick={signInWithGoogle}>
+                    <div className="icono__containerL">
+                      <img
+                        className="icono__fluidL"
+                        src="iconos/icon_google.png"
+                        alt="icon Google"
+                      />
+                    </div>
+                  </button>
+                  {/* Agregar otros métodos de inicio de sesión aquí */}
+                </div>
+
+                <p className="text-center">— ¿No tienes una cuenta? —</p>
+
+                <div className="form__center">
+                  <button
+                    type="button"
+                    className="form__button"
+                    onClick={handleOpenModal}
+                  >
+                    Registrate
+                  </button>
+                </div>
+              </section>
+            </form>
           </div>
+        </div>
+      </main>
 
-          <h3 className="text-center">- Inicia Sesión -</h3>
-          {/* Datos de la Cuenta */}
-          <section className="form__top">
-            {/* Email */}
-            <div className="form__group">
-              <input
-                className="form__input"
-                id="email"
-                placeholder="Email"
-                type="email"
-                name="email"
-                value={login.email}
-                onChange={handleChange}
-              />
-              <label className="form__label" htmlFor="email">
-                Email
-              </label>
-
-              {errors.email && <span>{errors.email}</span>}
-
-              {/* {isErrorEmail ? <span>{errors.email}</span> : null} */}
-            </div>
-
-            {/* Password */}
-            <div className="form__group">
-              <div className="input_password_container">
-                <input
-                  className="form__input"
-                  placeholder="Password"
-                  name="password"
-                  value={login.password || ""}
-                  onChange={handleChange}
-                  type={passwordVisible ? "text" : "password"}
-                />
-
-                <button
-                  className="show_hide_btn"
-                  type="button"
-                  onClick={togglePasswordVisibility}
-                >
-                  {passwordVisible ? (
-                    <img
-                      className="eye"
-                      src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844441-eye-see-show-view-watch_110305.png"
-                    />
-                  ) : (
-                    <img
-                      className="eye"
-                      img
-                      src="https://cdn.icon-icons.com/icons2/2065/PNG/512/view_hide_icon_124813.png"
-                    />
-                  )}
-                </button>
-
-                <label className="form__label" htmlFor="password">
-                  Password
-                </label>
-              </div>
-
-              {/* {errors.password && <span>{errors.password}</span>} */}
-
-              {/* {isErrorPassword? <span>{errors.password}</span>: null} */}
-            </div>
-
-            <Link>
-              <p className="p__l">¿Olvido su Contraseña?</p>
-            </Link>
-
-            {/* Button - Iniciar Sesion */}
-            <div className="form__center">
-              <button
-                onClick={handleSubmit}
-                type="submit"
-                className="form__button"
-              >
-                Iniciar Session
-              </button>
-            </div>
-
-            <p className="text-center">— O inicie sesión con —</p>
-
-            <div className="form__optionsL">
-              <Link
-                className="icono__contentL"
-                to={"https://www.google.com/?hl=es"}
-              >
-                <div className="icono__containerL">
-                  <img
-                    className="icono__fluidL"
-                    src="iconos/icon_google.png"
-                    alt="icon Google"
-                  />
-                </div>
-              </Link>
-
-              <Link className="icono__contentL">
-                <div className="icono__containerL">
-                  <img
-                    className="icono__fluidL"
-                    src="iconos/icon_outlook.png"
-                    alt="icon Outlook"
-                  />
-                </div>
-              </Link>
-
-              <Link className="icono__contentL">
-                <div className="icono__containerL">
-                  <img
-                    className="icono__fluidL"
-                    src="iconos/icon_facebook.png"
-                    alt="icon Facebook"
-                  />
-                </div>
-              </Link>
-
-              <Link className="icono__contentL">
-                <div className="icono__containerL">
-                  <img
-                    className="icono__fluidL"
-                    src="iconos/icon_github.png"
-                    alt="icon Github"
-                  />
-                </div>
-              </Link>
-            </div>
-
-            <p className="text-center">— ¿No tienes una cuenta? —</p>
-
-            <div className="form__center">
-              <button
-                type="button"
-                className="form__button"
-                onClick={handleOpenModal}
-              >
-                Registrate
-              </button>
-            </div>
-          </section>
-        </form>
-
-        {showModal && (
-          <Modal>
-            <Register onClose={handleCloseModal} />
-          </Modal>
-        )}
-      </div>
+      {showModal && (
+        <Modal onClose={handleCloseModal}>
+          <Register />
+        </Modal>
+      )}
     </div>
   );
 };
