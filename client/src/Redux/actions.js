@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { auth, googleProvider, signInWithPopup } from"../../fireBaseConfig";
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_CATEGORY = "GET_CATEGORY";
@@ -19,7 +20,12 @@ export const SEARCH_PRODUCTS_BY_TYPE = "SEARCH_PRODUCTS_BY_TYPE";
 export const POST_USER = "POST_USER";
 export const POST_LOGIN = 'POST_LOGIN';
 export const SET_USER = 'SET_USER';
-export const POST_IMAGE = 'POST_IMAGE'
+export const POST_IMAGE = 'POST_IMAGE';
+
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const LOGOUT = "LOGOUT";
 
 export const getDetails = (id) => {
   return async function (dispatch) {
@@ -273,3 +279,22 @@ export const postImageRemota = (imageUrl) => {
       }
   }
 };
+
+export const loginWithGoogle = () => async (dispatch) => {
+  dispatch({ type: LOGIN_REQUEST });
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+    console.log("Google sign-in result:", result);  // Línea de depuración
+    dispatch({ type: LOGIN_SUCCESS, payload: user });
+  } catch (error) {
+    console.error("Google sign-in error:", error);  // Línea de depuración
+    dispatch({ type: LOGIN_FAILURE, error });
+  }
+};
+// Acción para cerrar sesión
+export const logout = () => async (dispatch) => {
+  await auth.signOut();
+  dispatch({ type: LOGOUT });
+};
+
