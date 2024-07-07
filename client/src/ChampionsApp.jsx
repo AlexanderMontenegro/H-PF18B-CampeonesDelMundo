@@ -238,14 +238,7 @@ function ChampionsApp() {
           path="/login"
           element={
             <>
-              <Login
-                carrito={carrito}
-                addToCarrito={addToCarrito}
-                removeFromCarrito={removeFromCarrito}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                clearCarrito={clearCarrito}
-              />
+              <Login/>
             </>
           }
         ></Route>
@@ -256,14 +249,7 @@ function ChampionsApp() {
           path="/register"
           element={
             <>
-              <Register
-                carrito={carrito}
-                addToCarrito={addToCarrito}
-                removeFromCarrito={removeFromCarrito}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                clearCarrito={clearCarrito}
-              />
+              <Register/>
             </>
           }
         ></Route>

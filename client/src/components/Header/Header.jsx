@@ -1,4 +1,4 @@
-import {useState, React} from "react";
+import { useState, React } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 // Components (Componentes)
@@ -18,33 +18,31 @@ const Header = ({
   decreaseQuantity,
   clearCarrito,
 }) => {
-
   // Use States
   const [isModalOpen, setIsModalOpen] = useState(false);
-
 
   // Funciones
   const isEmpty = () => carrito.length === 0;
   const carritoTotal = () =>
     carrito.reduce((total, item) => total + item.quantity * item.precio, 0);
-  const user = useSelector(state=>state.user)
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const closeSession = () => {
     localStorage.clear();
 
-   // navigate("/")
+    // navigate("/")
     Swal.fire({
-        icon: "success",
-        title: "Cerrando session...",
-        text: "",
-        timer: 3000
+      icon: "success",
+      title: "Cerrando session...",
+      text: "",
+      timer: 3000,
     }).then(() => {
-        // Redirigir después de que la alerta se cierre
-        navigate("/homePage"); // Cambia la URL al destino 
-        window.location.reload();
+      // Redirigir después de que la alerta se cierre
+      navigate("/homePage"); // Cambia la URL al destino
+      window.location.reload();
     });
-}
+  };
 
   // const modalLogin = () => {
   //   setIsModalOpen(true);
@@ -63,19 +61,25 @@ const Header = ({
           />
         </div>
 
-                {/* Lado Derecho - Opciones*/}
-                <div className="barra__right">
-                {/* Navegacion */}
-                <div className="navegacion">
-                    {/* Inicio */}
-                    <Link className="navegacion_enlaceC" to={"/homePage"}>Inicio</Link>
-                    {/* Productos */}
-                    <Link className="navegacion_enlaceC"to={"/ProductPage"}>Productos</Link>
-                    {/* Contacto */}
-                    {/* <a className="navegacion_enlaceC">Contacto</a> */}
-                    <Link className="navegacion_enlaceC"to={"/contacto"}>Contacto</Link>
-                    {/* Carrito */}
-                    {/* <a className="navegacion_enlace">
+        {/* Lado Derecho - Opciones*/}
+        <div className="barra__right">
+          {/* Navegacion */}
+          <div className="navegacion">
+            {/* Inicio */}
+            <Link className="navegacion_enlaceC" to={"/homePage"}>
+              Inicio
+            </Link>
+            {/* Productos */}
+            <Link className="navegacion_enlaceC" to={"/ProductPage"}>
+              Productos
+            </Link>
+            {/* Contacto */}
+            {/* <a className="navegacion_enlaceC">Contacto</a> */}
+            <Link className="navegacion_enlaceC" to={"/contacto"}>
+              Contacto
+            </Link>
+            {/* Carrito */}
+            {/* <a className="navegacion_enlace">
                                         Carrito
                                     </a> */}
 
@@ -87,7 +91,6 @@ const Header = ({
                   alt="imagen carrito"
                 />
               </Link>
-              
 
               <div id="carrito" className="carrito__container">
                 {isEmpty() ? (
@@ -161,22 +164,18 @@ const Header = ({
                       Total pagar:{" "}
                       <span className="fw-bold">${carritoTotal()}</span>
                     </p>
-                    
+
                     <div>
                       <button className="icon__button" onClick={clearCarrito}>
                         Vaciar Carrito
                       </button>
                     </div>
-                    
                   </>
                 )}
               </div>
             </div>
 
             {/* Usuario */}
-            {/* <a className="navegacion_enlace" onClick={handleEnterToLadingPage}>
-                                        Usuario
-                                    </a> */}
             <div className="usuario">
               <img
                 className="icono__fluid"
@@ -189,39 +188,35 @@ const Header = ({
                   {/* <Link className="logo" to={"/login"}>
                     <button className="icon__button">Iniciar Sesion</button>
                   </Link> */}
-                  <button className="icon__button" onClick={() => setIsModalOpen(true)}>Iniciar Sesion/Registrate</button>
-
-                  {isModalOpen && (
-                    <Modal onClose={() => setIsModalOpen(false)}>
-                      <Login/>
-                    </Modal>
-                  )}
+                  <button
+                    className="icon__button"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Iniciar Sesion/Registrate
+                  </button>
+                  
                 </div>
-{/* 
-                <div className="icon__usuario">
-                  <Link className="logo" to={"/register"}>
-                    <button className="icon__button">Registrate</button>
-                  </Link>
-                  {/* <button className="icon__button" onClick={() => setIsModalOpen(true)}>Registrate</button>
-
-                  {isModalOpen && (
-                    <Modal onClose={() => setIsModalOpen(false)}>
-                      <Register/>
-                    </Modal>
-                  )} 
-                </div>
-                */}
+                
                 <div className="icon__usuario">
                   <Link className="logo" to="/dashboard">
                     <button className="icon__button">Administrador</button>
                   </Link>
                 </div>
 
-                {user&&
+                {user && (
                   <div className="icon__usuario">
-                    <button onClick={closeSession} className="icon__button">Cerrar Session</button>
-                  </div>}
+                    <button onClick={closeSession} className="icon__button">
+                      Cerrar Session
+                    </button>
+                  </div>
+                )}
               </div>
+
+              {isModalOpen && (
+                    <Modal>
+                      <Login onClose={() => setIsModalOpen(false)} />
+                    </Modal>
+                  )}
             </div>
           </div>
         </div>
