@@ -15,6 +15,7 @@ const Login = ({
   increaseQuantity,
   decreaseQuantity,
   clearCarrito,
+  onClose,
 }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({ email: "", password: "" });
@@ -25,7 +26,6 @@ const Login = ({
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
   const signInWithGoogle = () => {
-    console.log("Google sign-in button clicked");  // Línea de depuración
     dispatch(loginWithGoogle());
   };
 
@@ -104,6 +104,11 @@ const Login = ({
         <div className="login__container">
           <div className="login__content">
             <form className="login__space" onSubmit={handleSubmit}>
+              <div className="modal__cerrar">
+                <button className="modal__button no-margin" onClick={onClose}>
+                  X
+                </button>
+              </div>
               <h3 className="text-center">- Inicia Sesión -</h3>
 
               {/* Datos de la Cuenta */}
@@ -175,8 +180,12 @@ const Login = ({
 
                 <p className="text-center">— O inicie sesión con —</p>
 
-                <div className="form__optionsL">
-                  <button type="button" className="icono__contentL" onClick={signInWithGoogle}>
+                {/* <div className="form__optionsL">
+                  <button
+                    type="button"
+                    className="icono__contentL"
+                    onClick={signInWithGoogle}
+                  >
                     <div className="icono__containerL">
                       <img
                         className="icono__fluidL"
@@ -186,6 +195,47 @@ const Login = ({
                     </div>
                   </button>
                   {/* Agregar otros métodos de inicio de sesión aquí */}
+                {/* </div> */}
+                <div className="form__optionsL">
+                  <Link className="icono__contentL" onClick={signInWithGoogle}>
+                    <div className="icono__containerL">
+                      <img
+                        className="icono__fluidL"
+                        src="iconos/icon_google.png"
+                        alt="icon Google"
+                      />
+                    </div>
+                  </Link>
+
+                  <Link className="icono__contentL">
+                    <div className="icono__containerL">
+                      <img
+                        className="icono__fluidL"
+                        src="iconos/icon_outlook.png"
+                        alt="icon Outlook"
+                      />
+                    </div>
+                  </Link>
+
+                  <Link className="icono__contentL">
+                    <div className="icono__containerL">
+                      <img
+                        className="icono__fluidL"
+                        src="iconos/icon_facebook.png"
+                        alt="icon Facebook"
+                      />
+                    </div>
+                  </Link>
+
+                  <Link className="icono__contentL">
+                    <div className="icono__containerL">
+                      <img
+                        className="icono__fluidL"
+                        src="iconos/icon_github.png"
+                        alt="icon Github"
+                      />
+                    </div>
+                  </Link>
                 </div>
 
                 <p className="text-center">— ¿No tienes una cuenta? —</p>
@@ -206,8 +256,8 @@ const Login = ({
       </main>
 
       {showModal && (
-        <Modal onClose={handleCloseModal}>
-          <Register />
+        <Modal>
+          <Register onClose={handleCloseModal} />
         </Modal>
       )}
     </div>
