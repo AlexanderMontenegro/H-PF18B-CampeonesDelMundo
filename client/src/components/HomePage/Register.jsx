@@ -2,9 +2,6 @@ import React, { useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
-// Components (Componentes)
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 // CSS
 import "../../css/loginYRegister.css";
 
@@ -13,14 +10,7 @@ import { postUser } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
-const Register = ({
-  carrito,
-  addToCarrito,
-  removeFromCarrito,
-  increaseQuantity,
-  decreaseQuantity,
-  clearCarrito,
-}) => {
+const Register = ({onClose}) => {
 
 const dispatch = useDispatch();
 const navigate = useNavigate();
@@ -95,6 +85,9 @@ const handleSubmit= async (event)=>{
             {/* Register */}
 
             <form>
+              <div className='modal__cerrar'>
+                  <button className='modal__button no-margin' onClick={onClose}>X</button>
+                </div>
               <h3 className="text-center">- Registrate -</h3>
 
               {/* Datos de la Cuenta */}
