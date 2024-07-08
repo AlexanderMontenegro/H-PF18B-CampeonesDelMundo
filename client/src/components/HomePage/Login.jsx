@@ -21,8 +21,6 @@ const Login = ({
   const [login, setLogin] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  const loading = useSelector((state) => state.loading);
-  const error = useSelector((state) => state.error);
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
   const signInWithGoogle = () => {
