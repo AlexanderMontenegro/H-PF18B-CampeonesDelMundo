@@ -1,6 +1,8 @@
 
 import React from 'react';
 import "../../css/nosotros.css"
+import Footer from '../Footer/Footer';
+import Header from "../Header/Header"
 
 function Nosotros() {
   const integrantes = [
@@ -50,6 +52,14 @@ function Nosotros() {
   ];
 
   return (
+<div>
+  {/*
+<div>
+<Header/>
+</div>
+*/}
+     
+
     <div className="container__ns">
       {integrantes.map((integrante, index) => (
         <div key={index} className="card">
@@ -65,7 +75,15 @@ function Nosotros() {
         </div>
       ))}
     </div>
+<div>
+
+<Footer/>
+
+</div>
+    </div>
+
   );
+
 }
 
 export default Nosotros;

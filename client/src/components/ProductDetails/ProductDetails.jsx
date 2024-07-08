@@ -46,7 +46,7 @@ const ProductDetails = ({ carrito, addToCarrito, removeFromCarrito, increaseQuan
               ))}
             </select>
           </div>
-          <button className="product-add-to-cart" onClick={() => addToCarrito(product)}>Agregar al Carrito</button>
+          <button className="product-add-to-cart" onClick={() => addToCarrito(product)}> <img src="../../../public/iconos/carrito.png" alt="" /> </button>
         </div>
         <div className="reviews-section">
           <h3>Reviews</h3>

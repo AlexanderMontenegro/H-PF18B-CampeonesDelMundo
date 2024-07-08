@@ -53,12 +53,14 @@ const Header = ({
         {/* Lado Izquierdo - logo */}
         <div className="barra__left">
           {/* Logo */}
-
+          <Link to={"/homePage"}>
+             
           <h4 className="logo_nombre no-margin"></h4>
           <img
             className="logo_img"
             src="../../../public/img/fondo-logo-futbol_1195-244.png"
-          />
+            />
+            </Link>
         </div>
 
         {/* Lado Derecho - Opciones*/}
