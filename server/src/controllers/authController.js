@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User } = require('../db');
-const { firebaseAdmin, db } = require('../../fireBase/fireBaseConfig'); // Asegúrate de importar correctamente
+const { firebaseAdmin, db } = require('../../fireBase/fireBaseConfig'); 
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client("backcampeones"); // CLIENT_ID de tu proyecto
 
@@ -65,7 +65,7 @@ exports.login = async (req, res) => {
       return res.status(401).send({ auth: false, token: null, message: 'Error Password' });
     }
 
-    // Generar token JWT
+    // Generar token JWTn
     const token = jwt.sign({ id: userDB.id }, SECRET_KEY, {
       expiresIn: 86400 // 24 horas
     });

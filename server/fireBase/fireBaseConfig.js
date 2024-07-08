@@ -3,7 +3,7 @@
 
 
 const firebaseAdmin = require('firebase-admin');
-const serviceAccount = require('./backcampeones-firebase-adminsdk-pywv7-bb0f714932.json'); // key fireBase
+const serviceAccount = require('./backcampeones-firebase-adminsdk-pywv7-4e4b6c83ef.json'); // key fireBase
 
 firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(serviceAccount),
