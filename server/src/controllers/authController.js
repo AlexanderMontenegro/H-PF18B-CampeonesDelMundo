@@ -85,12 +85,12 @@ exports.googleLogin = async (req, res) => {
     const { tokenId } = req.body;
     const ticket = await client.verifyIdToken({
       idToken: tokenId,
-      audience: CLIENT_ID,
+      audience: "YOUR_CLIENT_ID",
     });
     const payload = ticket.getPayload();
     const userId = payload['sub'];
 
-    // Puedes obtener más información del usuario a partir de 'payload'
+    // Aquí puedes crear el usuario en tu base de datos si no existe
 
     res.status(200).json({ user: payload, token: tokenId });
   } catch (error) {
