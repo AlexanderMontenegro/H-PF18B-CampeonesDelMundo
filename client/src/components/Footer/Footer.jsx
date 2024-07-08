@@ -6,12 +6,13 @@ export const Footer = () => {
   return (
     <footer className="footer">
 
-
       <div className="footer-column">
+<a href="/homePage "> 
         <img
           className="logo_img"
           src="../../../public/img/fondo-logo-futbol_1195-244.png"
         />
+        </a>
         <ul>
         </ul>
       </div>

@@ -30,7 +30,7 @@ const ProductPage = ({
 
   // Estados para la paginación
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 10;
+  const productsPerPage = 9;
 
   // Calcular el número total de páginas
   const totalPages = Math.ceil(productos.length / productsPerPage);
