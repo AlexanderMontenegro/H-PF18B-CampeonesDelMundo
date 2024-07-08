@@ -1,3 +1,4 @@
+
 {
   "productos": [
     {
@@ -47,7 +48,7 @@
     {
       "id": 5,
       "tipo": "camiseta",
-      "marca": "marathon",
+      "marca": "River",
       "precio": 20000,
       "talles": ["S", "M", "L", "XL"],
       "imagen": "https://acdn.mitiendanube.com/stores/088/647/products/1_266-1180_11-2ad4c7faaaf142c9f515689528223903-1024-1024.jpg",
@@ -58,10 +59,10 @@
     {
       "id": 6,
       "tipo": "short",
-      "marca": "marathon",
+      "marca": "river",
       "precio": 15000,
       "talles": ["S", "M", "L", "XL"],
-      "imagen": "https://media.marathon.store/products/hab/h83/h00/9386436624414.jpg",
+      "imagen": "https://media2.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/s/h/short-de-river-adidas-alternativo-rojo-56015957-100020ht3689001-1.jpg",
       "categoria": "seleccionFutbol",
       "pais": "Bolivia",
       "descripcion": "Short oficial de la selección de fútbol de Bolivia, marca Marathon, perfecto para cualquier actividad."
