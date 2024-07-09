@@ -29,7 +29,7 @@ const Login = ({
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/homePage");
+      navigate("/#");
     }
   }, [isAuthenticated, navigate]);
 
