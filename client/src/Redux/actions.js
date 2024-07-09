@@ -190,7 +190,7 @@ export const searchProductsByType = (tipo) => {
 };
 
 export const postUser = (user) => {
-  const endpoint = '/auth/register';
+  const endpoint = 'http://localhost:3001/auth/register';
   return async function (dispatch) {
       try {
           const response = await axios.post(endpoint, user);
@@ -202,7 +202,7 @@ export const postUser = (user) => {
       catch (error) {
           return dispatch({
               type:POST_USER,
-              payload: error
+              payload: error.response ? error.response.data : { message: error.message }
       });
       }
   }
@@ -221,7 +221,7 @@ export const postLogin = (login) => {
       catch (error) {
           return dispatch({
               type:POST_LOGIN,
-              payload: error
+              payload: error.response ? error.response.data : { message: error.message }
       });
       }
   };

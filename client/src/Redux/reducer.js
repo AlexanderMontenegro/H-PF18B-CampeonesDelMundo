@@ -15,6 +15,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
+  POST_USER,
+  POST_LOGIN
 } from "./actions";
 
 // state inicial
@@ -127,7 +129,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload,
+        user: payload,
         loading: false,
         error: null,
       };
@@ -137,7 +139,7 @@ const rootReducer = (state = initialState, action) => {
         isAuthenticated: false,
         user: null,
         loading: false,
-        error: action.error,
+        error: payload,
       };
     case LOGOUT:
       return {
@@ -145,6 +147,14 @@ const rootReducer = (state = initialState, action) => {
         isAuthenticated: false,
         user: null,
       };
+    case POST_USER:
+    case POST_LOGIN:
+          return {
+            ...state,
+            user: payload.user || null,
+            error: payload.error || null,
+          };
+        
 
     default:
       return state;
