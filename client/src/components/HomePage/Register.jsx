@@ -47,7 +47,7 @@ const handleSubmit= async (event)=>{
       timer: 3000
     }).then(() => {
       // Redirigir después de que la alerta se cierre
-      navigate("/login"); // Cambia la URL al destino 
+      navigate("/#"); // Cambia la URL al destino 
       window.location.reload();
     });         
       }else{
