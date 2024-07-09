@@ -25,15 +25,17 @@ const Login = ({
   const error = useSelector((state) => state.error);
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
-  const signInWithGoogle = () => {
-    dispatch(loginWithGoogle());
+  const signInWithGoogle = async () => {
+    const response = await dispatch(loginWithGoogle());
+    console.log('ress ggoo', response)
+
   };
 
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/homePage");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate]); 
 
   // Manejador del estado principal login
   function handleChange(event) {
