@@ -38,7 +38,8 @@ setUser({...user,[event.target.name]:event.target.value})
 const handleSubmit= async (event)=>{
   event.preventDefault();
   const response = await dispatch(postUser(user));
-  if(response.payload.user)
+  console.log(response.payload.user);
+  if(!response.payload.user)
       {
      Swal.fire({
       icon: "success",

@@ -47,6 +47,8 @@ const Header = ({
   // const modalLogin = () => {
   //   setIsModalOpen(true);
   // }
+  if(!user)
+  {
   return (
     <header className="header__homePage">
       <div className="barra__container">
@@ -187,10 +189,8 @@ const Header = ({
 
               <div id="usuario" className="usuario__container">
                 <div className="icon__usuario">
-                  {/* <Link className="logo" to={"/login"}>
-                    <button className="icon__button">Iniciar Sesion</button>
-                  </Link> */}
-                  <button
+
+                <button
                     className="icon__button"
                     onClick={() => setIsModalOpen(true)}
                   >
@@ -198,13 +198,17 @@ const Header = ({
                   </button>
                   
                 </div>
+
+                  {/* <Link className="logo" to={"/login"}>
+                    <button className="icon__button">Iniciar Sesion</button>
+                  </Link> */}
                 
-                <div className="icon__usuario">
+{/*                 <div className="icon__usuario">
                   <Link className="logo" to="/dashboard">
                     <button className="icon__button">Administrador</button>
                   </Link>
                 </div>
-
+ */}
                 {user && (
                   <div className="icon__usuario">
                     <button onClick={closeSession} className="icon__button">
@@ -232,6 +236,170 @@ const Header = ({
                         </div>*/}
     </header>
   );
+}else{
+  return (
+    <header className="header__homePage">
+      <div className="barra__container">
+        {/* Lado Izquierdo - logo */}
+        <div className="barra__left">
+          {/* Logo */}
+          <Link to={"/homePage"}>
+             
+          <h4 className="logo_nombre no-margin"></h4>
+          <img
+            className="logo_img"
+            src="../../../public/img/fondo-logo-futbol_1195-244.png"
+            />
+            </Link>
+        </div>
+
+        {/* Lado Derecho - Opciones*/}
+        <div className="barra__right">
+          {/* Navegacion */}
+          <div className="navegacion">
+            {/* Inicio */}
+            <Link className="navegacion_enlaceC" to={"/homePage"}>
+              Inicio
+            </Link>
+            {/* Productos */}
+            <Link className="navegacion_enlaceC" to={"/ProductPage"}>
+              Productos
+            </Link>
+            <Link className="navegacion_enlaceC" to={"/contacto"}>
+              Contacto
+            </Link>
+
+            <div className="carrito">
+              <Link className="logo" to={"/Orden"}>
+                <img
+                  className="icono__fluid"
+                  src="/public/iconos/carrito2.png"
+                  alt="imagen carrito"
+                />
+              </Link>
+
+              <div id="carrito" className="carrito__container">
+                {isEmpty() ? (
+                  <h4 className="navegacion_enlaceC">El carrito esta vacio</h4>
+                ) : (
+                  <>
+                    <table className="carrito__table">
+                      <thead>
+                        <tr>
+                          <th>Imagen</th>
+                          <th>Tipo</th>
+                          <th>Marca</th>
+                          <th>Precio</th>
+                          <th>Cantidad</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {carrito.map((producto) => (
+                          <tr key={producto.id}>
+                            <td>
+                              <img
+                                className="img-fluid"
+                                src={producto.imagen}
+                                alt={`${(producto.id, producto.tipo)} imagen`}
+                              />
+                            </td>
+                            <td className=" cabecera__texto">
+                              {producto.tipo}
+                            </td>
+                            <td className=" cabecera__texto">
+                              {producto.marca}
+                            </td>
+                            <td className="cabecera__texto">
+                              ${producto.precio}
+                            </td>
+                            <td>
+                              <div className="cabecera__buttons cabecera__texto">
+                                <button
+                                  type="button"
+                                  className="cabecera__button"
+                                  onClick={() => decreaseQuantity(producto.id)}
+                                >
+                                  -
+                                </button>
+                                {producto.quantity}
+                                <button
+                                  type="button"
+                                  className="cabecera__button"
+                                  onClick={() => increaseQuantity(producto.id)}
+                                >
+                                  +
+                                </button>
+                              </div>
+                            </td>
+                            <td>
+                              <button
+                                type="button"
+                                className="cabecera__cerrar"
+                                onClick={() => removeFromCarrito(producto.id)}
+                              >
+                                X
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+
+                    <p className="text-end">
+                      Total pagar:{" "}
+                      <span className="fw-bold">${carritoTotal()}</span>
+                    </p>
+
+                    <div>
+                      <button className="icon__button" onClick={clearCarrito}>
+                        Vaciar Carrito
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+            {/* Usuario */}
+            <div className="usuario">
+              <img
+                className="icono__fluid"
+                src="../../../public/iconos/usuario2.png"
+                alt="imagen carrito"
+              />
+
+                <div id="usuario" className="usuario__container">
+
+                <p className="icon__button">{user.name}</p> 
+                
+                <div className="icon__usuario">
+                  <Link className="logo" to="/dashboard">
+                    <button className="icon__button">Administrador</button>
+                  </Link>
+                </div>
+
+                {user && (
+                  <div className="icon__usuario">
+                    <button onClick={closeSession} className="icon__button">
+                      Cerrar Session
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {isModalOpen && (
+                    <Modal>
+                      <Login onClose={() => setIsModalOpen(false)} />
+                    </Modal>
+                  )}
+            </div>
+          </div>
+        </div>
+        </div>
+
+    </header>
+  );
+}
 };
 
 export default Header;
