@@ -15,6 +15,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
+  POST_USER,
+  POST_LOGIN
 } from "./actions";
 
 // state inicial
@@ -28,6 +30,20 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
+  filters: {
+    producto: "none",
+    categoria: "none",
+    marca: "none",
+  }
+};
+
+const applyFilters = (products, filters) => {
+  return products.filter(producto => {
+    const matchesProducto = filters.producto === "none" || producto.tipo === filters.producto;
+    const matchesCategoria = filters.categoria === "none" || producto.categoria === filters.categoria;
+    const matchesMarca = filters.marca === "none" || producto.marca === filters.marca;
+    return matchesProducto && matchesCategoria && matchesMarca;
+  });
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -42,7 +58,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allProducts: payload,
-        productos: payload,
+        productos: applyFilters(payload, state.filters),
         preSortProductos: payload,
       };
     case GET_CATEGORY:
@@ -55,46 +71,41 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productos: payload,
       };
-    // Filters
     case NO_FILTER:
       return {
         ...state,
+        filters: {
+          producto: "none",
+          categoria: "none",
+          marca: "none",
+        },
         productos: state.allProducts,
         preSortProductos: state.allProducts,
       };
     case FILTER_PRODUCTO:
+      const updatedFiltersProducto = { ...state.filters, producto: payload };
       return {
         ...state,
-        productos: state.allProducts.filter(
-          (producto) => producto.tipo === payload
-        ),
-        preSortProductos: state.allProducts.filter(
-          (producto) => producto.tipo === payload
-        ),
+        filters: updatedFiltersProducto,
+        productos: applyFilters(state.allProducts, updatedFiltersProducto),
+        preSortProductos: applyFilters(state.allProducts, updatedFiltersProducto),
       };
     case FILTER_CATEGORIA:
+      const updatedFiltersCategoria = { ...state.filters, categoria: payload };
       return {
         ...state,
-        productos: state.allProducts.filter(
-          (producto) => producto.categoria === payload
-        ),
-        preSortProductos: state.allProducts.filter(
-          (producto) => producto.categoria === payload
-        ),
+        filters: updatedFiltersCategoria,
+        productos: applyFilters(state.allProducts, updatedFiltersCategoria),
+        preSortProductos: applyFilters(state.allProducts, updatedFiltersCategoria),
       };
-
     case FILTER_MARCAS:
+      const updatedFiltersMarca = { ...state.filters, marca: payload };
       return {
         ...state,
-        productos: state.allProducts.filter(
-          (producto) => producto.marca === payload
-        ),
-        preSortProductos: state.allProducts.filter(
-          (producto) => producto.marca === payload
-        ),
+        filters: updatedFiltersMarca,
+        productos: applyFilters(state.allProducts, updatedFiltersMarca),
+        preSortProductos: applyFilters(state.allProducts, updatedFiltersMarca),
       };
-
-    // Sorts
     case NO_SORT:
       return {
         ...state,
@@ -112,7 +123,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productos: [...state.productos].sort((p1, p2) => p2.precio - p1.precio),
       };
-
     case SET_USER:
       return {
         ...state,
@@ -127,7 +137,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload,
+        user: payload,
         loading: false,
         error: null,
       };
@@ -137,7 +147,7 @@ const rootReducer = (state = initialState, action) => {
         isAuthenticated: false,
         user: null,
         loading: false,
-        error: action.error,
+        error: payload,
       };
     case LOGOUT:
       return {
@@ -145,7 +155,13 @@ const rootReducer = (state = initialState, action) => {
         isAuthenticated: false,
         user: null,
       };
-
+    case POST_USER:
+    case POST_LOGIN:
+      return {
+        ...state,
+        user: payload.user || null,
+        error: payload.error || null,
+      };
     default:
       return state;
   }
