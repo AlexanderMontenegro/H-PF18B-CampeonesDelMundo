@@ -29,6 +29,37 @@ const Login = ({
     const response = await dispatch(loginWithGoogle());
     console.log('ress ggoo', response)
 
+    if (!response.payload.user) {
+      Swal.fire({
+        icon: "error",
+        title: response.payload.message,
+        text: "",
+        timer: 3000,
+      });
+    }
+
+        // Guardar en el storage
+        if (response.payload.user) {
+          let user = response.payload.user;
+          const {displayName} = user;
+          user ={...user, name:displayName };
+          console.log(user);
+          window.localStorage.setItem(
+            "User",
+            JSON.stringify(user)
+          );
+          Swal.fire({
+            icon: "success",
+            title: 'Autenticacion Exitosa',
+            text: "",
+            timer: 3000,
+          }).then(() => {
+            // Redirigir después de que la alerta se cierre
+            navigate("/homePage"); // Cambia la URL al destino
+            window.location.reload();
+          });
+        }
+
   };
 
   useEffect(() => {
