@@ -8,7 +8,7 @@
   height: 500px;
   background-color: var(--blanco);
   border-radius: 30px;
-  background: var(--celesteOpaco);
+  background: var(--degradado);
   box-shadow: 7px 7px 15px #bebebe, -3px -3px 7px #ffffff;
 }
 
