@@ -183,7 +183,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/usuario2a.png"
+                src="../../../public/iconos/carrito2a.png"
                 alt="imagen carrito"
               />
 
@@ -273,7 +273,7 @@ const Header = ({
               <Link className="logo" to={"/Orden"}>
                 <img
                   className="icono__fluid"
-                  src="/public/iconos/carrito2.png"
+                  src="../../../public/iconos/carrito2a.png"
                   alt="imagen carrito"
                 />
               </Link>
@@ -364,13 +364,13 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/usuario2.png"
-                alt="imagen carrito"
+                src="../../../public/iconos/usuario2a.png"
+                alt="Usuario"
               />
 
                 <div id="usuario" className="usuario__container">
 
-                <p className="icon__button">{user.name}</p> 
+                <p className="icon__user">{user.name}</p> {/** */}
                 
                 <div className="icon__usuario">
                   <Link className="logo" to="/dashboard">
