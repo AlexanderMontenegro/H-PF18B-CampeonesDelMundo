@@ -1,13 +1,14 @@
 const express = require('express');
 const emailRouter = express.Router();
 const {
-  handleSendNotificationEmail,
-  handleSendRegistrationConfirmationEmail,
-  handleSendPasswordResetEmail,
+  handleSendAccountCreationEmail,
+  handleSendAccountUpdateEmail,
+  handleSendAccountDeletionEmail,
 } = require('../handlers/emailHandlers');
 
-emailRouter.post('/send-notification', handleSendNotificationEmail);
-emailRouter.post('/send-registration-confirmation', handleSendRegistrationConfirmationEmail);
-emailRouter.post('/send-password-reset', handleSendPasswordResetEmail);
+emailRouter.post('/send-account-creation', handleSendAccountCreationEmail);
+emailRouter.post('/send-account-update', handleSendAccountUpdateEmail);
+emailRouter.post('/send-account-deletion', handleSendAccountDeletionEmail);
 
 module.exports = emailRouter;
+
