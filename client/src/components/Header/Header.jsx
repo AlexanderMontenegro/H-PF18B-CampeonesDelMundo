@@ -183,7 +183,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/carrito2a.png"
+                src="../../../public/iconos/usuario2a.png"
                 alt="imagen carrito"
               />
 
