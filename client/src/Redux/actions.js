@@ -285,10 +285,10 @@ export const postImageRemota = (imageUrl) => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
     const user = result.user;
-    console.log("Google sign-in result:", result);  // Línea de depuración
+    console.log("Google sign-in result:", result);  
     dispatch({ type: LOGIN_SUCCESS, payload: user });
   } catch (error) {
-    console.error("Google sign-in error:", error);  // Línea de depuración
+    console.error("Google sign-in error:", error);  
     dispatch({ type: LOGIN_FAILURE, error });
   }
 }; */
