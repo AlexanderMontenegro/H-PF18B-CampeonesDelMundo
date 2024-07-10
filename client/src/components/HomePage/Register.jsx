@@ -38,7 +38,8 @@ setUser({...user,[event.target.name]:event.target.value})
 const handleSubmit= async (event)=>{
   event.preventDefault();
   const response = await dispatch(postUser(user));
-  if(response.payload.user)
+  
+  if(response.payload.userRecord)
       {
      Swal.fire({
       icon: "success",
@@ -47,7 +48,7 @@ const handleSubmit= async (event)=>{
       timer: 3000
     }).then(() => {
       // Redirigir después de que la alerta se cierre
-      navigate("/login"); // Cambia la URL al destino 
+      navigate("/#"); // Cambia la URL al destino 
       window.location.reload();
     });         
       }else{

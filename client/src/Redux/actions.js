@@ -280,7 +280,7 @@ export const postImageRemota = (imageUrl) => {
   }
 };
 
-export const loginWithGoogle = () => async (dispatch) => {
+/* export const loginWithGoogle = () => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   try {
     const result = await signInWithPopup(auth, googleProvider);
@@ -291,10 +291,30 @@ export const loginWithGoogle = () => async (dispatch) => {
     console.error("Google sign-in error:", error);  // Línea de depuración
     dispatch({ type: LOGIN_FAILURE, error });
   }
-};
+}; */
 // Acción para cerrar sesión
 export const logout = () => async (dispatch) => {
   await auth.signOut();
   dispatch({ type: LOGOUT });
 };
 
+
+export const loginWithGoogle = () => {
+
+  return async function (dispatch) {
+      try {
+        const response = await signInWithPopup(auth, googleProvider);
+        
+          return dispatch({
+              type: LOGIN_SUCCESS,
+              payload: response
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:LOGIN_FAILURE,
+              payload: error.response ? error.response.data : { message: error.message }
+      });
+      }
+  };
+};
