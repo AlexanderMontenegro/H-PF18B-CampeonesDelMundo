@@ -91,7 +91,7 @@ const Header = ({
               <Link className="logo" to={"/Orden"}>
                 <img
                   className="icono__fluid"
-                  src="/public/iconos/carrito2.png"
+                  src="/public/iconos/carrito2a.png"
                   alt="imagen carrito"
                 />
               </Link>
@@ -183,7 +183,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/usuario2.png"
+                src="../../../public/iconos/usuario2a.png"
                 alt="imagen carrito"
               />
 
