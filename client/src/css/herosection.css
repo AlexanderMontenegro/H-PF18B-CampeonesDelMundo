@@ -26,6 +26,7 @@
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
+  /*opacity: 0.9; */
 }
 
 .hero-content {
