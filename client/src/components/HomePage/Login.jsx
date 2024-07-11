@@ -232,12 +232,13 @@ const Login = ({
                     <div className="icono__containerL">
                       <img
                         className="icono__fluidL"
-                        src="iconos/icon_google.png"
+                        src="iconos/icon_google3.png"
                         alt="icon Google"
                       />
                     </div>
                   </Link>
-
+{/**
+ 
                   <Link className="icono__contentL">
                     <div className="icono__containerL">
                       <img
@@ -248,11 +249,12 @@ const Login = ({
                     </div>
                   </Link>
 
+                      */}
                   <Link className="icono__contentL">
                     <div className="icono__containerL">
                       <img
                         className="icono__fluidL"
-                        src="iconos/icon_facebook.png"
+                        src="iconos/icon_facebook3.png"
                         alt="icon Facebook"
                       />
                     </div>
@@ -262,7 +264,7 @@ const Login = ({
                     <div className="icono__containerL">
                       <img
                         className="icono__fluidL"
-                        src="iconos/icon_github.png"
+                        src="iconos/icon_github3.png"
                         alt="icon Github"
                       />
                     </div>
