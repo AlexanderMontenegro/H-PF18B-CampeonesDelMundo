@@ -55,17 +55,7 @@
       "pais": "Bolivia",
       "descripcion": "Camiseta oficial de la selección de fútbol de Bolivia, marca Marathon, con los colores del país."
     },
-    {
-      "id": 6,
-      "tipo": "short",
-      "marca": "marathon",
-      "precio": 15000,
-      "talles": ["S", "M", "L", "XL"],
-      "imagen": "https://media.marathon.store/products/hab/h83/h00/9386436624414.jpg",
-      "categoria": "seleccionFutbol",
-      "pais": "Bolivia",
-      "descripcion": "Short oficial de la selección de fútbol de Bolivia, marca Marathon, perfecto para cualquier actividad."
-    },
+   
     {
       "id": 7,
       "tipo": "camiseta",

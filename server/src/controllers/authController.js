@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../db');
 const { firebaseAdmin, db } = require('../../fireBase/fireBaseConfig'); 
 const { OAuth2Client } = require('google-auth-library');
-const client = new OAuth2Client("backcampeones"); // CLIENT_ID de tu proyecto
+const client = new OAuth2Client("backcampeones"); 
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
@@ -85,12 +85,14 @@ exports.googleLogin = async (req, res) => {
     const { tokenId } = req.body;
     const ticket = await client.verifyIdToken({
       idToken: tokenId,
-      audience: "YOUR_CLIENT_ID",
+      
     });
     const payload = ticket.getPayload();
     const userId = payload['sub'];
 
-    // Aquí puedes crear el usuario en tu base de datos si no existe
+    // crear usuario en db
+    
+    
 
     res.status(200).json({ user: payload, token: tokenId });
   } catch (error) {

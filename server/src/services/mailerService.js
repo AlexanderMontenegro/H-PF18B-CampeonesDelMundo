@@ -1,36 +1,69 @@
 const transporter = require('../config/mailerConfig');
 
-const sendMail = async (to, subject, text, html) => {
+const sendMail = async (to, subject, template, context) => {
   try {
     const info = await transporter.sendMail({
-      from: '"Your Project Name" <your-email@example.com>', // Remitente
+      from: '"Campeones Del Mundo" <your-email@example.com>',
       to,
       subject,
-      text,
-      html,
+      template,
+      context,
     });
     console.log('Message sent: %s', info.messageId);
   } catch (error) {
     console.error('Error sending email:', error);
+    throw error;
   }
 };
 
-const sendNotificationEmail = (to, message) => {
-  sendMail(to, 'Notification', message, `<b>${message}</b>`);
+const sendAccountCreationEmail = (to, username) => {
+  const subject = 'Account Creation';
+  const template = 'accountCreation';
+  const context = { email: to, username };
+  sendMail(to, subject, template, context);
 };
 
-const sendRegistrationConfirmationEmail = (to) => {
-  const message = 'Thank you for registering!';
-  sendMail(to, 'Registration Confirmation', message, `<b>${message}</b>`);
+const sendAccountUpdateEmail = (to, username) => {
+  const subject = 'Account Update';
+  const template = 'accountUpdate';
+  const context = { email: to, username };
+  sendMail(to, subject, template, context);
 };
 
-const sendPasswordResetEmail = (to, resetLink) => {
-  const message = `Click the following link to reset your password: ${resetLink}`;
-  sendMail(to, 'Password Reset', message, `<b>${message}</b>`);
+const sendAccountDeletionEmail = (to, username) => {
+  const subject = 'Account Deletion';
+  const template = 'accountDeletion';
+  const context = { email: to, username };
+  sendMail(to, subject, template, context);
+};
+
+const sendUserRegistrationEmail = (to, username) => {
+  const subject = 'Registro Exitoso';
+  const template = 'registerUser';
+  const context = { username };
+  sendMail(to, subject, template, context);
+};
+
+const sendUserDeletionEmail = (to, username) => {
+  const subject = 'Cuenta Eliminada';
+  const template = 'deleteUser';
+  const context = { username };
+  sendMail(to, subject, template, context);
+};
+
+const sendUserRoleUpdateEmail = (to, username) => {
+  const subject = 'Actualización de Rol';
+  const template = 'updateUserRole';
+  const context = { username };
+  sendMail(to, subject, template, context);
 };
 
 module.exports = {
-  sendNotificationEmail,
-  sendRegistrationConfirmationEmail,
-  sendPasswordResetEmail,
+  sendAccountCreationEmail,
+  sendAccountUpdateEmail,
+  sendAccountDeletionEmail,
+  sendUserRegistrationEmail,
+  sendUserDeletionEmail,
+  sendUserRoleUpdateEmail,
 };
+

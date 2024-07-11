@@ -1,15 +1,18 @@
 // primero instalar npm install firebase-admin
-//
 
+require("dotenv").config();
 
-const firebaseAdmin = require('firebase-admin');
-const serviceAccount = require('./backcampeones-firebase-adminsdk-pywv7-4e4b6c83ef.json'); // key fireBase
+const firebaseAdmin = require("firebase-admin");
 
 firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(serviceAccount),
-  databaseURL: 'https://backcampeones.firebaseio.com' // Reemplaza con la URL de tu base de datos Firebase
+  credential: firebaseAdmin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  }),
+  databaseURL: "https://backcampeones.firebaseio.com",
 });
 
-const db = firebaseAdmin.firestore(); // Inicialización de Firestore
+const db = firebaseAdmin.firestore();
 
 module.exports = { firebaseAdmin, db };
