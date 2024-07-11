@@ -35,22 +35,28 @@ const UserAdmin = () => {
   };
 
   return (
-    <div className="user-admin">
-      <h1>Lista de Usuarios</h1>
-      <ul className="user-list">
+    <div className="principal">
+      <h1  className="titulo" >Lista de Usuarios</h1>
+      <ul className="por__usuario">
         {users.map((user) => (
-          <li key={user.uid} className="user-item">            
+          <div key={user.uid} className="el__usuario">  
+          <div className="los__datos" >      
             <p>
-              <strong>Name:</strong> {user.name}
+              <strong>Name : </strong> {user.name}
             </p>
             <p>
-              <strong>Email:</strong> {user.email}
+              <strong>Email : </strong> {user.email}
             </p>
             <p>
-              <strong>Rol:</strong> {user.role}
+              <strong>Rol :  </strong> {user.role}
             </p>
-            <button onClick={() => handleDelete(user.uid)}>Borrar</button>
-          </li>
+            </div>    
+            <div className="los__botones" >
+            <button className="eliminar" onClick={() => handleDelete(user.uid)}> <img className="eliminar__img" src="../../../../public/iconos/delete.png" alt="eliminar" /></button>
+            <button className="opciones" onClick={() => handleDelete(user.uid)}> <img className="opciones__img"  src="../../../../public/iconos/options.png" alt="modificar" /></button>
+            <button className="aceptar" onClick={() => handleDelete(user.uid)}> <img className="aceptar__img"  src="../../../../public/iconos/acept.png" alt="aceptar" /></button>
+            </div>
+          </div>
         ))}
       </ul>
     </div>
