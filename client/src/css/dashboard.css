@@ -100,10 +100,11 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin: 50px;
-  width: 100%;
+  margin: 40px;
+  width: 200px;
+  height: 100px;
   max-width: 80%;
-  padding: 2rem;
+
   border: 1px solid var(--negro);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 50px;
