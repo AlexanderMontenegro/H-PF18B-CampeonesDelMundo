@@ -20,8 +20,8 @@
   --rojoOscuro: #581845;
   --colorFondo: #a5a3a3;
 
-  --banner: url("../img/img3.jpg");
-  --imgfondo: url("../img/papelitosDark.png");
+  --banner: url("/img/img3.jpg");
+  --imgfondo: url("/img/papelitosDark.png");
 
 }
 
@@ -50,7 +50,7 @@ html {
   --colorFondo: #000814;
   --degradado:linear-gradient(145deg, #003566, #cbf3f0)
 
-  --imgfondo: url("../img/papelitos.png");
+  --imgfondo: url("/img/papelitos.png");
 }
 
 body {

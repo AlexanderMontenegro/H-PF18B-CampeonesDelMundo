@@ -19,7 +19,7 @@ const DarkModeToggle = () => {
 
   return (
     <button className="dark-mode-toggle" onClick={toggleTheme} data-theme={theme}>
-      <img src="../../../public/iconos/darkmode.png" alt="Dark Mode Icon" className="icon" />
+      <img src="../iconos/darkmode.png" alt="Dark Mode Icon" className="icon" />
       <span className="text__d">{theme === 'light' ? 'Dark' : 'Light'}</span>
     </button>
   );

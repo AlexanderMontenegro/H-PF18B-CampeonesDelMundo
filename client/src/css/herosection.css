@@ -16,7 +16,7 @@
 }
 
 .hero__category {
-  background-image: url(../img/img3.jpg);
+  background-image: url(/img/img3.jpg);
   background-size: cover;
   background-position: center;
   width: 100%;
