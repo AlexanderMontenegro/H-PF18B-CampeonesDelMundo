@@ -13,6 +13,7 @@
   --piel: #ffbf69;
   --turquesa: #2ec4b6;
   --celesteOpaco: #6E9C98;
+  --degradado: linear-gradient(145deg, #cbf3f0, #003566);
 
   --celeste: #04b4e0;
   --rojo: #c70039;
@@ -47,6 +48,7 @@ html {
   --rojo: #c70039;
   --rojoOscuro: #581845;
   --colorFondo: #000814;
+  --degradado:linear-gradient(145deg, #003566, #cbf3f0)
 
   --imgfondo: url("../img/papelitos.png");
 }

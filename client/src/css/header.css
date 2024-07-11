@@ -253,3 +253,19 @@ table.paleBlueRows tfoot td {
     opacity: 0;
   }
 }
+
+
+.icon__user{
+  width: 90%;
+  font-size: 1.8rem;
+  color: var(--negro);
+  background-color: var(--amarillo);
+  border-radius: 0.5rem;
+  font-weight: bold;
+  padding: 0.7rem 0.7rem;
+  text-align: center;
+  margin: 10px;
+  border: 2px solid;
+ 
+}
+

@@ -64,33 +64,36 @@ const Header = ({
             </Link>
           </div>
 
-          {/* Lado Derecho - Opciones*/}
-          <div className="barra__right">
-            {/* Navegacion */}
-            <div className="navegacion">
-              {/* Inicio */}
-              <Link className="navegacion_enlaceC" to={"/homePage"}>
-                Inicio
-              </Link>
-              {/* Productos */}
-              <Link className="navegacion_enlaceC" to={"/ProductPage"}>
-                Productos
-              </Link>
-              {/* Contacto */}
-              {/* <a className="navegacion_enlaceC">Contacto</a> */}
-              <Link className="navegacion_enlaceC" to={"/contacto"}>
-                Contacto
-              </Link>
+        {/* Lado Derecho - Opciones*/}
+        <div className="barra__right">
+          {/* Navegacion */}
+          <div className="navegacion">
+            {/* Inicio */}
+            <Link className="navegacion_enlaceC" to={"/homePage"}>
+              Inicio
+            </Link>
+            {/* Productos */}
+            <Link className="navegacion_enlaceC" to={"/ProductPage"}>
+              Productos
+            </Link>
+            {/* Contacto */}
+            {/* <a className="navegacion_enlaceC">Contacto</a> */}
+            <Link className="navegacion_enlaceC" to={"/contacto"}>
+              Contacto
+            </Link>
+            {/* Carrito */}
+            {/* <a className="navegacion_enlace">
+                                        Carrito
+                                    </a> */}
 
-              {/* Carrito */}
-              <div className="carrito">
-                <Link className="logo" to={"/Orden"}>
-                  <img
-                    className="icono__fluid"
-                    src="/public/iconos/carrito2.png"
-                    alt="imagen carrito"
-                  />
-                </Link>
+            <div className="carrito">
+              <Link className="logo" to={"/Orden"}>
+                <img
+                  className="icono__fluid"
+                  src="/public/iconos/carrito2a.png"
+                  alt="imagen carrito"
+                />
+              </Link>
 
                 <div id="carrito" className="carrito__container">
                   {isEmpty() ? (
@@ -181,37 +184,13 @@ const Header = ({
                 </div>
               </div>
 
-              {/* Notificaciones */}
-              {console.log("User: ", user)}
-              {(user === null) ? (
-                  <></>
-                ) : (
-                  <div className="notificaciones">
-                    <Link className="logo" to={"/notificaciones"}>
-                      <img
-                        className="icono__fluid"
-                        src="../../../public/iconos/campana.png"
-                        alt="imagen notificaciones"
-                      />
-                    </Link>
-                    <div
-                      id="notificaciones"
-                      className="notificaciones__container"
-                    >
-                      <div className="icon__notificaciones">
-                        <h4 className="no-margin">Notificaciones</h4>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-              {/* Usuario */}
-              <div className="usuario">
-                <img
-                  className="icono__fluid"
-                  src="../../../public/iconos/usuario2.png"
-                  alt="imagen carrito"
-                />
+            {/* Usuario */}
+            <div className="usuario">
+              <img
+                className="icono__fluid"
+                src="../../../public/iconos/usuario2a.png"
+                alt="imagen carrito"
+              />
 
                 <div id="usuario" className="usuario__container">
                   <div className="icon__usuario">
@@ -275,14 +254,14 @@ const Header = ({
                 Contacto
               </Link>
 
-              <div className="carrito">
-                <Link className="logo" to={"/Orden"}>
-                  <img
-                    className="icono__fluid"
-                    src="/public/iconos/carrito2.png"
-                    alt="imagen carrito"
-                  />
-                </Link>
+            <div className="carrito">
+              <Link className="logo" to={"/Orden"}>
+                <img
+                  className="icono__fluid"
+                  src="../../../public/iconos/carrito2a.png"
+                  alt="imagen carrito"
+                />
+              </Link>
 
                 <div id="carrito" className="carrito__container">
                   {isEmpty() ? (
@@ -363,31 +342,32 @@ const Header = ({
                         <span className="fw-bold">${carritoTotal()}</span>
                       </p>
 
-                      <div>
-                        <button className="icon__button" onClick={clearCarrito}>
-                          Vaciar Carrito
-                        </button>
-                      </div>
-                    </>
-                  )}
-                </div>
+                    <div>
+                      <button className="icon__button" onClick={clearCarrito}>
+                        Vaciar Carrito
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
-              {/* Usuario */}
-              <div className="usuario">
-                <img
-                  className="icono__fluid"
-                  src="../../../public/iconos/usuario2.png"
-                  alt="imagen carrito"
-                />
+            </div>
+            {/* Usuario */}
+            <div className="usuario">
+              <img
+                className="icono__fluid"
+                src="../../../public/iconos/usuario2a.png"
+                alt="Usuario"
+              />
 
                 <div id="usuario" className="usuario__container">
-                  <p className="icon__button">{user.name}</p>
 
-                  <div className="icon__usuario">
-                    <Link className="logo" to="/dashboard">
-                      <button className="icon__button">Administrador</button>
-                    </Link>
-                  </div>
+                <p className="icon__user">{user.name}</p> {/** */}
+                
+                <div className="icon__usuario">
+                  <Link className="logo" to="/dashboard">
+                    <button className="icon__button">Administrador</button>
+                  </Link>
+                </div>
 
                   {user && (
                     <div className="icon__usuario">
