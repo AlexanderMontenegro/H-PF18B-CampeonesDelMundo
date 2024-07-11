@@ -12,7 +12,7 @@
 
 /* Estilos para el contenido del login */
 .login__content {
-  background-color: var(--azul);
+  background-color: var(--azulOscuro);
   width: 55rem;
   min-height: 60rem;
   border: 0.3rem solid var(--negro);
@@ -220,6 +220,7 @@
 
 
 .form__optionsL{
+  display: flex;
   height: 100%;
   width:100%;
   display: flex;
@@ -233,12 +234,13 @@
   /*background-color: red;*/
 }
 
-.icono__containerL{
+.icono__containerL {
   height: 100%;
   width: 100%;
   display: flex;
-  /*background-color: yellow;*/
-
+  /* background-color: yellow; */
+  flex-direction: column;
+  align-items: center;
 }
 
 .icono__fluidL{
