@@ -1,6 +1,6 @@
 const transporter = require('../config/mailerConfig');
 
-const sendMail = async (to, subject, template, context, username) => {
+const sendMail = async (to, subject, template, context) => {
   try {
     const info = await transporter.sendMail({
       from: '"Campeones Del Mundo" <your-email@example.com>',
@@ -8,7 +8,6 @@ const sendMail = async (to, subject, template, context, username) => {
       subject,
       template,
       context,
-      username,
     });
     console.log('Message sent: %s', info.messageId);
   } catch (error) {
