@@ -364,7 +364,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../public/iconos/usuario2a.png"
+                src="../iconos/usuario2a.png"
                 alt="Usuario"
               />
 
