@@ -52,9 +52,9 @@ const UserAdmin = () => {
             </p>
             </div>    
             <div className="los__botones" >
-            <button className="eliminar" onClick={() => handleDelete(user.uid)}> <img className="eliminar__img" src="../../../../public/iconos/delete.png" alt="eliminar" /></button>
-            <button className="opciones" onClick={() => handleDelete(user.uid)}> <img className="opciones__img"  src="../../../../public/iconos/options.png" alt="modificar" /></button>
-            <button className="aceptar" onClick={() => handleDelete(user.uid)}> <img className="aceptar__img"  src="../../../../public/iconos/acept.png" alt="aceptar" /></button>
+            <button className="eliminar" onClick={() => handleDelete(user.uid)}> <img className="eliminar__img" src="../iconos/delete.png" alt="eliminar" /></button>
+            <button className="opciones" onClick={() => handleDelete(user.uid)}> <img className="opciones__img"  src="../iconos/options.png" alt="modificar" /></button>
+            <button className="aceptar" onClick={() => handleDelete(user.uid)}> <img className="aceptar__img"  src="../iconos/acept.png" alt="aceptar" /></button>
             </div>
           </div>
         ))}

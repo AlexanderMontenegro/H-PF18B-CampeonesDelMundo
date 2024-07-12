@@ -10,7 +10,7 @@ export const Footer = () => {
 <a href="/homePage "> 
         <img
           className="logo_img"
-          src="../../../public/img/fondo-logo-futbol_1195-244.png"
+          src="../img/fondo-logo-futbol_1195-244.png"
         />
         </a>
         <ul>

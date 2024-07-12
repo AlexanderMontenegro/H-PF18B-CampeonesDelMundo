@@ -60,7 +60,7 @@ const Header = ({
           <h4 className="logo_nombre no-margin"></h4>
           <img
             className="logo_img"
-            src="../../../public/img/fondo-logo-futbol_1195-244.png"
+            src="../img/fondo-logo-futbol_1195-244.png"
             />
             </Link>
         </div>
@@ -91,7 +91,7 @@ const Header = ({
               <Link className="logo" to={"/Orden"}>
                 <img
                   className="icono__fluid"
-                  src="/public/iconos/carrito2a.png"
+                  src="/iconos/carrito2a.png"
                   alt="imagen carrito"
                 />
               </Link>
@@ -183,7 +183,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/usuario2a.png"
+                src="../iconos/usuario2a.png"
                 alt="imagen carrito"
               />
 
@@ -248,7 +248,7 @@ const Header = ({
           <h4 className="logo_nombre no-margin"></h4>
           <img
             className="logo_img"
-            src="../../../public/img/fondo-logo-futbol_1195-244.png"
+            src="../img/fondo-logo-futbol_1195-244.png"
             />
             </Link>
         </div>
@@ -273,7 +273,7 @@ const Header = ({
               <Link className="logo" to={"/Orden"}>
                 <img
                   className="icono__fluid"
-                  src="../../../public/iconos/carrito2a.png"
+                  src="../iconos/carrito2a.png"
                   alt="imagen carrito"
                 />
               </Link>
@@ -364,7 +364,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/usuario2a.png"
+                src="../public/iconos/usuario2a.png"
                 alt="Usuario"
               />
 
