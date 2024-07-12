@@ -272,7 +272,7 @@ const handleSubmit= async (event)=>{
                   <div className="icono__containerL">
                     <img
                       className="icono__fluidL"
-                      src="iconos/icon_google.png"
+                      src="iconos/icon_google3.png"
                       alt="icon Google"
                     />
                     {/*
@@ -280,7 +280,7 @@ const handleSubmit= async (event)=>{
                      */}
                   </div>
                 </Link>
-
+{/* 
                 <Link className="icono__contentL">
                   <div className="icono__containerL">
                     <img
@@ -288,17 +288,16 @@ const handleSubmit= async (event)=>{
                       src="iconos/icon_outlook.png"
                       alt="icon Outlook"
                     />
-                    {/*
-                    <h4 className="no-margin no-pading">Outlook</h4>
-                     */}
+                 
                   </div>
                 </Link>
+                */}
               
                 <Link className="icono__contentL">
                   <div className="icono__containerL">
                     <img
                       className="icono__fluidL"
-                      src="iconos/icon_facebook.png"
+                      src="iconos/icon_facebook3.png"
                       alt="icon Facebook"
                     />
                     {/*
@@ -311,7 +310,7 @@ const handleSubmit= async (event)=>{
                   <div className="icono__containerL">
                     <img
                       className="icono__fluidL"
-                      src="iconos/icon_github.png"
+                      src="iconos/icon_github3.png"
                       alt="icon Github"
                     />
                     {/*
