@@ -1,21 +1,27 @@
 import React from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import '../../css/landigpage.css'; 
 
-const LadingPage = () => {
-
-    // NAVEGACIÓN
-    // Obtener la función de navegación
+const LandingPage = () => {
+    
     const navigate = useNavigate();
 
     const handleEnterToHomePage = () => {
-        navigate('/homePage'); // Redirige a la ruta '/homePage'
+        navigate('/homePage'); 
     }
 
     return (
-        <>
-            <button onClick={handleEnterToHomePage}>A HomePage 3</button>
-        </>
-    )
+        <div className="landing-page">
+            <div className="landing-header">
+                <h1>Bienvenido a Campeones del Mundo</h1>
+                <p> Tu tienda online en artículos deportivos de alta calidad.</p>
+            </div>
+            <div className="landing-content">
+              
+                <button className="enter-button" onClick={handleEnterToHomePage}><img src="img/fondo-logo-futbol_1195-244.png" alt="" /></button>
+            </div>
+        </div>
+    );
 }
 
-export default LadingPage
+export default LandingPage;

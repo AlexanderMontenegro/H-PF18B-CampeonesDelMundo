@@ -7,7 +7,8 @@ const ProductoCard = ({ producto, addToCarrito}) => {
 
   return (
     <div className="card__container">
-    <Link to={`/product/${producto.id}`} className="card__link"> <img src={producto.imagen} alt={`${producto.tipo} ${producto.marca}`} className="card__image" /></Link>
+    <Link to={`/product/${producto.id}`} className="card__link">
+     <img src={producto.imagen} alt={`${producto.tipo} ${producto.marca}`} className="card__image" /></Link>
 
 
       <div className="card__details">
@@ -18,8 +19,8 @@ const ProductoCard = ({ producto, addToCarrito}) => {
           <button 
             className="card__cart-button"
             onClick={() => addToCarrito(producto)}
-            >Agregar al Carrito</button>
-          <button className="card__fav-button">Favoritos</button>
+            ><img className="carrito_img" src="/iconos/carrito.png" alt="" /></button>
+          <button className="card__fav-button"></button>  {/*Para favotiros AGM */}
         </div>
       </div>
     </div>
