@@ -49,7 +49,7 @@ export const Footer = () => {
             >
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/facebook.png"
+                src="../iconos/facebook.png"
                 alt=""
               />
             </a>
@@ -62,7 +62,7 @@ export const Footer = () => {
             >
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/x.png"
+                src="../iconos/x.png"
                 alt=""
               />
             </a>
@@ -75,7 +75,7 @@ export const Footer = () => {
             >
               <img
                 className="icono__fluid"
-                src="../../../public/iconos/instagram.png"
+                src="../iconos/instagram.png"
                 alt=""
               />
             </a>
