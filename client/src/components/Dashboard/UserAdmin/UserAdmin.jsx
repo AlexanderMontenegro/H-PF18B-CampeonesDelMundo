@@ -106,19 +106,19 @@ const UserAdmin = () => {
                     <option value="Super-Admin">Super-Admin</option>
                   </select>
                   <button onClick={() => handleSaveRole(user.uid)} className="aceptar">
-                    <img src="../../../../public/iconos/acept.png" alt="" />
+                    <img src="/iconos/acept.png" alt="aceptar" />
                   </button>
                   <button onClick={() => setEditUserId(null)} className="eliminar">
-                    <img src="../../../../public/iconos/delete.png" alt="" />
+                    <img src="/iconos/delete.png" alt="cancelar" />
                   </button>
                 </>
               ) : (
                 <>
                   <button onClick={() => handleEditRole(user.uid)} className="opciones">
-                  <img src="../../../../public/iconos/options.png" alt="" />
+                  <img src="/iconos/options.png" alt="opciones" />
                   </button>
                   <button onClick={() => handleDelete(user.uid)} className="eliminar">
-                  <img src="../../../../public/iconos/delete.png" alt="" />
+                  <img src="/iconos/delete.png" alt="eliminar" />
                   </button>
                 </>
               )}
