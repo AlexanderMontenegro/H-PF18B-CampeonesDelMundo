@@ -48,7 +48,7 @@ const handleSubmit= async (event)=>{
       timer: 3000
     }).then(() => {
       // Redirigir después de que la alerta se cierre
-      navigate("https://h-pf18b-campeonesdelmundo-1-lk3c.onrender.com/homePage"); // Cambia la URL al destino 
+      navigate("/"); // Cambia la URL al destino 
       window.location.reload();
     });         
       }else{
