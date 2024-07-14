@@ -199,16 +199,7 @@ const Header = ({
                   
                 </div>
 
-                  {/* <Link className="logo" to={"/login"}>
-                    <button className="icon__button">Iniciar Sesion</button>
-                  </Link> */}
-                
-{/*                 <div className="icon__usuario">
-                  <Link className="logo" to="/dashboard">
-                    <button className="icon__button">Administrador</button>
-                  </Link>
-                </div>
- */}
+            
                 {user && (
                   <div className="icon__usuario">
                     <button onClick={closeSession} className="icon__button">

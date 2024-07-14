@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 import Category from "../Category/Category"; 
 import "../../css/homePage.css";
 import { useSelector } from "react-redux";
-
+import ChatModal from "../Socket/ChatModal";
 const HomePage = ({
   carrito,
   addToCarrito,
@@ -19,6 +19,9 @@ const HomePage = ({
 }) => {
   const productos = useSelector((state) => state.allProducts);
   console.log("Productos", productos);
+
+//socketio
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   // Navegación
   const navigate = useNavigate();
@@ -89,9 +92,23 @@ const HomePage = ({
           />
         </div>
       </main>
+      {/**
+        <div  >
+      <button onClick={() => setIsChatOpen(true)}  className="open-chat-button" ><img className="icono__fluid" src="/iconos/chat.png" alt="" /></button>
+      <ChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+    </div>
+    */}
+    <div className="chat-container">
+          <button className="open-chat-button" onClick={() => setIsChatOpen(!isChatOpen)}>
+           <img className="icono__fluid" src="/iconos/chat.png" alt="" />
+          </button>
+          <ChatModal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+        </div>
+       
 
       {/* Footer */}
       <Footer />
+
     </>
   );
 };

@@ -61,6 +61,8 @@ const ProductPage = ({
           clearCarrito={clearCarrito}
         />
       </div>
+
+      
       <div className="productpage__full">
 
 
@@ -90,6 +92,7 @@ const ProductPage = ({
           onPageChange={handlePageChange}
         />
       </div>
+      
       <Footer />
     </>
   );
