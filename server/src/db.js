@@ -4,23 +4,23 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {  DATABASE_UR } = process.env;
+const {  DATABASE_UR,DB_USER1, DB_PASSWORD1, DB_HOST1 } = process.env;
 
 const sequelize = new Sequelize(
-   `${DATABASE_UR}`,
+   `postgres://${DB_USER1}:${DB_PASSWORD1}@${DB_HOST1}/campeones`,
    {
      logging: false, // set to console.log to see the raw SQL queries
      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-     dialectOptions: {
+   
+     },
+   
+ );
+const basename = path.basename(__filename);
+/*  dialectOptions: {
        ssl: {
          require: true,
          rejectUnauthorized: false, // Puedes establecer esto en true si tienes un certificado SSL válido
-       },
-     },
-   }
- );
-const basename = path.basename(__filename);
-
+       }, */
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
