@@ -5,7 +5,6 @@ const createProduct = async (
   tipo,
   descripcion,
   precio,
-  stock,
   imagen,
   marca,
   pais,
@@ -33,7 +32,7 @@ const createProduct = async (
 
     // Verificar si el producto ya existe
     const existingProduct = await Productos.findOne({
-      where: { tipo, descripcion, precio, stock, imagen, marca, pais, talles },
+      where: { tipo, descripcion, precio, imagen, marca, pais, talles },
     });
     if (existingProduct) {
       throw new Error("El producto ya existe");
@@ -44,7 +43,6 @@ const createProduct = async (
       tipo,
       descripcion,
       precio: parseFloat(precio), // Convertir a número decimal
-      stock,
       imagen,
       marca,
       pais,
@@ -74,3 +72,4 @@ const createProduct = async (
 };
 
 module.exports = createProduct;
+

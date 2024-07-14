@@ -49,9 +49,9 @@ const {
   
   const createProductHandler = async (req, res) => {
     try {
-      const { tipo, descripcion, precio, stock, imagen, marca, pais, talles, categoria } = req.body;
+      const { tipo, descripcion, precio, imagen, marca, pais, talles, categoria } = req.body;
       
-      const newProduct = await createProduct(tipo, descripcion, precio, stock, imagen, marca, pais, talles, categoria);
+      const newProduct = await createProduct(tipo, descripcion, precio, imagen, marca, pais, talles, categoria);
       res.status(201).json(newProduct);
     } catch (error) {
       console.error("Error al crear el producto:", error);

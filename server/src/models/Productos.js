@@ -1,4 +1,3 @@
-// models/Productos.js
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
@@ -15,10 +14,6 @@ module.exports = (sequelize) => {
     precio: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
-    },
-    stock: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
     },
     activo: {
       type: DataTypes.BOOLEAN,
@@ -42,7 +37,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     talles: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.JSONB), // Cambiado a JSONB para almacenar objetos JSON
       allowNull: true,
     },
     created: {
@@ -51,15 +46,17 @@ module.exports = (sequelize) => {
     },
   }, { timestamps: false });
 
-  // Definir la relación muchos a muchos
   Productos.associate = function(models) {
     Productos.belongsToMany(models.Categoria, {
       through: 'ProductoCategorias',
       as: 'categorias',
       foreignKey: 'productoId',
     });
+
+    Productos.hasMany(models.Favorite, { foreignKey: 'productos_id' });
   };
 
   return Productos;
 };
+
 

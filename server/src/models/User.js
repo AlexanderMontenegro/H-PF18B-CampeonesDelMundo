@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 
-
 module.exports = (sequelize) => {
   const User = sequelize.define('User', {
     id: {
@@ -12,17 +11,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-
     address: {
       type: DataTypes.STRING,
       allowNull: false
     },
-
     cellphone: {
       type: DataTypes.STRING,
       allowNull: false
     },
-
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,9 +29,8 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     role: {
-    type: DataTypes.ENUM('user', 'admin'),
-    //allowNull: false
-    defaultValue: 'user'
+      type: DataTypes.ENUM('user', 'admin'),
+      defaultValue: 'user'
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -53,8 +48,13 @@ module.exports = (sequelize) => {
       }
     }
   });
-  return User;
 
- }
+  User.associate = function(models) {
+    User.hasMany(models.Favorite, { foreignKey: 'user_id' });
+  };
+
+  return User;
+};
+
 
 

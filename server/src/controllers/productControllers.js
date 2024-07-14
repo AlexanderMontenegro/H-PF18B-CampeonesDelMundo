@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { Op } = require('sequelize');
+const { v4: uuidv4 } = require('uuid');
 const { Productos, Categoria } = require("../db")
 
 //PARA MANDAR LA MISMA INFORMACION QUE TIENE EL BDD
@@ -24,6 +25,66 @@ const cleanArray = (arr) => {
 };
 
 //* Controlador para obtener todos los productos
+// const getProduct = async () => {
+//   try {
+//     const dataProductos = await Productos.findAll({
+//       include: [
+//         {
+//           model: Categoria,
+//           as: 'categorias', // Asegúrate de usar el alias correcto
+//           through: {
+//             attributes: [],
+//           },
+//         },
+//       ],
+//     });
+
+//     const productosBD = dataProductos.map(
+//       ({
+//         id,
+//         tipo,
+//         descripcion,
+//         precio,
+//         stock,
+//         imagen,
+//         marca,
+//         pais,
+//         talles,
+//         categorias, // Usa el alias correcto
+//       }) => {
+//         //* Verifica si 'categorias' está definido y mapea los nombres
+//         const categoria = categorias ? categorias.map((t) => t.nombre).join(", ") : "";
+//         return {
+//           id,
+//           tipo,
+//           descripcion,
+//           precio,
+//           stock,
+//           imagen,
+//           marca,
+//           pais,
+//           talles,
+//           categoria,
+//         };
+//       }
+//     );
+
+//     const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
+//     const apiProduct = cleanArray(apiProductRaw);
+
+//     return [...productosBD, ...apiProduct];
+//   } catch (error) {
+//     console.error("Error al obtener los productos:", error);
+//     throw error;
+//   }
+// };
+
+//* Función para convertir ID integer a UUID
+const convertirId = (idInteger) => {
+  return uuidv4(); // Genera un nuevo UUID para el ID integer dado
+};
+
+//* Controlador para obtener todos los productos
 const getProduct = async () => {
   try {
     const dataProductos = await Productos.findAll({
@@ -44,7 +105,6 @@ const getProduct = async () => {
         tipo,
         descripcion,
         precio,
-        stock,
         imagen,
         marca,
         pais,
@@ -58,7 +118,6 @@ const getProduct = async () => {
           tipo,
           descripcion,
           precio,
-          stock,
           imagen,
           marca,
           pais,
@@ -68,15 +127,53 @@ const getProduct = async () => {
       }
     );
 
+    // Obtener productos de la API local
     const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
     const apiProduct = cleanArray(apiProductRaw);
 
-    return [...productosBD, ...apiProduct];
+    // Guardar los productos de la API en la base de datos si no existen
+    await Promise.all(apiProduct.map(async (product) => {
+      // Convierte el ID integer a UUID si es necesario
+      const idProducto = isNaN(product.id) ? product.id : convertirId(product.id);
+
+      const [producto, created] = await Productos.findOrCreate({
+        where: { id: idProducto },
+        defaults: {
+          tipo: product.tipo,
+          descripcion: product.descripcion,
+          precio: product.precio,
+          imagen: product.imagen,
+          marca: product.marca,
+          pais: product.pais,
+          talles: product.talles, // Asegúrate de que 'talles' esté definido correctamente
+        },
+        include: [{
+          model: Categoria,
+          as: 'categorias',
+        }],
+      });
+
+      if (created) {
+        const categoriaNombres = product.categoria.split(", ").map(nombre => nombre.trim());
+        const categoriaRecords = await Promise.all(
+          categoriaNombres.map(async (nombre) => {
+            const [categoriaRecord] = await Categoria.findOrCreate({
+              where: { nombre },
+            });
+            return categoriaRecord;
+          })
+        );
+        await producto.addCategorias(categoriaRecords);
+      }
+    }));
+
+    return productosBD;
   } catch (error) {
     console.error("Error al obtener los productos:", error);
     throw error;
   }
 };
+
   //--------------------------------------------------------------
 
  //buscar por tipo

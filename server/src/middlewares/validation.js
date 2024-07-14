@@ -18,14 +18,13 @@ const validateProduct = [
   body('pais').notEmpty().withMessage('El país es obligatorio'),
   body('talles').notEmpty().withMessage('Los talles son obligatorios'),
   body('categoria').notEmpty().withMessage('La categoría es obligatoria'),
-  body('stock').notEmpty().withMessage('El campo stock es obligatorio').isInt({ gt: 0 }).withMessage('El stock debe ser un número entero mayor que 0'),
-  
+
   (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) {   // validacion de errores
+    if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    next();  // itera en las distintas validaciones.
+    next();
   }
 ];
 
