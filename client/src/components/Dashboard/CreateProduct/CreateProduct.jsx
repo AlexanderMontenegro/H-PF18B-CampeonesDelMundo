@@ -12,6 +12,7 @@ function createProduct() {
   const arrayCategoryGloblal = useSelector((state) => state.allCategory);
   const [arrayCategory, setArrayCategory] = useState(arrayCategoryGloblal);
   let arrayCat = [];
+  const [talles, setTalles] = useState([{ talle: '', stock: '' }]);
   // window.location.reload();
 
   //predeterminado array pais
@@ -39,8 +40,7 @@ function createProduct() {
     descripcion: "",
     pais: "",
     precio: "",
-    stock: "",
-    talles: [],
+    talles: talles,
     categoria: "",
   });
   // Estado de errores
@@ -50,17 +50,17 @@ function createProduct() {
   function handleChange(event) {
     event.preventDefault();
 
-    if (event.target.name === "talles") {
+/*     if (event.target.name === "talles") {
       // event.target.value
       const talles = event.target.value.split(",");
       setErrors(validation({ ...newProduct, [event.target.name]: talles }));
       setNewProduct({ ...newProduct, [event.target.name]: talles });
-    } else {
+    } else { */
       setErrors(
         validation({ ...newProduct, [event.target.name]: event.target.value })
       );
       setNewProduct({ ...newProduct, [event.target.name]: event.target.value });
-    }
+   // }
   }
 
   // Manejar el cambio de las opciones seleccionadas categoria
@@ -173,6 +173,37 @@ function createProduct() {
   };
 
 
+  
+
+  const manejarTalles = (index, talle, stock) => {
+    const nuevasEntradas = [...talles];
+    nuevasEntradas[index] = { talle, stock };
+    setTalles(nuevasEntradas);
+
+
+            // Crear un elemento div simulado como target
+            const target = document.createElement("div");
+            target.name = "talles"; // Puedes agregar propiedades al target si es necesario
+            target.value = nuevasEntradas;
+            // Crear un evento personalizado con un target personalizado
+            const eventoPersonalizado = new Event("eventoConTarget", {
+              bubbles: true,
+              cancelable: true,
+            });
+            // Agregar el target simulado al evento
+            Object.defineProperty(eventoPersonalizado, "target", { value: target });
+            // Llamar a la función para manejar el evento
+            handleChange(eventoPersonalizado);
+
+  };
+
+  const agregarTalle = () => {
+    setTalles([...talles, { talle: '', stock: '' }]);
+  };
+
+  console.log('talles', talles);
+  console.log('proo', newProduct);
+
   return (
     <form className="form__c">
       <h3 className="title">Nuevo Producto</h3>
@@ -211,7 +242,33 @@ function createProduct() {
         {errors.precio && <p className="errors">{errors.precio}</p>}
       </div>
 
+
       <div className="field">
+      {errors.talles && <p className="errors">{errors.talles}</p>}
+      {talles.map((talle, index) => (
+          <div key={index}>
+            <label>
+              Talle:
+              <input
+                type="text"
+                value={talle.talle}
+                onChange={(e) => manejarTalles(index, e.target.value, talle.stock)}
+              />
+            </label>
+            <label>
+              Stock:
+              <input
+                type="number"
+                value={talle.stock}
+                onChange={(e) => manejarTalles(index, talle.talle,parseInt(e.target.value, 10) )}
+              />
+            </label>
+          </div>
+        ))}
+        <button type="button" onClick={agregarTalle}>Agregar Talle</button>
+        </div>
+
+{/*       <div className="field">
         <label>Stock</label>
         <input
           type="text"
@@ -221,9 +278,9 @@ function createProduct() {
           onChange={handleChange}
         />
         {errors.stock && <p className="errors">{errors.stock}</p>}
-      </div>
+      </div> */}
 
-      <div className="field">
+{/*       <div className="field">
         <label>Talles</label>
         <input
           type="text"
@@ -234,7 +291,7 @@ function createProduct() {
         />
 
         {errors.talles && <p className="errors">{errors.talles}</p>}
-      </div>
+      </div> */}
 
       <div className="field">
         <label>Categoria</label>
