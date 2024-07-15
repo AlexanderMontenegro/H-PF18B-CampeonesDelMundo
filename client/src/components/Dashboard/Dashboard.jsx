@@ -6,10 +6,14 @@ import StockAdmin from "./StockAdmin/StockAdmin";
 import UserAdmin from "./UserAdmin/UserAdmin";
 
 
+
 import "../../css/dashboard.css"
 
 
 function Dashboard (){
+    
+
+
 
     return (
       
@@ -31,6 +35,7 @@ function Dashboard (){
                     </Link>
                    
                     <div className="list">
+                
 
                     </div>
 
