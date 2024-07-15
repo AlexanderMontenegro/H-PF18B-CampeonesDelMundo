@@ -36,14 +36,14 @@ const io = new Server(httpServer, {
 
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  console.log('usuario conectado');
 
   socket.on('message', (msg) => {
     io.emit('message', msg); 
   });
 
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    console.log('usuario desconectado');
   });
 });
 
