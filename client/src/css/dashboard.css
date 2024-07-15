@@ -21,9 +21,9 @@
 
 .options {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   color: var(--negro);
- 
+  align-items: center;
 }
 
 .dashboard-header {
@@ -115,3 +115,6 @@
   align-items: center;
 }
 
+.gestion{
+  display: flex;
+}
