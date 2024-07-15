@@ -73,11 +73,12 @@
     }
   }
 
-  
+
+
   .open-chat-button {
     position: fixed;
     right: 20px;
-    top: 50%; 
+    top: 50%;
     transform: translateY(-50%);
     height: 40px;
     width: 60px;
@@ -90,9 +91,10 @@
     font-size: 16px;
     color: #000000;
     border: solid #404c5d 1px;
-    border-radius: 20px; 
+    border-radius: 20px;
     padding: 10px;
-    box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #41465b, inset 5px 5px 10px #e6e6e6, inset -5px -5px 10px #e6e6e6;
+    box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #1f2431;
+    z-index: 1;
   }
   
   .open-chat-button:hover {
