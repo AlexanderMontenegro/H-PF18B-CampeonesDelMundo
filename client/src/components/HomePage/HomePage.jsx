@@ -12,6 +12,9 @@ import "../../css/homePage.css";
 import { useSelector } from "react-redux";
 import ChatModal from "../Socket/ChatModal";
 
+import FloatingAlert from "../Alert/FloatingAlert";
+import Carousel from "../Alert/Carousel2";
+
 const HomePage = ({
   carrito,
   addToCarrito,
@@ -85,7 +88,9 @@ const HomePage = ({
           username={username}
         />
       </div>
+      <Carousel/>
       <Footer />
+      <FloatingAlert />
     </>
   );
 };
