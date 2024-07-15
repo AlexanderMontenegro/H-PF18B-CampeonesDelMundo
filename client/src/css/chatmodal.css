@@ -38,6 +38,7 @@
   flex: 1;
   overflow-y: auto;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .chat-message {
