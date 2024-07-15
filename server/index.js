@@ -1,15 +1,3 @@
-/*
-const axios = require("axios");
-const server = require("./src/server");
-const { conn } = require('./src/db.js');
-const PORT = process.env.PORT||400;
-
-conn.sync({ force: true }).then(() => {
-server.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-})
-}).catch(error => console.error(error))
-*/
 
 const axios = require("axios");
 const express = require("express");
@@ -35,18 +23,24 @@ const io = new Server(httpServer, {
 });
 
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
 
-  socket.on('message', (msg) => {
-    io.emit('message', msg); 
+let connectedUsers = 0;
+
+io.on('connection', (socket) => {
+  connectedUsers++;
+  console.log('Usuario conectado');
+  io.emit('updateUsers', connectedUsers); 
+
+  socket.on('Hola', (msg) => {
+    io.emit('hola1', msg); 
   });
 
   socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
+    connectedUsers--;
+    console.log('Usuario desconectado');
+    io.emit('updateUsers', connectedUsers); 
+      });
 });
-
 
 conn.sync({ force: true }).then(() => {
   httpServer.listen(PORT, () => {
