@@ -35,18 +35,24 @@ const io = new Server(httpServer, {
 });
 
 
-io.on('connection', (socket) => {
-  console.log('usuario conectado');
 
-  socket.on('message', (msg) => {
-    io.emit('message', msg); 
+let connectedUsers = 0;
+
+io.on('connection', (socket) => {
+  connectedUsers++;
+  console.log('Usuario conectado');
+  io.emit('updateUsers', connectedUsers); 
+
+  socket.on('Hola', (msg) => {
+    io.emit('hola1', msg); 
   });
 
   socket.on('disconnect', () => {
-    console.log('usuario desconectado');
-  });
+    connectedUsers--;
+    console.log('Usuario desconectado');
+    io.emit('updateUsers', connectedUsers); 
+      });
 });
-
 
 conn.sync({ force: true }).then(() => {
   httpServer.listen(PORT, () => {
