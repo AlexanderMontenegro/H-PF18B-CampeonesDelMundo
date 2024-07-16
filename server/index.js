@@ -17,11 +17,11 @@ const http = require("http");
 const { Server } = require("socket.io");
 const server = require("./src/server");
 const { conn } = require('./src/db.js');
-const PORT = process.env.PORT||process.env.DATABASE_UR || 4000; 
+const PORT = process.env.PORT|| 4000; 
 
 
 const app = express();
-const httpServer = http.createServer(app);
+const httpServer = http.createServer(server);
 
 
 const io = new Server(httpServer, {
