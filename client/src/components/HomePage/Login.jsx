@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import validation from "./Validation";
 import { postLogin, loginWithGoogle } from "../../Redux/actions";
 import Swal from "sweetalert2";
+import {  signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
+import { auth,  facebookProvider } from '../../../fireBaseConfig';
 
 const Login = ({
   carrito,
@@ -65,6 +67,19 @@ const Login = ({
       navigate("/#");
     }
   }, [isAuthenticated, navigate]); 
+
+  const handleFacebookLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider);
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log('User info:', user);
+      console.log('Token:', token);
+    } catch (error) {
+      console.error('Error during sign-in:', error);
+    }
+  };
 
   // Manejador del estado principal login
   function handleChange(event) {
@@ -250,7 +265,7 @@ const Login = ({
                   </Link>
 
                       */}
-                  <Link className="icono__contentL">
+                  <Link className="icono__contentL" onClick={handleFacebookLogin}>
                     <div className="icono__containerL">
                       <img
                         className="icono__fluidL"
