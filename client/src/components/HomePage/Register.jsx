@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 // CSS
 import "../../css/loginYRegister.css";
 
-import validation from './Validation';
+import validation from "./Validation";
 import { postUser } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
@@ -74,10 +74,6 @@ const handleSubmit= async (event)=>{
       /> */}
 
       <main>
-        
-
-
-
         {/* Titulo */}
         {/*<h2 className="text-center">Cree una Cuenta con Nosotros</h2>*/}
 
@@ -86,9 +82,11 @@ const handleSubmit= async (event)=>{
             {/* Register */}
 
             <form>
-              <div className='modal__cerrar'>
-                  <button className='modal__button no-margin' onClick={onClose}>X</button>
-                </div>
+              <div className="modal__cerrar">
+                <button className="modal__button no-margin" onClick={onClose}>
+                  X
+                </button>
+              </div>
               <h3 className="text-center">- Registrate -</h3>
 
               {/* Datos de la Cuenta */}
@@ -110,7 +108,7 @@ const handleSubmit= async (event)=>{
                     Email
                   </label>
 
-                  {errors.email ? <span>{errors.email}</span>: null}
+                  {errors.email ? <span>{errors.email}</span> : null}
                 </div>
 
                 {/* Password */}
@@ -119,12 +117,12 @@ const handleSubmit= async (event)=>{
                     className="form__input"
                     placeholder="Password"
                     type="password"
-                    name='password'
+                    name="password"
                     value={user.password}
                     onChange={handleChange}
                   />
                   <label className="form__label">Password</label>
-                  {errors.password ? <span>{errors.password}</span>: null}
+                  {errors.password ? <span>{errors.password}</span> : null}
                 </div>
 
                 {/* Confirmar Password */}
@@ -133,12 +131,14 @@ const handleSubmit= async (event)=>{
                     className="form__input"
                     placeholder="Confirm Password"
                     type="password"
-                    name='confirmPassword'
+                    name="confirmPassword"
                     value={user.confirmPassword}
                     onChange={handleChange}
                   />
                   <label className="form__label">Confirma tu Password</label>
-                  {errors.confirmPassword ? <span>{errors.confirmPassword}</span>: null}
+                  {errors.confirmPassword ? (
+                    <span>{errors.confirmPassword}</span>
+                  ) : null}
                 </div>
               </section>
 
@@ -160,11 +160,11 @@ const handleSubmit= async (event)=>{
                     <label className="form__label" htmlFor="name">
                       Nombres
                     </label>
-                    {errors.name ? <span>{errors.name}</span>: null}
+                    {errors.name ? <span>{errors.name}</span> : null}
                   </div>
 
-                    {/* Direccion */}
-                    <div className="form__group">
+                  {/* Direccion */}
+                  <div className="form__group">
                     <input
                       className="form__input"
                       id="address"
@@ -177,11 +177,11 @@ const handleSubmit= async (event)=>{
                     <label className="form__label" htmlFor="name">
                       Direccion
                     </label>
-                    {errors.address ? <span>{errors.address}</span>: null}
+                    {errors.address ? <span>{errors.address}</span> : null}
                   </div>
 
-                    {/* celular*/}
-                    <div className="form__group">
+                  {/* celular*/}
+                  <div className="form__group">
                     <input
                       className="form__input"
                       id="cellphone"
@@ -194,11 +194,11 @@ const handleSubmit= async (event)=>{
                     <label className="form__label" htmlFor="name">
                       Celular
                     </label>
-                    {errors.cellphone ? <span>{errors.cellphone}</span>: null}
+                    {errors.cellphone ? <span>{errors.cellphone}</span> : null}
                   </div>
 
                   {/* Apellidos */}
-{/*                   <div className="form__country form__group">
+                  {/*                   <div className="form__country form__group">
                     <input
                       className="form__input"
                       id="lastName"
@@ -212,12 +212,12 @@ const handleSubmit= async (event)=>{
                     </label>
                     {errors.lastName ? <span>{errors.lastName}</span>: null}
                   </div>*/}
-                </div> 
+                </div>
 
                 {/* Pais y Continente */}
-               {/*  <div className="form__country"> */}
-                  {/* Continente */}
-{/*                   <div className="form__group">
+                {/*  <div className="form__country"> */}
+                {/* Continente */}
+                {/*                   <div className="form__group">
                     <select
                       className="form__select"
                       id="continent"
@@ -232,8 +232,8 @@ const handleSubmit= async (event)=>{
                     </select>
                   </div>
  */}
-                  {/* Pais */}
-{/*                   <div className="form__group">
+                {/* Pais */}
+                {/*                   <div className="form__group">
                     <input
                       className="form__input"
                       id="country"
@@ -246,18 +246,19 @@ const handleSubmit= async (event)=>{
                       País
                     </label>
                   </div> */}
-               {/*  </div> */}
-              </section> 
+                {/*  </div> */}
+              </section>
 
               {/* Button - Registre su Cuenta*/}
               <div className="form__center">
-                    <button 
-                    onClick={handleSubmit} 
-                    type="submit" 
-                    className="form__button"
-                    disabled={Object.keys(errors).length === 0? false : true} >
-                    Registre su Cuenta
-                    </button>
+                <button
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="form__button"
+                  disabled={Object.keys(errors).length === 0 ? false : true}
+                >
+                  Registre su Cuenta
+                </button>
               </div>
 
               <p className="text-center">— O registrese con —</p>
@@ -280,7 +281,7 @@ const handleSubmit= async (event)=>{
                      */}
                   </div>
                 </Link>
-{/* 
+                {/* 
                 <Link className="icono__contentL">
                   <div className="icono__containerL">
                     <img
@@ -292,7 +293,7 @@ const handleSubmit= async (event)=>{
                   </div>
                 </Link>
                 */}
-              
+
                 <Link className="icono__contentL">
                   <div className="icono__containerL">
                     <img
@@ -322,13 +323,10 @@ const handleSubmit= async (event)=>{
             </form>
           </div>
         </div>
-        
-        
       </main>
       {/* <Footer /> */}
     </>
   );
-  
 };
 
 export default Register;

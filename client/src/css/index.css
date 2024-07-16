@@ -20,8 +20,8 @@
   --rojoOscuro: #c70039;
   --colorFondo: #a5a3a3;
 
-  --banner: url("../img/img3.jpg");
-  --imgfondo: url("../img/papelitosDark.png");
+  --banner: url("/img/img3.jpg");
+  --imgfondo: url("/img/papelitosDark.png");
 
 }
 
@@ -48,9 +48,9 @@ html {
   --rojo: #c70039;
   --rojoOscuro: #581845;
   --colorFondo: #000814;
-  --degradado: linear-gradient(145deg, var(--celeste), var(--azul));
-  
-  --imgfondo: url("../img/papelitos.png");
+  --degradado:linear-gradient(145deg, #003566, #cbf3f0)
+
+  --imgfondo: url("/img/papelitos.png");
 }
 
 body {

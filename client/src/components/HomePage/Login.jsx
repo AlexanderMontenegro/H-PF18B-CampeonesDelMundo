@@ -11,13 +11,7 @@ import {  signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
 import { auth,  facebookProvider } from '../../../fireBaseConfig';
 
 const Login = ({
-  carrito,
-  removeFromCarrito,
-  addToCarrito,
-  increaseQuantity,
-  decreaseQuantity,
-  clearCarrito,
-  onClose,
+  onClose
 }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({ email: "", password: "" });

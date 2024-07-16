@@ -19,12 +19,11 @@ import DashboardPage from "../src/pages/DashboardPage";
 import ProductPage from "../src/components/ProductPage/ProductPage";
 import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
 
-
 // Components (Componentes)
 import Login from "./components/HomePage/Login";
 import Register from "./components/HomePage/Register";
 import Nosotros from "./components/Nosotros/Nosotros";
-
+import Notificaciones from "./components/Notificaciones/Notificaciones";
 
 // Import Data (db)
 // import { data } from './db/db';
@@ -36,10 +35,36 @@ import Swal from "sweetalert2";
 import Orden from "./components/Orden/Orden";
 import Privacy from "./components/Privacy/Privacy";
 
+
 function ChampionsApp() {
   const dispatch = useDispatch();
   const stateProducts = useSelector((state) => state.allProducts);
 
+  // PARA NOTIFICACIONES
+  // State y Effect
+  const [notificaciones, setNotificaciones] = useState([]);
+
+  useEffect(() => {
+    const comentarios = [
+      {
+        id: 1, 
+        tipo_notificacion: 'compra', 
+        mensaje: 'Has realizado una compra exitosa.',
+        timestamp: Date.now() - 60000
+      },
+      {
+        id: 1, 
+        tipo_notificacion: 'respuesta', 
+        mensaje: 'Alguien ha respondido a tu comentario.',
+        timestamp: Date.now() - 120000
+      }
+    ];
+
+    setNotificaciones(comentarios);
+  }, []);
+
+
+  // PARA CARRITO
   // Local Storage
   const initialCarrito = () => {
     const localStorageCarrito = localStorage.getItem("carrito");
@@ -47,13 +72,11 @@ function ChampionsApp() {
     return localStorageCarrito ? JSON.parse(localStorageCarrito) : [];
   };
 
-
   // UseState
   const [productos, setProductos] = useState(stateProducts);
   const [carrito, setCarrito] = useState(initialCarrito);
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 0;
-
 
   // UseEffect
   useEffect(() => {
@@ -105,7 +128,6 @@ function ChampionsApp() {
     setCarrito([]);
   };
 
-
   // Navigate y Location
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -137,18 +159,18 @@ function ChampionsApp() {
   }, []);
 
   useEffect(() => {
-    const userJSON = window.localStorage.getItem('User');
-    console.log('userJSON', userJSON);
+    const userJSON = window.localStorage.getItem("User");
+    console.log("userJSON", userJSON);
     if (userJSON) {
-    const user = JSON.parse(userJSON);
-    dispatch(setUser(user));     
+      const user = JSON.parse(userJSON);
+      dispatch(setUser(user));
     }
-}, []);
+  }, []);
 
   return (
     <>
-        <DarkModeToggle />
-        <DarkModeToggle />
+      <DarkModeToggle />
+      <DarkModeToggle />
       <Routes>
         {/* 1.-Ruta Principal - LadingPage */}
         {/* Ruta para la página de inicio */}
@@ -177,27 +199,12 @@ function ChampionsApp() {
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
               />
             </>
           }
         ></Route>
-        {/* 2.-Ruta SPA - HomePage */}
-        {/* Ruta para la página principal */}
-        <Route
-          path="/orden"
-          element={
-            <>
-              <Orden
-                carrito={carrito}
-                addToCarrito={addToCarrito}
-                removeFromCarrito={removeFromCarrito}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                clearCarrito={clearCarrito}
-              />
-            </>
-          }
-        ></Route>
+        
 
         {/* 2.-Ruta SPA - HomePage */}
         {/* Ruta para la página principal */}
@@ -212,6 +219,24 @@ function ChampionsApp() {
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
+              />
+            </>
+          }
+        ></Route>
+
+        <Route
+          path="/notificaciones"
+          element={
+            <>
+              <Notificaciones
+                carrito={carrito}
+                addToCarrito={addToCarrito}
+                removeFromCarrito={removeFromCarrito}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
               />
             </>
           }
@@ -228,6 +253,7 @@ function ChampionsApp() {
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
               clearCarrito={clearCarrito}
+              notificaciones={notificaciones}
             />
           }
         />
@@ -238,7 +264,7 @@ function ChampionsApp() {
           path="/login"
           element={
             <>
-              <Login/>
+              <Login />
             </>
           }
         ></Route>
@@ -249,7 +275,7 @@ function ChampionsApp() {
           path="/register"
           element={
             <>
-              <Register/>
+              <Register />
             </>
           }
         ></Route>
@@ -264,6 +290,7 @@ function ChampionsApp() {
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
               />
             </>
           }
@@ -271,7 +298,8 @@ function ChampionsApp() {
 
         {/* <Route path='/footer' element={<Footer />} /> */}
 
-        <Route path="/dashboard/*"
+        <Route
+          path="/dashboard/*"
           element={
             <>
               <DashboardPage
@@ -286,15 +314,9 @@ function ChampionsApp() {
           }
         />
 
-        
+        <Route path="/contacto" element={<Nosotros />}></Route>
 
-        <Route path="/contacto"
-        element={<Nosotros/>}>
-
-        </Route>
-
-        <Route path="/privacidad" element={<Privacy/>}/>
-
+        <Route path="/privacidad" element={<Privacy />} />
       </Routes>
     </>
   );

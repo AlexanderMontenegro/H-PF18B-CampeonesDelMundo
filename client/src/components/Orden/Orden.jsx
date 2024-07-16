@@ -16,10 +16,13 @@ const Orden = ({
     increaseQuantity,
     decreaseQuantity,
     clearCarrito,
+    notificaciones
   }) => {
 
     // Carrito 
     console.log(carrito);
+
+    console.log(notificaciones)
 
     // Funciones
     const isEmpty = () => carrito.length === 0;
@@ -36,6 +39,7 @@ const Orden = ({
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
             />
 
             <main className='contenedor__or'>
