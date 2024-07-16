@@ -7,7 +7,17 @@ import "../../css/header.css"
 import Header from '../Header/Header';
 import Footer from "../Footer/Footer";
 
-const ProductDetails = ({ carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito, product, getDetails }) => {
+const ProductDetails = ({ 
+  carrito, 
+  addToCarrito, 
+  removeFromCarrito, 
+  increaseQuantity, 
+  decreaseQuantity, 
+  clearCarrito, 
+  product, 
+  getDetails, 
+  notificaciones }
+) => {
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,6 +38,7 @@ const ProductDetails = ({ carrito, addToCarrito, removeFromCarrito, increaseQuan
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
         clearCarrito={clearCarrito}
+        notificaciones={notificaciones}
       />
       <div className='container__pd'>
       <div className="product-details-container">

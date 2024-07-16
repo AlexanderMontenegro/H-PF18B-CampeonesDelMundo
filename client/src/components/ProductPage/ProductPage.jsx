@@ -16,6 +16,7 @@ const ProductPage = ({
   decreaseQuantity,
   clearCarrito,
   addToCarrito,
+  notificaciones
 }) => {
   const dispatch = useDispatch();
 
@@ -59,6 +60,7 @@ const ProductPage = ({
           increaseQuantity={increaseQuantity}
           decreaseQuantity={decreaseQuantity}
           clearCarrito={clearCarrito}
+          notificaciones={notificaciones}
         />
       </div>
 

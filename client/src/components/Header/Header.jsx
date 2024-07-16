@@ -10,6 +10,7 @@ import Register from "../HomePage/Register";
 import "../../css/header.css";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Notificacion from "../Notificaciones/Notificacion";
 
 const Header = ({
   carrito,
@@ -17,6 +18,7 @@ const Header = ({
   increaseQuantity,
   decreaseQuantity,
   clearCarrito,
+  notificaciones
 }) => {
   // Use States
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -183,8 +185,37 @@ const Header = ({
                     </>
                   )}
                 </div>
+            </div>
+
+            {/* Notificaciones */}
+            <div className="notificaciones">
+              <Link className="logo" to={"/notificaciones"}>
+                <img
+                  className="icono__fluid"
+                  src="../iconos/notificaciones.png"
+                  alt="imagen carrito"
+                />
+              </Link>
+              
+
+              <div id="notificaciones" className="carrito__container">
+                <div className="notificationes__lista">
+                  {notificaciones.length > 0 ? (
+                    notificaciones.map((notification) => (
+                      <Notificacion key={notificaciones.id} {...notification} />
+                    ))
+                  ) : (
+                    <p>No hay notificaciones.</p>
+                  )}
+                </div>    
               </div>
 
+              {isModalOpen && (
+                    <Modal>
+                      <Login onClose={() => setIsModalOpen(false)} />
+                    </Modal>
+                  )}
+            </div>
             {/* Usuario */}
             <div className="usuario">
               <img

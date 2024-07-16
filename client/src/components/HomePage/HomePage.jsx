@@ -22,6 +22,7 @@ const HomePage = ({
   increaseQuantity,
   decreaseQuantity,
   clearCarrito,
+  notificaciones
 }) => {
   const productos = useSelector((state) => state.allProducts);
   console.log("Productos", productos);
@@ -53,6 +54,7 @@ const HomePage = ({
           increaseQuantity={increaseQuantity}
           decreaseQuantity={decreaseQuantity}
           clearCarrito={clearCarrito}
+          notificaciones={notificaciones}
         />
         <HeroSection />
         <Category />

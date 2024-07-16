@@ -97,7 +97,8 @@
   width: 100%;
 }
 
-.icon__usuario {
+.icon__usuario,
+.icon_notificaciones {
   padding: 0.5rem 0;
 }
 

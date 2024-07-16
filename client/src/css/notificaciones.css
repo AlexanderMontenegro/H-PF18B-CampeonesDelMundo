@@ -1,0 +1,50 @@
+.notificaciones__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(var(--celeste), var(--negro));
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 20px;
+  height: 100%;
+  margin: 0;
+  }
+
+  .notification-center {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .notificationes__lista {
+    margin-top: 20px;
+  }
+  
+  .notification {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .notification.purchase {
+    border-left: 5px solid #4caf50;
+  }
+  
+  .notification.response {
+    border-left: 5px solid #2196f3;
+  }
+  
+  .notification p {
+    margin: 0;
+  }
+  
+  .notification small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+  }

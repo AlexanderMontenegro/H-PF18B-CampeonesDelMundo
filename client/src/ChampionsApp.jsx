@@ -23,6 +23,7 @@ import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
 import Login from "./components/HomePage/Login";
 import Register from "./components/HomePage/Register";
 import Nosotros from "./components/Nosotros/Nosotros";
+import Notificaciones from "./components/Notificaciones/Notificaciones";
 
 // Import Data (db)
 // import { data } from './db/db';
@@ -33,12 +34,37 @@ import { getCategory, getProducts, setUser } from "./Redux/actions";
 import Swal from "sweetalert2";
 import Orden from "./components/Orden/Orden";
 import Privacy from "./components/Privacy/Privacy";
-import Notificaciones from "./components/Notificaciones/Notificaciones";
+
 
 function ChampionsApp() {
   const dispatch = useDispatch();
   const stateProducts = useSelector((state) => state.allProducts);
 
+  // PARA NOTIFICACIONES
+  // State y Effect
+  const [notificaciones, setNotificaciones] = useState([]);
+
+  useEffect(() => {
+    const comentarios = [
+      {
+        id: 1, 
+        tipo_notificacion: 'compra', 
+        mensaje: 'Has realizado una compra exitosa.',
+        timestamp: Date.now() - 60000
+      },
+      {
+        id: 1, 
+        tipo_notificacion: 'respuesta', 
+        mensaje: 'Alguien ha respondido a tu comentario.',
+        timestamp: Date.now() - 120000
+      }
+    ];
+
+    setNotificaciones(comentarios);
+  }, []);
+
+
+  // PARA CARRITO
   // Local Storage
   const initialCarrito = () => {
     const localStorageCarrito = localStorage.getItem("carrito");
@@ -173,27 +199,12 @@ function ChampionsApp() {
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
               />
             </>
           }
         ></Route>
-        {/* 2.-Ruta SPA - HomePage */}
-        {/* Ruta para la página principal */}
-        <Route
-          path="/orden"
-          element={
-            <>
-              <Orden
-                carrito={carrito}
-                addToCarrito={addToCarrito}
-                removeFromCarrito={removeFromCarrito}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-                clearCarrito={clearCarrito}
-              />
-            </>
-          }
-        ></Route>
+        
 
         {/* 2.-Ruta SPA - HomePage */}
         {/* Ruta para la página principal */}
@@ -208,6 +219,7 @@ function ChampionsApp() {
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
               />
             </>
           }
@@ -217,7 +229,15 @@ function ChampionsApp() {
           path="/notificaciones"
           element={
             <>
-              <Notificaciones/>
+              <Notificaciones
+                carrito={carrito}
+                addToCarrito={addToCarrito}
+                removeFromCarrito={removeFromCarrito}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
+              />
             </>
           }
         ></Route>
@@ -233,6 +253,7 @@ function ChampionsApp() {
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
               clearCarrito={clearCarrito}
+              notificaciones={notificaciones}
             />
           }
         />
@@ -269,6 +290,7 @@ function ChampionsApp() {
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
+                notificaciones={notificaciones}
               />
             </>
           }
