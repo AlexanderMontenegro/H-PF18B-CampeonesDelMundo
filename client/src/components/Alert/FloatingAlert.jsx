@@ -25,10 +25,10 @@ const FloatingAlert = () => {
         <div className="floating-alert">
           <div className="alert-content">
             <button className="close-btn" onClick={handleClose}>
-              <img src="../../../public/iconos/delete.png" alt="" />
+              <img src="/iconos/delete.png" alt="" />
             </button>
             <img
-              src="../../../public/img/equipaciones-copa-america-2024-e.png"
+              src="img/equipaciones-copa-america-2024-e.png"
               alt="Oferta especial"
             />
             <h3>No te pierdas nuestras grandes ofertas esta temporada.</h3>

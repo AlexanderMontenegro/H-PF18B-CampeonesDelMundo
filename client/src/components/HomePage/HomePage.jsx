@@ -55,7 +55,7 @@ const HomePage = ({
           clearCarrito={clearCarrito}
         />
         <HeroSection />
-        <Category />
+       {/* <Category />*/} 
       </div>
       <main>
         <div className="product__list">

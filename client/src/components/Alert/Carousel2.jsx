@@ -4,10 +4,10 @@ import '../../css/carousel2.css';
 
 const Carousel = () => {
     const images = [
-        "../../../public/img/banner1.png",
-        "../../../public/img/banner2.png",
-        "../../../public/img/banner3.png",
-        "../../../public/img/banner4.png"
+        "/img/banner1.png",
+        "/img/banner2.png",
+        "/img/banner3.png",
+        "/img/banner4.png"
     ];
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
