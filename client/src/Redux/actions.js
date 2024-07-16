@@ -190,8 +190,8 @@ export const searchProductsByType = (tipo) => {
 };
 
 export const postUser = (user) => {
-  const endpoint = '/auth/register';
-  //const endpoint = 'http://localhost:3001/auth/register';
+  // const endpoint = '/auth/register';
+  const endpoint = 'http://localhost:3001/auth/register';
   return async function (dispatch) {
       try {
           const response = await axios.post(endpoint, user);

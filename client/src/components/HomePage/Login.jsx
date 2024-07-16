@@ -9,13 +9,7 @@ import { postLogin, loginWithGoogle } from "../../Redux/actions";
 import Swal from "sweetalert2";
 
 const Login = ({
-  carrito,
-  removeFromCarrito,
-  addToCarrito,
-  increaseQuantity,
-  decreaseQuantity,
-  clearCarrito,
-  onClose,
+  onClose
 }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({ email: "", password: "" });

@@ -48,15 +48,9 @@ html {
   --rojo: #c70039;
   --rojoOscuro: #581845;
   --colorFondo: #000814;
-<<<<<<< HEAD
   --degradado:linear-gradient(145deg, #003566, #cbf3f0)
 
   --imgfondo: url("/img/papelitos.png");
-=======
-  --degradado: linear-gradient(145deg, var(--celeste), var(--azul));
-  
-  --imgfondo: url("../img/papelitos.png");
->>>>>>> 00275d475f80a5a7df45a219c8c9c4dbb625ba6c
 }
 
 body {
