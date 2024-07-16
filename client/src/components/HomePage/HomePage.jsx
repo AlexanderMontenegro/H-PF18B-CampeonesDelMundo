@@ -57,7 +57,7 @@ const HomePage = ({
           notificaciones={notificaciones}
         />
         <HeroSection />
-        <Category />
+       {/* <Category />*/} 
       </div>
       <main>
         <div className="product__list">

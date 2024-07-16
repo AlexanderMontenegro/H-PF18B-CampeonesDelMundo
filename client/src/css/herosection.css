@@ -13,6 +13,7 @@
   border-radius: 50px;
   box-shadow: 7px 6px 50px 9px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--negro);
+  margin-bottom:30px ;
 }
 
 .hero__category {
