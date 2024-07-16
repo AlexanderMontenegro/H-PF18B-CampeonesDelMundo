@@ -24,74 +24,106 @@ const cleanArray = (arr) => {
   return clean;
 };
 
-//* Controlador para obtener todos los productos
-// const getProduct = async () => {
-//   try {
-//     const dataProductos = await Productos.findAll({
-//       include: [
-//         {
-//           model: Categoria,
-//           as: 'categorias', // Asegúrate de usar el alias correcto
-//           through: {
-//             attributes: [],
-//           },
-//         },
-//       ],
-//     });
 
-//     const productosBD = dataProductos.map(
-//       ({
-//         id,
-//         tipo,
-//         descripcion,
-//         precio,
-//         stock,
-//         imagen,
-//         marca,
-//         pais,
-//         talles,
-//         categorias, // Usa el alias correcto
-//       }) => {
-//         //* Verifica si 'categorias' está definido y mapea los nombres
-//         const categoria = categorias ? categorias.map((t) => t.nombre).join(", ") : "";
-//         return {
-//           id,
-//           tipo,
-//           descripcion,
-//           precio,
-//           stock,
-//           imagen,
-//           marca,
-//           pais,
-//           talles,
-//           categoria,
-//         };
-//       }
-//     );
-
-//     const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
-//     const apiProduct = cleanArray(apiProductRaw);
-
-//     return [...productosBD, ...apiProduct];
-//   } catch (error) {
-//     console.error("Error al obtener los productos:", error);
-//     throw error;
-//   }
-// };
-
-//* Función para convertir ID integer a UUID
 const convertirId = (idInteger) => {
   return uuidv4(); // Genera un nuevo UUID para el ID integer dado
 };
 
-//* Controlador para obtener todos los productos
+let productosGuardados = false;
+
 const getProduct = async () => {
   try {
+    if (productosGuardados) {
+      console.log("Los productos ya han sido guardados previamente. No se guardarán nuevamente.");
+      const dataProductos = await Productos.findAll({
+        include: [
+          {
+            model: Categoria,
+            as: 'categorias',
+            through: {
+              attributes: [],
+            },
+          },
+        ],
+      });
+
+      // Formatear los productos obtenidos de la base de datos
+      const productosBD = dataProductos.map(
+        ({
+          id,
+          tipo,
+          descripcion,
+          precio,
+          imagen,
+          marca,
+          pais,
+          talles,
+          categorias,
+        }) => {
+          const categoria = categorias ? categorias.map((t) => t.nombre).join(", ") : "";
+          return {
+            id,
+            tipo,
+            descripcion,
+            precio,
+            imagen,
+            marca,
+            pais,
+            talles,
+            categoria,
+          };
+        }
+      );
+
+      return productosBD;
+    }
+
+    // Obtener productos de la API local
+    const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
+    const apiProduct = cleanArray(apiProductRaw);
+
+    // Guardar los productos de la API en la base de datos si no existen
+    await Promise.all(apiProduct.map(async (product) => {
+      const idProducto = isNaN(product.id) ? product.id : convertirId(product.id);
+
+      // Verificar si el producto ya existe en la base de datos
+      const existingProduct = await Productos.findOne({ where: { id: idProducto } });
+
+      if (!existingProduct) {
+        // Crear el producto solo si no existe
+        const producto = await Productos.create({
+          id: idProducto,
+          tipo: product.tipo,
+          descripcion: product.descripcion,
+          precio: product.precio,
+          imagen: product.imagen,
+          marca: product.marca,
+          pais: product.pais,
+          talles: product.talles,
+        });
+
+        const categoriaNombres = product.categoria.split(", ").map(nombre => nombre.trim());
+
+        const categoriaRecords = await Categoria.findAll({
+          where: {
+            nombre: categoriaNombres
+          }
+        });
+
+        if (categoriaRecords.length > 0) {
+          await producto.addCategorias(categoriaRecords);
+        }
+      }
+    }));
+
+    productosGuardados = true; // Marcamos que los productos han sido guardados
+
+    // Obtener todos los productos de la base de datos, incluyendo sus categorías
     const dataProductos = await Productos.findAll({
       include: [
         {
           model: Categoria,
-          as: 'categorias', // Asegúrate de usar el alias correcto
+          as: 'categorias',
           through: {
             attributes: [],
           },
@@ -99,6 +131,7 @@ const getProduct = async () => {
       ],
     });
 
+    // Formatear los productos obtenidos de la base de datos
     const productosBD = dataProductos.map(
       ({
         id,
@@ -109,9 +142,8 @@ const getProduct = async () => {
         marca,
         pais,
         talles,
-        categorias, // Usa el alias correcto
+        categorias,
       }) => {
-        //* Verifica si 'categorias' está definido y mapea los nombres
         const categoria = categorias ? categorias.map((t) => t.nombre).join(", ") : "";
         return {
           id,
@@ -127,52 +159,13 @@ const getProduct = async () => {
       }
     );
 
-    // Obtener productos de la API local
-    const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
-    const apiProduct = cleanArray(apiProductRaw);
-
-    // Guardar los productos de la API en la base de datos si no existen
-    await Promise.all(apiProduct.map(async (product) => {
-      // Convierte el ID integer a UUID si es necesario
-      const idProducto = isNaN(product.id) ? product.id : convertirId(product.id);
-
-      const [producto, created] = await Productos.findOrCreate({
-        where: { id: idProducto },
-        defaults: {
-          tipo: product.tipo,
-          descripcion: product.descripcion,
-          precio: product.precio,
-          imagen: product.imagen,
-          marca: product.marca,
-          pais: product.pais,
-          talles: product.talles, // Asegúrate de que 'talles' esté definido correctamente
-        },
-        include: [{
-          model: Categoria,
-          as: 'categorias',
-        }],
-      });
-
-      if (created) {
-        const categoriaNombres = product.categoria.split(", ").map(nombre => nombre.trim());
-        const categoriaRecords = await Promise.all(
-          categoriaNombres.map(async (nombre) => {
-            const [categoriaRecord] = await Categoria.findOrCreate({
-              where: { nombre },
-            });
-            return categoriaRecord;
-          })
-        );
-        await producto.addCategorias(categoriaRecords);
-      }
-    }));
-
     return productosBD;
   } catch (error) {
     console.error("Error al obtener los productos:", error);
     throw error;
   }
 };
+
 
   //--------------------------------------------------------------
 
@@ -320,55 +313,8 @@ const deleteId = async (id) => {
     }
   };
 
-//--------------------------------------------------------------------------------------------------
-/*
-const createProduct = async (
-    tipo,
-    descripcion,
-    precio,
-    imagen,
-    marca,
-    pais,
-    talles,
-    categoria // Esta es una cadena de texto con los nombres de las categorías, separadas por comas
-  ) => {
-   
-  
-    // Encuentra o crea el producto en la base de datos
-    const [newProduct, created] = await Productos.findOrCreate({
-      where: {
-        tipo,
-        descripcion,
-        precio,
-        imagen,
-        marca,
-        pais,
-        talles,
-      },
-    });
-  
-    if (!created) {  //todo....para que valide si el producto existe.
-      throw new Error('El producto ya existe');
-    }
-  
-    // Separa los nombres de las categorías en un array
-    const categoriaNombres = categoria.split(", ");
-  
-    // Encuentra los registros de categorías en la base de datos
-    const categoriaRecords = await Categoria.findAll({
-      where: {
-        nombre: categoriaNombres,
-      },
-    });
-  
-   
-  
-    // Asocia las categorías al producto
-    await newProduct.addCategoria(categoriaRecords);
-  
-    return newProduct;
-  };
- */ 
+
+
 
 module.exports = {
   getProduct,
