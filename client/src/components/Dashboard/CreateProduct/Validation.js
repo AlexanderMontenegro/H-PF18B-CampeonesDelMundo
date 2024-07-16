@@ -1,30 +1,30 @@
 import { useState } from "react";
 
 export default function validation(inputs){
-    const errorsO = {};
+    const errors = {};
     const regexLetras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/i;
     const regex3 = /.{3,}/;
     //validacion tipo
     if (!regexLetras.test(inputs.tipo)) {
-        errorsO.tipo = 'Debe ser un tipo'
+        errors.tipo = 'Debe ser un tipo'
     }
     if (!inputs.tipo) {
-        errorsO.tipo = 'El tipo no puede estar vacio'}
+        errors.tipo = 'El tipo no puede estar vacio'}
     if (!regex3.test(inputs.tipo)) {
-        errorsO.tipo = 'Debe tener mas de 3 caracteres'}
+        errors.tipo = 'Debe tener mas de 3 caracteres'}
 
     //validacion marca
     if (!regexLetras.test(inputs.marca)) {
-        errorsO.marca = 'Debe ser una marca'
+        errors.marca = 'Debe ser una marca'
     }
     if (!inputs.marca) {
-        errorsO.marca = 'marca no puede estar vacio'}
+        errors.marca = 'marca no puede estar vacio'}
     if (!regex3.test(inputs.marca)) {
-        errorsO.marca = 'Debe tener mas de 3 caracteres'}
+        errors.marca = 'Debe tener mas de 3 caracteres'}
 
     //validacion imagen con cloudinary
     if(inputs.imagen==='')
-        {errorsO.imagen='Subi una imagen o pega Url de Imagen'}
+        {errors.imagen='Subi una imagen o pega Url de Imagen'}
 
     //validacion imagen
 //     const regexImg = /^data:image\/(png|jpeg|jpg);base64,/;
@@ -96,36 +96,41 @@ if(imageUrlRegex.test(inputs.imagen)){ */
 
     //validation descripcion
     if(inputs.descripcion === '')
-    {errorsO.descripcion = 'Añade descripcion';}
+    {errors.descripcion = 'Añade descripcion';}
 
      //validation pais
      if(inputs.pais === '')
-     {errorsO.pais = 'Selecciona Pais';}
+     {errors.pais = 'Selecciona Pais';}
 
     //validation precio
     const regexPrecio = /^\d+(\.\d+)?$/;
     if(!regexPrecio.test(inputs.precio))
-    {errorsO.precio = 'Precio no valido tiene que ser un numero';}
+    {errors.precio = 'Precio no valido tiene que ser un numero';}
     const num = Number(inputs.precio);
     if(!isNaN(num) && num <= 0)
-        {errorsO.precio = 'Precio no valido tiene que ser mayor a 0';}
+        {errors.precio = 'Precio no valido tiene que ser mayor a 0';}
 
-    //validation stock
-    const regexStock =/^[1-9]\d*$/;///^-?\d+$/;
-    if(!regexStock.test(inputs.stock))
-    {errorsO.stock = 'Stock no Valido tiene que ser un numero entero';}
-    const numInt = parseInt(inputs.stock, 10);
-    if(numInt <0)
-        {errorsO.precio = 'Stock no valido tiene que ser un numero entero mayor a 0';}
 
     //validation talles
-    const regexTalle =/^[a-zA-Z0-9]+(, ?[a-zA-Z0-9]+)*$/;
-    if(!regexTalle.test(inputs.talles))
-    {errorsO.talles = 'Talles no Validos Formato xxxx, xxxx';}
+
+    inputs.talles
+    for(let i=0;i<inputs.talles.length;i++)
+    {
+        if(inputs.talles[i].stock===''||!Number(inputs.talles[i].stock) ||inputs.talles[i].stock<0)
+        {errors.talles='Escribi stock mayor a 0'}
+
+        if(inputs.talles[i].talle==='')
+        {errors.talles='Escribi talle'}
+
+    }
+
+    //const regexTalle =/^[a-zA-Z0-9]+(, ?[a-zA-Z0-9]+)*$/;
+/*     if(!regexTalle.test(inputs.talles))
+    {errors.talles = 'Talles no Validos Formato xxxx, xxxx';}  */
 
         //validation categoria
         if(inputs.categoria === '')
-        {errorsO.categoria = 'Selecciona una o mas categorias';}
+        {errors.categoria = 'Selecciona una o mas categorias';}
 
-return errorsO;
+return errors;
 }

@@ -47,20 +47,21 @@ const Header = ({
   // const modalLogin = () => {
   //   setIsModalOpen(true);
   // }
-
-  if (!user) {
-    return (
-      <header className="header__homePage">
-        <div className="barra__container">
-          {/* Lado Izquierdo - logo */}
-          <div className="barra__left">
-            {/* Logo */}
-            <Link to={"/homePage"}>
-              <h4 className="logo_nombre no-margin"></h4>
-              <img
-                className="logo_img"
-                src="img/fondo-logo-futbol_1195-244.png"
-              />
+  if(!user)
+  {
+  return (
+    <header className="header__homePage">
+      <div className="barra__container">
+        {/* Lado Izquierdo - logo */}
+        <div className="barra__left">
+          {/* Logo */}
+          <Link to={"/homePage"}>
+             
+          <h4 className="logo_nombre no-margin"></h4>
+          <img
+            className="logo_img"
+            src="../img/fondo-logo-futbol_1195-244.png"
+            />
             </Link>
           </div>
 
@@ -90,7 +91,7 @@ const Header = ({
               <Link className="logo" to={"/Orden"}>
                 <img
                   className="icono__fluid"
-                  src="iconos/carrito2a.png"
+                  src="/iconos/carrito2a.png"
                   alt="imagen carrito"
                 />
               </Link>
@@ -188,7 +189,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="iconos/usuario2a.png"
+                src="../iconos/usuario2a.png"
                 alt="imagen carrito"
               />
 
@@ -202,39 +203,48 @@ const Header = ({
                     </button>
                   </div>
 
-                  {user && (
-                    <div className="icon__usuario">
-                      <button onClick={closeSession} className="icon__button">
-                        Cerrar Session
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {isModalOpen && (
-                  <Modal>
-                    <Login onClose={() => setIsModalOpen(false)} />
-                  </Modal>
+            
+                {user && (
+                  <div className="icon__usuario">
+                    <button onClick={closeSession} className="icon__button">
+                      Cerrar Session
+                    </button>
+                  </div>
                 )}
               </div>
+
+              {isModalOpen && (
+                    <Modal>
+                      <Login onClose={() => setIsModalOpen(false)} />
+                    </Modal>
+                  )}
             </div>
           </div>
         </div>
-      </header>
-    );
-  } else {
-    return (
-      <header className="header__homePage">
-        <div className="barra__container">
-          {/* Lado Izquierdo - logo */}
-          <div className="barra__left">
-            {/* Logo */}
-            <Link to={"/homePage"}>
-              <h4 className="logo_nombre no-margin"></h4>
-              <img
-                className="logo_img"
-                src="img/fondo-logo-futbol_1195-244.png"
-              />
+      </div>
+
+      {/*  <div className="header_titulo ">
+                            
+                            <h2 className="no-margin">Todos los Mundiales de la historia:</h2>
+
+                            <p className="no-margin">Campeones, sedes y mejores jugadores</p>
+                        </div>*/}
+    </header>
+  );
+}else{
+  return (
+    <header className="header__homePage">
+      <div className="barra__container">
+        {/* Lado Izquierdo - logo */}
+        <div className="barra__left">
+          {/* Logo */}
+          <Link to={"/homePage"}>
+             
+          <h4 className="logo_nombre no-margin"></h4>
+          <img
+            className="logo_img"
+            src="../img/fondo-logo-futbol_1195-244.png"
+            />
             </Link>
           </div>
 
@@ -258,7 +268,7 @@ const Header = ({
               <Link className="logo" to={"/Orden"}>
                 <img
                   className="icono__fluid"
-                  src="/iconos/carrito2a.png"
+                  src="../iconos/carrito2a.png"
                   alt="imagen carrito"
                 />
               </Link>
@@ -355,7 +365,7 @@ const Header = ({
             <div className="usuario">
               <img
                 className="icono__fluid"
-                src="/iconos/usuario2a.png"
+                src="../iconos/usuario2a.png"
                 alt="Usuario"
               />
 

@@ -72,5 +72,42 @@
       margin-top: 13rem;
     }
   }
+
+
+
+  .open-chat-button {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 40px;
+    width: 60px;
+    background: var(--azulOscuro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-family: Consolas, Courier New, monospace;
+    font-size: 16px;
+    color: #000000;
+    border: solid #404c5d 1px;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: -1px -5px 15px #41465b, 5px 5px 15px #1f2431;
+    z-index: 1;
+  }
+  
+  .open-chat-button:hover {
+    transform: scale(1.9);
+    background: var(--azulOscuro); 
+    color: var(--blanco); 
+  }
+  
   
 
+  .open-chat-button img{
+
+    max-width:90%;
+  }
+
+  

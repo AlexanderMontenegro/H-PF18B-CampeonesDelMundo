@@ -1,0 +1,19 @@
+.carousel-container {
+  width: 95%; 
+  max-width: 1000vw;
+  margin: 0 auto;
+  overflow: hidden; 
+  position: relative;
+  max-height: 50vh;
+}
+
+.carousel-container img {
+  width: 90%; 
+  height: 20%;
+  object-fit: cover;
+  display: block; 
+  margin: 0 auto; 
+  transition: transform 0.5s ease;
+  max-height: 50vh;
+}
+

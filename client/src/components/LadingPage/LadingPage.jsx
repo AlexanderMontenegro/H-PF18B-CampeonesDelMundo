@@ -18,7 +18,7 @@ const LandingPage = () => {
             </div>
             <div className="landing-content">
               
-                <button className="enter-button" onClick={handleEnterToHomePage}><img src="img/fondo-logo-futbol_1195-244.png" alt="" /></button>
+                <button className="enter-button" onClick={handleEnterToHomePage}><img src="../img/fondo-logo-futbol_1195-244.png" alt="" /></button>
             </div>
         </div>
     );

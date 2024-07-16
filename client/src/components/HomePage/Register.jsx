@@ -10,82 +10,58 @@ import { postUser } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
-// User inicial
-const initialUser = {
-  email: "",
-  password: "",
-  name: "",
-  confirmPassword: "",
-  address: "",
-  cellphone: "",
-};
+const Register = ({onClose}) => {
 
-const Register = ({ onClose }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const dispatch = useDispatch();
+const navigate = useNavigate();
+  const [user, setUser] = useState({
+    email:'',
+    password:'',
+    name:'',
+    confirmPassword:'',
+    address:'',
+    cellphone:''  
+  });
+  const [errors, setErrors] = useState({email:'Escribi tu Email'});
 
+// Manejador del estado principal
+function handleChange(event) {      
+event.preventDefault();
+
+
+
+setErrors(validation({...user,[event.target.name] : event.target.value}));
+setUser({...user,[event.target.name]:event.target.value})
+}
+
+//submit
+const handleSubmit= async (event)=>{
+  event.preventDefault();
+  const response = await dispatch(postUser(user));
   
-  // Use State
-  const [user, setUser] = useState(initialUser);
-  const [errors, setErrors] = useState({ email: "Escribi tu Email" });
+  if(response.payload.userRecord)
+      {
+     Swal.fire({
+      icon: "success",
+      title: response.payload.message,
+      text: "",
+      timer: 3000
+    }).then(() => {
+      // Redirigir después de que la alerta se cierre
+      navigate("/"); // Cambia la URL al destino 
+      window.location.reload();
+    });         
+      }else{
+          Swal.fire({
+              icon: "error",
+              title: response.payload.message,
+              text: "",
+              timer: 3000
+            })   
+      }
 
-  // Destructuring
-  const { email, password, name, confirmPassword, address, cellphone } = user;
-
-  // FUNCIONES
-  const onInputChange = ({ target }) => {
-    const { name, value } = target;
-    setUser({
-      ...user,
-      [name]: value,
-    })
-  }
-
-  const onSubmit = (event) => {
-    event.preventDefault()
-
-    // Guardar el user en el listado de usuarios
-
-    // Limpiar los campos
-    setUser(initialUser);
-
-  }
-
-  // Manejador del estado principal
-  function handleChange(event) {
-    event.preventDefault();
-
-    setErrors(validation({ ...user, [event.target.name]: event.target.value }));
-    setUser({ ...user, [event.target.name]: event.target.value });
-  }
-
-  //submit
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const response = await dispatch(postUser(user));
-
-    if (response.payload.userRecord) {
-      Swal.fire({
-        icon: "success",
-        title: response.payload.message,
-        text: "",
-        timer: 3000,
-      }).then(() => {
-        // Redirigir después de que la alerta se cierre
-        navigate("/#"); // Cambia la URL al destino
-        window.location.reload();
-        setUser(initialUser);
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: response.payload.message,
-        text: "",
-        timer: 3000,
-      });
-    }
-  };
-
+};
+  
   return (
     <>
       {/* <Header
