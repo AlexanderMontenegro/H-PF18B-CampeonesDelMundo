@@ -6,6 +6,7 @@ const authRouter = require('./authRouter');
 const imageRouter = require('./imageRoutes');
 const emailRouter = require('./emailRoutes');
 const favoriteRoutes = require('./favoriteRoutes')
+const paymentRoutes = require('./paymentRoutes')
 //const fireRouter = require("./fireBase");
 
 router.use('/productos', productRouter);
@@ -14,6 +15,7 @@ router.use('/auth', authRouter);
 router.use('/images', imageRouter);
 router.use('/emails', emailRouter);
 router.use('/favorites', favoriteRoutes);
+router.use('/api/payments', paymentRoutes);
 //router.use('/fire', fireRouter);
 
 module.exports = router;
