@@ -40,6 +40,11 @@ function ChampionsApp() {
   const dispatch = useDispatch();
   const stateProducts = useSelector((state) => state.allProducts);
 
+  // PARA PRODUCTOS
+  // State y Effect
+  const productos = useSelector((state) => state.allProducts);
+  // console.log("Productos 2: ", productos[1]);
+
   // PARA NOTIFICACIONES
   // State y Effect
   const [notificaciones, setNotificaciones] = useState([]);
@@ -64,6 +69,7 @@ function ChampionsApp() {
   }, []);
 
 
+
   // PARA CARRITO
   // Local Storage
   const initialCarrito = () => {
@@ -73,10 +79,12 @@ function ChampionsApp() {
   };
 
   // UseState
-  const [productos, setProductos] = useState(stateProducts);
+  // const [productos, setProductos] = useState(stateProducts);
   const [carrito, setCarrito] = useState(initialCarrito);
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 0;
+
+  // console.log("Los productos son: ", productos)
 
   // UseEffect
   useEffect(() => {
@@ -85,11 +93,14 @@ function ChampionsApp() {
 
   // FUNCIONES
   const addToCarrito = (item) => {
+    console.log("Addtocarrito ", item.talles[1])
+
     const itemExist = carrito.findIndex((producto) => producto.id === item.id);
 
     if (itemExist >= 0) {
       // el item ya existe
       const updateCarrito = [...carrito];
+      // const updateTalle = 
       updateCarrito[itemExist].quantity++;
       setCarrito(updateCarrito);
     } else {
