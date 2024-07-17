@@ -2,7 +2,7 @@ import React from "react";
 //CSS
 import "../../css/footer.css";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-column">

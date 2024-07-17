@@ -1,15 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const Notificacion = ({tipo_notificacion, mensaje, timestamp}) => {
-
-    console.log(tipo_notificacion)
+const Notificacion = ({ notificacion }) => {
+  console.log(notificacion);
   return (
-    <div className=''>
-        <p>{mensaje}</p>
-
-        <p>{timestamp}</p>
+    <div className="">
+      <p>{notificacion}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Notificacion
+export default Notificacion;

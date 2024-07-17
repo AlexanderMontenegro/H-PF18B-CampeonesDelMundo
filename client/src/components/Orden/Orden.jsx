@@ -16,15 +16,24 @@ const Orden = ({
     increaseQuantity,
     decreaseQuantity,
     clearCarrito,
-    notificaciones
+    notificaciones,
+    addToNotificaciones,
+    addToCompras
   }) => {
 
     // Carrito 
-    console.log(carrito);
+    // console.log(carrito);
 
-    console.log(notificaciones)
+    // console.log(notificaciones)
 
     // Funciones
+    const notificacionCompra = (carrito, carritoTotal) => {
+        
+        // console.log(carrito[1])
+        const items = carrito.map(item => item.quantity + " " + item.tipo).join(", ");
+
+        addToNotificaciones(`FELICIDADES por su compra en: ${items}. Con un importe de: ${carritoTotal}`)
+    }
     const isEmpty = () => carrito.length === 0;
 
     const carritoTotal = () =>
@@ -141,7 +150,7 @@ const Orden = ({
                             </p>
                     </div>
 
-                        <button className='btn__or'>Comprar</button>
+                        <button className='btn__or' onClick={() => {addToCompras(carrito, carritoTotal()), notificacionCompra(carrito, carritoTotal()), clearCarrito()}}>Comprar</button>
 
                         <h3></h3>
                     </div>
