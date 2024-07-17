@@ -40,28 +40,51 @@ function ChampionsApp() {
   const dispatch = useDispatch();
   const stateProducts = useSelector((state) => state.allProducts);
 
+  // PARA PRODUCTOS
+  // State y Effect
+  const productos = useSelector((state) => state.allProducts);
+  // console.log("Productos 2: ", productos[1]);
+
+  
+
+
+
+    // console.log("PAGO: ", pago)
+
+    // const itemExist = carrito.findIndex((producto) => producto.id === item.id);
+
+    // if (itemExist >= 0) {
+    //   // el item ya existe
+    //   const updateCarrito = [...carrito];
+    //   // const updateTalle = 
+    //   updateCarrito[itemExist].quantity++;
+    //   setCarrito(updateCarrito);
+    // } else {
+    //   item.quantity = 1;
+    //   setCarrito([...carrito, item]);
+    // }
+  
+
   // PARA NOTIFICACIONES
   // State y Effect
   const [notificaciones, setNotificaciones] = useState([]);
 
-  useEffect(() => {
-    const comentarios = [
-      {
-        id: 1, 
-        tipo_notificacion: 'compra', 
-        mensaje: 'Has realizado una compra exitosa.',
-        timestamp: Date.now() - 60000
-      },
-      {
-        id: 1, 
-        tipo_notificacion: 'respuesta', 
-        mensaje: 'Alguien ha respondido a tu comentario.',
-        timestamp: Date.now() - 120000
-      }
-    ];
+  // Funciones
+  const addToNotificaciones = (mensaje) => {
+    const now = new Date();
+    const fecha = now.toLocaleDateString();
+    const hora = now.toLocaleTimeString();
+   
+    // Nueva notificacion
+    const nuevaNotificacion = mensaje + ". A las " + hora + ". Con fecha " + fecha 
+   
+    console.log(nuevaNotificacion)
 
-    setNotificaciones(comentarios);
-  }, []);
+    // Registrar la nueva compra
+    setNotificaciones([...notificaciones, nuevaNotificacion])   
+    
+  }
+
 
 
   // PARA CARRITO
@@ -73,10 +96,12 @@ function ChampionsApp() {
   };
 
   // UseState
-  const [productos, setProductos] = useState(stateProducts);
+  // const [productos, setProductos] = useState(stateProducts);
   const [carrito, setCarrito] = useState(initialCarrito);
   const MAX_ITEMS = 5;
   const MIN_ITEMS = 0;
+
+  // console.log("Los productos son: ", productos)
 
   // UseEffect
   useEffect(() => {
@@ -85,11 +110,14 @@ function ChampionsApp() {
 
   // FUNCIONES
   const addToCarrito = (item) => {
+    console.log("Addtocarrito ", item.talles[1])
+
     const itemExist = carrito.findIndex((producto) => producto.id === item.id);
 
     if (itemExist >= 0) {
       // el item ya existe
       const updateCarrito = [...carrito];
+      // const updateTalle = 
       updateCarrito[itemExist].quantity++;
       setCarrito(updateCarrito);
     } else {
@@ -127,6 +155,30 @@ function ChampionsApp() {
   const clearCarrito = () => {
     setCarrito([]);
   };
+
+  // PARA COMPRAS
+  const [compras, setCompras] = useState([]);
+
+  // funciones - COMPRAS
+  const addToCompras = (productos, pago) => {
+    // const currentTimestamp = new Date().toLocaleString();
+    const now = new Date();
+    const fecha = now.toLocaleDateString();
+    const hora = now.toLocaleTimeString();
+    
+    // Nueva compra
+    const nuevaCompra = {
+      productos,
+      pago,
+      fecha, 
+      hora
+    }
+   
+    // Registrar la nueva compra
+    setCompras([...compras, nuevaCompra])    
+  }
+
+
 
   // Navigate y Location
   const navigate = useNavigate();
@@ -220,6 +272,8 @@ function ChampionsApp() {
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
                 notificaciones={notificaciones}
+                addToNotificaciones={addToNotificaciones}
+                addToCompras={addToCompras}
               />
             </>
           }
