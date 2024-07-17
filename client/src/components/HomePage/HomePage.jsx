@@ -22,10 +22,12 @@ const HomePage = ({
   increaseQuantity,
   decreaseQuantity,
   clearCarrito,
-  notificaciones
+  notificaciones,
+  productos
 }) => {
-  const productos = useSelector((state) => state.allProducts);
-  console.log("Productos", productos);
+  // const productos = useSelector((state) => state.allProducts);
+  // console.log("Productos", productos);
+
 
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [username, setUsername] = useState("Usuario");

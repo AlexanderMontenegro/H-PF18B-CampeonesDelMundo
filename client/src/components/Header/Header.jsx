@@ -112,6 +112,7 @@ const Header = ({
                             <th>Tipo</th>
                             <th>Marca</th>
                             <th>Precio</th>
+                            <th>Talles</th>
                             <th>Cantidad</th>
                             <th></th>
                           </tr>
@@ -135,6 +136,8 @@ const Header = ({
                               <td className="cabecera__texto">
                                 ${producto.precio}
                               </td>
+                              <td>{}</td>
+                              {console.log("TALLES EN HEADER: ", producto.talles[1])}
                               <td>
                                 <div className="cabecera__buttons cabecera__texto">
                                   <button
@@ -201,8 +204,8 @@ const Header = ({
               <div id="notificaciones" className="carrito__container">
                 <div className="notificationes__lista">
                   {notificaciones.length > 0 ? (
-                    notificaciones.map((notification) => (
-                      <Notificacion key={notificaciones.id} {...notification} />
+                    notificaciones.map((notificacion, index) => (
+                      <Notificacion key={index} notificacion={notificacion} />
                     ))
                   ) : (
                     <p>No hay notificaciones.</p>
@@ -318,6 +321,7 @@ const Header = ({
                             <th>Tipo</th>
                             <th>Marca</th>
                             <th>Precio</th>
+                            <th>Talles</th>
                             <th>Cantidad</th>
                             <th></th>
                           </tr>
@@ -341,6 +345,7 @@ const Header = ({
                               <td className="cabecera__texto">
                                 ${producto.precio}
                               </td>
+                              <td className="cabecera__texto">{producto.talles.talle}</td>
                               <td>
                                 <div className="cabecera__buttons cabecera__texto">
                                   <button
