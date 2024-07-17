@@ -1,3 +1,4 @@
+
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 
 // Configura el cliente de MercadoPago
@@ -18,13 +19,6 @@ const createPreference = async (req, res) => {
             unit_price: 2000
           }
         ],
-        back_urls: {
-          success: 'http://www.tu-sitio.com/success',
-          failure: 'http://www.tu-sitio.com/failure',
-          pending: 'http://www.tu-sitio.com/pending',
-        },
-        notification_url: 'http://www.tu-sitio.com/notifications',
-
       }
     });
 
