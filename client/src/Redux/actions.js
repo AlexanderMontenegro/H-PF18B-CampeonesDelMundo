@@ -26,6 +26,23 @@ export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT = "LOGOUT";
+export const SET_PREFERENCE_ID = 'SET_PREFERENCE_ID';
+
+
+export const fetchPreferenceId = (carrito) => async dispatch => {
+  try {
+    // Aquí hacemos la solicitud a nuestro backend para obtener el preferenceId
+    const response = await axios.post('/api/payments/create-preference', { items: carrito });
+    const { id } = response.data;
+
+    dispatch({
+      type: SET_PREFERENCE_ID,
+      payload: id,
+    });
+  } catch (error) {
+    console.error('Error fetching preference ID:', error);
+  }
+};
 
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
