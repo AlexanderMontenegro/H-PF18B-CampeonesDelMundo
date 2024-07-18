@@ -1,33 +1,40 @@
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 
+// Configura el cliente de MercadoPago
+const client = new MercadoPagoConfig({ accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN });
+
+// Crea una preferencia
 const createPreference = async (req, res) => {
-  //const { items } = req.body;
-
-  //console.log("creando referencia:", items);
-
-  const client = new MercadoPagoConfig({ accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN });
+  const { items } = req.body; // Recibir los artículos desde la solicitud
   const preference = new Preference(client);
-  console.log("aca estoy");
+
   try {
     const response = await preference.create({
       body: {
+        items: items.map(item => ({
+          id: item.id,
+          category_id: item.tipo,
+          description: item.descripcion,
+          title: item.title,
+          quantity: item.quantity,
+          unit_price: Number(item.precio)
+        }
       
-        items: [
-          {
-            title: req.body.title,
-            quantity: req.body.quantity,
-            unit_price: req.body.unit_price
-          }
-        ],
-      }
-    })
-    console.log("Preference created successfully:", response.items);
-    //console.log("Preference created successfully2:", (response));
+      )
+    
+    ),
+    back_urls: {
+      success: 'https://www.success.com',
+      failure: 'https://www.failure.com',
+      pending: 'https://www.pending.com'
+    },
+    auto_return: 'approved',  }
+    });
 
-    res.status(200).send(response.items);
+    console.log("Preference created successfully:", response);
+    res.status(200).send(response.body); // Enviar solo el cuerpo de la respuesta
   } catch (error) {
     console.error("Error creating preference:", error.message);
-    console.error("Error creating preference:", error);
     res.status(500).send({ error: error.message });
   }
 };
@@ -35,26 +42,3 @@ const createPreference = async (req, res) => {
 module.exports = {
   createPreference,
 };
-
-/*
-import { MercadoPagoConfig, Preference } from 'mercadopago';
-
-        const client = new MercadoPagoConfig({ accessToken: 'YOUR_ACCESS_TOKEN' });
-
-        const preference = new Preference(client);
-
-        preference.create({
-          body: {
-            false,
-            items: [
-              {
-                title: 'My product',
-                quantity: 1,
-                unit_price: 2000
-              }
-            ],
-          }
-        })
-        .then(console.log)
-        .catch(console.log);
-        */
