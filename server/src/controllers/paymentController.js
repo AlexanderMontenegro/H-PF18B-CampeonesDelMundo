@@ -12,11 +12,23 @@ const createPreference = async (req, res) => {
     const response = await preference.create({
       body: {
         items: items.map(item => ({
+          id: item.id,
+          category_id: item.tipo,
+          description: item.descripcion,
           title: item.title,
           quantity: item.quantity,
-          unit_price: item.precio,
-        })),
-      }
+          unit_price: Number(item.precio)
+        }
+      
+      )
+    
+    ),
+    back_urls: {
+      success: 'https://www.success.com',
+      failure: 'https://www.failure.com',
+      pending: 'https://www.pending.com'
+    },
+    auto_return: 'approved',  }
     });
 
     console.log("Preference created successfully:", response);
