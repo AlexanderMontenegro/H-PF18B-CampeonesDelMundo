@@ -17,7 +17,9 @@ import {
   LOGOUT,
   POST_USER,
   POST_LOGIN,
-  SET_PREFERENCE_ID
+  SET_PREFERENCE_ID,
+  ADD_TO_FAVORITES, 
+  REMOVE_FROM_FAVORITES
 } from "./actions";
 
 // state inicial
@@ -32,6 +34,7 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
+  favorites: [],
   filters: {
     producto: "none",
     categoria: "none",
@@ -168,6 +171,17 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: payload.user || null,
         error: payload.error || null,
+      };
+
+      case ADD_TO_FAVORITES:
+      return {
+        ...state,
+        favorites: [...state.favorites, payload],
+      };
+    case REMOVE_FROM_FAVORITES:
+      return {
+        ...state,
+        favorites: state.favorites.filter((product) => product.id !== payload),
       };
     default:
       return state;

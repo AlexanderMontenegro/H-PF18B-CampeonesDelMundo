@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mercadopago/sdk-js": "^0.0.3",
     "@mercadopago/sdk-react": "^0.0.19",
+    "@reduxjs/toolkit": "^2.2.6",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "firebase": "^10.12.3",
