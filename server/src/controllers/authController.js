@@ -7,19 +7,19 @@ const client = new OAuth2Client("backcampeones");
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
-// Registro de usuario
+
 exports.register = async (req, res) => {
   try {
     const { name, email, password, role, address, cellphone } = req.body;
 
-    // Crear usuario en Firebase Auth
+    
     const userRecord = await firebaseAdmin.auth().createUser({
       email: email,
       password: password,
       displayName: name,
     });
 
-    // Guardar información adicional en Firestore
+    
     await db.collection('users').doc(userRecord.uid).set({
       name: name,
       email: email,
@@ -30,7 +30,7 @@ exports.register = async (req, res) => {
       createdAt: firebaseAdmin.firestore.FieldValue.serverTimestamp()
     });
 
-    // Crear usuario en la base de datos local
+  
     const hashedPassword = bcrypt.hashSync(password, 8);
     await User.create({
       name,
@@ -47,27 +47,27 @@ exports.register = async (req, res) => {
   }
 };
 
-// Inicio de sesión de usuario
+
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Autenticar usuario con Firebase
+    
     const userRecord = await firebaseAdmin.auth().getUserByEmail(email);
     if (!userRecord) {
       return res.status(404).send({ message: 'User not found.' });
     }
 
-    // Comparar contraseña con la base de datos local
+    
     const userDB = await User.findOne({ where: { email } });
     const passwordIsValid = bcrypt.compareSync(password, userDB.password);
     if (!passwordIsValid) {
       return res.status(401).send({ auth: false, token: null, message: 'Error Password' });
     }
 
-    // Generar token JWTn
+    
     const token = jwt.sign({ id: userDB.id }, SECRET_KEY, {
-      expiresIn: 86400 // 24 horas
+      expiresIn: 86400 // 24hs
     });
 
     const { id, name, role, address, cellphone } = userDB;
