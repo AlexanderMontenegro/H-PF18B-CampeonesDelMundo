@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { fetchPreferenceId } from '../../Redux/actions';
 import '../../css/orden.css';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 
 const Orden = ({
@@ -20,9 +21,12 @@ const Orden = ({
     const dispatch = useDispatch();
     const preferenceId = useSelector(state => state.preferenceId);
 
+
+    initMercadoPago('TEST-47cfae01-dcd5-47bc-a339-398552b0fe70');
+
     useEffect(() => {
         if (preferenceId) {
-            const mp = new window.MercadoPago('TEST-47cfae01-dcd5-47bc-a339-398552b0fe70', {
+            const mp = new window.MercadoPago('', {
                 locale: 'es-AR',
             });
 
@@ -143,9 +147,13 @@ const Orden = ({
                                 <span className="btn__or_2">${carritoTotal()}</span>
                             </p>
                         </div>
+
+                        <div id="wallet_container">
+
                         <button className='btn__or' onClick={handleComprar}>
                             Comprar
                         </button>
+                        </div>
                         
                         <h3></h3>
                     </div>
