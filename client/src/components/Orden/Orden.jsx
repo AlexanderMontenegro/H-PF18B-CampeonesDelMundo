@@ -5,9 +5,6 @@ import Footer from '../Footer/Footer';
 import { fetchPreferenceId } from '../../Redux/actions';
 import '../../css/orden.css';
 
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-initMercadoPago('TEST-47cfae01-dcd5-47bc-a339-398552b0fe70');
-
 
 const Orden = ({
     carrito,
@@ -52,7 +49,7 @@ const Orden = ({
         addToCompras(carrito, carritoTotal());
         notificacionCompra(carrito, carritoTotal());
         dispatch(fetchPreferenceId(carrito));
-       /* clearCarrito();*/
+        /*clearCarrito();*/
     };
 
     return (
@@ -146,12 +143,10 @@ const Orden = ({
                                 <span className="btn__or_2">${carritoTotal()}</span>
                             </p>
                         </div>
-                        <div id="wallet_container">
-
                         <button className='btn__or' onClick={handleComprar}>
                             Comprar
                         </button>
-                        </div>
+                        
                         <h3></h3>
                     </div>
                 </div>
