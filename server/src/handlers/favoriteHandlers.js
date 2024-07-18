@@ -4,7 +4,7 @@ const handleAddFavorite = async (req, res) => {
   try {
     await addFavorite(req, res);
   } catch (error) {
-    console.error('Error in handleAddFavorite:', error); // Loggea el error para mayor visibilidad
+    console.error('Error in handleAddFavorite:', error);
     res.status(500).json({ message: 'Error creating favorite', error: error.message });
   }
 };
