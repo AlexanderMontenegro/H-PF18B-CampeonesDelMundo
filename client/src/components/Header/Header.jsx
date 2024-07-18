@@ -11,7 +11,7 @@ import "../../css/header.css";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Notificacion from "../Notificaciones/Notificacion";
-import Favorite from "../Favorite/Favorite";
+import Favorite from  "../Favorite/Favorite"
 
 const Header = ({
   carrito,
