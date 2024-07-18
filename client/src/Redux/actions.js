@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { auth, googleProvider, signInWithPopup } from"../../fireBaseConfig";
+import { auth, facebookProvider, githubProvider, googleProvider, signInWithPopup } from"../../fireBaseConfig";
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_CATEGORY = "GET_CATEGORY";
@@ -297,19 +297,7 @@ export const postImageRemota = (imageUrl) => {
   }
 };
 
-/* export const loginWithGoogle = () => async (dispatch) => {
-  dispatch({ type: LOGIN_REQUEST });
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    const user = result.user;
-    console.log("Google sign-in result:", result);  
-    dispatch({ type: LOGIN_SUCCESS, payload: user });
-  } catch (error) {
-    console.error("Google sign-in error:", error);  
-    dispatch({ type: LOGIN_FAILURE, error });
-  }
-}; */
-// Acción para cerrar sesión
+
 export const logout = () => async (dispatch) => {
   await auth.signOut();
   dispatch({ type: LOGOUT });
@@ -321,6 +309,43 @@ export const loginWithGoogle = () => {
   return async function (dispatch) {
       try {
         const response = await signInWithPopup(auth, googleProvider);
+        
+          return dispatch({
+              type: LOGIN_SUCCESS,
+              payload: response
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:LOGIN_FAILURE,
+              payload: error.response ? error.response.data : { message: error.message }
+      });
+      }
+  };
+};
+export const loginWithFacebook = () => {
+
+  return async function (dispatch) {
+      try {
+        const response = await signInWithPopup(auth, facebookProvider);
+        
+          return dispatch({
+              type: LOGIN_SUCCESS,
+              payload: response
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:LOGIN_FAILURE,
+              payload: error.response ? error.response.data : { message: error.message }
+      });
+      }
+  };
+};export const loginWithGithub = () => {
+
+  return async function (dispatch) {
+      try {
+        const response = await signInWithPopup(auth, githubProvider);
         
           return dispatch({
               type: LOGIN_SUCCESS,
