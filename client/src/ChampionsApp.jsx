@@ -25,6 +25,9 @@ import Register from "./components/HomePage/Register";
 import Nosotros from "./components/Nosotros/Nosotros";
 import Notificaciones from "./components/Notificaciones/Notificaciones";
 
+
+import Favorite from "../../client/src/components/Favorite/Favorite"
+
 // Import Data (db)
 // import { data } from './db/db';
 
@@ -371,6 +374,9 @@ function ChampionsApp() {
         <Route path="/contacto" element={<Nosotros />}></Route>
 
         <Route path="/privacidad" element={<Privacy />} />
+
+        <Route path="/favorite" element={<Favorite/>} />
+
       </Routes>
     </>
   );

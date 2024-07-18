@@ -19,7 +19,8 @@ import {
   POST_LOGIN,
   SET_PREFERENCE_ID,
   ADD_TO_FAVORITES, 
-  REMOVE_FROM_FAVORITES
+  REMOVE_FROM_FAVORITES,
+  SET_FAVORITES,
 } from "./actions";
 
 // state inicial
@@ -176,12 +177,17 @@ const rootReducer = (state = initialState, action) => {
       case ADD_TO_FAVORITES:
       return {
         ...state,
-        favorites: [...state.favorites, payload],
+        favorites: [...state.favorites, action.payload],
       };
     case REMOVE_FROM_FAVORITES:
       return {
         ...state,
-        favorites: state.favorites.filter((product) => product.id !== payload),
+        favorites: state.favorites.filter(fav => fav.id !== action.payload),
+      };
+      case SET_FAVORITES:
+      return {
+        ...state,
+        favorites: action.payload,
       };
     default:
       return state;

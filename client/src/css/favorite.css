@@ -1,0 +1,19 @@
+.favorites-page {
+    padding: 20px;
+  }
+  
+  .favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .favorites-page h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .favorites-page p {
+    font-size: 1.5rem;
+  }
+  

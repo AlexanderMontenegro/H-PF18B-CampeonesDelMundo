@@ -28,6 +28,12 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT = "LOGOUT";
 export const SET_PREFERENCE_ID = 'SET_PREFERENCE_ID';
 
+export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
+export const SET_FAVORITES = 'SET_FAVORITES';
+
+
+
 
 export const fetchPreferenceId = (carrito) => async dispatch => {
   try {
@@ -44,21 +50,53 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
   }
 };
 
-export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
-export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 
-export const addToFavorites = (producto) => {
-  return {
-    type: ADD_TO_FAVORITES,
-    payload: producto,
-  };
+
+export const fetchUserFavorites = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/favorites/${userId}`);
+    dispatch({
+      type: SET_FAVORITES,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error fetching favorites:', error);
+  }
 };
 
-export const removeFromFavorites = (id) => {
-  return {
-    type: REMOVE_FROM_FAVORITES,
-    payload: id,
-  };
+export const addToFavorites = (producto) => async (dispatch) => {
+  try {
+    const response = await axios.post('/favorites', {
+      user_id: user.uid, /*resolver */
+      productos_id: producto.id
+    });
+    dispatch({
+      type: ADD_TO_FAVORITES,
+      payload: response.data,
+    });
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se pudo agregar a favoritos",
+    });
+  }
+};
+
+export const removeFromFavorites = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/favorites/${id}`);
+    dispatch({
+      type: REMOVE_FROM_FAVORITES,
+      payload: id,
+    });
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se pudo eliminar de favoritos",
+    });
+  }
 };
 
 
