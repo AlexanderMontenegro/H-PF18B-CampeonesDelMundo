@@ -136,8 +136,13 @@ const Header = ({
                               <td className="cabecera__texto">
                                 ${producto.precio}
                               </td>
-                              <td>{}</td>
-                              {console.log("TALLES EN HEADER: ", producto.talles[1])}
+                              <td>{
+                                // producto.talles.map((produc)=> {
+                                //   return 
+                                // })
+                                }
+                              </td>
+                              {/* {console.log("TALLES EN HEADER: ", producto.talles)} */}
                               <td>
                                 <div className="cabecera__buttons cabecera__texto">
                                   <button
@@ -345,7 +350,20 @@ const Header = ({
                               <td className="cabecera__texto">
                                 ${producto.precio}
                               </td>
-                              <td className="cabecera__texto">{producto.talles.talle}</td>
+                              {console.log("TALLES EN: ", producto.talles)}
+                              <td className="cabecera__texto">{
+                                <select name="" id="">
+                                  {
+                                    producto.talles.map((talle) => (
+                                      <option key={talle.id} value={talle.stock + " - " + talle.talle}>
+                                        {talle.stock + " - " + talle.talle}s
+                                      </option>
+                                    ))
+                                  }
+          
+                                </select>
+                                }
+                              </td>
                               <td>
                                 <div className="cabecera__buttons cabecera__texto">
                                   <button

@@ -110,7 +110,7 @@ function ChampionsApp() {
 
   // FUNCIONES
   const addToCarrito = (item) => {
-    console.log("Addtocarrito ", item.talles[1])
+    console.log("Addtocarrito ", item.talles)
 
     const itemExist = carrito.findIndex((producto) => producto.id === item.id);
 
@@ -125,6 +125,11 @@ function ChampionsApp() {
       setCarrito([...carrito, item]);
     }
   };
+
+  const changeTalles = (item) => {
+    console.log("changeTalles: ", item)
+    
+  }
 
   const removeFromCarrito = (id) => {
     setCarrito((prevCarrito) =>
@@ -308,6 +313,7 @@ function ChampionsApp() {
               decreaseQuantity={decreaseQuantity}
               clearCarrito={clearCarrito}
               notificaciones={notificaciones}
+              changeTalles={changeTalles}
             />
           }
         />
