@@ -27,10 +27,10 @@ const Favoritos = () => {
   };
 
   return (
-    <div>
+    <div  >
     
 
-      <div>
+      <div className="favorito" >
         <div className="favorites-page">
           <h1>Mis Favoritos</h1>
           <div className="productos-list">
