@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserFavorites } from '../../Redux/actions';
 import ProductoCard from '../ProductoCard/ProductoCard';
 import "../../css/favorite.css"
-import Header from "../Header/Header"
-import Footer from "../Footer/Footer"
+
 
 const Favorite = () => {
   const dispatch = useDispatch();
-  const userId = user.uid/* ID del usuario actual */;
+  const userId = user.uid;
   const favorites = useSelector((state) => state.favorites);
   console.log("Favorites:", favorites);
 
@@ -20,7 +19,7 @@ const Favorite = () => {
 
     <div>
 
-    <Header/>
+   
     <div className="favorites-page">
       <h1>Mis Favoritos</h1>
       <div className="favorites-list">
@@ -33,7 +32,7 @@ const Favorite = () => {
         )}
       </div>
     </div>
-<Footer/>
+
         </div>
   );
 };
