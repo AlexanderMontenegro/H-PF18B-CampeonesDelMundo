@@ -52,6 +52,8 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
 };
 
 
+/*Favoritos */
+
 
 export const fetchUserFavorites = (userId) => async (dispatch) => {
   try {
@@ -69,7 +71,7 @@ export const addToFavorites = (producto) => async (dispatch) => {
   console.log("Dispatching Add to Favorites:", producto.id);
   try {
     const response = await axios.post('/favorites', {
-      user_id: user.uid || id, /*resolver */
+      user_id: user.uid, /*resolver */
       productos_id: producto.id
     });
     dispatch({
@@ -100,6 +102,8 @@ export const removeFromFavorites = (id) => async (dispatch) => {
     });
   }
 };
+
+/*Fin  */
 
 
 export const getDetails = (id) => {
