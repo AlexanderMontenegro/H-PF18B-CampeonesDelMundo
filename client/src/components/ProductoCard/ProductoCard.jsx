@@ -38,7 +38,11 @@ const ProductoCard = ({ producto, addToCarrito }) => {
             className="card__fav-button" 
             onClick={handleFavoriteClick}
           >
-            {isFavorite ? '❤️' : '♡'}
+
+            <div className='corazon'>
+
+            {isFavorite   ? '❤️' : '♡'}
+            </div>
           </button>
         </div>
       </div>

@@ -23,7 +23,7 @@ import {
   SET_FAVORITES,
 } from "./actions";
 
-// state inicial
+
 const initialState = {
   details: null,
   allProducts: [],
@@ -31,7 +31,6 @@ const initialState = {
   productos: [],
   preSortProductos: [],
   isAuthenticated: false,
-  preferenceId: null, //para el mercado.
   user: null,
   loading: false,
   error: null,
