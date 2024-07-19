@@ -3,18 +3,17 @@
     background-color: red;
   }
   
-  .favorites-list {
+  .productos-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    background-color: yellow;
   }
   
-  .favorites-page h1 {
+  .producto-card {
     font-size: 2rem;
     margin-bottom: 20px;
+    background-color: blue;
   }
   
-  .favorites-page p {
-    font-size: 1.5rem;
-  }
-  
+ 
