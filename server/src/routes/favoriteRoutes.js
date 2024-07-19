@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { addToFavorites, getUserFavorites, removeFromFavorites } = require('../controllers/favoriteController');
+const { addToFavorites, getUserFavorites, removeFromFavorites } = require('../controllers/favoritecontroller');
 
 // Ruta para agregar un favorito
 router.post('/favorites', addToFavorites);

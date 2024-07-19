@@ -1,6 +1,7 @@
 const { Favorite, User, Productos } = require('../db');
 
 const addToFavorites = async (req, res) => {
+  console.log("Received Add Favorite Request:", req.body);
   const { user_id, productos_id } = req.body;
 
   try {
