@@ -1,9 +1,9 @@
 const { Router } = require('express');
 const favoriteRoutes = Router();
-const { handleAddFavorite, handleGetUserFavorites, handleRemoveFavorite } = require('../handlers/favoriteHandlers');
+const { addFavorite, getUserFavorites, removeFavorite } = require('../controllers/favoriteController');
 
-favoriteRoutes.post('/', handleAddFavorite); 
-favoriteRoutes.get('/:userId', handleGetUserFavorites); 
-favoriteRoutes.delete('/:favoriteId', handleRemoveFavorite); 
+favoriteRoutes.post('/', addFavorite); 
+favoriteRoutes.get('/:userId', getUserFavorites); 
+favoriteRoutes.delete('/:favoriteId', removeFavorite); 
 
 module.exports = favoriteRoutes;
