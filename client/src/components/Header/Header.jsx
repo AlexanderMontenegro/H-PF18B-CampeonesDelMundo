@@ -11,7 +11,7 @@ import "../../css/header.css";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Notificacion from "../Notificaciones/Notificacion";
-import Favorite from "../Favorite/Favorite";
+import Favorite from  "../Favoritos/Favoritos"
 
 const Header = ({
   carrito,
@@ -223,7 +223,7 @@ const Header = ({
               {/*Favoritos */}
 
               <div >
-                <Link className="logo" to={"/Favorite"}>
+                <Link className="logo" to={"/favorite"}>
                   <img
                     className="icono__fluid"
                     src="../iconos/favoritos.png"

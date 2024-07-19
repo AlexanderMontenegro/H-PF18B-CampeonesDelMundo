@@ -26,8 +26,6 @@ import Nosotros from "./components/Nosotros/Nosotros";
 import Notificaciones from "./components/Notificaciones/Notificaciones";
 
 
-import Favorite from "../../client/src/components/Favorite/Favorite"
-
 // Import Data (db)
 // import { data } from './db/db';
 
@@ -37,6 +35,7 @@ import { getCategory, getProducts, setUser } from "./Redux/actions";
 import Swal from "sweetalert2";
 import Orden from "./components/Orden/Orden";
 import Privacy from "./components/Privacy/Privacy";
+import Favorite from "./components/Favoritos/Favoritos";
 
 
 function ChampionsApp() {
@@ -375,7 +374,9 @@ function ChampionsApp() {
 
         <Route path="/privacidad" element={<Privacy />} />
 
-        <Route path="/favorite" element={<Favorite/>} />
+        <Route path="/favorite" element={<Favorite />}/><Route/>
+
+
 
       </Routes>
     </>

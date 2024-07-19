@@ -25,6 +25,8 @@
   max-width: 90%;
   max-height: 50%;
   border-radius: 30px;
+  min-width: 90%;
+  min-height: 50%;
 }
 
 @keyframes scale-up-center {
