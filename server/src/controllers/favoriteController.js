@@ -1,3 +1,4 @@
+/*
 const { Favorite, User, Productos } = require('../db');
 
 const addToFavorites = async (req, res) => {
@@ -34,6 +35,75 @@ const getUserFavorites = async (req, res) => {
     const favorites = await Favorite.findAll({
       where: { user_id: userId },
       include: [Productos]
+    });
+    res.status(200).json(favorites);
+  } catch (error) {
+    console.error('Error fetching favorites:', error);
+    res.status(500).json({ message: 'Error fetching favorites', error });
+  }
+};
+
+const removeFromFavorites = async (req, res) => {
+  const { favoriteId } = req.params;
+
+  try {
+    const favorite = await Favorite.findByPk(favoriteId);
+    if (!favorite) {
+      return res.status(404).json({ message: 'Favorite not found' });
+    }
+
+    await favorite.destroy();
+    res.status(204).json();
+  } catch (error) {
+    console.error('Error removing favorite:', error);
+    res.status(500).json({ message: 'Error removing favorite', error });
+  }
+};
+
+module.exports = {
+  addToFavorites,
+  getUserFavorites,
+  removeFromFavorites,
+};
+
+*/
+
+const { Favorite, User, Productos } = require('../db');
+
+const addToFavorites = async (req, res) => {
+  console.log("Received Add Favorite Request:", req.body);
+  const { user_id, productos_id } = req.body;
+
+  try {
+    const user = await User.findByPk(user_id);
+    const product = await Productos.findByPk(productos_id);
+
+    if (!user || !product) {
+      return res.status(404).json({ message: 'User or Product not found' });
+    }
+
+    const [favorite, created] = await Favorite.findOrCreate({
+      where: { user_id, productos_id },
+      defaults: { user_id, productos_id }
+    });
+
+    if (!created) {
+      return res.status(400).json({ message: 'Favorite already exists' });
+    }
+
+    res.status(201).json(favorite);
+  } catch (error) {
+    console.error('Error creating favorite:', error);
+    res.status(500).json({ message: 'Error creating favorite', error });
+  }
+};
+
+const getUserFavorites = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const favorites = await Favorite.findAll({
+      where: { user_id: userId },
+      include: [{ model: Productos, as: 'producto' }]
     });
     res.status(200).json(favorites);
   } catch (error) {
