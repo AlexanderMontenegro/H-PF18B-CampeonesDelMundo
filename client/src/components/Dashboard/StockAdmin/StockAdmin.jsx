@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "../../../css/controlstock.css";
 
 function StockAdmin() {
-
-  const arrayProduct = useSelector(state=>state.allProducts);
-console.log(arrayProduct)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const arrayProduct = useSelector((state) => state.allProducts);
+  console.log(arrayProduct);
   const [data, setData] = useState(arrayProduct);
   const [selectedObject, setSelectedObject] = useState(null);
 
@@ -21,7 +22,9 @@ console.log(arrayProduct)
   };
 
   const handleSave = () => {
-    setData(data.map(obj => (obj.id === selectedObject.id ? selectedObject : obj)));
+    setData(
+      data.map((obj) => (obj.id === selectedObject.id ? selectedObject : obj))
+    );
     setSelectedObject(null);
   };
 
@@ -36,8 +39,8 @@ console.log(arrayProduct)
   };
 
   const handleStockChange = (index, e) => {
-    const { name} = e.target;
-    const value = parseInt(e.target.value, 10)
+    const { name } = e.target;
+    const value = parseInt(e.target.value, 10);
     const updatedItems = [...selectedObject.talles];
     updatedItems[index] = { ...updatedItems[index], [name]: value };
     setSelectedObject({
@@ -46,10 +49,10 @@ console.log(arrayProduct)
     });
   };
   return (
-    <div>
-            <h1>Lista de Productos</h1>
+    <div className="stock">
+      <h1>Lista de Productos</h1>
       <ul>
-        {data.map(obj => (
+        {data.map((obj) => (
           <li key={obj.id} onClick={() => handleSelect(obj)}>
             {obj.tipo} {obj.marca}
           </li>
@@ -57,9 +60,9 @@ console.log(arrayProduct)
       </ul>
 
       {selectedObject && (
-        <div>
+        <div  className="modificar__stock"  >
           <h2>Modificar Stock</h2>
-{/*           <label>
+          {/*           <label>
             tipo:
             <input
               type="text"
@@ -80,29 +83,32 @@ console.log(arrayProduct)
           </label> */}
           <br />
           <h3>Talles</h3>
+          <div  className="modificables"  >
           {selectedObject.talles.map((item, index) => (
-            <div key={item.talle}>
+            <div className="datos" key={item.talle}>
               <input
                 type="text"
                 name="talle"
                 value={item.talle}
                 onChange={(e) => handleTallesChange(index, e)}
               />
-                <input
+              <input
                 type="number"
                 name="stock"
                 value={item.stock}
                 onChange={(e) => handleStockChange(index, e)}
               />
-              {console.log('dfdf',selectedObject)}
-              </div>
-          ))}
+              {console.log("dfdf", selectedObject)}
+            </div>
+
+))}
+</div>
 
           <button onClick={handleSave}>Guardar</button>
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default StockAdmin
+export default StockAdmin;
