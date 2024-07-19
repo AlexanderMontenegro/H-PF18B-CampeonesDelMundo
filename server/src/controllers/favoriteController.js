@@ -4,7 +4,6 @@ const addFavorite = async (req, res) => {
   const { user_id, productos_id } = req.body;
 
   try {
-    // Verifica si el usuario y el producto existen
     const user = await User.findByPk(user_id);
     const product = await Productos.findByPk(productos_id);
 
@@ -12,16 +11,7 @@ const addFavorite = async (req, res) => {
       return res.status(404).json({ message: 'User or Product not found' });
     }
 
-    // Crea el favorito si no existe ya
-    const [favorite, created] = await Favorite.findOrCreate({
-      where: { user_id, productos_id },
-      defaults: { user_id, productos_id }
-    });
-
-    if (!created) {
-      return res.status(400).json({ message: 'Favorite already exists' });
-    }
-
+    const favorite = await Favorite.create({ user_id, productos_id });
     res.status(201).json(favorite);
   } catch (error) {
     console.error('Error creating favorite:', error);

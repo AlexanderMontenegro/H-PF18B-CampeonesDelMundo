@@ -172,8 +172,12 @@ const getProduct = async () => {
 //* Controlador para buscar productos por tipo
 const searchTipo = async (tipo) => {
   try {
+    // Buscar productos en la base de datos con UUID
     const productTipo = await Productos.findAll({
-      where: { tipo: { [Op.iLike]: tipo } },
+      where: {
+        tipo: { [Op.iLike]: tipo },
+        id: { [Op.not]: null }, // Asegura que solo se devuelvan productos con ID (UUID)
+      },
       include: [
         {
           model: Categoria,
@@ -215,11 +219,16 @@ const searchTipo = async (tipo) => {
       }
     );
 
+    // Obtener productos de la API externa
     const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
     const apiProduct = cleanArray(apiProductRaw);
-    const filterdApi = apiProduct.filter(
-      (product) => product.tipo.toLowerCase() === tipo.toLowerCase()
-    );
+    
+    // Filtrar productos de la API por tipo y asegurarse de que tengan UUID
+    const filterdApi = apiProduct
+      .filter(
+        (product) => product.tipo.toLowerCase() === tipo.toLowerCase()
+      )
+      .filter((product) => /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(product.id)); // Filtra productos con UUID válido
 
     if (!productTipo.length && !filterdApi.length) {
       return [];
@@ -312,6 +321,23 @@ const deleteId = async (id) => {
     }
   };
 
+//-----------------------------------------------------------------------------------------------------------------------
+
+//modifica el stock
+const updateStockController = async (idProducto, talle, stock) => {
+  const producto = await Productos.findByPk(idProducto);
+
+  if (!producto) {
+      return null; // Si el producto no se encuentra, retorna null
+  }
+
+  const updatedTalles = producto.talles.map(item => 
+      item.talle === talle ? { ...item, stock } : item
+  );
+
+  await producto.update({ talles: updatedTalles });
+  return producto;
+};
 
 
 
@@ -320,4 +346,5 @@ module.exports = {
   searchTipo,
   getProductId,
   deleteId,
+  updateStockController
 }  
