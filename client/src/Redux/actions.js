@@ -51,23 +51,23 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
 };
 
 
-
 export const fetchUserFavorites = (userId) => async (dispatch) => {
   try {
-    const response = await axios.get(`/favorites/${userId}`);
-    dispatch({
-      type: SET_FAVORITES,
-      payload: response.data,
-    });
+    const response = await axios.get(`favorites/${userId}`);
+    dispatch({ type: SET_FAVORITES, payload: response.data });
   } catch (error) {
-    console.error('Error fetching favorites:', error);
+    console.error('Error fetching user favorites:', error);
   }
 };
+
+
+
+
 
 export const addToFavorites = (producto) => async (dispatch) => {
   try {
     const response = await axios.post('/favorites', {
-      user_id: user.uid, /*resolver */
+      user_id: user.uid, 
       productos_id: producto.id
     });
     dispatch({
@@ -83,21 +83,19 @@ export const addToFavorites = (producto) => async (dispatch) => {
   }
 };
 
-export const removeFromFavorites = (id) => async (dispatch) => {
+
+
+
+
+export const removeFromFavorites = (productId) => async (dispatch) => {
   try {
-    await axios.delete(`/favorites/${id}`);
-    dispatch({
-      type: REMOVE_FROM_FAVORITES,
-      payload: id,
-    });
+    await axios.delete(`/favorites/${productId}`);
+    dispatch({ type: REMOVE_FROM_FAVORITES, payload: productId });
   } catch (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: "No se pudo eliminar de favoritos",
-    });
+    console.error('Error removing from favorites:', error);
   }
 };
+
 
 
 export const getDetails = (id) => {
