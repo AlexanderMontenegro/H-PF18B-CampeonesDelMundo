@@ -12,7 +12,15 @@ const addToFavorites = async (req, res) => {
       return res.status(404).json({ message: 'User or Product not found' });
     }
 
-    const favorite = await Favorite.create({ user_id, productos_id });
+    const [favorite, created] = await Favorite.findOrCreate({
+      where: { user_id, productos_id },
+      defaults: { user_id, productos_id }
+    });
+
+    if (!created) {
+      return res.status(400).json({ message: 'Favorite already exists' });
+    }
+
     res.status(201).json(favorite);
   } catch (error) {
     console.error('Error creating favorite:', error);
