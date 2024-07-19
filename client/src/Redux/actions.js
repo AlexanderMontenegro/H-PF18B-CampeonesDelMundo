@@ -2,6 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { auth, facebookProvider, githubProvider, googleProvider, signInWithPopup } from"../../fireBaseConfig";
 
+
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_CATEGORY = "GET_CATEGORY";
 export const POST_CATEGORY = "POST_CATEGORY";
@@ -10,7 +11,7 @@ export const GET_DETAILS = "GET_DETAILS";
 
 export const FILTER_PRODUCTO = "FILTER_PRODUCTO";
 export const FILTER_CATEGORIA = "FILTER_CATEGORIA";
-export const FILTER_MARCAS = "FILTER_MARCAS";
+export const FILTER_MARCAS = "FILTER_MARCAS"
 export const NO_FILTER = "NO_FILTER";
 export const SORT_PRICE_ASCENDING_ORDER = "SORT_PRICE_ASCENDING_ORDER";
 export const SORT_PRICE_DESCENDING_ORDER = "SORT_PRICE_DESCENDING_ORDER";
@@ -68,7 +69,7 @@ export const addToFavorites = (producto) => async (dispatch) => {
   console.log("Dispatching Add to Favorites:", producto.id);
   try {
     const response = await axios.post('/favorites', {
-      user_id: user.uid, /*resolver */
+      user_id: user.uid || id, /*resolver */
       productos_id: producto.id
     });
     dispatch({
@@ -79,7 +80,7 @@ export const addToFavorites = (producto) => async (dispatch) => {
     Swal.fire({
       icon: "error",
       title: "Error",
-      text: "No se pudo agregar a favoritos",
+      text: "No se pudo agregar a favoritos😭",
     });
   }
 };
@@ -95,7 +96,7 @@ export const removeFromFavorites = (id) => async (dispatch) => {
     Swal.fire({
       icon: "error",
       title: "Error",
-      text: "No se pudo eliminar de favoritos",
+      text: "No se pudo eliminar de favoritos ",
     });
   }
 };

@@ -17,7 +17,6 @@ import {
   LOGOUT,
   POST_USER,
   POST_LOGIN,
-  SET_PREFERENCE_ID,
   ADD_TO_FAVORITES, 
   REMOVE_FROM_FAVORITES,
   SET_FAVORITES,
@@ -31,7 +30,6 @@ const initialState = {
   productos: [],
   preSortProductos: [],
   isAuthenticated: false,
-  preferenceId: null, //para el mercado.
   user: null,
   loading: false,
   error: null,
@@ -55,11 +53,7 @@ const applyFilters = (products, filters) => {
 const rootReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case SET_PREFERENCE_ID:
-      return {
-        ...state,
-        preferenceId: payload,
-      };
+    
     case GET_DETAILS:
       return {
         ...state,
