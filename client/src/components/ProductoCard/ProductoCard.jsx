@@ -11,6 +11,7 @@ const ProductoCard = ({ producto, addToCarrito }) => {
   const isFavorite = favorites.some((fav) => fav.id === producto.id);
 
   const handleFavoriteClick = () => {
+    console.log("Favorito Clicked:", producto.id);
     if (isFavorite) {
       dispatch(removeFromFavorites(producto.id));
     } else {
