@@ -26,7 +26,7 @@ const cleanArray = (arr) => {
 
 
 const convertirId = (idInteger) => {
-  return uuidv4(); // Genera un nuevo UUID para el ID integer dado
+  return uuidv4(); 
 };
 
 let productosGuardados = false;
@@ -34,7 +34,6 @@ let productosGuardados = false;
 const getProduct = async () => {
   try {
     if (productosGuardados) {
-      console.log("Los productos ya han sido guardados previamente. No se guardarán nuevamente.");
       const dataProductos = await Productos.findAll({
         include: [
           {
