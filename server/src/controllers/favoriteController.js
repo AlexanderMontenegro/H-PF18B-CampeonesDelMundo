@@ -1,6 +1,7 @@
 const { Favorite, User, Productos } = require('../db');
 
-const addFavorite = async (req, res) => {
+const addToFavorites = async (req, res) => {
+  console.log("Received Add Favorite Request:", req.body);
   const { user_id, productos_id } = req.body;
 
   try {
@@ -11,7 +12,19 @@ const addFavorite = async (req, res) => {
       return res.status(404).json({ message: 'User or Product not found' });
     }
 
+<<<<<<< HEAD
+    const [favorite, created] = await Favorite.findOrCreate({
+      where: { user_id, productos_id },
+      defaults: { user_id, productos_id }
+    });
+
+    if (!created) {
+      return res.status(400).json({ message: 'Favorite already exists' });
+    }
+
+=======
     const favorite = await Favorite.create({ user_id, productos_id });
+>>>>>>> 9f4aaeeddba12020602e6fbce3f1311dd1bd9acd
     res.status(201).json(favorite);
   } catch (error) {
     console.error('Error creating favorite:', error);
@@ -33,7 +46,7 @@ const getUserFavorites = async (req, res) => {
   }
 };
 
-const removeFavorite = async (req, res) => {
+const removeFromFavorites = async (req, res) => {
   const { favoriteId } = req.params;
 
   try {
@@ -51,7 +64,7 @@ const removeFavorite = async (req, res) => {
 };
 
 module.exports = {
-  addFavorite,
+  addToFavorites,
   getUserFavorites,
-  removeFavorite,
+  removeFromFavorites,
 };
