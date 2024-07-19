@@ -1,4 +1,5 @@
 .card__container {
+
   border: 1px solid var(--negro);
   border-radius: 10px;
   overflow: hidden;
@@ -43,23 +44,30 @@
 }
 
 .card__title {
+  display: flex;
   font-family: var(--fuenteHeading);
-  font-size: 2.8rem;
-  color: var(--azul_Oscuro);
+  font-size: 2.2rem;
+  color: var(--piel);
   margin-bottom: 10px;
+  font-style: italic;
 }
 
 .card__name {
   font-family: var(--fuenteParrafos);
-  font-size: 1.6rem;
-  color: var(--azul_Oscuro);
+  font-size: 2.2rem;
+  color: var(--degradado);
   margin-bottom: 5px;
+  font-weight: bolder;
 }
 
 .card__buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+ 
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    flex-direction: row;
+    align-items: baseline;
+
  
 }
 
@@ -76,6 +84,7 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto; 
+  height: 50px;
 }
 
 
@@ -85,6 +94,7 @@
 
 
 .card__fav-button {
+  display: flex;
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -173,4 +183,13 @@ margin: 0;
 
 .card__fav-button.favorite {
   color: red; /* color para favorito */
+}
+
+.corazon{
+
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 3.5rem;
+
 }
