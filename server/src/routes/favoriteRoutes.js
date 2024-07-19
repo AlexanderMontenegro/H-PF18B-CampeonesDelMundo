@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { addFavorite, getUserFavorites, removeFavorite } = require('../controllers/favoritecontroller');
+const { addToFavorites, getUserFavorites, removeFromFavorites } = require('../controllers/favoriteController');
 
 // Ruta para agregar un favorito
-router.post('/favorites', addFavorite);
+router.post('/favorites', addToFavorites);
 
 // Ruta para obtener favoritos de un usuario
 router.get('/favorites/:userId', getUserFavorites);
 
 // Ruta para eliminar un favorito
-router.delete('/favorites/:favoriteId', removeFavorite);
+router.delete('/favorites/:favoriteId', removeFromFavorites);
 
 module.exports = router;
