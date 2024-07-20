@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import Modal from "../Modal/Modal";
 import Login from "../HomePage/Login";
 import Notificacion from "../Notificaciones/Notificacion";
-import Favoritos from "../Favoritos/Favoritos";
+
 
 // CSS
 import "../../css/header.css";
@@ -127,7 +127,7 @@ const Header = ({
                   </div>
                 </div>
                 <div>
-                  <Link className="logo" to={"/favoritos"}>
+                  <Link className="logo" to={"/favorites"}>
                     <img className="icono__fluid" src="../iconos/favoritos.png" alt="favoritos" />
                   </Link>
                 </div>
