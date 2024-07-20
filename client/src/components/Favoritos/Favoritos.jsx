@@ -5,15 +5,14 @@ import Swal from "sweetalert2";
 import "../../css/favorite.css";
 import Footer from "../Footer/Footer";
 
-
 const Favoritos = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const favorites = useSelector((state) => state.favorites);
 
   useEffect(() => {
-    if (user && user.uid) {
-      dispatch(fetchUserFavorites(user.uid));
+    if (user && user.id) {
+      dispatch(fetchUserFavorites(user.id));
     }
   }, [dispatch, user]);
 
@@ -27,10 +26,8 @@ const Favoritos = () => {
   };
 
   return (
-    <div  >
-    
-
-      <div className="favorito" >
+    <div>
+      <div className="favorito">
         <div className="favorites-page">
           <h1>Mis Favoritos</h1>
           <div className="productos-list">
@@ -47,7 +44,6 @@ const Favoritos = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
