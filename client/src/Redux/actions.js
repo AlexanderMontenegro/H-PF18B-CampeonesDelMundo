@@ -68,9 +68,10 @@ export const addToFavorites = (producto, user) => async (dispatch) => {
   console.log("Dispatching Add to Favorites:", producto.id, user);
   try {
     const response = await axios.post('/favorites', {
-      user_id: user.id, 
+      user_email: user.email, 
       productos_id: producto.id
     });
+    console.log(JSON.stringify(response))
     dispatch({
       type: ADD_TO_FAVORITES,
       payload: response.data,
