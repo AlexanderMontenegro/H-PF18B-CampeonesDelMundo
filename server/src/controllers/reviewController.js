@@ -47,13 +47,13 @@ const getUserReviews = async (req, res) => {
 // Actualizar una reseña
 const updateReview = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { reviewId } = req.params;
     const { rating, comment } = req.body;
 
-    const [updated] = await Review.update({ rating, comment }, { where: { id } });
+    const [updated] = await Review.update({ rating, comment }, { where: { id: reviewId } });
 
     if (updated) {
-      const updatedReview = await Review.findOne({ where: { id } });
+      const updatedReview = await Review.findOne({ where: { id: reviewId } });
       res.status(200).json(updatedReview);
     } else {
       res.status(404).json({ message: 'Reseña no encontrada' });
@@ -67,8 +67,8 @@ const updateReview = async (req, res) => {
 // Eliminar una reseña
 const deleteReview = async (req, res) => {
   try {
-    const { id } = req.params;
-    const deleted = await Review.destroy({ where: { id } });
+    const { reviewId } = req.params;
+    const deleted = await Review.destroy({ where: { id: reviewId } });
 
     if (deleted) {
       res.status(204).send();
