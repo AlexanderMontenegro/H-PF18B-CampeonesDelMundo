@@ -223,7 +223,7 @@ const Header = ({
               {/*Favoritos */}
 
               <div >
-                <Link className="logo" to={"/favorite"}>
+                <Link className="logo" to={"/favorites"}>
                   <img
                     className="icono__fluid"
                     src="../iconos/favoritos.png"
