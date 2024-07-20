@@ -67,6 +67,7 @@ export const fetchUserFavorites = (userId) => async (dispatch) => {
 export const addToFavorites = (producto, user) => async (dispatch) => {
   console.log("Dispatching Add to Favorites:", producto.id, user);
   try {
+   
     const response = await axios.post('/favorites', {
       user_email: user.email, 
       productos_id: producto.id
