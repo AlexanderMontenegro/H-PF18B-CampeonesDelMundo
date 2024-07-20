@@ -324,18 +324,18 @@ const deleteId = async (id) => {
 //-----------------------------------------------------------------------------------------------------------------------
 
 //modifica el stock
-const updateStockController = async (idProducto, talle, stock) => {
+  const updateStockController = async (idProducto, talles) => {
   const producto = await Productos.findByPk(idProducto);
 
   if (!producto) {
       return null; // Si el producto no se encuentra, retorna null
   }
 
-  const updatedTalles = producto.talles.map(item => 
+/*   const updatedTalles = producto.talles.map(item => 
       item.talle === talle ? { ...item, stock } : item
-  );
+  ); */
 
-  await producto.update({ talles: updatedTalles });
+  await producto.update({ talles: talles });
   return producto;
 };
 
