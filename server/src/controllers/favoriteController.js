@@ -2,19 +2,21 @@ const { Favorite, User, Productos } = require('../db');
 
 const addToFavorites = async (req, res) => {
   console.log("Received Add Favorite Request:", req.body);
-  const { user_id, productos_id } = req.body;
-
+  const { user_email, productos_id } = req.body;
+  console.log(user_email)
   try {
-    const user = await User.findByPk(user_id);
+    const user = await User.findOne({where: {email:user_email}});
     const product = await Productos.findByPk(productos_id);
+console.log(user)
 
     if (!user || !product) {
+
       return res.status(404).json({ message: 'User or Product not found' });
     }
 
     const [favorite, created] = await Favorite.findOrCreate({
-      where: { user_id, productos_id },
-      defaults: { user_id, productos_id }
+      where: { user_id:user.id, productos_id },
+      defaults: {user_id:user.id, productos_id }
     });
 
     if (!created) {
@@ -29,10 +31,11 @@ const addToFavorites = async (req, res) => {
 };
 
 const getUserFavorites = async (req, res) => {
-  const { userId } = req.params;
+  const { user_email} = req.params;
+  //const { userId } = req.params;
   try {
     const favorites = await Favorite.findAll({
-      where: { user_id: userId },
+      where: { user_id: user_email },
       include: [Productos]
     });
     res.status(200).json(favorites);
