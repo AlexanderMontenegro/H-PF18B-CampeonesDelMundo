@@ -10,8 +10,9 @@ const Favoritos = () => {
   const user = useSelector((state) => state.user);
   const favorites = useSelector((state) => state.favorites);
 
-  useEffect(() => {
+  useEffect(() => { 
     if (user && user.id) {
+      
       dispatch(fetchUserFavorites(user.id));
     }
   }, [dispatch, user]);
@@ -33,6 +34,7 @@ const Favoritos = () => {
           <div className="productos-list">
             {favorites.map((producto) => (
               <div key={producto.id} className="producto-card">
+                <div>{JSON.stringify(producto)}</div>
                 <img src={producto.imagen} alt={producto.nombre} />
                 <h2>{producto.nombre}</h2>
                 <p>{producto.precio}</p>
@@ -41,6 +43,7 @@ const Favoritos = () => {
                 </button>
               </div>
             ))}
+            
           </div>
         </div>
       </div>

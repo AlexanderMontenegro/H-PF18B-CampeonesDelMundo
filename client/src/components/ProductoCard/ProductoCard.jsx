@@ -9,13 +9,16 @@ const ProductoCard = ({ producto, addToCarrito }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites);
   const isFavorite = favorites.some((fav) => fav.id === producto.id);
+ 
 
   const handleFavoriteClick = () => {
-    console.log("Favorito Clicked:", producto.id,producto);
+    console.log("Favorito Clicked:", producto.id, producto);
+    const user = JSON.parse(localStorage.getItem("User"))
+
     if (isFavorite) {
-      dispatch(removeFromFavorites(producto.id));
+      dispatch(removeFromFavorites(producto.id, user));
     } else {
-      dispatch(addToFavorites(producto));
+      dispatch(addToFavorites(producto, user));
     }
   };
 
