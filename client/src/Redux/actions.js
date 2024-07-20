@@ -79,7 +79,7 @@ export const addToFavorites = (producto) => async (dispatch) => {
     Swal.fire({
       icon: "error",
       title: "Error",
-      text: "No se pudo agregar a favoritos(Error 😭)",
+      text: "No se pudo agregar a favoritos(Error😭😢)",
     });
   }
 };
