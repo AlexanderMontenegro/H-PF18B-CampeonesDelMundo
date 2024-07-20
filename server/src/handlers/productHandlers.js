@@ -66,9 +66,9 @@ const {
 
   const updateStockHandler = async (req, res) => {
     const { idProducto } = req.params;
-    const { talle, stock } = req.body;
-
-    const updatedProduct = await updateStockController(idProducto, talle, stock);
+    const talles = req.body;
+    
+    const updatedProduct = await updateStockController(idProducto, talles);
 
     if (!updatedProduct) {
         return res.status(404).json({ error: 'Product not found' });
