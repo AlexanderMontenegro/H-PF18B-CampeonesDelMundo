@@ -15,7 +15,6 @@ const Footer = () => {
       </div>
       <div className="nosotros">
         <h4>Contactanos</h4>
-
         <ul>
           <li>
             <a href="/contacto" target="_blank">

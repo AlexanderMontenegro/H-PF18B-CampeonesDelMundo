@@ -19,6 +19,7 @@ import axios from 'axios'
 //axios.defaults.baseURL="https://h-pf18b-campeonesdelmundo-ssxu.onrender.com"
 axios.defaults.baseURL="http://localhost:3001/"
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
