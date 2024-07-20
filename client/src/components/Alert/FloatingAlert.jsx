@@ -16,9 +16,9 @@ const FloatingAlert = () => {
 
     const lastAlertTime = localStorage.getItem('lastAlertTime');
     const currentTime = new Date().getTime();
-    const THIRTY_MINUTES =  10 * 30 * 1000;
+    const THIRTY_MINUTES =  15 * 30 * 1000;
 
-    if (!lastAlertTime || currentTime - parseInt(lastAlertTime, 10) >= THIRTY_MINUTES) {
+    if (!lastAlertTime || currentTime - parseInt(lastAlertTime, 15) >= THIRTY_MINUTES) {
       showAlert();
     }
   }, []);
