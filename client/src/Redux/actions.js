@@ -64,11 +64,11 @@ export const fetchUserFavorites = (userId) => async (dispatch) => {
   }
 };
 
-export const addToFavorites = (producto) => async (dispatch) => {
-  console.log("Dispatching Add to Favorites:", producto.id);
+export const addToFavorites = (producto ) => async (dispatch) => {
+  console.log("Dispatching Add to Favorites:", producto.id );
   try {
     const response = await axios.post('/favorites', {
-      user_id: user.uid, /*resolver */
+      user_id: user.id, user, /*Ayuda resolver */
       productos_id: producto.id
     });
     dispatch({
@@ -79,7 +79,7 @@ export const addToFavorites = (producto) => async (dispatch) => {
     Swal.fire({
       icon: "error",
       title: "Error",
-      text: "No se pudo agregar a favoritos(Error😭😢)",
+      text: "No se pudo agregar a favoritos(Error😭😢){actions.js addToFavorites Linea67}",
     });
   }
 };
