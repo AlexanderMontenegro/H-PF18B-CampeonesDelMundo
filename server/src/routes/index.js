@@ -5,8 +5,9 @@ const categoriaRouter = require("./categoriaRouter");
 const authRouter = require('./authRouter');
 const imageRouter = require('./imageRoutes');
 const emailRouter = require('./emailRoutes');
-const favoriteRoutes = require('./favoriteRoutes')
-const paymentRoutes = require('./paymentRoutes')
+const favoriteRoutes = require('./favoriteRoutes');
+const paymentRoutes = require('./paymentRoutes');
+const reviewRouter = require('./reviewRouter');
 //const fireRouter = require("./fireBase");
 
 router.use('/productos', productRouter);
@@ -16,6 +17,7 @@ router.use('/images', imageRouter);
 router.use('/emails', emailRouter);
 router.use('/favorites', favoriteRoutes);
 router.use('/api/payments', paymentRoutes);
+router.use('/reviews', reviewRouter);
 //router.use('/fire', fireRouter);
 
 module.exports = router;
