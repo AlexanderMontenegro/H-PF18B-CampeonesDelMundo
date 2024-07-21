@@ -31,16 +31,22 @@ console.log(user)
 };
 
 const getUserFavorites = async (req, res) => {
-  const { user_email} = req.params;
+  const { userId } = req.params;
+  console.log('User ID:', userId);
+
+  
+  if (!userId) {
+  
+
+    return res.status(400).json({ error: 'User ID is required' });
+    
+  }
+
   try {
-    const favorites = await Favorite.findAll({
-      where: { user_id: user_email },
-      include: [Productos]
-    });
+    const favorites = await Favorite.findAll({ where: { user_id: userId } });
     res.status(200).json(favorites);
   } catch (error) {
-    console.error('Error fetching favorites:', error);
-    res.status(500).json({ message: 'Error fetching favorites', error });
+    res.status(500).json({ error: error.message });
   }
 };
 
