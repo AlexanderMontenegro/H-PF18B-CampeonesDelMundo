@@ -32,7 +32,6 @@ console.log(user)
 
 const getUserFavorites = async (req, res) => {
   const { user_email} = req.params;
-  //const { userId } = req.params;
   try {
     const favorites = await Favorite.findAll({
       where: { user_id: user_email },
