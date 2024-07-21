@@ -23,9 +23,9 @@ const HomePage = ({
   decreaseQuantity,
   clearCarrito,
   notificaciones,
-  productos
+  
 }) => {
-  // const productos = useSelector((state) => state.allProducts);
+  const productos = useSelector((state) => state.allProducts);
   // console.log("Productos", productos);
 
 

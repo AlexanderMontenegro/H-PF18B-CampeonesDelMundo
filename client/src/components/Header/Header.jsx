@@ -23,6 +23,8 @@ const Header = ({
   // Use States
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+
   // Funciones
   const isEmpty = () => carrito.length === 0;
   const carritoTotal = () =>
@@ -30,6 +32,7 @@ const Header = ({
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
+  console.log("ESTA AUTENTICADO: ", isAuthenticated)
   const closeSession = () => {
     localStorage.clear();
 
@@ -137,9 +140,7 @@ const Header = ({
                                 ${producto.precio}
                               </td>
                               <td>{
-                                // producto.talles.map((produc)=> {
-                                //   return 
-                                // })
+                                producto.talle
                                 }
                               </td>
                               {/* {console.log("TALLES EN HEADER: ", producto.talles)} */}

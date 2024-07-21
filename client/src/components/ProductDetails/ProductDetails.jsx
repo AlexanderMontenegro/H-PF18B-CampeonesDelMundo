@@ -16,16 +16,31 @@ const ProductDetails = ({
   increaseQuantity,
   decreaseQuantity,
   clearCarrito,
+  notificaciones,
   product,
   getDetails,
-  notificaciones,
-  changeTalles
+  
+
 }) => {
   const { id } = useParams();
 
   useEffect(() => {
     getDetails(id);
   }, [id, getDetails]);
+
+  // PARA TALLES
+  // State y Effect
+  const [selecciontalle, setSeleccionTalle] = useState("");
+  const [hasChanged, setHasChanged] = useState(false);
+
+  // Funciones
+  const handleSelectChange = (event) => {
+    const nuevoTalle = event.target.value;
+
+    setSeleccionTalle(nuevoTalle);
+    product.talle = nuevoTalle;
+  }
+
 
   if (!product) {
     return <p>Producto no encontrado</p>;
@@ -59,14 +74,17 @@ const ProductDetails = ({
             </p>
             <div className="product-sizes">
               <label htmlFor="sizes">Talles:</label>
-              <select id="sizes">
+              <select id="sizes" onChange={handleSelectChange}>
+                <option value="Seleccione talle">Seleccione talle</option>
                 {product.talles.map((obj, index) => (
 
                   <option key={index} value={obj.talle + " - " + obj.stock}>
                     {obj.talle + " - " + obj.stock}
                     
                   </option>
+                  
                 ))}
+                
               </select>
             </div>
             <button
