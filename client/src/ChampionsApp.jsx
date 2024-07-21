@@ -126,6 +126,7 @@ function ChampionsApp() {
       // el item ya existe
       const updateCarrito = [...carrito];
       updateCarrito[itemExist].quantity++;
+      
       setCarrito(updateCarrito); 
 
       // if ( updateCarrito[itemExist].talle !== item.talle){

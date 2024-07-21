@@ -1,3 +1,48 @@
 .review__list{
+    /* background-color: green; */
+    color: var(--negro)
+}
+
+.review__form {
     
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 0.5rem
+}
+
+.review__input{
+    color: var(--negro);
+    
+}
+
+.review__textarea{
+    color: var(--negro);
+}
+
+.review__select{
+    width: 9rem;
+    height: 3rem;    
+}
+
+.review__button {
+    margin-top: 1rem;
+
+  padding: 1rem 2rem;
+  background-color: var(--piel);
+  color: var(--blanco);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 40px;
+  /* width: 500px; */
+  font-size: 1.9rem;
+}
+
+.review__button:hover {
+  background-color: var(--crema);
+  color: var(--negro);
 }
