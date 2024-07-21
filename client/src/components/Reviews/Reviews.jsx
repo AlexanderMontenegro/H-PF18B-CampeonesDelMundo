@@ -11,6 +11,7 @@ const Reviews = ({ productId }) => {
   useEffect(() => {
     const comentarios = [
       {
+        
         user: "Richard Pereira",
         comentario: "Es un estupendo producto",
         valoracion: 5,

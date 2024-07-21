@@ -208,7 +208,7 @@ const Header = ({
 
               <div id="notificaciones" className="carrito__container">
                 <div className="notificationes__lista">
-                  {notificaciones.length > 0 ? (
+                  {notificaciones.length >= 0 ? (
                     notificaciones.map((notificacion, index) => (
                       <Notificacion key={index} notificacion={notificacion} />
                     ))
