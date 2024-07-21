@@ -32,6 +32,11 @@ export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 export const SET_FAVORITES = 'SET_FAVORITES';
 
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const POST_REVIEW = 'POST_REVIEW';
+export const PUT_REVIEW = 'PUT_REVIEW';
+export const DELETE_REVIEW = "DELETE_REVIEW";
+
 
 
 
@@ -47,6 +52,42 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
     });
   } catch (error) {
     console.error('Error fetching preference ID:', error);
+  }
+};
+
+// PARA REVIEWS
+// GET_REVIEWS
+export const fetchReviews = (productId) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/producto/${productId}`);
+    dispatch({
+      type: GET_REVIEWS,
+      payload: response.data
+    });
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+  }
+};
+
+// POST_REVIEW
+export const addToReviews = (producto, user) => async (dispatch) => {
+  console.log("Dispatching Add to Favorites:", producto.id, user);
+  try {
+    const response = await axios.post('/', {
+      user_email: user.email, 
+      productos_id: producto.id
+    });
+    console.log(JSON.stringify(response))
+    dispatch({
+      type: ADD_TO_FAVORITES,
+      payload: response.data,
+    });
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se pudo agregar a favoritos(Error😭😢)",
+    });
   }
 };
 
