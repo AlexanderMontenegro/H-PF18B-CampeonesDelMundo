@@ -5,14 +5,15 @@ import Register from "../HomePage/Register";
 import "../../css/loginYRegister.css";
 import { useDispatch, useSelector } from "react-redux";
 import validation from "./Validation";
-import { postLogin, loginWithGoogle } from "../../Redux/actions";
+import {
+  postLogin,
+  loginWithGoogle,
+  loginWithFacebook,
+  loginWithGithub,
+} from "../../Redux/actions";
 import Swal from "sweetalert2";
-import {  signInWithPopup, FacebookAuthProvider } from 'firebase/auth';
-import { auth,  facebookProvider } from '../../../fireBaseConfig';
 
-const Login = ({
-  onClose
-}) => {
+const Login = ({ onClose }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
@@ -21,7 +22,7 @@ const Login = ({
 
   const signInWithGoogle = async () => {
     const response = await dispatch(loginWithGoogle());
-    console.log('ress ggoo', response)
+    console.log("ress ggoo", response);
 
     if (!response.payload.user) {
       Swal.fire({
@@ -31,49 +32,87 @@ const Login = ({
         timer: 3000,
       });
     }
+    if (response.payload.user) {
+      let user = response.payload.user;
+      const { displayName } = user;
+      user = { ...user, name: displayName };
+      console.log(user);
+      window.localStorage.setItem("User", JSON.stringify(user));
+      Swal.fire({
+        icon: "success",
+        title: "Autenticacion Exitosa",
+        text: "",
+        timer: 3000,
+      }).then(() => {        
+        navigate("/"); 
+        window.location.reload();
+      });
+    }
+  };
+  const signInWithFacebook = async () => {
+    const response = await dispatch(loginWithFacebook());
+    console.log("ress ggoo", response);
 
-        // Guardar en el storage
-        if (response.payload.user) {
-          let user = response.payload.user;
-          const {displayName} = user;
-          user ={...user, name:displayName };
-          console.log(user);
-          window.localStorage.setItem(
-            "User",
-            JSON.stringify(user)
-          );
-          Swal.fire({
-            icon: "success",
-            title: 'Autenticacion Exitosa',
-            text: "",
-            timer: 3000,
-          }).then(() => {
-            // Redirigir después de que la alerta se cierre
-            navigate("/"); // Cambia la URL al destino
-            window.location.reload();
-          });
-        }
+    if (!response.payload.user) {
+      Swal.fire({
+        icon: "error",
+        title: response.payload.message,
+        text: "",
+        timer: 3000,
+      });
+    }
+    if (response.payload.user) {
+      let user = response.payload.user;
+      const { displayName } = user;
+      user = { ...user, name: displayName };
+      console.log(user);
+      window.localStorage.setItem("User", JSON.stringify(user));
+      Swal.fire({
+        icon: "success",
+        title: "Autenticacion Exitosa",
+        text: "",
+        timer: 3000,
+      }).then(() => {
+        navigate("/");
+        window.location.reload();
+      });
+    }
+  };
+  const signInWithGithub = async () => {
+    const response = await dispatch(loginWithGithub());
+    console.log("ress ggoo", response);
 
+    if (!response.payload.user) {
+      Swal.fire({
+        icon: "error",
+        title: response.payload.message,
+        text: "",
+        timer: 3000,
+      });
+    }
+    if (response.payload.user) {
+      let user = response.payload.user;
+      const { displayName } = user;
+      user = { ...user, name: displayName };
+      console.log(user);
+      window.localStorage.setItem("User", JSON.stringify(user));
+      Swal.fire({
+        icon: "success",
+        title: "Autenticacion Exitosa",
+        text: "",
+        timer: 3000,
+      }).then(() => {
+        navigate("/");
+        window.location.reload();
+      });
+    }
   };
 
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/#");
     }
-  }, [isAuthenticated, navigate]); 
-
-  const handleFacebookLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, facebookProvider);
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      console.log('User info:', user);
-      console.log('Token:', token);
-    } catch (error) {
-      console.error('Error during sign-in:', error);
-    }
-  };
+  }, [isAuthenticated, navigate]);
 
   // Manejador del estado principal login
   function handleChange(event) {
@@ -219,23 +258,6 @@ const Login = ({
                 </div>
 
                 <p className="text-center">— O inicie sesión con —</p>
-
-                {/* <div className="form__optionsL">
-                  <button
-                    type="button"
-                    className="icono__contentL"
-                    onClick={signInWithGoogle}
-                  >
-                    <div className="icono__containerL">
-                      <img
-                        className="icono__fluidL"
-                        src="iconos/icon_google.png"
-                        alt="icon Google"
-                      />
-                    </div>
-                  </button>
-                  {/* Agregar otros métodos de inicio de sesión aquí */}
-                {/* </div> */}
                 <div className="form__optionsL">
                   <Link className="icono__contentL" onClick={signInWithGoogle}>
                     <div className="icono__containerL">
@@ -246,7 +268,7 @@ const Login = ({
                       />
                     </div>
                   </Link>
-{/**
+                  {/**
  
                   <Link className="icono__contentL">
                     <div className="icono__containerL">
@@ -259,7 +281,7 @@ const Login = ({
                   </Link>
 
                       */}
-                  <Link className="icono__contentL" onClick={handleFacebookLogin}>
+                  <Link className="icono__contentL" onClick={signInWithFacebook}>
                     <div className="icono__containerL">
                       <img
                         className="icono__fluidL"
@@ -269,7 +291,7 @@ const Login = ({
                     </div>
                   </Link>
 
-                  <Link className="icono__contentL">
+                  <Link className="icono__contentL" onClick={signInWithGithub}>
                     <div className="icono__containerL">
                       <img
                         className="icono__fluidL"

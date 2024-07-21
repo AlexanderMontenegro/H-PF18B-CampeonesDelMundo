@@ -1,4 +1,5 @@
 .card__container {
+
   border: 1px solid var(--negro);
   border-radius: 10px;
   overflow: hidden;
@@ -25,6 +26,8 @@
   max-width: 90%;
   max-height: 50%;
   border-radius: 30px;
+  min-width: 90%;
+  min-height: 50%;
 }
 
 @keyframes scale-up-center {
@@ -41,23 +44,30 @@
 }
 
 .card__title {
+  display: flex;
   font-family: var(--fuenteHeading);
-  font-size: 2.8rem;
-  color: var(--azul_Oscuro);
+  font-size: 2.2rem;
+  color: var(--piel);
   margin-bottom: 10px;
+  font-style: italic;
 }
 
 .card__name {
   font-family: var(--fuenteParrafos);
-  font-size: 1.6rem;
-  color: var(--azul_Oscuro);
+  font-size: 2.2rem;
+  color: var(--degradado);
   margin-bottom: 5px;
+  font-weight: bolder;
 }
 
 .card__buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+ 
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    flex-direction: row;
+    align-items: baseline;
+
  
 }
 
@@ -73,7 +83,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; /* Centrar el botón horizontalmente dentro de su contenedor */
+  margin: 0 auto; 
+  height: 50px;
 }
 
 
@@ -81,12 +92,25 @@
   background-color: gray
 }
 
-/**/
+
+.card__fav-button {
+  display: flex;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.card__fav-button:hover {
+  color: red;
+}
+
+/*
 .card__fav-button {
   background-color: transparent;
   color: var(--azul_Oscuro);
   border: none;
-  padding: 20px 30px; /* Aumentar el padding para un botón más grande */
+  padding: 20px 30px; 
   border-radius: 5px;
   cursor: pointer;
   transition: color 0.3s ease, background-color 0.3s ease;
@@ -102,17 +126,18 @@
 }
 
 .card__fav-button::before {
-  content: "\2665"; /* Unicode for heart symbol */
+  content: "\2665"; 
   position: absolute;
   left: 10px;
   color: var(--negro);
   transition: color 0.3s ease;
-  font-size: 2rem; /* Ajustar el tamaño del icono */
+  font-size: 2rem; 
 }
 
 .card__fav-button:hover::before {
   color: red;
 }
+*/
 
 /**/
 .ico_detalle {
@@ -145,4 +170,26 @@ margin: 0;
 
 .carrito_img:hover {
   transform: translateX(30px); 
+}
+
+
+.card__fav-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #ccc; /* color para no favorito */
+}
+
+.card__fav-button.favorite {
+  color: red; /* color para favorito */
+}
+
+.corazon{
+
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 3.5rem;
+
 }

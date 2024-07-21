@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import { auth, googleProvider, signInWithPopup } from"../../fireBaseConfig";
+import { auth, facebookProvider, githubProvider, googleProvider, signInWithPopup } from"../../fireBaseConfig";
 
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_CATEGORY = "GET_CATEGORY";
@@ -26,6 +26,81 @@ export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT = "LOGOUT";
+export const SET_PREFERENCE_ID = 'SET_PREFERENCE_ID';
+
+export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
+export const SET_FAVORITES = 'SET_FAVORITES';
+
+
+
+
+export const fetchPreferenceId = (carrito) => async dispatch => {
+  try {
+    // Aquí hacemos la solicitud a nuestro backend para obtener el preferenceId
+    const response = await axios.post('/api/payments/create-preference', { items: carrito });
+    const { id } = response.data;
+
+    dispatch({
+      type: SET_PREFERENCE_ID,
+      payload: id,
+    });
+  } catch (error) {
+    console.error('Error fetching preference ID:', error);
+  }
+};
+
+
+
+export const fetchUserFavorites = (userId) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/favorites/${userId}`);
+    dispatch({
+      type: SET_FAVORITES,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error fetching favorites:', error);
+  }
+};
+
+export const addToFavorites = (producto, user) => async (dispatch) => {
+  console.log("Dispatching Add to Favorites:", producto.id, user);
+  try {
+    const response = await axios.post('/favorites', {
+      user_email: user.email, 
+      productos_id: producto.id
+    });
+    console.log(JSON.stringify(response))
+    dispatch({
+      type: ADD_TO_FAVORITES,
+      payload: response.data,
+    });
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se pudo agregar a favoritos(Error😭😢)",
+    });
+  }
+};
+
+export const removeFromFavorites = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/favorites/${id}`);
+    dispatch({
+      type: REMOVE_FROM_FAVORITES,
+      payload: id,
+    });
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se pudo eliminar de favoritos",
+    });
+  }
+};
+
 
 export const getDetails = (id) => {
   return async function (dispatch) {
@@ -280,19 +355,7 @@ export const postImageRemota = (imageUrl) => {
   }
 };
 
-/* export const loginWithGoogle = () => async (dispatch) => {
-  dispatch({ type: LOGIN_REQUEST });
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    const user = result.user;
-    console.log("Google sign-in result:", result);  
-    dispatch({ type: LOGIN_SUCCESS, payload: user });
-  } catch (error) {
-    console.error("Google sign-in error:", error);  
-    dispatch({ type: LOGIN_FAILURE, error });
-  }
-}; */
-// Acción para cerrar sesión
+
 export const logout = () => async (dispatch) => {
   await auth.signOut();
   dispatch({ type: LOGOUT });
@@ -304,6 +367,43 @@ export const loginWithGoogle = () => {
   return async function (dispatch) {
       try {
         const response = await signInWithPopup(auth, googleProvider);
+        
+          return dispatch({
+              type: LOGIN_SUCCESS,
+              payload: response
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:LOGIN_FAILURE,
+              payload: error.response ? error.response.data : { message: error.message }
+      });
+      }
+  };
+};
+export const loginWithFacebook = () => {
+
+  return async function (dispatch) {
+      try {
+        const response = await signInWithPopup(auth, facebookProvider);
+        
+          return dispatch({
+              type: LOGIN_SUCCESS,
+              payload: response
+          });
+      }
+      catch (error) {
+          return dispatch({
+              type:LOGIN_FAILURE,
+              payload: error.response ? error.response.data : { message: error.message }
+      });
+      }
+  };
+};export const loginWithGithub = () => {
+
+  return async function (dispatch) {
+      try {
+        const response = await signInWithPopup(auth, githubProvider);
         
           return dispatch({
               type: LOGIN_SUCCESS,

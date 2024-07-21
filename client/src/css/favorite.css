@@ -1,0 +1,37 @@
+.favorito {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.favorites-page {
+  display: flex;
+  text-align: center;
+  padding: 20px;
+  color: var(--piel);
+  border-radius: 30px;
+  background: var(--degradado);
+  box-shadow: 7px 7px 15px #bebebe, -3px -3px 7px #ffffff;
+  width: 50%;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.productos-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: yellow;
+padding: auto;
+  margin: 10px;
+}
+
+.producto-card {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  background-color: blue;
+
+  width: 100%;
+}
