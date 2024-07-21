@@ -7,13 +7,15 @@ import Footer from "../Footer/Footer";
 
 const Favoritos = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = JSON.parse(localStorage.getItem("User"))
+
+  //const user = useSelector((state) => state.user);
   const favorites = useSelector((state) => state.favorites);
 
   useEffect(() => { 
-    if (user && user.id) {
+    if (user && user.email) {
       
-      dispatch(fetchUserFavorites(user.id));
+      dispatch(fetchUserFavorites(user.email));
     }
   }, [dispatch, user]);
 

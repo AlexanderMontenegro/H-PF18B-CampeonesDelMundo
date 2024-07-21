@@ -54,7 +54,10 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
 
 export const fetchUserFavorites = (userId) => async (dispatch) => {
   try {
-    const response = await axios.get(`/favorites/${userId}`);
+    const response = await axios.get(`/favorites/${userId}`,{
+      user_email: user.email
+  });
+     console.log(JSON.stringify(response))
     dispatch({
       type: SET_FAVORITES,
       payload: response.data,
