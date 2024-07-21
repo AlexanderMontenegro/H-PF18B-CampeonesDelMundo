@@ -26,7 +26,6 @@ const Header = ({
   const carritoTotal = () =>
     carrito.reduce((total, item) => total + item.quantity * item.precio, 0);
 
-  console.log("ESTA AUTENTICADO: ", isAuthenticated)
   const closeSession = () => {
     localStorage.clear();
     Swal.fire({

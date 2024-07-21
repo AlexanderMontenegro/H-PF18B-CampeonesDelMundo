@@ -1,43 +1,61 @@
 import React, { useState, useEffect } from "react";
 
+import { useSelector } from "react-redux";
+
 // CSS
 import "../../css/reviews.css";
 import ReviewForm from "./ReviewForm";
 
+const initialReviews = [
+  {
+    
+    nombre: "Richard Pereira",
+    comment: "Es un estupendo producto",
+    rating: 5,
+  },
+  {
+    nombre: "Ruben Mela Dobla",
+    comment: "Me gusta su color y material, precioso",
+    rating: 4,
+  },
+  {
+    nombre: "Esteban Quito",
+    comment: "Es pesimo, se ensucia mucho y causa irritaciones",
+    rating: 1,
+  },
+];
+
 const Reviews = ({ productId }) => {
+
+  // Datos de User
+  const user = useSelector((state) => state.user);
+
+  // console.log("PROPS DE user en reviews: ", user)
+  // console.log("PROPS DE user en reviews: ", user.accessToken)
+  console.log("PROPS DE user en reviews: ", user.name)
+
   // State y Effect
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(initialReviews);
 
-  useEffect(() => {
-    const comentarios = [
-      {
-        
-        user: "Richard Pereira",
-        comentario: "Es un estupendo producto",
-        valoracion: 5,
-      },
-      {
-        user: "Ruben Mela Dobla",
-        comentario: "Me gusta su color y material, precioso",
-        valoracion: 4,
-      },
-      {
-        user: "Esteban Quito",
-        comentario: "Es pesimo, se ensucia mucho y causa irritaciones",
-        valoracion: 1,
-      },
-    ];
+  // useEffect(() => {
+  //   const comentarios = 
 
-    setReviews(comentarios);
-  }, []);
+  //   setReviews(comentarios);
+  // }, []);
 
   // funciones - REVIEWS
-  const addToReviews = (user, comentario, valoracion) => {
+  const addToReviews = (productId, rating, comment) => {
+
+    // fecha
+    const fecha = now.toLocaleDateString();
+    const nombre = user.name;
     // Nuevo review
     const nuevoReview = {
-      user,
-      comentario,
-      valoracion,
+      nombre,
+      productId,
+      rating,
+      comment,
+      fecha
     };
 
     // Agregar a Reviews
@@ -45,12 +63,12 @@ const Reviews = ({ productId }) => {
   };
 
   return (
-    <div className="review__list">
+    <div>
       {reviews.map((review, index) => (
-        <div key={index}>
-          <h4>{review.user}</h4>
-          <p>{review.comentario}</p>
-          <span>Valoracion: {review.valoracion} / 5</span>
+        <div key={index} className="review__list">
+          <h4 className="review__title">{review.nombre}</h4>
+          <p>{review.comment}</p>
+          <span>Valoracion: {review.rating} / 5</span>
         </div>
       ))}
 

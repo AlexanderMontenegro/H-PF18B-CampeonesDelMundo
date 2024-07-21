@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 
+// CSS
+// import "../../css/reviews.css"
+
 const ReviewForm = ({ productId, addToReviews }) => {
+
   // State y Effect
-  const [user, setUser] = useState("");
   const [comentario, setComentario] = useState("");
   const [valoracion, setValoracion] = useState(0);
 
@@ -10,22 +13,26 @@ const ReviewForm = ({ productId, addToReviews }) => {
   // Funciones
   
   return (
-    <form>
-      <label htmlFor="">Nombre: </label>
+    <form className="review__form">
+      {/* <label htmlFor="" >Username: </label>
       <input
         type="text"
+        className="review__input"
         value={user}
         onChange={(e) => setUser(e.target.value)}
-      />
+      /> */}
 
       <label htmlFor="">Comentario: </label>
       <textarea
+        className="review__textarea"
         value={comentario}
         onChange={(e) => setComentario(e.target.value)}
+        rows={4}
       />
 
       <label htmlFor="">Valoracion: </label>
-      <select
+      <select 
+        className="review__select"
         value={valoracion}
         onChange={(e) => setValoracion(Number(e.target.value))}
         required
@@ -38,7 +45,9 @@ const ReviewForm = ({ productId, addToReviews }) => {
         ))}
       </select>
 
-      <button  onClick={() => {addToReviews(user,comentario,valoracion)}}>Enviar</button>
+      <button  
+        className="review__button"
+        onClick={() => {addToReviews(productId,comentario,valoracion)}}>Enviar</button>
     </form>
   );
 };

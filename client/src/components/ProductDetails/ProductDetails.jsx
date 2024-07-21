@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDetails } from "../../Redux/actions";
+
 import "../../css/productdetails.css";
 import "../../css/header.css";
 import Header from "../Header/Header";
@@ -24,9 +25,16 @@ const ProductDetails = ({
 }) => {
   const { id } = useParams();
 
+  
+
   useEffect(() => {
     getDetails(id);
   }, [id, getDetails]);
+
+  // PARA REVIEWS
+  // State y Effect
+
+  
 
   // PARA TALLES
   // State y Effect
