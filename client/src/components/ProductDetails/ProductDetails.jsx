@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDetails } from "../../Redux/actions";
@@ -6,6 +6,8 @@ import "../../css/productdetails.css";
 import "../../css/header.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import Reviews from "../Reviews/Reviews";
+import ReviewForm from "../Reviews/ReviewForm";
 
 const ProductDetails = ({
   carrito,
@@ -14,23 +16,34 @@ const ProductDetails = ({
   increaseQuantity,
   decreaseQuantity,
   clearCarrito,
+  notificaciones,
   product,
   getDetails,
-  notificaciones,
+  
+
 }) => {
   const { id } = useParams();
-
 
   useEffect(() => {
     getDetails(id);
   }, [id, getDetails]);
 
-  if (!product) {
-    return <p>Producto no encontrado</p>;
+  // PARA TALLES
+  // State y Effect
+  const [selecciontalle, setSeleccionTalle] = useState("");
+  const [hasChanged, setHasChanged] = useState(false);
+
+  // Funciones
+  const handleSelectChange = (event) => {
+    const nuevoTalle = event.target.value;
+
+    setSeleccionTalle(nuevoTalle);
+    product.talle = nuevoTalle;
   }
 
-  const EncontrarTalles = () => {
 
+  if (!product) {
+    return <p>Producto no encontrado</p>;
   }
 
   return (
@@ -45,10 +58,12 @@ const ProductDetails = ({
         notificaciones={notificaciones}
       />
       <div className="container__pd">
+
         <div className="product-details-container">
           <div className="product-image">
             <img src={product.imagen} alt={product.tipo} />
           </div>
+
           <div className="product-info">
             <h2 className="product-title">
               {product.tipo} - {product.marca}
@@ -59,13 +74,17 @@ const ProductDetails = ({
             </p>
             <div className="product-sizes">
               <label htmlFor="sizes">Talles:</label>
-              <select id="sizes">
-                {product.talles.map(obj => (
-                  <option key={obj.id} onClick={() => EncontrarTalles(obj)}>
-                    {obj.talle}-{obj.stock}
-                    {/* {console.log("El stock es: ", obj.talle)} */}
+              <select id="sizes" onChange={handleSelectChange}>
+                <option value="Seleccione talle">Seleccione talle</option>
+                {product.talles.map((obj, index) => (
+
+                  <option key={index} value={obj.talle + " - " + obj.stock}>
+                    {obj.talle + " - " + obj.stock}
+                    
                   </option>
+                  
                 ))}
+                
               </select>
             </div>
             <button
@@ -76,9 +95,23 @@ const ProductDetails = ({
               <img src="../iconos/carrito.png" alt="" />{" "}
             </button>
           </div>
+
+          {/* Reviews */}
           <div className="reviews-section">
             <h3>Reviews</h3>
             {/* Lista de comentarios y puntuaciones */}
+              
+            <section className="reviews__content">
+              
+              <Reviews 
+                productId={product.id}
+               
+                />
+              
+
+              
+
+            </section>
           </div>
         </div>
       </div>
