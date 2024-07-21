@@ -9,6 +9,7 @@ const { conn } = require('./src/db.js');
 const PORT = process.env.PORT|| 3001; 
 
 
+
 //const app = express();
 const httpServer = http.createServer(server);
 
@@ -40,7 +41,7 @@ io.on('connection', (socket) => {
       });
 });
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   httpServer.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
   });

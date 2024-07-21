@@ -2,10 +2,18 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { DB_USER_L, DB_PASSWORD_L, DB_HOST_L, DB_PORT_L, DB_NAME_L } = process.env;
+const {  DATABASE_UR, DB_USER1, DB_PASSWORD1, DB_HOST1, DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
-   `postgres://${DB_USER_L}:${DB_PASSWORD_L}@${DB_HOST_L}:${DB_PORT_L}/${DB_NAME_L}`,
+   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/campeones`,
+   {
+      logging: false, // set to console.log to see the raw SQL queries
+      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+   }
+);
+/* 
+const sequelize = new Sequelize(
+   `postgres://${DB_USER1}:${DB_PASSWORD1}@${DB_HOST1}/campeones`,
    {
      logging: false, // set to console.log to see the raw SQL queries
      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -17,7 +25,7 @@ const sequelize = new Sequelize(
    //   },
 
    }
-);
+); */
 
 const basename = path.basename(__filename);
 const modelDefiners = [];
@@ -42,7 +50,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Productos, Categoria, User, Order, Carrito, Marca, Favorite } = sequelize.models;
+const { Productos, Categoria, User, Order, Carrito, Marca, Favorite, Review } = sequelize.models;
 
 Productos.belongsToMany(Categoria, { through: "ProductoCategoria", as: "categorias" });
 Categoria.belongsToMany(Productos, { through: "ProductoCategoria", as: "productos" });
@@ -61,6 +69,12 @@ Favorite.belongsTo(User, { foreignKey: 'user_id' });
 
 Productos.hasMany(Favorite, { foreignKey: 'productos_id' });
 Favorite.belongsTo(Productos, { foreignKey: 'productos_id' });
+
+User.hasMany(Review, { foreignKey: 'user_id' });
+Review.belongsTo(User, { foreignKey: 'user_id' });
+
+Productos.hasMany(Review, { foreignKey: 'product_id' });
+Review.belongsTo(Productos, { foreignKey: 'product_id' });
 
 module.exports = {
    ...sequelize.models,

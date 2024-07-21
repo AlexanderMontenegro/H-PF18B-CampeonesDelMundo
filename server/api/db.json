@@ -917,7 +917,12 @@
       "precio": 200000,
       "imagen": "https://biciclub.com/wp-content/uploads/2019/09/karabitian_Avalanche-Sport-Aqua-1.jpg",
       "categoria": "accesorios",
-      "descripcion": "Bicicleta GT Avalanche Sport, ideal para ciclismo de montaña y rutas."
+      "descripcion": "Bicicleta GT Avalanche Sport, ideal para ciclismo de montaña y rutas.",
+      "talles": [
+      { "talle": "S", "stock": 5 },
+      { "talle": "M", "stock": 5 },
+      { "talle": "L", "stock": 5 }
+      ]
     },
     {
       "id": 63,
@@ -926,7 +931,12 @@
       "precio": 250000,
       "imagen": "https://hambike.com.ar/wp-content/uploads/2020/07/newsan_Battle-Bicis-240Nar-Lat-copy.jpg",
       "categoria": "accesorios",
-      "descripcion": "Bicicleta Battle 240, perfecta para ciclismo urbano y de montaña."
+      "descripcion": "Bicicleta Battle 240, perfecta para ciclismo urbano y de montaña.",
+      "talles": [
+      { "talle": "S", "stock": 5 },
+      { "talle": "M", "stock": 5 },
+      { "talle": "L", "stock": 5 }
+      ]
     },
     {
       "id": 64,
@@ -935,7 +945,13 @@
       "precio": 190000,
       "imagen": "https://nahuelcamping.com.ar/wp-content/uploads/2018/10/Paradise-Nacional-1108-600x600.jpg",
       "categoria": "accesorios",
-      "descripcion": "Carpa Canadiense modelo Paradise Nacional, ideal para acampar en familia."
+      "descripcion": "Carpa Canadiense modelo Paradise Nacional, ideal para acampar en familia.",
+      "talles": [
+      { "talle": "2 personas", "stock": 5 },
+      { "talle": "4 personas", "stock": 5 },
+      { "talle": "6 personas", "stock": 5 },
+      { "talle": "8 personas", "stock": 5 }
+      ]
     },
     {
       "id": 65,
@@ -944,7 +960,13 @@
       "precio": 249000,
       "imagen": "https://tu-aventura.com.ar/wp-content/uploads/2024/01/D_610036-MLA52024250029_102022-F.jpg",
       "categoria": "accesorios",
-      "descripcion": "Carpa Tu Aventura, resistente y espaciosa, perfecta para expediciones."
+      "descripcion": "Carpa Tu Aventura, resistente y espaciosa, perfecta para expediciones.",
+      "talles": [
+      { "talle": "2 personas", "stock": 5 },
+      { "talle": "4 personas", "stock": 5 },
+      { "talle": "6 personas", "stock": 5 },
+      { "talle": "8 personas", "stock": 5 }
+      ]
     },
     {
       "id": 66,
@@ -953,7 +975,13 @@
       "precio": 46000,
       "imagen": "https://thegolfershop.com.ar/wp-content/uploads/2022/11/Gorra-Nike-Aerobill-H86-Dama-Negro3.jpeg",
       "categoria": "accesorios",
-      "descripcion": "Gorra deportiva para mujer marca Nike, modelo Aerobill H86, cómoda y ajustable."
+      "descripcion": "Gorra deportiva para mujer marca Nike, modelo Aerobill H86, cómoda y ajustable.",
+      "talles": [
+      { "talle": "G", "stock": 5 },
+      { "talle": "SG", "stock": 5 },
+      { "talle": "SSG", "stock": 5 },
+      { "talle": "U", "stock": 5 }
+      ]
     },
     {
       "id": 67,
@@ -962,7 +990,13 @@
       "precio": 15000,
       "imagen": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d9e70181be7d4522886dab6400b5b148_9366/Gorra_Trucker_Adicolor_Curved_UNISEX_Rosa_GD4520_01_standard.jpg",
       "categoria": "accesorios",
-      "descripcion": "Gorra Trucker Adicolor Curved unisex marca Adidas, con diseño moderno y casual."
+      "descripcion": "Gorra Trucker Adicolor Curved unisex marca Adidas, con diseño moderno y casual.",
+      "talles": [
+      { "talle": "G", "stock": 5 },
+      { "talle": "SG", "stock": 5 },
+      { "talle": "SSG", "stock": 5 },
+      { "talle": "U", "stock": 5 }
+      ]
     },
     {
       "id": 68,
@@ -971,7 +1005,13 @@
       "precio": 30000,
       "imagen": "https://acdn.mitiendanube.com/stores/001/729/503/products/b1-0ea8bd03b81f3b0f7e17096453312608-1024-1024.jpg",
       "categoria": "accesorios",
-      "descripcion": "Mochila deportiva marca Adidas, resistente y espaciosa, ideal para el gimnasio y actividades diarias."
+      "descripcion": "Mochila deportiva marca Adidas, resistente y espaciosa, ideal para el gimnasio y actividades diarias.",
+      "talles": [
+      { "talle": "20L", "stock": 5 },
+      { "talle": "30L", "stock": 5 },
+      { "talle": "40L", "stock": 5 },
+      { "talle": "50L", "stock": 5 }
+      ]
     },
     {
       "id": 69,
@@ -980,7 +1020,13 @@
       "precio": 38000,
       "imagen": "https://www.mundodeportivo.com/elrecomendador/comparativas/wp-content/uploads/2023/03/Comparativa-mochilas-deportivas-3.jpg",
       "categoria": "accesorios",
-      "descripcion": "Mochila deportiva marca Nike, con múltiples compartimentos y diseño ergonómico."
+      "descripcion": "Mochila deportiva marca Nike, con múltiples compartimentos y diseño ergonómico.",
+      "talles": [
+      { "talle": "20L", "stock": 5 },
+      { "talle": "30L", "stock": 5 },
+      { "talle": "40L", "stock": 5 },
+      { "talle": "50L", "stock": 5 }
+      ]
     },
     {
       "id": 70,
@@ -989,7 +1035,12 @@
       "precio": 10000,
       "imagen": "https://acdn.mitiendanube.com/stores/001/437/310/products/11114-2-d969ac5925493ebece17148362296858-640-0.jpg",
       "categoria": "accesorios",
-      "descripcion": "Pelota deportiva marca Kingstore, ideal para fútbol y otras actividades recreativas."
+      "descripcion": "Pelota deportiva marca Kingstore, ideal para fútbol y otras actividades recreativas.",
+      "talles": [
+      { "talle": "3", "stock": 10 },
+      { "talle": "4", "stock": 15 },
+      { "talle": "5", "stock": 20 }
+      ]
     },
     {
       "id": 71,
@@ -998,7 +1049,12 @@
       "precio": 25000,
       "imagen": "https://futbolmanias.com/3965-thickbox_default/balon-eurocopa-alemania-2024.jpg",
       "categoria": "accesorios",
-      "descripcion": "Pelota de fútbol Adidas, modelo Eurocopa Alemania 2024, de alta calidad y rendimiento."
+      "descripcion": "Pelota de fútbol Adidas, modelo Eurocopa Alemania 2024, de alta calidad y rendimiento.",
+      "talles": [
+      { "talle": "3", "stock": 10 },
+      { "talle": "4", "stock": 15 },
+      { "talle": "5", "stock": 20 }
+      ]
     },
     {
       "id": 72,

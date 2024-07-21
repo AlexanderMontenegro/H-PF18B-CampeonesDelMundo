@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     productos_id: {
-      type: DataTypes.UUID, // Asegúrate de que coincida con el tipo de ID de Productos
+      type: DataTypes.UUID, 
       allowNull: false,
     },
   }, {
