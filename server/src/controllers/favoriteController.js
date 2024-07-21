@@ -1,47 +1,40 @@
-const { Favorite, User, Productos } = require('../db');
+const { Favorite, User, Productos } = require("../db");
 
 const addToFavorites = async (req, res) => {
-  console.log("Received Add Favorite Request:", req.body);
+  //console.log("Received Add Favorite Request:", req.body);
   const { user_email, productos_id } = req.body;
-  console.log(user_email)
+  // console.log(user_email)
   try {
-    const user = await User.findOne({where: {email:user_email}});
+    const user = await User.findOne({ where: { email: user_email } });
     const product = await Productos.findByPk(productos_id);
-console.log(user)
+    //console.log(user)
 
     if (!user || !product) {
-
-      return res.status(404).json({ message: 'User or Product not found' });
+      return res.status(404).json({ message: "User or Product not found" });
     }
 
     const [favorite, created] = await Favorite.findOrCreate({
-      where: { user_id:user.id, productos_id },
-      defaults: {user_id:user.id, productos_id }
+      where: { user_id: user.id, productos_id },
+      defaults: { user_id: user.id, productos_id },
     });
 
     if (!created) {
-      return res.status(400).json({ message: 'Favorite already exists' });
+      return res.status(400).json({ message: "Favorite already exists" });
     }
 
     res.status(201).json(favorite);
   } catch (error) {
-    console.error('Error creating favorite:', error);
-    res.status(500).json({ message: 'Error creating favorite', error });
+    console.error("Error creating favorite:", error);
+    res.status(500).json({ message: "Error creating favorite", error });
   }
 };
 
 const getUserFavorites = async (req, res) => {
   const { userId } = req.params;
-  console.log('User ID:', userId);
-
-  
+  console.log("User ID:", userId);
   if (!userId) {
-  
-
-    return res.status(400).json({ error: 'User ID is required' });
-    
+    return res.status(400).json({ error: "User ID is required" });
   }
-
   try {
     const favorites = await Favorite.findAll({ where: { user_id: userId } });
     res.status(200).json(favorites);
@@ -56,14 +49,14 @@ const removeFromFavorites = async (req, res) => {
   try {
     const favorite = await Favorite.findByPk(favoriteId);
     if (!favorite) {
-      return res.status(404).json({ message: 'Favorite not found' });
+      return res.status(404).json({ message: "Favorite not found" });
     }
 
     await favorite.destroy();
     res.status(204).json();
   } catch (error) {
-    console.error('Error removing favorite:', error);
-    res.status(500).json({ message: 'Error removing favorite', error });
+    console.error("Error removing favorite:", error);
+    res.status(500).json({ message: "Error removing favorite", error });
   }
 };
 
