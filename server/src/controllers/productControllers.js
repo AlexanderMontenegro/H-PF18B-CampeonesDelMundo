@@ -1,39 +1,33 @@
 const axios = require('axios');
-const { Op } = require('sequelize');
 const { v4: uuidv4 } = require('uuid');
-const { Productos, Categoria } = require("../db")
+const { Productos, Categoria, conn } = require("../db");
 
-//PARA MANDAR LA MISMA INFORMACION QUE TIENE EL BDD
-//* Función para limpiar el array de productos
+// Función para limpiar el array de productos
 const cleanArray = (arr) => {
-  const clean = arr.map((elem) => {
-    return {
-      id: elem.id,
-      tipo: elem.tipo,
-      descripcion: elem.descripcion,
-      precio: elem.precio,
-      stock: elem.stock,
-      imagen: elem.imagen,
-      categoria: elem.categoria,
-      marca: elem.marca,
-      pais: elem.pais,
-      talles: elem.talles,
-      created: false,
-    };
-  });
-  return clean;
+  return arr.map((elem) => ({
+    id: elem.id,
+    tipo: elem.tipo,
+    descripcion: elem.descripcion,
+    precio: elem.precio,
+    stock: elem.stock,
+    imagen: elem.imagen,
+    categoria: elem.categoria,
+    marca: elem.marca,
+    pais: elem.pais,
+    talles: elem.talles,
+    created: false,
+  }));
 };
-
 
 const convertirId = (idInteger) => {
-  return uuidv4(); 
+  return uuidv4();
 };
-
-let productosGuardados = false;
 
 const getProduct = async () => {
   try {
-    if (productosGuardados) {
+    // Verificar si hay productos en la base de datos
+    const existingProducts = await Productos.count();
+    if (existingProducts > 0) {
       const dataProductos = await Productos.findAll({
         include: [
           {
@@ -81,41 +75,42 @@ const getProduct = async () => {
     const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
     const apiProduct = cleanArray(apiProductRaw);
 
-    // Guardar los productos de la API en la base de datos si no existen
-    await Promise.all(apiProduct.map(async (product) => {
-      const idProducto = isNaN(product.id) ? product.id : convertirId(product.id);
+    // Usar una transacción para insertar los productos
+    await conn.transaction(async (t) => {
+      await Promise.all(apiProduct.map(async (product) => {
+        const idProducto = isNaN(product.id) ? product.id : convertirId(product.id);
 
-      // Verificar si el producto ya existe en la base de datos
-      const existingProduct = await Productos.findOne({ where: { id: idProducto } });
+        // Verificar si el producto ya existe en la base de datos
+        const existingProduct = await Productos.findOne({ where: { id: idProducto }, transaction: t });
 
-      if (!existingProduct) {
-        // Crear el producto solo si no existe
-        const producto = await Productos.create({
-          id: idProducto,
-          tipo: product.tipo,
-          descripcion: product.descripcion,
-          precio: product.precio,
-          imagen: product.imagen,
-          marca: product.marca,
-          pais: product.pais,
-          talles: product.talles,
-        });
+        if (!existingProduct) {
+          // Crear el producto solo si no existe
+          const producto = await Productos.create({
+            id: idProducto,
+            tipo: product.tipo,
+            descripcion: product.descripcion,
+            precio: product.precio,
+            imagen: product.imagen,
+            marca: product.marca,
+            pais: product.pais,
+            talles: product.talles,
+          }, { transaction: t });
 
-        const categoriaNombres = product.categoria.split(", ").map(nombre => nombre.trim());
+          const categoriaNombres = product.categoria.split(", ").map(nombre => nombre.trim());
 
-        const categoriaRecords = await Categoria.findAll({
-          where: {
-            nombre: categoriaNombres
+          const categoriaRecords = await Categoria.findAll({
+            where: {
+              nombre: categoriaNombres
+            },
+            transaction: t
+          });
+
+          if (categoriaRecords.length > 0) {
+            await producto.addCategorias(categoriaRecords, { transaction: t });
           }
-        });
-
-        if (categoriaRecords.length > 0) {
-          await producto.addCategorias(categoriaRecords);
         }
-      }
-    }));
-
-    productosGuardados = true; // Marcamos que los productos han sido guardados
+      }));
+    });
 
     // Obtener todos los productos de la base de datos, incluyendo sus categorías
     const dataProductos = await Productos.findAll({
@@ -164,6 +159,7 @@ const getProduct = async () => {
     throw error;
   }
 };
+
 
 
   //--------------------------------------------------------------
