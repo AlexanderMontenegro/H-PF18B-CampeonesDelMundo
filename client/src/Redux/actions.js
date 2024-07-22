@@ -98,11 +98,9 @@ export const addToReviews = (productId, comentario, valoracion) => async (dispat
 
 // REVIEWS - FIN
 
-export const fetchUserFavorites = (userId) => async (dispatch) => {
+export const fetchUserFavorites = (useremail) => async (dispatch) => {
   try {
-    const response = await axios.get(`/favorites/${userId}`,{
-      user_email: user.email
-  });
+    const response = await axios.get(`/favorites/${useremail}`);
      console.log(JSON.stringify(response))
     dispatch({
       type: SET_FAVORITES,
