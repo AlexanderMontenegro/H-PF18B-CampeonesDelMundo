@@ -119,3 +119,8 @@
   .modificables{
     display: flex;
   }
+
+  .stock p {
+    width: 100px;
+    color: #edf0f2;
+  }

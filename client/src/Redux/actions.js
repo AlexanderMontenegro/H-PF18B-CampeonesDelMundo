@@ -31,6 +31,7 @@ export const SET_PREFERENCE_ID = 'SET_PREFERENCE_ID';
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 export const SET_FAVORITES = 'SET_FAVORITES';
+export const UPDATE_STOCK = 'UPDATE_STOCK';
 
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const POST_REVIEW = 'POST_REVIEW';
@@ -464,5 +465,26 @@ export const loginWithFacebook = () => {
               payload: error.response ? error.response.data : { message: error.message }
       });
       }
+  };
+};
+
+export const updateStock = (id, talles) => {
+  const endpoint = `/productos/${id}/stock`//modificar de acuerdo a ruta del back
+  return async function (dispatch) {
+    try {
+    const response =   await axios.put(endpoint, talles);
+      
+       return dispatch({
+        type: UPDATE_STOCK,
+        payload: response,
+      }); 
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error en el servidor",
+        text: "",
+        timer: 5000,
+      });
+    }
   };
 };
