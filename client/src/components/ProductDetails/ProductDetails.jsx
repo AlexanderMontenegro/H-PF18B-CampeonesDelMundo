@@ -61,8 +61,9 @@ const ProductDetails = ({
               <label htmlFor="sizes">Talles:</label>
               <select id="sizes">
                 {product.talles.map(obj => (
+                  obj.stock>0&&
                   <option key={obj.id} onClick={() => EncontrarTalles(obj)}>
-                    {obj.talle}-{obj.stock}
+                  {obj.talle}-{obj.stock}
                     {/* {console.log("El stock es: ", obj.talle)} */}
                   </option>
                 ))}

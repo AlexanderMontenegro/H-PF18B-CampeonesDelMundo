@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { updateStock } from "../../../Redux/actions";
+import { useNavigate } from "react-router-dom";
+import Modal from '..//..//Modal/Modal';
+import Swal from "sweetalert2";
 import "../../../css/controlstock.css";
 
 function StockAdmin() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const arrayProduct = useSelector((state) => state.allProducts);
-  console.log(arrayProduct);
   const [data, setData] = useState(arrayProduct);
   const [selectedObject, setSelectedObject] = useState(null);
 
@@ -13,29 +17,24 @@ function StockAdmin() {
     setSelectedObject(obj);
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSelectedObject({
-      ...selectedObject,
-      [name]: value,
-    });
-  };
+  //Guardar
+  const handleSave = async ()  => {
+console.log(selectedObject.talles)
+const response=await dispatch(updateStock(selectedObject.id,selectedObject.talles));
+if(response.payload.data)
+{
+  Swal.fire({
+    icon: "success",
+    title: 'Stock Actualizado',
+    text: "",
+    timer: 3000,
+  }).then(() => {
+    // Redirigir después de que la alerta se cierre
+    navigate("/dashboard/stockadmin"); // Cambia la URL al destino
+    window.location.reload();
+  });
+}
 
-  const handleSave = () => {
-    setData(
-      data.map((obj) => (obj.id === selectedObject.id ? selectedObject : obj))
-    );
-    setSelectedObject(null);
-  };
-
-  const handleTallesChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedItems = [...selectedObject.talles];
-    updatedItems[index] = { ...updatedItems[index], [name]: value };
-    setSelectedObject({
-      ...selectedObject,
-      talles: updatedItems,
-    });
   };
 
   const handleStockChange = (index, e) => {
@@ -48,65 +47,56 @@ function StockAdmin() {
       talles: updatedItems,
     });
   };
+
+  const handleCloseModal = () => {
+    setSelectedObject(null);
+  };
   return (
     <div className="stock">
       <h1>Lista de Productos</h1>
       <ul>
         {data.map((obj) => (
-          <li key={obj.id} onClick={() => handleSelect(obj)}>
-            {obj.tipo} {obj.marca}
+          <li key={obj.id} onClick={() => handleSelect(obj)} >
+            <p>{obj.tipo} {obj.marca}</p> 
+            <img
+              src={obj.imagen}
+              alt="Vista previa de la imagen"
+              style={{ maxWidth: "100px", maxHeight: "auto" }}
+            />
           </li>
         ))}
       </ul>
 
-      {selectedObject && (
+      {selectedObject &&<Modal>        
         <div  className="modificar__stock"  >
-          <h2>Modificar Stock</h2>
-          {/*           <label>
-            tipo:
-            <input
-              type="text"
-              name="tipo"
-              value={selectedObject.tipo}
-              onChange={handleChange}
+        <button onClick={handleCloseModal}>X</button>
+          <h2>Modificar Stock {selectedObject.tipo}{selectedObject.marca}</h2>
+          <img
+              src={selectedObject.imagen}
+              alt="Vista previa de la imagen"
+              style={{ maxWidth: "150px", maxHeight: "auto" }}
             />
-          </label>
           <br />
-          <label>
-            Descripción:
-            <input
-              type="text"
-              name="description"
-              value={selectedObject.description}
-              onChange={handleChange}
-            />
-          </label> */}
-          <br />
-          <h3>Talles</h3>
+         
           <div  className="modificables"  >
           {selectedObject.talles.map((item, index) => (
             <div className="datos" key={item.talle}>
-              <input
-                type="text"
-                name="talle"
-                value={item.talle}
-                onChange={(e) => handleTallesChange(index, e)}
-              />
+              <p>talle: {item.talle}</p>
               <input
                 type="number"
                 name="stock"
                 value={item.stock}
                 onChange={(e) => handleStockChange(index, e)}
               />
-              {console.log("dfdf", selectedObject)}
-            </div>
-
-))}
-</div>
+              {console.log("dfdf", selectedObject)} 
+            </div>))}
+          </div>
 
           <button onClick={handleSave}>Guardar</button>
-        </div>
-      )}
+          
+        </div> 
+      </Modal>
+      }
     </div>
   );
 }
