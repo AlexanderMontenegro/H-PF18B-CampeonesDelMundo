@@ -1,65 +1,27 @@
 import React, { useState, useEffect } from "react";
-
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchReviews, addToReviews } from "../../Redux/actions"
 
 // CSS
 import "../../css/reviews.css";
 import ReviewForm from "./ReviewForm";
 
-const initialReviews = [
-  {
-    
-    nombre: "Richard Pereira",
-    comment: "Es un estupendo producto",
-    rating: 5,
-  },
-  {
-    nombre: "Ruben Mela Dobla",
-    comment: "Me gusta su color y material, precioso",
-    rating: 4,
-  },
-  {
-    nombre: "Esteban Quito",
-    comment: "Es pesimo, se ensucia mucho y causa irritaciones",
-    rating: 1,
-  },
-];
-
 const Reviews = ({ productId }) => {
 
-  // Datos de User
-  const user = useSelector((state) => state.user);
+  // console.log("ID DE producto: ", productId);
 
-  // console.log("PROPS DE user en reviews: ", user)
-  // console.log("PROPS DE user en reviews: ", user.accessToken)
-  console.log("PROPS DE user en reviews: ", user.name)
+  // Datos de User y Reviews
+  const reviews = useSelector((state) => state.reviews[productId] || []);
+  const dispatch = useDispatch();
 
-  // State y Effect
-  const [reviews, setReviews] = useState(initialReviews);
+  // Efecto para cargar las reviews al montar el componente
+  useEffect(() => {
+    dispatch(fetchReviews(productId));
+  }, [dispatch, productId]);
 
-  // useEffect(() => {
-  //   const comentarios = 
-
-  //   setReviews(comentarios);
-  // }, []);
-
-  // funciones - REVIEWS
-  const addToReviews = (productId, rating, comment) => {
-
-    // fecha
-    const fecha = now.toLocaleDateString();
-    const nombre = user.name;
-    // Nuevo review
-    const nuevoReview = {
-      nombre,
-      productId,
-      rating,
-      comment,
-      fecha
-    };
-
-    // Agregar a Reviews
-    setReviews([...reviews, nuevoReview]);
+  // Función para agregar una nueva review
+  const handleAddReview = (comentario, valoracion) => {
+    dispatch(addToReviews(productId, comentario, valoracion));
   };
 
   return (
@@ -72,7 +34,7 @@ const Reviews = ({ productId }) => {
         </div>
       ))}
 
-      <ReviewForm productId={productId} addToReviews={addToReviews} />
+      <ReviewForm productId={productId} handleAddReview={handleAddReview} />
     </div>
   );
 };

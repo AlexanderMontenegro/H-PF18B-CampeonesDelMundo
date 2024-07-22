@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-// CSS
-// import "../../css/reviews.css"
-
-const ReviewForm = ({ productId, addToReviews }) => {
-
+const ReviewForm = ({ handleAddReview }) => {
   // State y Effect
   const [comentario, setComentario] = useState("");
   const [valoracion, setValoracion] = useState(0);
 
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Previene el comportamiento por defecto del formulario
+    if (comentario && valoracion) {
+      handleAddReview(comentario, valoracion);
+      setComentario(""); // Reinicia el campo comentario
+      setValoracion(0); // Reinicia el campo valoracion
+    }
+  };
 
-  // Funciones
-  
   return (
-    <form className="review__form">
-      {/* <label htmlFor="" >Username: </label>
-      <input
-        type="text"
-        className="review__input"
-        value={user}
-        onChange={(e) => setUser(e.target.value)}
-      /> */}
-
+    <form className="review__form" onSubmit={handleSubmit}>
       <label htmlFor="">Comentario: </label>
       <textarea
         className="review__textarea"
@@ -31,7 +25,7 @@ const ReviewForm = ({ productId, addToReviews }) => {
       />
 
       <label htmlFor="">Valoracion: </label>
-      <select 
+      <select
         className="review__select"
         value={valoracion}
         onChange={(e) => setValoracion(Number(e.target.value))}
@@ -45,9 +39,12 @@ const ReviewForm = ({ productId, addToReviews }) => {
         ))}
       </select>
 
-      <button  
+      <button
+        type="submit"
         className="review__button"
-        onClick={() => {addToReviews(productId,comentario,valoracion)}}>Enviar</button>
+      >
+        Enviar
+      </button>
     </form>
   );
 };
