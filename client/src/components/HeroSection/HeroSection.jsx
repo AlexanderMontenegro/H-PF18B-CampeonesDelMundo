@@ -1,9 +1,13 @@
 import React from 'react';
 import { data }  from "../../db/dbherosections";
 import "../../css/herosection.css"
+import {  useSelector } from "react-redux";
 
+import "../../css/favorite.css";
 
 function HeroSection() {
+
+  const favorites = useSelector((state) => state.favorites);
 
   return (
     <section className='hero-section'>
@@ -19,6 +23,17 @@ function HeroSection() {
           <img key={item.id} src={item.imagen} alt={item.tipo} />
         ))}
         </div>
+{/*
+<div className="carousel2">
+            {favorites.map((productos) => (
+              <div className='con_caro' key={productos.id} >
+
+                <img {productos.imagen}/>
+              </div>
+            ))}
+          </div>
+*/}
+
 
     </section>
       

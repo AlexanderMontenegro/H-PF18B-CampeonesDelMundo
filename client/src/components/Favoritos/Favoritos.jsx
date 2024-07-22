@@ -4,13 +4,14 @@ import { fetchUserFavorites, removeFromFavorites } from "../../Redux/actions";
 import Swal from "sweetalert2";
 import "../../css/favorite.css";
 import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 
 const Favoritos = () => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("User"));
   const favorites = useSelector((state) => state.favorites);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (user && user.email) {
       dispatch(fetchUserFavorites(user.email));
     }
@@ -26,17 +27,20 @@ const Favoritos = () => {
   };
 
   return (
-    <div>
+    <div className="contenedor__fav">
+      <div className="header_img">
+        <Header />
+      </div>
       <div className="favorito">
         <div className="favorites-page">
           <h1>Mis Favoritos</h1>
           <div className="productos-list">
             {favorites.map((productos) => (
               <div key={productos.id} className="producto-card">
-
-                {/*
-                <div>{JSON.stringify(producto)}</div>
-                */}
+                {/*<div>{JSON.stringify(productos)}</div>*/}
+                <h2>{productos.id}</h2>
+                <h2>{productos.user_id}</h2>
+                <h2>{productos.productos_id}</h2>
 
                 <img src={productos.imagen} alt={productos.nombre} />
                 <h2>{productos.nombre}</h2>
@@ -44,6 +48,7 @@ const Favoritos = () => {
                 <button onClick={() => handleRemove(productos.id)}>
                   Eliminar
                 </button>
+               
               </div>
             ))}
           </div>
