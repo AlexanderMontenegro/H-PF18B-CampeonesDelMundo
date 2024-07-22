@@ -64,11 +64,11 @@ Order.belongsTo(Carrito, { foreignKey: 'carrito_id' });
 Marca.hasMany(Productos, { foreignKey: 'marca_id' });
 Productos.belongsTo(Marca, { foreignKey: 'marca_id' });
 
-User.hasMany(Favorite, { foreignKey: 'user_id' });
-Favorite.belongsTo(User, { foreignKey: 'user_id' });
+User.hasMany(Favorite, { foreignKey: 'user_id', as: 'favorites' });
+Favorite.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 
-Productos.hasMany(Favorite, { foreignKey: 'productos_id' });
-Favorite.belongsTo(Productos, { foreignKey: 'productos_id' });
+Productos.hasMany(Favorite, { foreignKey: 'productos_id', as: 'favorites' });
+Favorite.belongsTo(Productos, { foreignKey: 'productos_id', as: 'producto' });
 
 User.hasMany(Review, { foreignKey: 'user_id' });
 Review.belongsTo(User, { foreignKey: 'user_id' });

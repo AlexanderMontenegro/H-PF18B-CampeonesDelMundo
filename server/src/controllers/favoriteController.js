@@ -32,20 +32,39 @@ const addToFavorites = async (req, res) => {
 
 const getUserFavorites = async (req, res) => {
   const { useremail } = req.params;
-  console.log("User ID:", useremail);
+  console.log("User email:", useremail);
   if (!useremail) {
-    return res.status(400).json({ error: "User ID is required" });
+    return res.status(400).json({ error: "User email is required" });
   }
   try {
-    const user = await User.findOne({where: {email: useremail }})
-    const favorites = await Favorite.findAll({ where: { user_id : user.dataValues.id } });
-    res.status(200).json(favorites.map((data) =>{
-      return data.dataValues
+    const user = await User.findOne({ where: { email: useremail } });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const favorites = await Favorite.findAll({
+      where: { user_id: user.id },
+      include: [
+        {
+          model: Productos,
+          as: 'producto',
+        },
+      ],
+    });
+
+    res.status(200).json(favorites.map((favorite) => {
+      return {
+        id: favorite.id,
+        user_id: favorite.user_id,
+        producto: favorite.producto, // Aquí se incluyen las propiedades del producto
+      };
     }));
   } catch (error) {
+    console.error("Error fetching user favorites:", error);
     res.status(500).json({ error: error.message });
   }
 };
+
 
 const removeFromFavorites = async (req, res) => {
   const { favoriteId } = req.params;
