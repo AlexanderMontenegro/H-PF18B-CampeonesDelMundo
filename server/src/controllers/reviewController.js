@@ -3,15 +3,29 @@ const { Review, User, Productos } = require('../db');
 // Crear una nueva reseña
 const createReview = async (req, res) => {
   try {
-    const { user_id, product_id, rating, comment, date } = req.body;
+    const { email, product_id, rating, comment, date } = req.body;
 
     // Validaciones básicas
-    if (!user_id || !product_id || !rating) {
+    if (!email || !product_id || !rating) {
       return res.status(400).json({ message: 'Faltan datos requeridos' });
     }
 
+    // Buscar el usuario por email
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
     // Crear la reseña
-    const newReview = await Review.create({ user_id, product_id, rating, comment, date });
+    const newReview = await Review.create({
+      user_id: user.id,
+      product_id,
+      rating,
+      comment,
+      date
+    });
+
     res.status(201).json(newReview);
   } catch (error) {
     console.error(error);
@@ -21,16 +35,15 @@ const createReview = async (req, res) => {
 
 // Obtener reseñas de un producto
 const getProductReviews = async (req, res) => {
-    try {
-      const { productId } = req.params; // Captura el parámetro correctamente
-      const reviews = await Review.findAll({ where: { product_id: productId } }); // Usa el nombre correcto de la columna
-      res.status(200).json(reviews);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Error al obtener reseñas' });
-    }
-  };
-  
+  try {
+    const { productId } = req.params; // Captura el parámetro correctamente
+    const reviews = await Review.findAll({ where: { product_id: productId } }); // Usa el nombre correcto de la columna
+    res.status(200).json(reviews);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al obtener reseñas' });
+  }
+};
 
 // Obtener reseñas de un usuario
 const getUserReviews = async (req, res) => {
@@ -88,3 +101,4 @@ module.exports = {
   updateReview,
   deleteReview,
 };
+
