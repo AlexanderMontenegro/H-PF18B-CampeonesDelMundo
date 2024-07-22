@@ -18,11 +18,14 @@ import {
   POST_USER,
   POST_LOGIN,
   SET_PREFERENCE_ID,
-  ADD_TO_FAVORITES, 
+  ADD_TO_FAVORITES,
   REMOVE_FROM_FAVORITES,
   SET_FAVORITES,
+  GET_REVIEWS,
+  POST_REVIEW,
+  PUT_REVIEW,
+  DELETE_REVIEW,
 } from "./actions";
-
 
 const initialState = {
   details: null,
@@ -39,14 +42,18 @@ const initialState = {
     producto: "none",
     categoria: "none",
     marca: "none",
-  }
+  },
+  reviews: [],
 };
 
 const applyFilters = (products, filters) => {
-  return products.filter(producto => {
-    const matchesProducto = filters.producto === "none" || producto.tipo === filters.producto;
-    const matchesCategoria = filters.categoria === "none" || producto.categoria === filters.categoria;
-    const matchesMarca = filters.marca === "none" || producto.marca === filters.marca;
+  return products.filter((producto) => {
+    const matchesProducto =
+      filters.producto === "none" || producto.tipo === filters.producto;
+    const matchesCategoria =
+      filters.categoria === "none" || producto.categoria === filters.categoria;
+    const matchesMarca =
+      filters.marca === "none" || producto.marca === filters.marca;
     return matchesProducto && matchesCategoria && matchesMarca;
   });
 };
@@ -98,7 +105,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filters: updatedFiltersProducto,
         productos: applyFilters(state.allProducts, updatedFiltersProducto),
-        preSortProductos: applyFilters(state.allProducts, updatedFiltersProducto),
+        preSortProductos: applyFilters(
+          state.allProducts,
+          updatedFiltersProducto
+        ),
       };
     case FILTER_CATEGORIA:
       const updatedFiltersCategoria = { ...state.filters, categoria: payload };
@@ -106,7 +116,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filters: updatedFiltersCategoria,
         productos: applyFilters(state.allProducts, updatedFiltersCategoria),
-        preSortProductos: applyFilters(state.allProducts, updatedFiltersCategoria),
+        preSortProductos: applyFilters(
+          state.allProducts,
+          updatedFiltersCategoria
+        ),
       };
     case FILTER_MARCAS:
       const updatedFiltersMarca = { ...state.filters, marca: payload };
@@ -173,7 +186,7 @@ const rootReducer = (state = initialState, action) => {
         error: payload.error || null,
       };
 
-      case ADD_TO_FAVORITES:
+    case ADD_TO_FAVORITES:
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
@@ -181,13 +194,45 @@ const rootReducer = (state = initialState, action) => {
     case REMOVE_FROM_FAVORITES:
       return {
         ...state,
-        favorites: state.favorites.filter(fav => fav.id !== action.payload),
+        favorites: state.favorites.filter((fav) => fav.id !== action.payload),
       };
-      case SET_FAVORITES:
+    case SET_FAVORITES:
       return {
         ...state,
         favorites: action.payload,
       };
+
+    // PARA REVIEWS
+    case GET_REVIEWS:
+      return {
+        ...state,
+        [action.payload.productId]: action.payload.reviews,
+      };
+
+    case POST_REVIEW:
+      const { productId, newReview } = action.payload;
+      return {
+        ...state,
+        [productId]: [...(state[productId] || []), newReview],
+      };
+
+    case PUT_REVIEW:
+      return {
+        ...state,
+        [action.payload.productId]: state[action.payload.productId].map(
+          (review) =>
+            review.id === action.payload.id ? action.payload : review
+        ),
+      };
+    case DELETE_REVIEW:
+      return {
+        ...state,
+        [action.payload.productId]: state[action.payload.productId].filter(
+          (review) => review.id !== action.payload.reviewId
+        ),
+      };
+    // FIN - REVIEWS
+
     default:
       return state;
   }

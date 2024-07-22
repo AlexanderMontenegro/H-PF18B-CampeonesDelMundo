@@ -30,7 +30,7 @@ if(response.payload.data)
     timer: 3000,
   }).then(() => {
     // Redirigir después de que la alerta se cierre
-    navigate("/dashboard/stockadmin"); // Cambia la URL al destino
+    navigate("/dashboard/"); // Cambia la URL al destino
     window.location.reload();
   });
 }

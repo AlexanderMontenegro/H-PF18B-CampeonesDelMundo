@@ -33,6 +33,11 @@ export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 export const SET_FAVORITES = 'SET_FAVORITES';
 export const UPDATE_STOCK = 'UPDATE_STOCK';
 
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const POST_REVIEW = 'POST_REVIEW';
+export const PUT_REVIEW = 'PUT_REVIEW';
+export const DELETE_REVIEW = "DELETE_REVIEW";
+
 
 
 
@@ -51,11 +56,53 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
   }
 };
 
-
-
-export const fetchUserFavorites = (userId) => async (dispatch) => {
+// PARA REVIEWS
+// GET_REVIEWS
+export const fetchReviews = (productId) => async (dispatch) => {
   try {
-    const response = await axios.get(`/favorites/${userId}`);
+    const response = await axios.get(`/producto/${productId}`);
+    dispatch({
+      type: GET_REVIEWS,
+      payload: {
+        productId,
+        reviews: response.data,
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+  }
+};
+
+// POST_REVIEW
+export const addToReviews = (productId, comentario, valoracion) => async (dispatch) => {
+  try {
+    const response = await axios.post('/', {
+      product_id: productId,
+      comentario: comentario,
+      valoracion: valoracion,
+    });
+    dispatch({
+      type: POST_REVIEW,
+      payload: {
+        productId,
+        newReview: response.data,
+      },
+    });
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se pudo agregar la review (Error😭😢)",
+    });
+  }
+};
+
+// REVIEWS - FIN
+
+export const fetchUserFavorites = (useremail) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/favorites/${useremail}`);
+     console.log(JSON.stringify(response))
     dispatch({
       type: SET_FAVORITES,
       payload: response.data,
@@ -65,13 +112,15 @@ export const fetchUserFavorites = (userId) => async (dispatch) => {
   }
 };
 
-export const addToFavorites = (producto) => async (dispatch) => {
-  console.log("Dispatching Add to Favorites:", producto.id);
+export const addToFavorites = (producto, user) => async (dispatch) => {
+  console.log("Dispatching Add to Favorites:", producto.id, user);
   try {
+   
     const response = await axios.post('/favorites', {
-      user_id: user.uid, /*resolver */
+      user_email: user.email, 
       productos_id: producto.id
     });
+    console.log(JSON.stringify(response))
     dispatch({
       type: ADD_TO_FAVORITES,
       payload: response.data,
@@ -80,7 +129,7 @@ export const addToFavorites = (producto) => async (dispatch) => {
     Swal.fire({
       icon: "error",
       title: "Error",
-      text: "No se pudo agregar a favoritos(Error 😭)",
+      text: "No se pudo agregar a favoritos(Error😭😢)",
     });
   }
 };
