@@ -24,9 +24,38 @@ const convertirId = (idInteger) => {
   return uuidv4();
 };
 
+// Función para formatear productos obtenidos de la base de datos
+const formatProductosBD = (productos) => {
+  return productos.map(
+    ({
+      id,
+      tipo,
+      descripcion,
+      precio,
+      imagen,
+      marca,
+      pais,
+      talles,
+      categorias,
+    }) => {
+      const categoria = categorias ? categorias.map((t) => t.nombre).join(", ") : "";
+      return {
+        id,
+        tipo,
+        descripcion,
+        precio,
+        imagen,
+        marca,
+        pais,
+        talles,
+        categoria,
+      };
+    }
+  );
+};
+
 const getProduct = async () => {
   try {
-    // Verificar si hay productos en la base de datos
     const existingProducts = await Productos.count();
     if (existingProducts > 0) {
       const dataProductos = await Productos.findAll({
@@ -41,51 +70,19 @@ const getProduct = async () => {
         ],
       });
 
-      // Formatear los productos obtenidos de la base de datos
-      const productosBD = dataProductos.map(
-        ({
-          id,
-          tipo,
-          descripcion,
-          precio,
-          imagen,
-          marca,
-          pais,
-          talles,
-          categorias,
-        }) => {
-          const categoria = categorias ? categorias.map((t) => t.nombre).join(", ") : "";
-          return {
-            id,
-            tipo,
-            descripcion,
-            precio,
-            imagen,
-            marca,
-            pais,
-            talles,
-            categoria,
-          };
-        }
-      );
-
-      return productosBD;
+      return formatProductosBD(dataProductos);
     }
 
-    // Obtener productos de la API local
     const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
     const apiProduct = cleanArray(apiProductRaw);
 
-    // Usar una transacción para insertar los productos
     await conn.transaction(async (t) => {
       await Promise.all(apiProduct.map(async (product) => {
         const idProducto = isNaN(product.id) ? product.id : convertirId(product.id);
 
-        // Verificar si el producto ya existe en la base de datos
         const existingProduct = await Productos.findOne({ where: { id: idProducto }, transaction: t });
 
         if (!existingProduct) {
-          // Crear el producto solo si no existe
           const producto = await Productos.create({
             id: idProducto,
             tipo: product.tipo,
@@ -113,7 +110,6 @@ const getProduct = async () => {
       }));
     });
 
-    // Obtener todos los productos de la base de datos, incluyendo sus categorías
     const dataProductos = await Productos.findAll({
       include: [
         {
@@ -126,59 +122,24 @@ const getProduct = async () => {
       ],
     });
 
-    // Formatear los productos obtenidos de la base de datos
-    const productosBD = dataProductos.map(
-      ({
-        id,
-        tipo,
-        descripcion,
-        precio,
-        imagen,
-        marca,
-        pais,
-        talles,
-        categorias,
-      }) => {
-        const categoria = categorias ? categorias.map((t) => t.nombre).join(", ") : "";
-        return {
-          id,
-          tipo,
-          descripcion,
-          precio,
-          imagen,
-          marca,
-          pais,
-          talles,
-          categoria,
-        };
-      }
-    );
-
-    return productosBD;
+    return formatProductosBD(dataProductos);
   } catch (error) {
     console.error("Error al obtener los productos:", error);
     throw error;
   }
 };
 
-
-
-  //--------------------------------------------------------------
-
- //buscar por tipo
-//* Controlador para buscar productos por tipo
 const searchTipo = async (tipo) => {
   try {
-    // Buscar productos en la base de datos con UUID
     const productTipo = await Productos.findAll({
       where: {
-        tipo: { [Op.iLike]: tipo },
-        id: { [Op.not]: null }, // Asegura que solo se devuelvan productos con ID (UUID)
+        tipo: { [Op.iLike]: tipo},
+        id: { [Op.not]: null },
       },
       include: [
         {
           model: Categoria,
-          as: 'categorias', // Usa el alias correcto
+          as: 'categorias',
           through: {
             attributes: [],
           },
@@ -186,46 +147,16 @@ const searchTipo = async (tipo) => {
       ],
     });
 
-    const ProductBD = productTipo.map(
-      ({
-        id,
-        tipo,
-        descripcion,
-        precio,
-        stock,
-        imagen,
-        marca,
-        pais,
-        talles,
-        categorias, // Usa el alias correcto
-      }) => {
-        //* Verifica si 'categorias' está definido y mapea los nombres
-        const categoria = categorias ? categorias.map((t) => t.nombre).join(", ") : "";
-        return {
-          id,
-          tipo,
-          descripcion,
-          precio,
-          stock,
-          imagen,
-          marca,
-          pais,
-          talles,
-          categoria,
-        };
-      }
-    );
+    const ProductBD = formatProductosBD(productTipo);
 
-    // Obtener productos de la API externa
     const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
     const apiProduct = cleanArray(apiProductRaw);
     
-    // Filtrar productos de la API por tipo y asegurarse de que tengan UUID
     const filterdApi = apiProduct
       .filter(
         (product) => product.tipo.toLowerCase() === tipo.toLowerCase()
       )
-      .filter((product) => /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(product.id)); // Filtra productos con UUID válido
+      .filter((product) => /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(product.id));
 
     if (!productTipo.length && !filterdApi.length) {
       return [];
@@ -237,106 +168,93 @@ const searchTipo = async (tipo) => {
     throw error;
   }
 };
-  
-  //------------------------------------------------------------------------------
 
-  //BUSCAR POR ID
- 
-  const getProductId = async (idProducto, origin) => {
-    try {
-      let producto;
+const getProductId = async (idProducto, origin) => {
+  try {
+    let producto;
   
-      if (origin === "api") {
-        //* Obtener producto desde la API
-        const apiProducto = (
-          await axios.get(`http://localhost:5000/productos/${idProducto}`)
-        ).data;
+    if (origin === "api") {
+      const apiProducto = (
+        await axios.get(`http://localhost:5000/productos/${idProducto}`)
+      ).data;
   
-        producto = {
-          id: apiProducto.id,
-          tipo: apiProducto.tipo,
-          descripcion: apiProducto.descripcion,
-          precio: apiProducto.precio,
-          stock: apiProducto.stock,
-          imagen: apiProducto.imagen,
-          marca: apiProducto.marca,
-          pais: apiProducto.pais,
-          talles: apiProducto.talles,
-          categoria: apiProducto.categoria,
-          created: false,
-        };
-      } else {
-        //* Obtener producto desde la base de datos
-        const dbProducto = await Productos.findByPk(idProducto, {
-          include: [
-            {
-              model: Categoria,
-              as: 'categorias', // Usa el alias correcto
-              through: {
-                attributes: [],
-              },
+      producto = {
+        id: apiProducto.id,
+        tipo: apiProducto.tipo,
+        descripcion: apiProducto.descripcion,
+        precio: apiProducto.precio,
+        stock: apiProducto.stock,
+        imagen: apiProducto.imagen,
+        marca: apiProducto.marca,
+        pais: apiProducto.pais,
+        talles: apiProducto.talles,
+        categoria: apiProducto.categoria,
+        created: false,
+      };
+    } else {
+      const dbProducto = await Productos.findByPk(idProducto, {
+        include: [
+          {
+            model: Categoria,
+            as: 'categorias',
+            through: {
+              attributes: [],
             },
-          ],
-        });
+          },
+        ],
+      });
   
-        if (!dbProducto) {
-          throw new Error("Producto no encontrado");
-        }
-  
-        //* Verifica si 'categorias' está definido y mapea los nombres
-        const categorias = dbProducto.categorias ? dbProducto.categorias.map((t) => t.nombre).join(", ") : '';
-        producto = {
-          id: dbProducto.id,
-          tipo: dbProducto.tipo,
-          descripcion: dbProducto.descripcion,
-          precio: dbProducto.precio,
-          stock: dbProducto.stock,
-          imagen: dbProducto.imagen,
-          marca: dbProducto.marca,
-          pais: dbProducto.pais,
-          talles: dbProducto.talles,
-          categoria: categorias,
-          created: false,
-        };
+      if (!dbProducto) {
+        throw new Error("Producto no encontrado");
       }
   
-      return producto;
-    } catch (error) {
-      console.error("Error al obtener el producto por ID:", error);
-      throw error;
+      const categorias = dbProducto.categorias ? dbProducto.categorias.map((t) => t.nombre).join(", ") : '';
+      producto = {
+        id: dbProducto.id,
+        tipo: dbProducto.tipo,
+        descripcion: dbProducto.descripcion,
+        precio: dbProducto.precio,
+        stock: dbProducto.stock,
+        imagen: dbProducto.imagen,
+        marca: dbProducto.marca,
+        pais: dbProducto.pais,
+        talles: dbProducto.talles,
+        categoria: categorias,
+        created: false,
+      };
     }
-  };
-
-//------------------------------------------------------------------------------------------------------------
-
-//Para eliminar
-const deleteId = async (id) => {
-    const productId = await Productos.destroy({ where: { id } });
-    if (!productId) return { error: "producto inexistente!" };
-    else {
-      return { message: "Producto eliminado exitosamente" };
-    }
-  };
-
-//-----------------------------------------------------------------------------------------------------------------------
-
-//modifica el stock
-  const updateStockController = async (idProducto, talles) => {
-  const producto = await Productos.findByPk(idProducto);
-
-  if (!producto) {
-      return null; // Si el producto no se encuentra, retorna null
+  
+    return producto;
+  } catch (error) {
+    console.error("Error al obtener el producto por ID:", error);
+    throw error;
   }
-
-/*   const updatedTalles = producto.talles.map(item => 
-      item.talle === talle ? { ...item, stock } : item
-  ); */
-
-  await producto.update({ talles: talles });
-  return producto;
 };
 
+const deleteId = async (id) => {
+  try {
+    const productId = await Productos.destroy({ where: { id } });
+    if (!productId) return { error: "producto inexistente!" };
+    return { message: "Producto eliminado exitosamente" };
+  } catch (error) {
+    console.error("Error al eliminar producto:", error);
+    throw error;
+  }
+};
 
+const updateStockController = async (idProducto, talles) => {
+  try {
+    const producto = await Productos.findByPk(idProducto);
+    if (!producto) {
+      return null;
+    }
+    await producto.update({ talles: talles });
+    return producto;
+  } catch (error) {
+    console.error("Error al actualizar stock:", error);
+    throw error;
+  }
+};
 
 module.exports = {
   getProduct,
@@ -344,4 +262,4 @@ module.exports = {
   getProductId,
   deleteId,
   updateStockController
-}  
+};
