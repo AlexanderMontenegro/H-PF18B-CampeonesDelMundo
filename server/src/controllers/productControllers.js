@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
+const { Op } = require('sequelize');
 const { Productos, Categoria, conn } = require("../db");
 
 // Función para limpiar el array de productos
