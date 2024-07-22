@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const { Favorite, User, Productos } = require("../db");
 
 const addToFavorites = async (req, res) => {
@@ -30,14 +31,17 @@ const addToFavorites = async (req, res) => {
 };
 
 const getUserFavorites = async (req, res) => {
-  const { userId } = req.params;
-  console.log("User ID:", userId);
-  if (!userId) {
+  const { useremail } = req.params;
+  console.log("User ID:", useremail);
+  if (!useremail) {
     return res.status(400).json({ error: "User ID is required" });
   }
   try {
-    const favorites = await Favorite.findAll({ where: { user_id: userId } });
-    res.status(200).json(favorites);
+    const user = await User.findOne({where: {email: useremail }})
+    const favorites = await Favorite.findAll({ where: { user_id : user.dataValues.id } });
+    res.status(200).json(favorites.map((data) =>{
+      return data.dataValues
+    }));
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

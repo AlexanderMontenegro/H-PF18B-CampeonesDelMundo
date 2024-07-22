@@ -8,7 +8,7 @@ const {  handleAddFavorite,
 favoriteRoutes.post('/', handleAddFavorite);
 
 // Ruta para obtener favoritos de un usuario
-favoriteRoutes.get('/:userId', handleGetUserFavorites);
+favoriteRoutes.get('/:useremail', handleGetUserFavorites);
 
 // Ruta para eliminar un favorito
 favoriteRoutes.delete('/:favoriteId', handleRemoveFavorite);
