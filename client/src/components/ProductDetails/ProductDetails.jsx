@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDetails } from "../../Redux/actions";
 
+
 import "../../css/productdetails.css";
 import "../../css/header.css";
 import Header from "../Header/Header";
@@ -20,21 +21,12 @@ const ProductDetails = ({
   notificaciones,
   product,
   getDetails,
-  
-
 }) => {
   const { id } = useParams();
-
-  
 
   useEffect(() => {
     getDetails(id);
   }, [id, getDetails]);
-
-  // PARA REVIEWS
-  // State y Effect
-
-  
 
   // PARA TALLES
   // State y Effect
@@ -47,8 +39,7 @@ const ProductDetails = ({
 
     setSeleccionTalle(nuevoTalle);
     product.talle = nuevoTalle;
-  }
-
+  };
 
   if (!product) {
     return <p>Producto no encontrado</p>;
@@ -66,7 +57,6 @@ const ProductDetails = ({
         notificaciones={notificaciones}
       />
       <div className="container__pd">
-
         <div className="product-details-container">
           <div className="product-image">
             <img src={product.imagen} alt={product.tipo} />
@@ -85,14 +75,10 @@ const ProductDetails = ({
               <select id="sizes" onChange={handleSelectChange}>
                 <option value="Seleccione talle">Seleccione talle</option>
                 {product.talles.map((obj, index) => (
-
                   <option key={index} value={obj.talle + " - " + obj.stock}>
                     {obj.talle + " - " + obj.stock}
-                    
                   </option>
-                  
                 ))}
-                
               </select>
             </div>
             <button
@@ -108,17 +94,9 @@ const ProductDetails = ({
           <div className="reviews-section">
             <h3>Reviews</h3>
             {/* Lista de comentarios y puntuaciones */}
-              
+
             <section className="reviews__content">
-              
-              <Reviews 
-                productId={product.id}
-               
-                />
-              
-
-              
-
+              <Reviews productId={product.id}/>
             </section>
           </div>
         </div>

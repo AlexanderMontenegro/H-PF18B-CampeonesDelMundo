@@ -231,6 +231,7 @@ const rootReducer = (state = initialState, action) => {
           (review) => review.id !== action.payload.reviewId
         ),
       };
+    // FIN - REVIEWS
 
     default:
       return state;
