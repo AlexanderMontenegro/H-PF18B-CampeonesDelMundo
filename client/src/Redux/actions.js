@@ -58,8 +58,10 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
 // PARA REVIEWS
 // GET_REVIEWS
 export const fetchReviews = (productId) => async (dispatch) => {
+
+  console.log(`Fetching reviews for productId: ${productId}`);
   try {
-    const response = await axios.get(`/producto/${productId}`);
+    const response = await axios.get(`/api/producto/${productId}`);
     dispatch({
       type: GET_REVIEWS,
       payload: {
@@ -73,9 +75,10 @@ export const fetchReviews = (productId) => async (dispatch) => {
 };
 
 // POST_REVIEW
-export const addToReviews = (productId, comentario, valoracion) => async (dispatch) => {
+export const addToReviews = (userId, productId, comentario, valoracion) => async (dispatch) => {
   try {
     const response = await axios.post('/', {
+      userId: userId,
       product_id: productId,
       comentario: comentario,
       valoracion: valoracion,
