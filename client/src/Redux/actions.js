@@ -62,7 +62,7 @@ export const fetchReviews = (productId) => async (dispatch) => {
 
   console.log(`Fetching reviews for productId: ${productId}`);
   try {
-    const response = await axios.get(`/api/producto/${productId}`);
+    const response = await axios.get(`producto/${productId}`);
     dispatch({
       type: GET_REVIEWS,
       payload: {
@@ -76,20 +76,30 @@ export const fetchReviews = (productId) => async (dispatch) => {
 };
 
 // POST_REVIEW
-export const addToReviews = (userId, productId, comentario, valoracion) => async (dispatch) => {
+export const addToReviews = (email, productId, comment, rating, date) => async (dispatch) => {
+  
   try {
     const response = await axios.post('/', {
-      userId: userId,
-      product_id: productId,
-      comentario: comentario,
-      valoracion: valoracion,
+      email: email,
+      productId: productId,
+      comment: comment,
+      rating: rating,
+      date: date
     });
+    console.log(`Accion response: ${response}`);
     dispatch({
       type: POST_REVIEW,
       payload: {
-        productId,
-        newReview: response.data,
-      },
+        productId: productId,
+        newReview: response.data},
+      // payload: {
+      //   email,
+      //   productId,
+      //   comment,
+      //   rating,
+      //   date,
+      //   newReview: response.data,
+      // },
     });
   } catch (error) {
     Swal.fire({

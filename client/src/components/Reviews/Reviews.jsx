@@ -15,6 +15,8 @@ const Reviews = ({ productId }) => {
   const reviews = useSelector((state) => state.reviews[productId] || []);
   const dispatch = useDispatch();
 
+  // console.log("EMAIL de User: ", user.email)
+
   // Efecto para cargar las reviews al montar el componente
   useEffect(() => {
     dispatch(fetchReviews(productId));
@@ -22,7 +24,10 @@ const Reviews = ({ productId }) => {
 
   // Función para agregar una nueva review
   const handleAddReview = (comentario, valoracion) => {
-    dispatch(addToReviews(user.uid, productId, comentario, valoracion));
+    const now = new Date();
+    const fecha = now.toLocaleDateString();
+
+    dispatch(addToReviews(user.email, productId, comentario, valoracion, fecha));
   };
 
   // console.log("Datos de user: ", user.uid);
