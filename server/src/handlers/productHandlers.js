@@ -4,6 +4,7 @@ const {
     getProductId,
     deleteId,
     updateStockController,
+    updateProductController
     //createProduct
   } = require("../controllers/productControllers");
   
@@ -67,7 +68,7 @@ const {
   const updateStockHandler = async (req, res) => {
     const { idProducto } = req.params;
     const talles = req.body;
-    
+
     const updatedProduct = await updateStockController(idProducto, talles);
 
     if (!updatedProduct) {
@@ -81,6 +82,17 @@ const {
       console.error("Error al crear el producto:", error);
       res.status(500).json({ error: error.message });
     } */
+
+      const updateProductHandler = async (req, res) => {
+        const product = req.body;
+        const updatedProduct = await updateProductController(product);
+    
+        if (!updatedProduct) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+    
+        res.status(200).json(updatedProduct);
+    };
   
   
   module.exports = {
@@ -88,5 +100,6 @@ const {
     getProductByIdHandler,
     deleteIdHandler,
     createProductHandler,
-    updateStockHandler
+    updateStockHandler,
+    updateProductHandler
   };

@@ -336,6 +336,24 @@ const deleteId = async (id) => {
   return producto;
 };
 
+//modifica el producto
+const updateProductController = async (product) => {
+  const producto = await Productos.findByPk(product.id);
+
+console.log(producto)
+  if (!producto) {
+      return null; // Si el producto no se encuentra, retorna null
+  }
+
+/*   const updatedTalles = producto.talles.map(item => 
+      item.talle === talle ? { ...item, stock } : item
+  ); */
+
+  await producto.update({ tipo: product.tipo, precio:product.precio, 
+    descripcion:product.descripcion, imagen:product.imagen});
+  return producto;
+};
+
 
 
 module.exports = {
@@ -343,5 +361,6 @@ module.exports = {
   searchTipo,
   getProductId,
   deleteId,
-  updateStockController
+  updateStockController,
+  updateProductController
 }  
