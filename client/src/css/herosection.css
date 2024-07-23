@@ -62,7 +62,7 @@
 }
 
 .carousel {
-  /* display: flex; */
+  display: flex; 
   justify-content: center;
   margin-top: 2rem;
   overflow-x: none;
@@ -74,9 +74,11 @@
 
 
 
-.carousel img {
+.img_c {
   height: 100%;
-  width: 5%;
+  width: 90px;
+  min-width: 60%;
+  max-width: 60%;
   object-fit: cover;
   margin: 0 1rem;
   border: 1px solid var(--negro);
@@ -84,8 +86,11 @@
   transition: transform 0.3s ease;
 }
 
-.carousel img:hover {
+.img_c:hover {
   transform: scale(1.9);
   border-radius: 10px;
 }
 
+.conjunto-d{
+  display: flex;
+}
