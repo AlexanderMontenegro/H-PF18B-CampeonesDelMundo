@@ -27,28 +27,26 @@ const Favoritos = () => {
   };
 
   return (
-    <div className="contenedor__fav">
+    <div className="contenedor__fav_f">
       <div className="header_img">
         <Header />
       </div>
-      <div className="favorito">
-        <div className="favorites-page">
+      <div className="favorito_f">
+        <div className="favorites-page_f">
           <h1>Mis Favoritos</h1>
-          <div className="productos-list">
+          <div className="productos-list_f">
             {favorites.map((productos) => (
-              <div key={productos.id} className="producto-card">
+              <div key={productos.id} className="producto-card_f">
                 {/*<div>{JSON.stringify(productos)}</div>*/}
-                <h2>{productos.id}</h2>
-                <h2>{productos.user_id}</h2>
-                <h2>{productos.productos_id}</h2>
+                <div className="contenido_f" >
 
-                <img src={productos.imagen} alt={productos.nombre} />
-                <h2>{productos.nombre}</h2>
-                <p>{productos.precio}</p>
-                <button onClick={() => handleRemove(productos.id)}>
+                <img className="img_f" src={productos.producto.imagen} alt={productos.nombre} />
+                <h2 className="h2_f" >{productos.producto.descripcion}</h2>
+                <p className="p_f" >${ productos.producto.precio}</p>
+                <button className="b_f" onClick={() => handleRemove(productos.id)}>
                   Eliminar
                 </button>
-               
+                </div>
               </div>
             ))}
           </div>
