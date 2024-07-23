@@ -1,9 +1,10 @@
 .favorito_f {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: auto;
   width: 90%;
   margin: 0 auto;
+  align-items: center;
 }
 
 .favorites-page_f {

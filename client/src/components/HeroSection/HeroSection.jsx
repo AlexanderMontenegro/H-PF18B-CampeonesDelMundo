@@ -17,13 +17,13 @@ function HeroSection() {
             <p>Encuentra todo lo que necesitas para tu pasion por el deporte...</p>
            
         </div>
-{/*
+
         <div className="carousel">
        {data.map((item) => (
           <img key={item.id} src={item.imagen} alt={item.tipo} />
         ))}
         </div>
-*/}
+{/** 
 <div className="carousel">
             {favorites.map((productos) => (
               <div className='conjunto_d' key={productos.id} >
@@ -33,6 +33,7 @@ function HeroSection() {
               </div>
             ))}
           </div>
+          */}
 
 
 
