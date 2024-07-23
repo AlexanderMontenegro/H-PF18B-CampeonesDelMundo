@@ -17,22 +17,23 @@ function HeroSection() {
             <p>Encuentra todo lo que necesitas para tu pasion por el deporte...</p>
            
         </div>
-
+{/*
         <div className="carousel">
-        {data.map((item) => (
+       {data.map((item) => (
           <img key={item.id} src={item.imagen} alt={item.tipo} />
         ))}
         </div>
-{/*
-<div className="carousel2">
+*/}
+<div className="carousel">
             {favorites.map((productos) => (
-              <div className='con_caro' key={productos.id} >
+              <div className='conjunto_d' key={productos.id} >
 
-                <img {productos.imagen}/>
+                <img className='img_c' src={productos.producto.imagen} alt={productos.nombre} />
+               
               </div>
             ))}
           </div>
-*/}
+
 
 
     </section>
