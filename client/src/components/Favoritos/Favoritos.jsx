@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import "../../css/favorite.css";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import { Link } from 'react-router-dom';
 
 const Favoritos = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,10 @@ const Favoritos = () => {
                 <button className="b_f" onClick={() => handleRemove(productos.id)}>
                   Eliminar
                 </button>
+                <Link to={`/product/${productos.producto.id}`}>
+                <button className="b_f" >Detalle</button>
+        
+      </Link>
                 </div>
               </div>
             ))}
