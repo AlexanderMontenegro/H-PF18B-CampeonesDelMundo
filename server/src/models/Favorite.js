@@ -13,13 +13,18 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     productos_id: {
-      type: DataTypes.UUID, 
+      type: DataTypes.UUID,
       allowNull: false,
     },
   }, {
     tableName: 'favorites',
     timestamps: false,
   });
+
+  Favorite.associate = (models) => {
+    Favorite.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
+    Favorite.belongsTo(models.Productos, { foreignKey: 'productos_id', as: 'producto' });
+  };
 
   return Favorite;
 };
