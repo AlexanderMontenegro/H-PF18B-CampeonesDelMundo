@@ -11,6 +11,7 @@ const Reviews = ({ productId }) => {
   // console.log("ID DE producto: ", productId);
 
   // Datos de User y Reviews
+  const user = useSelector((state) => state.user);
   const reviews = useSelector((state) => state.reviews[productId] || []);
   const dispatch = useDispatch();
 
@@ -21,8 +22,10 @@ const Reviews = ({ productId }) => {
 
   // Función para agregar una nueva review
   const handleAddReview = (comentario, valoracion) => {
-    dispatch(addToReviews(productId, comentario, valoracion));
+    dispatch(addToReviews(user.uid, productId, comentario, valoracion));
   };
+
+  // console.log("Datos de user: ", user.uid);
 
   return (
     <div>
