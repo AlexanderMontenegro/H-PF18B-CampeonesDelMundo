@@ -136,10 +136,8 @@ const Header = ({
                                 ${producto.precio}
                               </td>
                               <td>{}</td>
-                              {console.log(
-                                "TALLES EN HEADER: ",
-                                producto.talles[1]
-                              )}
+                              
+                              
                               <td>
                                 <div className="cabecera__buttons cabecera__texto">
                                   <button

@@ -214,7 +214,7 @@ function ChampionsApp() {
 
   useEffect(() => {
     const userJSON = window.localStorage.getItem("User");
-    console.log("userJSON", userJSON);
+    //console.log("userJSON", userJSON);
     if (userJSON) {
       const user = JSON.parse(userJSON);
       dispatch(setUser(user));

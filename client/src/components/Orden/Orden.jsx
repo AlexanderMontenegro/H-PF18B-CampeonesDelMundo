@@ -4,29 +4,19 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { fetchPreferenceId } from '../../Redux/actions';
 import '../../css/orden.css';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 
-
-const Orden = ({
-    carrito,
-    addToCarrito,
-    removeFromCarrito,
-    increaseQuantity,
-    decreaseQuantity,
-    clearCarrito,
-    notificaciones,
-    addToNotificaciones,
-    addToCompras
-}) => {
+const Orden = ({ carrito, addToCarrito, removeFromCarrito, increaseQuantity, decreaseQuantity, clearCarrito, notificaciones, addToNotificaciones, addToCompras }) => {
     const dispatch = useDispatch();
     const preferenceId = useSelector(state => state.preferenceId);
 
-
-    initMercadoPago('TEST-47cfae01-dcd5-47bc-a339-398552b0fe70');
+    useEffect(() => {
+        initMercadoPago('TEST-5af066e7-e8b7-4bdc-b45a-f61db3669c4e', { locale: 'es-AR' });
+    }, []);
 
     useEffect(() => {
         if (preferenceId) {
-            const mp = new window.MercadoPago('', {
+            const mp = new window.MercadoPago('TEST-5af066e7-e8b7-4bdc-b45a-f61db3669c4e', {
                 locale: 'es-AR',
             });
 
@@ -53,7 +43,6 @@ const Orden = ({
         addToCompras(carrito, carritoTotal());
         notificacionCompra(carrito, carritoTotal());
         dispatch(fetchPreferenceId(carrito));
-        /*clearCarrito();*/
     };
 
     return (
@@ -149,10 +138,12 @@ const Orden = ({
                         </div>
 
                         <div id="wallet_container">
-
-                        <button className='btn__or' onClick={handleComprar}>
-                            Comprar
-                        </button>
+                            {preferenceId && (
+                                <Wallet initialization={{ preferenceId }} />
+                            )}
+                            <button className='btn__or' onClick={handleComprar}>
+                                Comprar
+                            </button>
                         </div>
                         
                         <h3></h3>

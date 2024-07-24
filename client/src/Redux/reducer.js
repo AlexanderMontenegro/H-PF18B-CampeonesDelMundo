@@ -31,6 +31,7 @@ const initialState = {
   productos: [],
   preSortProductos: [],
   isAuthenticated: false,
+  preferenceId: null,
   user: null,
   loading: false,
   error: null,
@@ -57,7 +58,7 @@ const rootReducer = (state = initialState, action) => {
     case SET_PREFERENCE_ID:
       return {
         ...state,
-        preferenceId: payload,
+        preferenceId: action.payload,
       };
     case GET_DETAILS:
       return {
