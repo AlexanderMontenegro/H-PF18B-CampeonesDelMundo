@@ -46,11 +46,11 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
   try {
     // Aquí hacemos la solicitud a nuestro backend para obtener el preferenceId
     const response = await axios.post('/api/payments/create-preference', { items: carrito });
-    const { id } = response.data;
+    //const { id } = response.data;
 
     dispatch({
       type: SET_PREFERENCE_ID,
-      payload: id,
+      payload: response.data,
     });
   } catch (error) {
     console.error('Error fetching preference ID:', error);

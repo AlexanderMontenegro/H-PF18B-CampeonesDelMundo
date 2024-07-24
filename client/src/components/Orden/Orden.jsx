@@ -4,8 +4,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { fetchPreferenceId } from '../../Redux/actions';
 import '../../css/orden.css';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 
 const Orden = ({
     carrito,
@@ -21,21 +20,14 @@ const Orden = ({
     const dispatch = useDispatch();
     const preferenceId = useSelector(state => state.preferenceId);
 
-
-    initMercadoPago('TEST-47cfae01-dcd5-47bc-a339-398552b0fe70');
+    useEffect(() => {
+        // Inicializa Mercado Pago SDK con la clave pública
+        initMercadoPago('TEST-5af066e7-e8b7-4bdc-b45a-f61db3669c4e', { locale: 'es-AR' });
+    }, []);
 
     useEffect(() => {
         if (preferenceId) {
-            const mp = new window.MercadoPago('', {
-                locale: 'es-AR',
-            });
-
-            mp.checkout({
-                preference: {
-                    id: preferenceId,
-                },
-                autoOpen: true,
-            });
+            // Aquí el componente Wallet manejará el proceso de pago
         }
     }, [preferenceId]);
 
@@ -53,7 +45,6 @@ const Orden = ({
         addToCompras(carrito, carritoTotal());
         notificacionCompra(carrito, carritoTotal());
         dispatch(fetchPreferenceId(carrito));
-        /*clearCarrito();*/
     };
 
     return (
@@ -143,16 +134,18 @@ const Orden = ({
                         </div>
                         <div className='suma__total'>
                             <p className="btn__or_txt">
-                                Total pagar{" "}
+                                Total a pagar{" "}
                                 <span className="btn__or_2">${carritoTotal()}</span>
                             </p>
                         </div>
 
                         <div id="wallet_container">
-
-                        <button className='btn__or' onClick={handleComprar}>
-                            Comprar
-                        </button>
+                            {preferenceId && (
+                                <Wallet initialization={{ preferenceId }} />
+                            )}
+                            <button className='btn__or' onClick={handleComprar}>
+                                Comprar
+                            </button>
                         </div>
                         
                         <h3></h3>

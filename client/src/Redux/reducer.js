@@ -64,7 +64,7 @@ const rootReducer = (state = initialState, action) => {
     case SET_PREFERENCE_ID:
       return {
         ...state,
-        preferenceId: payload,
+        preferenceId: action.payload,
       };
     case GET_DETAILS:
       return {
