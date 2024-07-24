@@ -51,9 +51,10 @@ if(response.payload.data)
   const handleCloseModal = () => {
     setSelectedObject(null);
   };
+  
   return (
     <div className="stock">
-      <h1>Lista de Productos</h1>
+      <h1>Lista de Productos a Actualizar Stock</h1>
       <ul>
         {data.map((obj) => (
           <li key={obj.id} onClick={() => handleSelect(obj)} >
@@ -70,7 +71,7 @@ if(response.payload.data)
       {selectedObject &&<Modal>        
         <div  className="modificar__stock"  >
         <button onClick={handleCloseModal}>X</button>
-          <h2>Modificar Stock {selectedObject.tipo}{selectedObject.marca}</h2>
+          <h2>Modificar Stock: {selectedObject.tipo} {selectedObject.marca}</h2>
           <img
               src={selectedObject.imagen}
               alt="Vista previa de la imagen"
@@ -88,7 +89,6 @@ if(response.payload.data)
                 value={item.stock}
                 onChange={(e) => handleStockChange(index, e)}
               />
-              {console.log("dfdf", selectedObject)} 
             </div>))}
           </div>
 

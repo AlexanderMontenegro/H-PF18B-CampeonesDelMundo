@@ -243,7 +243,7 @@ const Login = ({ onClose }) => {
                       Password
                     </label>
                   </div>
-                  {errors.password && <span>{errors.password}</span>}
+                  {/* {errors.password && <span>{errors.password}</span>} */}
                 </div>
 
                 <Link to="#">
