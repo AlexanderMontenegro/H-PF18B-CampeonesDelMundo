@@ -385,20 +385,6 @@ const deleteId = async (id) => {
   }
 };
 
-const updateStockController = async (idProducto, talles) => {
-  try {
-    const producto = await Productos.findByPk(idProducto);
-    if (!producto) {
-      return null;
-    }
-    await producto.update({ talles: talles });
-    return producto;
-  } catch (error) {
-    console.error("Error al actualizar stock:", error);
-    throw error;
-  }
-};
-
 const softDeleteProduct = async (idProducto) => {
   try {
     const producto = await Productos.findByPk(idProducto);
@@ -428,6 +414,43 @@ const restoreProduct = async (idProducto) => {
     throw error;
   }
 };
+//-----------------------------------------------------------------------------------------------------------------------
+
+//modifica el stock
+  const updateStockController = async (idProducto, talles) => {
+  const producto = await Productos.findByPk(idProducto);
+
+  if (!producto) {
+      return null; // Si el producto no se encuentra, retorna null
+  }
+
+/*   const updatedTalles = producto.talles.map(item => 
+      item.talle === talle ? { ...item, stock } : item
+  ); */
+
+  await producto.update({ talles: talles });
+  return producto;
+};
+
+//modifica el producto
+const updateProductController = async (product) => {
+  const producto = await Productos.findByPk(product.id);
+
+console.log(producto)
+  if (!producto) {
+      return null; // Si el producto no se encuentra, retorna null
+  }
+
+/*   const updatedTalles = producto.talles.map(item => 
+      item.talle === talle ? { ...item, stock } : item
+  ); */
+
+  await producto.update({ tipo: product.tipo, precio:product.precio, 
+    descripcion:product.descripcion, imagen:product.imagen});
+  return producto;
+};
+
+
 
 module.exports = {
   getProduct,
@@ -436,5 +459,9 @@ module.exports = {
   deleteId,
   updateStockController,
   softDeleteProduct,
-  restoreProduct
+  restoreProduct,
+  updateStockController,
+  updateProductController
 };
+
+   

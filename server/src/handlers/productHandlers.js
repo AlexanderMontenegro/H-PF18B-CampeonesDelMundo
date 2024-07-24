@@ -5,7 +5,8 @@ const {
     deleteId,
     updateStockController,
     softDeleteProduct,
-    restoreProduct
+    restoreProduct,
+    updateProductController
     //createProduct
   } = require("../controllers/productControllers");
   
@@ -71,7 +72,7 @@ const {
   const updateStockHandler = async (req, res) => {
     const { idProducto } = req.params;
     const talles = req.body;
-    
+
     const updatedProduct = await updateStockController(idProducto, talles);
 
     if (!updatedProduct) {
@@ -103,6 +104,22 @@ const restoreProductHandler = async (req, res) => {
   
   
   
+  /*catch (error) {
+      console.error("Error al crear el producto:", error);
+      res.status(500).json({ error: error.message });
+    } */
+
+      const updateProductHandler = async (req, res) => {
+        const product = req.body;
+        const updatedProduct = await updateProductController(product);
+    
+        if (!updatedProduct) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+    
+        res.status(200).json(updatedProduct);
+    };
+  
   
   module.exports = {
     productGetHandler,
@@ -111,5 +128,6 @@ const restoreProductHandler = async (req, res) => {
     createProductHandler,
     updateStockHandler,
     softDeleteProductHandler,
-    restoreProductHandler
+    restoreProductHandler,
+    updateProductHandler
   };

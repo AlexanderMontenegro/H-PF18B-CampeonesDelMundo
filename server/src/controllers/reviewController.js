@@ -1,4 +1,4 @@
-const { Review, User } = require('../db');
+//const { Review, User } = require('../db');
 // const { Review, User, Productos } = require('../db');
 
 // // Crear una nueva reseña
@@ -104,7 +104,6 @@ const { Review, User } = require('../db');
 // };
 
 const { Review, User, Productos } = require('../db');
-
 // Crear una nueva reseña
 const createReview = async (req, res) => {
   try {
