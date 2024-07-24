@@ -8,6 +8,8 @@ const client = new OAuth2Client("backcampeones");
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
+const sendAccountCreationEmail = require('../services/mailerService').sendAccountCreationEmail
+
 // Registro de usuario
 exports.register = async (req, res) => {
   try {
@@ -48,6 +50,10 @@ exports.register = async (req, res) => {
     res
       .status(201)
       .send({ message: "User registered successfully!", userRecord });
+
+    // Enviar el correo al usuario
+    await sendAccountCreationEmail(email, name);
+    
   } catch (error) {
     res
       .status(500)
