@@ -120,10 +120,8 @@ const createReview = async (req, res) => {
     const user = await User.findOne({ where: { email: email } });
     // const product = await Productos.findByPk(product_id);
     console.log("Desde back, user: ",  user.id);
-    const user = await User.findOne({ where: { email: email } });
-    const product = await Productos.findByPk(product_id);
-    console.log("Desde back, Productos: ",  product);
-
+   
+   
     if (!user || !product) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
@@ -136,10 +134,6 @@ const createReview = async (req, res) => {
       rating: rating,
       comment: comment,
       date: date
-      product_id: product_id,
-      rating,
-      comment,
-      date
     });
 
     res.status(201).json(newReview);
