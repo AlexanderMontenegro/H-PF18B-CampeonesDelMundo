@@ -4,7 +4,9 @@ const {
     getProductByIdHandler, 
     deleteIdHandler,
     createProductHandler,
-    updateStockHandler ,
+    updateStockHandler,
+    softDeleteProductHandler,
+    restoreProductHandler,
     updateProductHandler
 } = require("../handlers/productHandlers");
 
@@ -20,6 +22,8 @@ productRouter.get("/:idProducto", getProductByIdHandler);
 productRouter.post("/", validateProduct, createProductHandler);
 productRouter.delete("/:idProducto", deleteIdHandler);
 productRouter.put("/:idProducto/stock", updateStockHandler);
+productRouter.put("/delete/:idProducto", softDeleteProductHandler);
+productRouter.put("/restore/:idProducto", restoreProductHandler);
 productRouter.put("/update", updateProductHandler);
 
 

@@ -4,6 +4,8 @@ const {
     getProductId,
     deleteId,
     updateStockController,
+    softDeleteProduct,
+    restoreProduct,
     updateProductController
     //createProduct
   } = require("../controllers/productControllers");
@@ -23,6 +25,7 @@ const {
     }
   };
   
+  
   const getProductByIdHandler = async (req, res) => {
     const { idProducto } = req.params;
     const origin = isNaN(idProducto) ? "bdd" : "api";
@@ -34,6 +37,7 @@ const {
       res.status(400).json({ error: error.message });
     }
   };
+  
   
   const deleteIdHandler = async (req, res) => {
     const { idProducto } = req.params;
@@ -77,6 +81,28 @@ const {
 
     res.status(200).json(updatedProduct);
 };
+
+const softDeleteProductHandler = async (req, res) => {
+  const { idProducto } = req.params;
+  try {
+    const result = await softDeleteProduct(idProducto);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const restoreProductHandler = async (req, res) => {
+  const { idProducto } = req.params;
+  try {
+    const result = await restoreProduct(idProducto);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+  
+  
   
   /*catch (error) {
       console.error("Error al crear el producto:", error);
@@ -101,5 +127,7 @@ const {
     deleteIdHandler,
     createProductHandler,
     updateStockHandler,
+    softDeleteProductHandler,
+    restoreProductHandler,
     updateProductHandler
   };
