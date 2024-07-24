@@ -18,16 +18,32 @@ const Reviews = ({ productId }) => {
   // console.log("EMAIL de User: ", user.email)
 
   // Efecto para cargar las reviews al montar el componente
+  // useEffect(() => {
+  //   dispatch(fetchReviews(productId));
+  // }, [dispatch, productId]);
+
   useEffect(() => {
-    dispatch(fetchReviews(productId));
-  }, [dispatch, productId]);
+    if (user && user.email) {
+      dispatch(fetchReviews(productId));
+    }
+  }, [dispatch, productId, user]);
+
+  console.log("REVIEWS: ", reviews)
 
   // Función para agregar una nueva review
   const handleAddReview = (comentario, valoracion) => {
     const now = new Date();
-    const fecha = now.toLocaleDateString();
+    // const fecha = now.toLocaleDateString();
 
-    dispatch(addToReviews(user.email, productId, comentario, valoracion, fecha));
+    const newReview = {
+      email: user.email,
+      product_id: productId,
+      comment: comentario,
+      rating: valoracion,
+      date: now
+    }
+
+    dispatch(addToReviews(newReview, productId));
   };
 
   // console.log("Datos de user: ", user.uid);
@@ -36,13 +52,13 @@ const Reviews = ({ productId }) => {
     <div>
       {reviews.map((review, index) => (
         <div key={index} className="review__list">
-          <h4 className="review__title">{review.nombre}</h4>
+          <h4 className="review__title">{review.nombres}</h4>
           <p>{review.comment}</p>
           <span>Valoracion: {review.rating} / 5</span>
         </div>
       ))}
 
-      <ReviewForm productId={productId} handleAddReview={handleAddReview} />
+      <ReviewForm handleAddReview={handleAddReview} />
     </div>
   );
 };
