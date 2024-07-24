@@ -1,5 +1,5 @@
 const express = require('express');
-const { createPreference } = require('../controllers/paymentController');
+const { createPreference } = require('../controllers/mercadoPagoController');
 const router = express.Router();
 
 router.post('/create-preference', createPreference);

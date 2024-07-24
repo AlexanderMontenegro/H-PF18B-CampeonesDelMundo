@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
+
 const server = express();
 
 server.use(express.urlencoded({ extended: true }));
@@ -12,7 +13,7 @@ server.use(morgan("dev"));
 server.use(express.json());
 server.use(cors());
 server.use('/api', router);
-server.use(router)
+server.use(router);
 
 
 

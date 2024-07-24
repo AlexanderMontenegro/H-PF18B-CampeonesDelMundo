@@ -4,6 +4,9 @@ const {
     getProductId,
     deleteId,
     updateStockController,
+    softDeleteProduct,
+    restoreProduct,
+    updateProductController
     //createProduct
   } = require("../controllers/productControllers");
   
@@ -22,6 +25,7 @@ const {
     }
   };
   
+  
   const getProductByIdHandler = async (req, res) => {
     const { idProducto } = req.params;
     const origin = isNaN(idProducto) ? "bdd" : "api";
@@ -33,6 +37,7 @@ const {
       res.status(400).json({ error: error.message });
     }
   };
+  
   
   const deleteIdHandler = async (req, res) => {
     const { idProducto } = req.params;
@@ -66,9 +71,9 @@ const {
 
   const updateStockHandler = async (req, res) => {
     const { idProducto } = req.params;
-    const { talle, stock } = req.body;
+    const talles = req.body;
 
-    const updatedProduct = await updateStockController(idProducto, talle, stock);
+    const updatedProduct = await updateStockController(idProducto, talles);
 
     if (!updatedProduct) {
         return res.status(404).json({ error: 'Product not found' });
@@ -76,11 +81,44 @@ const {
 
     res.status(200).json(updatedProduct);
 };
+
+const softDeleteProductHandler = async (req, res) => {
+  const { idProducto } = req.params;
+  try {
+    const result = await softDeleteProduct(idProducto);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const restoreProductHandler = async (req, res) => {
+  const { idProducto } = req.params;
+  try {
+    const result = await restoreProduct(idProducto);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+  
+  
   
   /*catch (error) {
       console.error("Error al crear el producto:", error);
       res.status(500).json({ error: error.message });
     } */
+
+      const updateProductHandler = async (req, res) => {
+        const product = req.body;
+        const updatedProduct = await updateProductController(product);
+    
+        if (!updatedProduct) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+    
+        res.status(200).json(updatedProduct);
+    };
   
   
   module.exports = {
@@ -88,5 +126,8 @@ const {
     getProductByIdHandler,
     deleteIdHandler,
     createProductHandler,
-    updateStockHandler
+    updateStockHandler,
+    softDeleteProductHandler,
+    restoreProductHandler,
+    updateProductHandler
   };

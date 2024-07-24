@@ -1,9 +1,6 @@
-const express = require('express');
+const { MercadoPagoConfig, Preference } = require('mercadopago');
 
-const mercadopago = require('mercadopago');
-
-
-mercadopago.configurations.setAccessToken(process.env.MERCADOPAGO_ACCESS_TOKEN);
+const client = new MercadoPagoConfig({ accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN });
 
 app.post('/create-preference', async (req, res) => {
     const { items } = req.body;
@@ -19,31 +16,13 @@ app.post('/create-preference', async (req, res) => {
     };
   
     try {
-      const response = await mercadopago.Preference.create(preference);
-      res.status(200).send({response});
+      const response = await mercadopago.preferences.create(preference);
+      res.status(200).send({
+        id: response.body.id,
+      });
     } catch (error) {
       res.status(500).send({
         error: error.message,
       });
     }
   });
-  
-
-/*
-  const preference = await new Preference(client);
-
-  preference.create({
-    body: {
-      false,
-      items: [
-        {
-          title: 'My product',
-          quantity: 1,
-          unit_price: 2000
-        }
-      ],
-    }
-  })
-  .then(console.log)
-  .catch(console.log);
-  */

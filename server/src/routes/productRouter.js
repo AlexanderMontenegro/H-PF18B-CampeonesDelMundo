@@ -4,7 +4,10 @@ const {
     getProductByIdHandler, 
     deleteIdHandler,
     createProductHandler,
-    updateStockHandler 
+    updateStockHandler,
+    softDeleteProductHandler,
+    restoreProductHandler,
+    updateProductHandler
 } = require("../handlers/productHandlers");
 
 const { validateProduct } = require('../middlewares/validation');
@@ -19,6 +22,9 @@ productRouter.get("/:idProducto", getProductByIdHandler);
 productRouter.post("/", validateProduct, createProductHandler);
 productRouter.delete("/:idProducto", deleteIdHandler);
 productRouter.put("/:idProducto/stock", updateStockHandler);
+productRouter.put("/delete/:idProducto", softDeleteProductHandler);
+productRouter.put("/restore/:idProducto", restoreProductHandler);
+productRouter.put("/update", updateProductHandler);
 
 
 //Mepa que faltaria un update no? jajaj. att.Gonza
