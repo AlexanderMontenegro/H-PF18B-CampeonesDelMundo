@@ -28,3 +28,5 @@ module.exports = (sequelize) => {
 
   return Favorite;
 };
+
+
