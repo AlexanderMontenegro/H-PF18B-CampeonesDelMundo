@@ -2,11 +2,31 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {  DATABASE_UR, DB_USER1, DB_PASSWORD1, DB_HOST1, DB_HOST, DB_USER, DB_PASSWORD} = process.env;
 
- const sequelize = new Sequelize(
+ const { DB_NAME, DB_USER1, DB_PASSWORD1, DB_HOST1, DB_DIALECT, DB_NAME_D, DB_USER_D, DB_PASSWORD_D, DB_HOST_D, DB_DIALECT_D } = process.env;
+
+// const sequelize = new Sequelize(DB_NAME_D || DB_NAME, DB_USER_D || DB_USER, DB_PASSWORD_D || DB_PASSWORD, {
+//   host: DB_HOST_D || DB_HOST,
+//   dialect: DB_DIALECT_D || DB_DIALECT,
+//   logging: false,
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false, 
+//     },
+//   },
+// });
+
+// sequelize.authenticate()
+//   .then(() => {
+//     console.log('Connection has been established successfully.');
+//   })
+//   .catch(err => {
+//     console.error('Unable to connect to the database:', err);
+//   });
+
+const sequelize = new Sequelize(
    `postgres://${DB_USER1}:${DB_PASSWORD1}@${DB_HOST1}/campeones`,
-   //`postgres://${DB_USER1}:${DB_PASSWORD1}@${DB_HOST1}/campeones`,
    {
      logging: false, // set to console.log to see the raw SQL queries
      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -18,16 +38,7 @@ const {  DATABASE_UR, DB_USER1, DB_PASSWORD1, DB_HOST1, DB_HOST, DB_USER, DB_PAS
     //  },
 
    }
-);  
-
-/*  const sequelize = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/campeones`,
-   {
-      logging: false, // set to console.log to see the raw SQL queries
-      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-   }
 ); 
- */
 
 const basename = path.basename(__filename);
 const modelDefiners = [];
@@ -66,11 +77,11 @@ Order.belongsTo(Carrito, { foreignKey: 'carrito_id' });
 Marca.hasMany(Productos, { foreignKey: 'marca_id' });
 Productos.belongsTo(Marca, { foreignKey: 'marca_id' });
 
-User.hasMany(Favorite, { foreignKey: 'user_id' });
-Favorite.belongsTo(User, { foreignKey: 'user_id' });
+User.hasMany(Favorite, { foreignKey: 'user_id', as: 'favorites' });
+Favorite.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 
-Productos.hasMany(Favorite, { foreignKey: 'productos_id' });
-Favorite.belongsTo(Productos, { foreignKey: 'productos_id' });
+Productos.hasMany(Favorite, { foreignKey: 'productos_id', as: 'favorites' });
+Favorite.belongsTo(Productos, { foreignKey: 'productos_id', as: 'producto' });
 
 User.hasMany(Review, { foreignKey: 'user_id' });
 Review.belongsTo(User, { foreignKey: 'user_id' });
