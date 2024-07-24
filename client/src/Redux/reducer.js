@@ -64,7 +64,7 @@ const rootReducer = (state = initialState, action) => {
     case SET_PREFERENCE_ID:
       return {
         ...state,
-        preferenceId: payload,
+        preferenceId: action.payload,
       };
     case GET_DETAILS:
       return {
@@ -88,47 +88,48 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productos: payload,
       };
-    case NO_FILTER:
-      return {
-        ...state,
-        filters: {
-          producto: "none",
-          categoria: "none",
-          marca: "none",
-        },
-        productos: state.allProducts,
-        preSortProductos: state.allProducts,
-      };
-    case FILTER_PRODUCTO:
-      const updatedFiltersProducto = { ...state.filters, producto: payload };
-      return {
-        ...state,
-        filters: updatedFiltersProducto,
-        productos: applyFilters(state.allProducts, updatedFiltersProducto),
-        preSortProductos: applyFilters(
-          state.allProducts,
-          updatedFiltersProducto
-        ),
-      };
-    case FILTER_CATEGORIA:
-      const updatedFiltersCategoria = { ...state.filters, categoria: payload };
-      return {
-        ...state,
-        filters: updatedFiltersCategoria,
-        productos: applyFilters(state.allProducts, updatedFiltersCategoria),
-        preSortProductos: applyFilters(
-          state.allProducts,
-          updatedFiltersCategoria
-        ),
-      };
-    case FILTER_MARCAS:
-      const updatedFiltersMarca = { ...state.filters, marca: payload };
-      return {
-        ...state,
-        filters: updatedFiltersMarca,
-        productos: applyFilters(state.allProducts, updatedFiltersMarca),
-        preSortProductos: applyFilters(state.allProducts, updatedFiltersMarca),
-      };
+      
+      case NO_FILTER:
+        return {
+          ...state,
+          filters: {
+            producto: "none",
+            categoria: "none",
+            marca: "none",
+          },
+          productos: state.allProducts,
+          preSortProductos: state.allProducts,
+        };
+      case FILTER_PRODUCTO:
+        const updatedFiltersProducto = { ...state.filters, producto: payload };
+        return {
+          ...state,
+          filters: updatedFiltersProducto,
+          productos: applyFilters(state.allProducts, updatedFiltersProducto),
+          preSortProductos: applyFilters(
+            state.allProducts,
+            updatedFiltersProducto
+          ),
+        };
+      case FILTER_CATEGORIA:
+        const updatedFiltersCategoria = { ...state.filters, categoria: payload };
+        return {
+          ...state,
+          filters: updatedFiltersCategoria,
+          productos: applyFilters(state.allProducts, updatedFiltersCategoria),
+          preSortProductos: applyFilters(
+            state.allProducts,
+            updatedFiltersCategoria
+          ),
+        };
+      case FILTER_MARCAS:
+        const updatedFiltersMarca = { ...state.filters, marca: payload };
+        return {
+          ...state,
+          filters: updatedFiltersMarca,
+          productos: applyFilters(state.allProducts, updatedFiltersMarca),
+          preSortProductos: applyFilters(state.allProducts, updatedFiltersMarca),
+        };
     case NO_SORT:
       return {
         ...state,
@@ -204,17 +205,32 @@ const rootReducer = (state = initialState, action) => {
 
     // PARA REVIEWS
     case GET_REVIEWS:
+      const {productId, reviews} = action.payload;
       return {
         ...state,
-        [action.payload.productId]: action.payload.reviews,
+        reviews: {
+          ...state.reviews,
+          [productId]: reviews,
+        } 
       };
 
+    // case POST_REVIEW:
+    //   const { product_id, newReview } = action.payload;
+    //   return {
+    //     ...state,
+    //     [product_id]: [...(state[product_id] || []), newReview],
+    //   };
+
     case POST_REVIEW:
-      const { productId, newReview } = action.payload;
+      const { product_id, newReview } = payload;
       return {
         ...state,
-        [productId]: [...(state[productId] || []), newReview],
+        reviews: {
+          ...state.reviews,
+          [product_id]: [...(state.reviews[product_id] || []), newReview],
+        },
       };
+    
 
     case PUT_REVIEW:
       return {
