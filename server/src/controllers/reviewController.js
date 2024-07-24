@@ -1,4 +1,4 @@
-const { Review, User } = require('../db');
+
 // const { Review, User, Productos } = require('../db');
 
 // // Crear una nueva reseña
