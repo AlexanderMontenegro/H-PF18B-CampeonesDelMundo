@@ -6,7 +6,7 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { getAuth, deleteUser } from "firebase/auth";
+import Swal from "sweetalert2";
 import { db } from "../../../../fireBaseConfig";
 import "../../../css/useradmin.css";
 
@@ -29,27 +29,23 @@ const UserAdmin = () => {
     fetchUsers();
   }, []);
 
-
-  //borrar usuarios
+  // Borrar usuarios
   const handleDelete = async (userUid) => {
     try {
       await deleteDoc(doc(db, "users", userUid));
-      const auth = getAuth();
-      const userToDelete = auth.currentUser;
-      if (userToDelete) {
-        await deleteUser(userToDelete);
-      } else {
-        console.error("no existe");
-      }
       setUsers(users.filter((user) => user.uid !== userUid));
+      Swal.fire({
+        icon: "success",
+        title: "Usuario eliminado",
+        text: "El usuario ha sido eliminado correctamente",
+        confirmButtonText: "Aceptar"
+      });
     } catch (error) {
-      console.error("Error", error);
+      console.error("Error al eliminar el usuario", error);
     }
   };
 
-
-
-  //modificar roles
+  // Modificar roles
   const handleEditRole = (userUid) => {
     setEditUserId(userUid);
   };
@@ -73,11 +69,9 @@ const UserAdmin = () => {
       setEditUserId(null);
       setNewRole("");
     } catch (error) {
-      console.error("Error", error);
+      console.error("Error al actualizar el rol", error);
     }
   };
-
-  
 
   return (
     <div className="principal">
@@ -115,10 +109,10 @@ const UserAdmin = () => {
               ) : (
                 <>
                   <button onClick={() => handleEditRole(user.uid)} className="opciones">
-                  <img src="/iconos/options.png" alt="opciones" />
+                    <img src="/iconos/options.png" alt="opciones" />
                   </button>
                   <button onClick={() => handleDelete(user.uid)} className="eliminar">
-                  <img src="/iconos/delete.png" alt="eliminar" />
+                    <img src="/iconos/delete.png" alt="eliminar" />
                   </button>
                 </>
               )}
@@ -128,8 +122,6 @@ const UserAdmin = () => {
       </ul>
     </div>
   );
-  
 };
 
 export default UserAdmin;
-

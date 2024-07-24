@@ -88,47 +88,48 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         productos: payload,
       };
-    case NO_FILTER:
-      return {
-        ...state,
-        filters: {
-          producto: "none",
-          categoria: "none",
-          marca: "none",
-        },
-        productos: state.allProducts,
-        preSortProductos: state.allProducts,
-      };
-    case FILTER_PRODUCTO:
-      const updatedFiltersProducto = { ...state.filters, producto: payload };
-      return {
-        ...state,
-        filters: updatedFiltersProducto,
-        productos: applyFilters(state.allProducts, updatedFiltersProducto),
-        preSortProductos: applyFilters(
-          state.allProducts,
-          updatedFiltersProducto
-        ),
-      };
-    case FILTER_CATEGORIA:
-      const updatedFiltersCategoria = { ...state.filters, categoria: payload };
-      return {
-        ...state,
-        filters: updatedFiltersCategoria,
-        productos: applyFilters(state.allProducts, updatedFiltersCategoria),
-        preSortProductos: applyFilters(
-          state.allProducts,
-          updatedFiltersCategoria
-        ),
-      };
-    case FILTER_MARCAS:
-      const updatedFiltersMarca = { ...state.filters, marca: payload };
-      return {
-        ...state,
-        filters: updatedFiltersMarca,
-        productos: applyFilters(state.allProducts, updatedFiltersMarca),
-        preSortProductos: applyFilters(state.allProducts, updatedFiltersMarca),
-      };
+      
+      case NO_FILTER:
+        return {
+          ...state,
+          filters: {
+            producto: "none",
+            categoria: "none",
+            marca: "none",
+          },
+          productos: state.allProducts,
+          preSortProductos: state.allProducts,
+        };
+      case FILTER_PRODUCTO:
+        const updatedFiltersProducto = { ...state.filters, producto: payload };
+        return {
+          ...state,
+          filters: updatedFiltersProducto,
+          productos: applyFilters(state.allProducts, updatedFiltersProducto),
+          preSortProductos: applyFilters(
+            state.allProducts,
+            updatedFiltersProducto
+          ),
+        };
+      case FILTER_CATEGORIA:
+        const updatedFiltersCategoria = { ...state.filters, categoria: payload };
+        return {
+          ...state,
+          filters: updatedFiltersCategoria,
+          productos: applyFilters(state.allProducts, updatedFiltersCategoria),
+          preSortProductos: applyFilters(
+            state.allProducts,
+            updatedFiltersCategoria
+          ),
+        };
+      case FILTER_MARCAS:
+        const updatedFiltersMarca = { ...state.filters, marca: payload };
+        return {
+          ...state,
+          filters: updatedFiltersMarca,
+          productos: applyFilters(state.allProducts, updatedFiltersMarca),
+          preSortProductos: applyFilters(state.allProducts, updatedFiltersMarca),
+        };
     case NO_SORT:
       return {
         ...state,
