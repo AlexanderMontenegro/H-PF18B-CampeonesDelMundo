@@ -31,6 +31,13 @@ export const SET_PREFERENCE_ID = 'SET_PREFERENCE_ID';
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 export const SET_FAVORITES = 'SET_FAVORITES';
+export const UPDATE_STOCK = 'UPDATE_STOCK';
+export const UPDATE_PRODUCT= 'UPDATE_PRODUCT'
+
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const POST_REVIEW = 'POST_REVIEW';
+export const PUT_REVIEW = 'PUT_REVIEW';
+export const DELETE_REVIEW = "DELETE_REVIEW";
 
 
 
@@ -42,6 +49,7 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
   try {
     // Aquí hacemos la solicitud a nuestro backend para obtener el preferenceId
     const response = await axios.post('/api/payments/create-preference', { items: carrito });
+<<<<<<< HEAD
     const { id } = response.data;
     console.log('Response from server:', response.data);
     console.log('Preference ID:', id);
@@ -49,17 +57,76 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
     dispatch({
         type: SET_PREFERENCE_ID,
         payload: id,
+=======
+    //const { id } = response.data;
+
+    dispatch({
+      type: SET_PREFERENCE_ID,
+      payload: response.data,
+>>>>>>> 1d9233baa98deb3a9449ef8853fb744f5ecd98c1
     });
 } catch (error) {
     console.error('Error fetching preference ID:', error);
 }
 };
 
+// PARA REVIEWS
+// GET_REVIEWS
+export const fetchReviews = (productId) => async (dispatch) => {
 
-
-export const fetchUserFavorites = (userId) => async (dispatch) => {
+  console.log(`Fetching reviews for productId: ${productId}`);
   try {
-    const response = await axios.get(`/favorites/${userId}`);
+    const response = await axios.get(`/reviews/producto/${productId}`);
+    console.log(`Action response: ${response.data}`);
+    dispatch({
+      type: GET_REVIEWS,
+      payload: {
+        productId: productId,
+        reviews: response.data,
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+  }
+};
+
+// POST_REVIEW
+export const addToReviews = (newReview, product_id) => async (dispatch) => {
+  // console.log("REVIEW: ", newReview)
+  try {
+    const response = await axios.post('/reviews/', newReview);
+    // console.log(`Accion response: ${response}`);
+    dispatch({
+      // type: POST_REVIEW,
+      // payload: response.data,
+      type: POST_REVIEW,
+      payload: {
+        product_id: product_id,
+        newReview: response.data}
+      // payload: {
+      //   email,
+      //   productId,
+      //   comment,
+      //   rating,
+      //   date,
+      //   newReview: response.data,
+      // },
+    });
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se pudo agregar la review (Error😭😢)",
+    });
+  }
+};
+
+// REVIEWS - FIN
+
+export const fetchUserFavorites = (useremail) => async (dispatch) => {
+  try {
+    const response = await axios.get(`/favorites/${useremail}`);
+     console.log(JSON.stringify(response))
     dispatch({
       type: SET_FAVORITES,
       payload: response.data,
@@ -69,22 +136,24 @@ export const fetchUserFavorites = (userId) => async (dispatch) => {
   }
 };
 
-export const addToFavorites = (producto) => async (dispatch) => {
-  console.log("Dispatching Add to Favorites:", producto.id);
+export const addToFavorites = (producto, user) => async (dispatch) => {
+  console.log("Dispatching Add to Favorites:", producto.id, user);
   try {
+   
     const response = await axios.post('/favorites', {
-      user_id: user.uid, /*resolver */
+      user_email: user.email, 
       productos_id: producto.id
     });
+    console.log(JSON.stringify(response))
     dispatch({
       type: ADD_TO_FAVORITES,
       payload: response.data,
     });
   } catch (error) {
     Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: "No se pudo agregar a favoritos(Error 😭)",
+      icon: "Ok👌",
+      title: "👌",
+      text: "Ya estoy en tu lista",
     });
   }
 };
@@ -420,5 +489,47 @@ export const loginWithFacebook = () => {
               payload: error.response ? error.response.data : { message: error.message }
       });
       }
+  };
+};
+
+export const updateStock = (id, talles) => {
+  const endpoint = `/productos/${id}/stock`//modificar de acuerdo a ruta del back
+  return async function (dispatch) {
+    try {
+    const response =   await axios.put(endpoint, talles);
+      
+       return dispatch({
+        type: UPDATE_STOCK,
+        payload: response,
+      }); 
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error en el servidor",
+        text: "",
+        timer: 5000,
+      });
+    }
+  };
+};
+
+export const putUpdateProduct = (obj) => {
+  const endpoint = `/productos/update`//modificar de acuerdo a ruta del back
+  return async function (dispatch) {
+    try {
+    const response =   await axios.put(endpoint, obj);
+      
+       return dispatch({
+        type: UPDATE_PRODUCT,
+        payload: response,
+      }); 
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error en el servidor",
+        text: "",
+        timer: 5000,
+      });
+    }
   };
 };

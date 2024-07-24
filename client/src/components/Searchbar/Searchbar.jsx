@@ -10,7 +10,10 @@ const Searchbar = () => {
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    dispatch(searchProductsByType(term)); // Despacha la acción de búsqueda
+  };
+
+  const handleSearchClick = () => {
+    dispatch(searchProductsByType(searchTerm)); // Despacha la acción de búsqueda
   };
 
   return (
@@ -21,9 +24,17 @@ const Searchbar = () => {
         className="search-bar-input"
         value={searchTerm}
         onChange={handleSearchChange}
-      />      
+      />
+      <button
+        type="button"
+        className="search-bar-button"
+        onClick={handleSearchClick}
+      >
+        Buscar
+      </button>
     </div>
   );
 };
 
 export default Searchbar;
+

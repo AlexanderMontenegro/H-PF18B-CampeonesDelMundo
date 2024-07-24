@@ -35,17 +35,17 @@ import { getCategory, getProducts, setUser } from "./Redux/actions";
 import Swal from "sweetalert2";
 import Orden from "./components/Orden/Orden";
 import Privacy from "./components/Privacy/Privacy";
-import Favorite from "./components/Favoritos/Favoritos";
+import Favoritos from "./components/Favoritos/Favoritos";
 
 
 function ChampionsApp() {
   const dispatch = useDispatch();
-  const stateProducts = useSelector((state) => state.allProducts);
+  //const stateProducts = useSelector((state) => state.allProducts);
 
   // PARA PRODUCTOS
   // State y Effect
-  const productos = useSelector((state) => state.allProducts);
-  // console.log("Productos 2: ", productos[1]);
+  // const [productos, setProductos] = useSelector((state) => state.allProducts);
+  // console.log("Productos 2: ", productos);
 
   
 
@@ -112,21 +112,40 @@ function ChampionsApp() {
 
   // FUNCIONES
   const addToCarrito = (item) => {
-    console.log("Addtocarrito ", item.talles[1])
+    console.log("CARRITO: ", item)
+
 
     const itemExist = carrito.findIndex((producto) => producto.id === item.id);
+    //const talleExist = carrito.findIndex((producto) => producto.talle === item.talle);
+
+    // console.log("Indices de TALLE: ", talleExist)
+    // Agregando Talles
+    const updateTalle = []  
 
     if (itemExist >= 0) {
       // el item ya existe
       const updateCarrito = [...carrito];
-      // const updateTalle = 
       updateCarrito[itemExist].quantity++;
-      setCarrito(updateCarrito);
+      
+      setCarrito(updateCarrito); 
+
+      // if ( updateCarrito[itemExist].talle !== item.talle){
+      //   item.quantity = 1;
+      //   setCarrito([...updateCarrito, item]);
+      // }
+      // else{
+      //   updateCarrito[itemExist].quantity++;
+      //   setCarrito(updateCarrito); 
+      // }
+      
     } else {
       item.quantity = 1;
+      // item.talle = "S - 5";
+      // updateTalle = [...updateTalle, item.talle]
       setCarrito([...carrito, item]);
     }
   };
+
 
   const removeFromCarrito = (id) => {
     setCarrito((prevCarrito) =>
@@ -246,7 +265,6 @@ function ChampionsApp() {
               {/* <HomePage productos={productos}/> home page va hacer uso del estado allProducts */}
 
               <HomePage
-                productos={productos}
                 carrito={carrito}
                 addToCarrito={addToCarrito}
                 removeFromCarrito={removeFromCarrito}
@@ -310,6 +328,8 @@ function ChampionsApp() {
               decreaseQuantity={decreaseQuantity}
               clearCarrito={clearCarrito}
               notificaciones={notificaciones}
+              
+              
             />
           }
         />
@@ -374,7 +394,7 @@ function ChampionsApp() {
 
         <Route path="/privacidad" element={<Privacy />} />
 
-        <Route path="/favorite" element={<Favorite />}/><Route/>
+        <Route path="/favorites" element={<Favoritos />}/><Route/>
 
 
 

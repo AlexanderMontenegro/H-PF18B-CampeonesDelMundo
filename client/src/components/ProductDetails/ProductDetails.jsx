@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDetails } from "../../Redux/actions";
+
+
 import "../../css/productdetails.css";
 import "../../css/header.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import Reviews from "../Reviews/Reviews";
+import ReviewForm from "../Reviews/ReviewForm";
 
 const ProductDetails = ({
   carrito,
@@ -14,23 +18,31 @@ const ProductDetails = ({
   increaseQuantity,
   decreaseQuantity,
   clearCarrito,
+  notificaciones,
   product,
   getDetails,
-  notificaciones,
 }) => {
   const { id } = useParams();
-
 
   useEffect(() => {
     getDetails(id);
   }, [id, getDetails]);
 
+  // PARA TALLES
+  // State y Effect
+  const [selecciontalle, setSeleccionTalle] = useState("");
+  const [hasChanged, setHasChanged] = useState(false);
+
+  // Funciones
+  const handleSelectChange = (event) => {
+    const nuevoTalle = event.target.value;
+
+    setSeleccionTalle(nuevoTalle);
+    product.talle = nuevoTalle;
+  };
+
   if (!product) {
     return <p>Producto no encontrado</p>;
-  }
-
-  const EncontrarTalles = () => {
-
   }
 
   return (
@@ -49,6 +61,7 @@ const ProductDetails = ({
           <div className="product-image">
             <img src={product.imagen} alt={product.tipo} />
           </div>
+
           <div className="product-info">
             <h2 className="product-title">
               {product.tipo} - {product.marca}
@@ -58,12 +71,15 @@ const ProductDetails = ({
               Descripción <br /> {product.descripcion}
             </p>
             <div className="product-sizes">
-              <label htmlFor="sizes">Talles:</label>
-              <select id="sizes">
-                {product.talles.map(obj => (
-                  <option key={obj.id} onClick={() => EncontrarTalles(obj)}>
-                    {obj.talle}-{obj.stock}
-                    {/* {console.log("El stock es: ", obj.talle)} */}
+             {/*} <label htmlFor="sizes">Talles:</label>*/}
+              
+              <select className="select_s" id="sizes" onChange={handleSelectChange}>
+                <option value="Seleccione talle">Talles</option>
+                {product.talles.map((obj, index) => (
+                  obj.stock>0&&
+                  
+                  <option key={index} value={obj.talle + " - " + obj.stock}>
+                    {obj.talle + " - " + obj.stock}
                   </option>
                 ))}
               </select>
@@ -76,9 +92,15 @@ const ProductDetails = ({
               <img src="../iconos/carrito.png" alt="" />{" "}
             </button>
           </div>
+
+          {/* Reviews */}
           <div className="reviews-section">
             <h3>Reviews</h3>
             {/* Lista de comentarios y puntuaciones */}
+
+            <section className="reviews__content">
+              <Reviews productId={product.id}/>
+            </section>
           </div>
         </div>
       </div>
