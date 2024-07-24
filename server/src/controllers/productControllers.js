@@ -54,11 +54,87 @@ const formatProductosBD = (productos) => {
   );
 };
 
+// const getProduct = async () => {
+//   try {
+//     const existingProducts = await Productos.count();
+//     if (existingProducts > 0) {
+//       const dataProductos = await Productos.findAll({
+//         include: [
+//           {
+//             model: Categoria,
+//             as: 'categorias',
+//             through: {
+//               attributes: [],
+//             },
+//           },
+//         ],
+//       });
+
+//       return formatProductosBD(dataProductos);
+//     }
+
+//     const apiProductRaw = (await axios.get("http://localhost:5000/productos")).data;
+//     const apiProduct = cleanArray(apiProductRaw);
+
+//     await conn.transaction(async (t) => {
+//       await Promise.all(apiProduct.map(async (product) => {
+//         const idProducto = isNaN(product.id) ? product.id : convertirId(product.id);
+
+//         const existingProduct = await Productos.findOne({ where: { id: idProducto }, transaction: t });
+
+//         if (!existingProduct) {
+//           const producto = await Productos.create({
+//             id: idProducto,
+//             tipo: product.tipo,
+//             descripcion: product.descripcion,
+//             precio: product.precio,
+//             imagen: product.imagen,
+//             marca: product.marca,
+//             pais: product.pais,
+//             talles: product.talles,
+//           }, { transaction: t });
+
+//           const categoriaNombres = product.categoria.split(", ").map(nombre => nombre.trim());
+
+//           const categoriaRecords = await Categoria.findAll({
+//             where: {
+//               nombre: categoriaNombres
+//             },
+//             transaction: t
+//           });
+
+//           if (categoriaRecords.length > 0) {
+//             await producto.addCategorias(categoriaRecords, { transaction: t });
+//           }
+//         }
+//       }));
+//     });
+
+//     const dataProductos = await Productos.findAll({
+//       include: [
+//         {
+//           model: Categoria,
+//           as: 'categorias',
+//           through: {
+//             attributes: [],
+//           },
+//         },
+//       ],
+//     });
+
+//     return formatProductosBD(dataProductos);
+//   } catch (error) {
+//     console.error("Error al obtener los productos:", error);
+//     throw error;
+//   }
+// };
+
 const getProduct = async () => {
   try {
     const existingProducts = await Productos.count();
     if (existingProducts > 0) {
       const dataProductos = await Productos.findAll({
+        where: { activo: true }, // Filtrar productos activos
         include: [
           {
             model: Categoria,
@@ -92,6 +168,7 @@ const getProduct = async () => {
             marca: product.marca,
             pais: product.pais,
             talles: product.talles,
+            activo: true, // Asegúrate de que los nuevos productos sean activos por defecto
           }, { transaction: t });
 
           const categoriaNombres = product.categoria.split(", ").map(nombre => nombre.trim());
@@ -111,6 +188,7 @@ const getProduct = async () => {
     });
 
     const dataProductos = await Productos.findAll({
+      where: { activo: true }, // Filtrar productos activos
       include: [
         {
           model: Categoria,
@@ -128,6 +206,7 @@ const getProduct = async () => {
     throw error;
   }
 };
+
 
 const searchTipo = async (tipo) => {
   try {
@@ -169,6 +248,68 @@ const searchTipo = async (tipo) => {
   }
 };
 
+// const getProductId = async (idProducto, origin) => {
+//   try {
+//     let producto;
+  
+//     if (origin === "api") {
+//       const apiProducto = (
+//         await axios.get(`http://localhost:5000/productos/${idProducto}`)
+//       ).data;
+  
+//       producto = {
+//         id: apiProducto.id,
+//         tipo: apiProducto.tipo,
+//         descripcion: apiProducto.descripcion,
+//         precio: apiProducto.precio,
+//         stock: apiProducto.stock,
+//         imagen: apiProducto.imagen,
+//         marca: apiProducto.marca,
+//         pais: apiProducto.pais,
+//         talles: apiProducto.talles,
+//         categoria: apiProducto.categoria,
+//         created: false,
+//       };
+//     } else {
+//       const dbProducto = await Productos.findByPk(idProducto, {
+//         include: [
+//           {
+//             model: Categoria,
+//             as: 'categorias',
+//             through: {
+//               attributes: [],
+//             },
+//           },
+//         ],
+//       });
+  
+//       if (!dbProducto) {
+//         throw new Error("Producto no encontrado");
+//       }
+  
+//       const categorias = dbProducto.categorias ? dbProducto.categorias.map((t) => t.nombre).join(", ") : '';
+//       producto = {
+//         id: dbProducto.id,
+//         tipo: dbProducto.tipo,
+//         descripcion: dbProducto.descripcion,
+//         precio: dbProducto.precio,
+//         stock: dbProducto.stock,
+//         imagen: dbProducto.imagen,
+//         marca: dbProducto.marca,
+//         pais: dbProducto.pais,
+//         talles: dbProducto.talles,
+//         categoria: categorias,
+//         created: false,
+//       };
+//     }
+  
+//     return producto;
+//   } catch (error) {
+//     console.error("Error al obtener el producto por ID:", error);
+//     throw error;
+//   }
+// };
+
 const getProductId = async (idProducto, origin) => {
   try {
     let producto;
@@ -192,7 +333,8 @@ const getProductId = async (idProducto, origin) => {
         created: false,
       };
     } else {
-      const dbProducto = await Productos.findByPk(idProducto, {
+      const dbProducto = await Productos.findOne({
+        where: { id: idProducto, activo: true }, // Filtrar productos activos
         include: [
           {
             model: Categoria,
@@ -231,6 +373,7 @@ const getProductId = async (idProducto, origin) => {
   }
 };
 
+
 const deleteId = async (id) => {
   try {
     const productId = await Productos.destroy({ where: { id } });
@@ -256,10 +399,42 @@ const updateStockController = async (idProducto, talles) => {
   }
 };
 
+const softDeleteProduct = async (idProducto) => {
+  try {
+    const producto = await Productos.findByPk(idProducto);
+    if (!producto) {
+      return { error: "Producto no encontrado" };
+    }
+
+    await producto.update({ activo: false });
+    return { message: "Producto eliminado lógicamente" };
+  } catch (error) {
+    console.error("Error al eliminar lógicamente el producto:", error);
+    throw error;
+  }
+};
+
+const restoreProduct = async (idProducto) => {
+  try {
+    const producto = await Productos.findByPk(idProducto);
+    if (!producto) {
+      return { error: "Producto no encontrado" };
+    }
+
+    await producto.update({ activo: true });
+    return { message: "Producto restaurado" };
+  } catch (error) {
+    console.error("Error al restaurar el producto:", error);
+    throw error;
+  }
+};
+
 module.exports = {
   getProduct,
   searchTipo,
   getProductId,
   deleteId,
-  updateStockController
+  updateStockController,
+  softDeleteProduct,
+  restoreProduct
 };

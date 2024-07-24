@@ -1,8 +1,9 @@
 const express = require('express');
 const favoriteRoutes = express.Router();
 const {  handleAddFavorite,
-    handleGetUserFavorites,
-    handleRemoveFavorite, } = require('../handlers/favoriteHandlers');
+         handleGetUserFavorites,
+         handleRemoveFavorite,
+      } = require('../handlers/favoriteHandlers');
 
 // Ruta para agregar un favorito
 favoriteRoutes.post('/', handleAddFavorite);
