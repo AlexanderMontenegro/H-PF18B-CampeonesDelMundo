@@ -143,10 +143,10 @@ if(response.payload.data)
               />
         </div>
 
-        <div className="field">
+        {selectedObject.categoria&&<div className="field">
           <label>Categoria</label>
         <p>{selectedObject.categoria}</p>
-        </div>
+        </div>}
 
         <div className="field">
           <label>Decripcion</label>
