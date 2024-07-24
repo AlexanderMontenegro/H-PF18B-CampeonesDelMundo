@@ -82,7 +82,7 @@ if(response.payload.data)
           <div  className="modificables"  >
           {selectedObject.talles.map((item, index) => (
             <div className="datos" key={item.talle}>
-              <p>talle: {item.talle}</p>
+              <p>Talle: {item.talle}</p>
               <input
                 type="number"
                 name="stock"

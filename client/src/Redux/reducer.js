@@ -204,17 +204,32 @@ const rootReducer = (state = initialState, action) => {
 
     // PARA REVIEWS
     case GET_REVIEWS:
+      const {productId, reviews} = action.payload;
       return {
         ...state,
-        [action.payload.productId]: action.payload.reviews,
+        reviews: {
+          ...state.reviews,
+          [productId]: reviews,
+        } 
       };
 
+    // case POST_REVIEW:
+    //   const { product_id, newReview } = action.payload;
+    //   return {
+    //     ...state,
+    //     [product_id]: [...(state[product_id] || []), newReview],
+    //   };
+
     case POST_REVIEW:
-      const { productId, newReview } = action.payload;
+      const { product_id, newReview } = payload;
       return {
         ...state,
-        [productId]: [...(state[productId] || []), newReview],
+        reviews: {
+          ...state.reviews,
+          [product_id]: [...(state.reviews[product_id] || []), newReview],
+        },
       };
+    
 
     case PUT_REVIEW:
       return {

@@ -60,12 +60,15 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
 // PARA REVIEWS
 // GET_REVIEWS
 export const fetchReviews = (productId) => async (dispatch) => {
+
+  console.log(`Fetching reviews for productId: ${productId}`);
   try {
-    const response = await axios.get(`/producto/${productId}`);
+    const response = await axios.get(`/reviews/producto/${productId}`);
+    console.log(`Action response: ${response.data}`);
     dispatch({
       type: GET_REVIEWS,
       payload: {
-        productId,
+        productId: productId,
         reviews: response.data,
       },
     });
@@ -75,19 +78,26 @@ export const fetchReviews = (productId) => async (dispatch) => {
 };
 
 // POST_REVIEW
-export const addToReviews = (productId, comentario, valoracion) => async (dispatch) => {
+export const addToReviews = (newReview, product_id) => async (dispatch) => {
+  // console.log("REVIEW: ", newReview)
   try {
-    const response = await axios.post('/', {
-      product_id: productId,
-      comentario: comentario,
-      valoracion: valoracion,
-    });
+    const response = await axios.post('/reviews/', newReview);
+    // console.log(`Accion response: ${response}`);
     dispatch({
+      // type: POST_REVIEW,
+      // payload: response.data,
       type: POST_REVIEW,
       payload: {
-        productId,
-        newReview: response.data,
-      },
+        product_id: product_id,
+        newReview: response.data}
+      // payload: {
+      //   email,
+      //   productId,
+      //   comment,
+      //   rating,
+      //   date,
+      //   newReview: response.data,
+      // },
     });
   } catch (error) {
     Swal.fire({
@@ -128,9 +138,9 @@ export const addToFavorites = (producto, user) => async (dispatch) => {
     });
   } catch (error) {
     Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: "No se pudo agregar a favoritos(Error😭😢)",
+      icon: "Ok👌",
+      title: "👌",
+      text: "Ya estoy en tu lista",
     });
   }
 };
