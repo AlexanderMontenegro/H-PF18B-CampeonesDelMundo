@@ -86,14 +86,15 @@ const Header = ({
                           </thead>
                           <tbody>
                             {carrito.map((producto) => (
-                              <tr key={producto.id}>
+                              //key={producto.id}
+                              <tr key={`${producto.id}-${producto.talle}`}>
                                 <td>
                                   <img className="img-fluid" src={producto.imagen} alt={`${(producto.id, producto.tipo)} imagen`} />
                                 </td>
                                 <td className="cabecera__texto">{producto.tipo}</td>
                                 <td className="cabecera__texto">{producto.marca}</td>
                                 <td className="cabecera__texto">${producto.precio}</td>
-                                <td>{producto.talles.talle}</td>
+                                <td>{producto.talle}</td>
                                 <td>
                                   <div className="cabecera__buttons cabecera__texto">
                                     <button type="button" className="cabecera__button" onClick={() => decreaseQuantity(producto.id)}>
@@ -106,7 +107,7 @@ const Header = ({
                                   </div>
                                 </td>
                                 <td>
-                                  <button type="button" className="cabecera__cerrar" onClick={() => removeFromCarrito(producto.id)}>
+                                  <button type="button" className="cabecera__cerrar" onClick={() => removeFromCarrito(`${producto.id}-${producto.talle}`)}>
                                     X
                                   </button>
                                 </td>
