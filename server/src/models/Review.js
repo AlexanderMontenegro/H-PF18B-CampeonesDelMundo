@@ -15,6 +15,10 @@ module.exports = (sequelize) => {
       key: 'id',
     },
   },
+  nombres:{
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
   product_id: {
     type: DataTypes.UUID,
     allowNull: false,
