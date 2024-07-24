@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const ReviewForm = ({ handleAddReview }) => {
   // State y Effect
+  const [nombre, setNombre] = useState("");
   const [comentario, setComentario] = useState("");
   const [valoracion, setValoracion] = useState(0);
 
@@ -16,6 +17,9 @@ const ReviewForm = ({ handleAddReview }) => {
 
   return (
     <form className="review__form" onSubmit={handleSubmit}>
+
+      {/* <input type="text" value={nombre} /> */}
+
       <label htmlFor="">Comentario: </label>
       <textarea
         className="review__textarea"

@@ -7,6 +7,7 @@ import CreateProduct from "./CreateProduct/CreateProduct";
 import CreateCategory from "./CreateCategory/CreateCategory";
 import StockAdmin from "./StockAdmin/StockAdmin";
 import UserAdmin from "./UserAdmin/UserAdmin";
+import Updateproduct from './UpdateProduct/updateProduct';
 import "../../css/dashboard.css";
 
 const Dashboard = () => {
@@ -63,6 +64,9 @@ const Dashboard = () => {
           <Link to={"stockadmin"}>
             <p className="p__d">Gestion Stock</p>
           </Link>
+          <Link to={"updateproduct"}>
+            <p className="p__d">Actualizar Producto</p>
+          </Link>
         </div>
       </div>
 
@@ -71,6 +75,7 @@ const Dashboard = () => {
         <Route path='createcategory' element={<CreateCategory />} />
         <Route path='useradmin' element={<UserAdmin />} />
         <Route path='stockadmin' element={<StockAdmin />} />
+        <Route path='updateproduct' element={<Updateproduct />} />
       </Routes>
     </div>
   );

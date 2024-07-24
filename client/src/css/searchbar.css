@@ -35,3 +35,18 @@
   color: #aaaaaa;
 }
 
+.search-bar-button {
+  margin-top: 1rem;
+  padding: 12px 24px;
+  background-color: var(--azulOscuro); /* Usa la misma variable para el color de fondo */
+  color: var(--blanco); /* Usa la misma variable para el color de texto */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.search-bar-button:hover {
+  background-color: var(--azulClaro); /* Cambia a un color azul claro en hover */
+  border-color: #007bff;
+}
