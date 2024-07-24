@@ -137,8 +137,8 @@ export const addToFavorites = (producto, user) => async (dispatch) => {
     });
   } catch (error) {
     Swal.fire({
-      icon: "error",
-      title: "Error",
+      icon: "Ok👌",
+      title: "👌",
       text: "Ya estoy en tu lista",
     });
   }

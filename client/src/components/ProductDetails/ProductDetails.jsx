@@ -71,9 +71,10 @@ const ProductDetails = ({
               Descripción <br /> {product.descripcion}
             </p>
             <div className="product-sizes">
-              <label htmlFor="sizes">Talles:</label>
-              <select id="sizes" onChange={handleSelectChange}>
-                <option value="Seleccione talle">Seleccione talle</option>
+             {/*} <label htmlFor="sizes">Talles:</label>*/}
+              
+              <select className="select_s" id="sizes" onChange={handleSelectChange}>
+                <option value="Seleccione talle">Talles</option>
                 {product.talles.map((obj, index) => (
                   obj.stock>0&&
                   
