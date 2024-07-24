@@ -214,12 +214,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     // case POST_REVIEW:
-    //   const { product_id, newReview } = action.payload;
-    //   return {
-    //     ...state,
-    //     [product_id]: [...(state[product_id] || []), newReview],
-    //   };
-
     case POST_REVIEW:
       const { product_id, newReview } = payload;
       return {
