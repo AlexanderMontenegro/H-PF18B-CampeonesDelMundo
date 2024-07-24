@@ -32,6 +32,7 @@ export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES';
 export const SET_FAVORITES = 'SET_FAVORITES';
 export const UPDATE_STOCK = 'UPDATE_STOCK';
+export const UPDATE_PRODUCT= 'UPDATE_PRODUCT'
 
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const POST_REVIEW = 'POST_REVIEW';
@@ -486,6 +487,27 @@ export const updateStock = (id, talles) => {
       
        return dispatch({
         type: UPDATE_STOCK,
+        payload: response,
+      }); 
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error en el servidor",
+        text: "",
+        timer: 5000,
+      });
+    }
+  };
+};
+
+export const putUpdateProduct = (obj) => {
+  const endpoint = `/productos/update`//modificar de acuerdo a ruta del back
+  return async function (dispatch) {
+    try {
+    const response =   await axios.put(endpoint, obj);
+      
+       return dispatch({
+        type: UPDATE_PRODUCT,
         payload: response,
       }); 
     } catch (error) {
