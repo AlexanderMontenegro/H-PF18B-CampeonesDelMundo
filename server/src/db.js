@@ -3,43 +3,26 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
- const { DB_NAME, DB_USER1, DB_PASSWORD1, DB_HOST1, DB_DIALECT, DB_NAME_D, DB_USER_D, DB_PASSWORD_D, DB_HOST_D, DB_DIALECT_D } = process.env;
+const {  DATABASE_UR, DB_USER1, DB_PASSWORD1, DB_HOST1 } = process.env;
 
-// const sequelize = new Sequelize(DB_NAME_D || DB_NAME, DB_USER_D || DB_USER, DB_PASSWORD_D || DB_PASSWORD, {
-//   host: DB_HOST_D || DB_HOST,
-//   dialect: DB_DIALECT_D || DB_DIALECT,
-//   logging: false,
-//   dialectOptions: {
-//     ssl: {
-//       require: true,
-//       rejectUnauthorized: false, 
-//     },
-//   },
-// });
 
-// sequelize.authenticate()
-//   .then(() => {
-//     console.log('Connection has been established successfully.');
-//   })
-//   .catch(err => {
-//     console.error('Unable to connect to the database:', err);
-//   });
-
-const sequelize = new Sequelize(
 const sequelize = new Sequelize(
    `postgres://${DB_USER1}:${DB_PASSWORD1}@${DB_HOST1}/campeones`,
    {
      logging: false, // set to console.log to see the raw SQL queries
      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-    //  dialectOptions: {
-    //    ssl: {
-    //      require: true,
-    //      rejectUnauthorized: false, // Puedes establecer esto en true si tienes un certificado SSL válido
-    //    },
-    //  },
+   //   dialectOptions: {
+   //     ssl: {
+   //       require: true,
+   //       rejectUnauthorized: false, // Puedes establecer esto en true si tienes un certificado SSL válido
+   //     },
+   //   },
 
    }
+
 ); 
+
+
 
 const basename = path.basename(__filename);
 const modelDefiners = [];
