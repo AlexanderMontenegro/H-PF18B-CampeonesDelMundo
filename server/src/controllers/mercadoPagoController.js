@@ -21,19 +21,19 @@ const createPreference = async (req, res) => {
           quantity: item.quantity,
           unit_price: Number(item.precio)
         }
-      
+
         )),
         back_urls: {
-          success: 'https://www.success.com',
-          failure: 'https://www.failure.com',
-          pending: 'https://www.pending.com'
+          success: 'https://www.success.com/',
+          failure: 'https://www.failure.com/',
+          pending: 'https://www.pending.com/'
         },
         auto_return: 'approved',
       }
     });
 
     console.log('Mercado Pago response:', response.id);
-    
+
     res.status(200).send( response.id );
   } catch (error) {
     console.error('Error creating preference:', error);

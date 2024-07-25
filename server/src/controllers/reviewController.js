@@ -1,6 +1,4 @@
-
-
-const { Review, User } = require('../db');
+const { Review, User, Productos } = require("../db");
 // Crear una nueva reseña
 const createReview = async (req, res) => {
   try {
@@ -8,18 +6,17 @@ const createReview = async (req, res) => {
 
     // Validaciones básicas
     if (!email || !product_id || !rating) {
-      return res.status(400).json({ message: 'Faltan datos requeridos' });
+      return res.status(400).json({ message: "Faltan datos requeridos" });
     }
 
-    console.log("EMAIL desde back: ", email)
+    console.log("EMAIL desde back: ", email);
     // Buscar el usuario por email
     const user = await User.findOne({ where: { email: email } });
     // const product = await Productos.findByPk(product_id);
-    console.log("Desde back, user: ",  user.id);
-   
-   
+    console.log("Desde back, user: ", user.id);
+
     if (!user) {
-      return res.status(404).json({ message: 'Usuario no encontrado' });
+      return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
     // Crear la reseña
@@ -29,14 +26,13 @@ const createReview = async (req, res) => {
       product_id: product_id,
       rating: rating,
       comment: comment,
-      date: date
+      date: date,
     });
 
     res.status(201).json(newReview);
-
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al crear la reseña' });
+    res.status(500).json({ message: "Error al crear la reseña" });
   }
 };
 
@@ -49,7 +45,7 @@ const getProductReviews = async (req, res) => {
     res.status(200).json(reviews);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al obtener reseñas' });
+    res.status(500).json({ message: "Error al obtener reseñas" });
   }
 };
 
@@ -61,7 +57,7 @@ const getUserReviews = async (req, res) => {
     res.status(200).json(reviews);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al obtener reseñas' });
+    res.status(500).json({ message: "Error al obtener reseñas" });
   }
 };
 
@@ -71,17 +67,20 @@ const updateReview = async (req, res) => {
     const { reviewId } = req.params;
     const { rating, comment } = req.body;
 
-    const [updated] = await Review.update({ rating, comment }, { where: { id: reviewId } });
+    const [updated] = await Review.update(
+      { rating, comment },
+      { where: { id: reviewId } }
+    );
 
     if (updated) {
       const updatedReview = await Review.findOne({ where: { id: reviewId } });
       res.status(200).json(updatedReview);
     } else {
-      res.status(404).json({ message: 'Reseña no encontrada' });
+      res.status(404).json({ message: "Reseña no encontrada" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al actualizar la reseña' });
+    res.status(500).json({ message: "Error al actualizar la reseña" });
   }
 };
 
@@ -94,11 +93,11 @@ const deleteReview = async (req, res) => {
     if (deleted) {
       res.status(204).send();
     } else {
-      res.status(404).json({ message: 'Reseña no encontrada' });
+      res.status(404).json({ message: "Reseña no encontrada" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error al eliminar la reseña' });
+    res.status(500).json({ message: "Error al eliminar la reseña" });
   }
 };
 
