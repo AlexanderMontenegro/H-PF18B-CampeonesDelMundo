@@ -16,14 +16,16 @@ import { Provider } from 'react-redux';
 import store from './Redux/store.js';
 import axios from 'axios'
 
-/*Deploy */
-
-axios.defaults.baseURL="https://h-pf18b-campeonesdelmundo-b.onrender.com"
-
-
 /*Local */
 
-//axios.defaults.baseURL="http://localhost:3001/"
+axios.defaults.baseURL="http://localhost:3001/"
+
+
+/*Deploy */
+
+//axios.defaults.baseURL="https://h-pf18b-campeonesdelmundo-b.onrender.com"
+
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
