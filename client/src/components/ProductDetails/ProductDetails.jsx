@@ -38,7 +38,7 @@ const ProductDetails = ({
     const nuevoTalle = event.target.value;
 
     setSeleccionTalle(nuevoTalle);
-    product.talle = nuevoTalle;
+    //product.talle = nuevoTalle;
   };
 
   if (!product) {
@@ -78,7 +78,7 @@ const ProductDetails = ({
                 {product.talles.map((obj, index) => (
                   obj.stock>0&&
                   
-                  <option key={index} value={obj.talle + " - " + obj.stock}>
+                  <option key={index} value={obj.talle}>
                     {obj.talle + " - " + obj.stock}
                   </option>
                 ))}
@@ -86,7 +86,8 @@ const ProductDetails = ({
             </div>
             <button
               className="product-add-to-cart"
-              onClick={() => addToCarrito(product)}
+              onClick={() => addToCarrito({...product, talle: selecciontalle})}
+              disabled={!selecciontalle}
             >
               {" "}
               <img src="../iconos/carrito.png" alt="" />{" "}
