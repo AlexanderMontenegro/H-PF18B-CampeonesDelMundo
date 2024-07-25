@@ -6,7 +6,7 @@ const path = require('path');
 const {   DB_USER1, DB_PASSWORD1, DB_HOST1, DB_URL,DB_USER_D, DB_PASSWORD_D, DB_HOST_D } = process.env;
 
 /*Local */
-/*
+
 const sequelize = new Sequelize(
    `postgres://${DB_USER1}:${DB_PASSWORD1}@${DB_HOST1}/campeones`,
    {
@@ -22,11 +22,11 @@ const sequelize = new Sequelize(
    }
 
 ); 
-*/
+
 
 
 /*Deploy */
-
+/*
 const sequelize = new Sequelize(
    `${DB_URL}`,
    {
@@ -43,7 +43,7 @@ const sequelize = new Sequelize(
 
 ); 
 
-
+*/
 
 
 
