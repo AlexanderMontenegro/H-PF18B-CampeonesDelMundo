@@ -1,6 +1,4 @@
-
-
-const { Review, User } = require('../db');
+const { Review, User, Productos } = require('../db');
 // Crear una nueva reseña
 const createReview = async (req, res) => {
   try {
@@ -18,6 +16,7 @@ const createReview = async (req, res) => {
     console.log("Desde back, user: ",  user.id);
    
    
+    if (!user) {
     if (!user) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
