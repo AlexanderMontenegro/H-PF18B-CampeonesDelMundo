@@ -86,7 +86,7 @@ export const fetchReviews = (productId) => async (dispatch) => {
   console.log(`Fetching reviews for productId: ${productId}`);
   try {
     const response = await axios.get(`/reviews/producto/${productId}`);
-    console.log(`Action response: ${response.data}`);
+    //console.log(`Action response: ${response.data}`);
     dispatch({
       type: GET_REVIEWS,
       payload: {
@@ -95,7 +95,7 @@ export const fetchReviews = (productId) => async (dispatch) => {
       },
     });
   } catch (error) {
-    console.error('Error fetching reviews:', error);
+    //console.error('Error fetching reviews:', error);
   }
 };
 

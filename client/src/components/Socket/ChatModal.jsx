@@ -10,15 +10,15 @@ import Register from "../HomePage/Register";
 
 
 /*Deploy */
-
+/*
 const socket = io("https://h-pf18b-campeonesdelmundo-b.onrender.com");
 
-
+*/
 
 /*Local */
-/*
+
 const socket = io("http://localhost:3001");
-*/
+
 
 
 const ChatModal = ({ isOpen, onClose }) => {
