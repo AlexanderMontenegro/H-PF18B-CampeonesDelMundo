@@ -16,7 +16,13 @@ import { Provider } from 'react-redux';
 import store from './Redux/store.js';
 import axios from 'axios'
 
-//axios.defaults.baseURL="https://h-pf18b-campeonesdelmundo-ssxu.onrender.com"
+/*Deploy */
+
+//axios.defaults.baseURL="https://h-pf18b-campeonesdelmundo-b.onrender.com"
+
+
+/*Local */
+
 axios.defaults.baseURL="http://localhost:3001/"
 
 

@@ -32,6 +32,14 @@ const ProductDetails = ({
   // State y Effect
   const [selecciontalle, setSeleccionTalle] = useState("");
   const [hasChanged, setHasChanged] = useState(false);
+  const [isOn, setIsOn] = useState(false);
+  const toggleButton = () => {
+    setIsOn(!isOn);
+  };
+
+  if (!product) {
+    return <p>Producto no encontrado</p>;
+  }
 
   // Funciones
   const handleSelectChange = (event) => {
@@ -47,7 +55,9 @@ const ProductDetails = ({
 
   return (
     <div>
-      <Header
+      <div className="barra" >
+
+      <Header 
         carrito={carrito}
         addToCarrito={addToCarrito}
         removeFromCarrito={removeFromCarrito}
@@ -55,7 +65,8 @@ const ProductDetails = ({
         decreaseQuantity={decreaseQuantity}
         clearCarrito={clearCarrito}
         notificaciones={notificaciones}
-      />
+        />
+        </div>
       <div className="container__pd">
         <div className="product-details-container">
           <div className="product-image">
@@ -70,6 +81,13 @@ const ProductDetails = ({
             <p className="product-description">
               Descripción <br /> {product.descripcion}
             </p>
+
+            <button className={`toggle-button ${isOn ? 'on' : 'off'}`} onClick={toggleButton}>
+              {isOn ? 'On' : 'Off'}
+            </button>
+
+       
+
             <div className="product-sizes">
              {/*} <label htmlFor="sizes">Talles:</label>*/}
               
