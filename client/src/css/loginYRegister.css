@@ -1,0 +1,297 @@
+
+.login__container {
+  /* position: relative; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  width: auto;
+ /* background-color: var(--azul);
+*/}
+
+/* Estilos para el contenido del login */
+.login__content {
+  background-color: var(--azulOscuro);
+  width: 55rem;
+  min-height: 60rem;
+  border: 0.3rem solid var(--negro);
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+
+}
+
+.options-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; 
+  margin-top: 1rem; 
+}
+
+.option_link {
+  font-size: 0.4rem;
+
+}
+
+
+/* Estilos para el contenedor del registro */
+.register__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  margin: 10px;
+}
+
+/* Estilos para el contenido del registro */
+.register__content {
+  width: 55rem;
+  padding-bottom: 2rem;
+  background-color: var(--azul);
+  width: 55rem;
+  min-height: 60rem;
+  border: 0.3rem solid var(--negro);
+  border-radius: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+
+}
+
+.register__left {
+  width: 65rem;
+  height: 68rem;
+  background-color: var(--blanco);
+  padding: 0 2rem;
+  box-shadow: 4px 0px 0px black, 0px 3px 0px black, -3px 0px 0px black, 0px -3px 0px black;
+}
+
+.register__right {
+  width: 35rem;
+  height: 68rem;
+  background-color: var(--celeste);
+  padding: 0 2rem;
+  box-shadow: 4px 0px 0px black, 0px 3px 0px black, -3px 0px 0px black, 0px -3px 0px black;
+}
+
+/* Estilos para los formularios de registro y login */
+.form__container {
+  display: flex;
+  flex-direction: column;
+  margin: 2.5rem;
+  width: 95%;
+  padding: 2rem;
+  box-shadow: 4px 0px 0px black, 0px 3px 0px black, -3px 0px 0px black, 0px -3px 0px black;
+}
+
+.form__top {
+  margin-bottom: 0.5rem;
+  padding: 0 3.8rem;
+  height: auto;
+  
+}
+
+.form__bottom {
+  margin-top: 0.5rem;
+  padding: 0 3.8rem;
+}
+
+.form__name {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+}
+
+.form__country {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.form__group {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.form__input {
+  position: relative;
+  width: 100%;
+  height: 4.2rem;
+  display: block;
+  border: 0.2rem solid var(--azul);
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  padding: 1rem 1.2rem;
+  outline: none;
+  box-shadow: 0 1rem 1rem -8px rgba(0 ,0 ,0 ,0.10);
+  background: var(--blanco);
+}
+
+.form__label {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  z-index: 1;
+  color: var(--celeste);
+  transition: all 300ms ease-in-out;
+  pointer-events: none;
+}
+
+.form__input:focus ~ .form__label,
+.form__input:not(:placeholder-shown) ~ .form__label {
+  top: -2rem;
+  left: 0;
+  z-index: 1;
+  font-size: 1.3rem;
+  color: var(--celeste);
+}
+
+.form__input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form__input::-moz-placeholder {
+  color: transparent;
+}
+
+.form__select {
+  position: relative;
+  width: 100%;
+  height: 4.2rem;
+  display: block;
+  border: 0.2rem solid var(--celeste);
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  padding: 1rem 1.2rem;
+  color: var(--negro);
+  outline: none;
+  box-shadow: 0 1rem 1rem -8px rgba(0 ,0 ,0 ,0.10);
+  background: var(--blanco);
+}
+
+.form__select:hover {
+  background-color: var(--celeste);
+  color: var(--blanco);
+  font-weight: bold;
+}
+
+.form__button {
+  margin: 1.5rem 0;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  color: var(--negro);
+  background-color: var(--amarillo);
+  border: 0.3rem solid var(--negro);
+  border-radius: 1rem;
+  box-shadow: 0 1rem 1rem -8px rgba(0, 0, 0, 0.22);
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.form__button:hover {
+  background-color: var(--azul);
+  color: var(--blanco);
+  font-weight: bolder;
+}
+
+
+.form__optionsL{
+  display: flex;
+  height: 100%;
+  width:100%;
+  display: flex;
+  /*background-color: blue;*/
+}
+
+.icono__contentL{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /*background-color: red;*/
+}
+
+.icono__containerL {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /* background-color: yellow; */
+  flex-direction: column;
+  align-items: center;
+}
+
+.icono__fluidL{
+  height: 50px;
+  width: 50px;
+  margin: 20px;
+  display: flex;
+ /* background-color: orange;*/
+}
+
+
+.p__l{
+  color: red;
+}
+
+.text-center{
+  color: var(--amarillo);
+  display: flex;
+  justify-content: space-around;
+}
+
+.form__center {
+  display: flex;
+  justify-content: space-around;
+}
+
+.h4{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+    /* visivilidad de password*/
+
+    .input_password_container {
+      width: 100%;
+      display: inline-block;
+
+    }
+
+    .eye {
+      width: 25px;
+      height: 25px;
+    }
+
+    .show_hide_btn {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
