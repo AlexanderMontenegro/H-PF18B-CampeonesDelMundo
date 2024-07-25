@@ -134,7 +134,7 @@ const Orden = ({
                         </div>
                         <div className='suma__total'>
                             <p className="btn__or_txt">
-                                Total a pagar{" "}
+                                Total pagar{" "}
                                 <span className="btn__or_2">${carritoTotal()}</span>
                             </p>
                         </div>
