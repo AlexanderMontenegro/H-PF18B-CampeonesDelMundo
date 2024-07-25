@@ -6,62 +6,58 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../css/loginYRegister.css";
 
 import validation from "./Validation";
-import { postUser } from "../../Redux/actions";
+import { postUser, sendConfirmationEmail } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
-const Register = ({onClose}) => {
-
-const dispatch = useDispatch();
-const navigate = useNavigate();
+const Register = ({ onClose }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
-    email:'',
-    password:'',
-    name:'',
-    confirmPassword:'',
-    address:'',
-    cellphone:''  
+    email: "",
+    password: "",
+    name: "",
+    confirmPassword: "",
+    address: "",
+    cellphone: "",
   });
-  const [errors, setErrors] = useState({email:'Escribi tu Email'});
+  const [errors, setErrors] = useState({ email: "Escribi tu Email" });
 
-// Manejador del estado principal
-function handleChange(event) {      
-event.preventDefault();
+  // Manejador del estado principal
+  function handleChange(event) {
+    event.preventDefault();
 
+    setErrors(validation({ ...user, [event.target.name]: event.target.value }));
+    setUser({ ...user, [event.target.name]: event.target.value });
+  }
 
+  //submit
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await dispatch(postUser(user));
 
-setErrors(validation({...user,[event.target.name] : event.target.value}));
-setUser({...user,[event.target.name]:event.target.value})
-}
+    if (response.payload.userRecord) {
+      await dispatch(sendConfirmationEmail(user.email, user.name));
+      
+      Swal.fire({
+        icon: "success",
+        title: response.payload.message,
+        text: "",
+        timer: 3000,
+      }).then(() => {
+        navigate("/"); 
+        window.location.reload();
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: response.payload.message,
+        text: "",
+        timer: 3000,
+      });
+    }
+  };
 
-//submit
-const handleSubmit= async (event)=>{
-  event.preventDefault();
-  const response = await dispatch(postUser(user));
-  
-  if(response.payload.userRecord)
-      {
-     Swal.fire({
-      icon: "success",
-      title: response.payload.message,
-      text: "",
-      timer: 3000
-    }).then(() => {
-      // Redirigir después de que la alerta se cierre
-      navigate("/"); // Cambia la URL al destino 
-      window.location.reload();
-    });         
-      }else{
-          Swal.fire({
-              icon: "error",
-              title: response.payload.message,
-              text: "",
-              timer: 3000
-            })   
-      }
-
-};
-  
   return (
     <>
       {/* <Header
