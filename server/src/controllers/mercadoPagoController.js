@@ -24,9 +24,9 @@ const createPreference = async (req, res) => {
 
         )),
         back_urls: {
-          success: 'https://www.success.com/',
-          failure: 'https://www.failure.com/',
-          pending: 'https://www.pending.com/'
+          success: 'https://h-pf18b-campeonesdelmundo-f.onrender.com',
+          failure: 'https://h-pf18b-campeonesdelmundo-b.onrender.com',
+          pending: 'https://h-pf18b-campeonesdelmundo-b.onrender.com'
         },
         auto_return: 'approved',
       }
