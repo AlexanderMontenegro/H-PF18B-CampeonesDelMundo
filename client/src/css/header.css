@@ -3,6 +3,7 @@
   background-size: cover;
   background-position: center center;
   position: relative;
+ 
 }
 
 .logo {
@@ -237,6 +238,16 @@ table.paleBlueRows tfoot td {
 
 /* Media Queries */
 @media (max-width: 1200px) {
+  .header__homePage {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    margin-top: 500px;
+   
+  }
+
+
   .logo_img {
     width: 200px;
     height: 200px;

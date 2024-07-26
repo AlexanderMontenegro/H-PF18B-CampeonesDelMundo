@@ -95,9 +95,12 @@ if(response.payload.data)
   };
 
   return (
+
+<div className="ges__prod" >
+
     <div className="stock">
       {!selectedObject &&<>
-      <h1>Lista de Productos a Actualizar</h1>
+      <h1>Lista de Productos a Modificar</h1>
 
        <ul> 
       {data.map((obj) => (
@@ -114,7 +117,7 @@ if(response.payload.data)
         </> 
 }
       {selectedObject&&
-       <div>
+       <div className="detalle__gra"  >
         <button onClick={handleClose}>X</button>
           <h2>Actualizar Producto: {selectedObject.tipo} {selectedObject.marca}</h2>
 
@@ -196,7 +199,9 @@ if(response.payload.data)
         }
 
     </div>
+  </div>
   );
+
 }
 
 export default updateProduct;

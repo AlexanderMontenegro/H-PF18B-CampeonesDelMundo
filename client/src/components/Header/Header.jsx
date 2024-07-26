@@ -6,7 +6,6 @@ import Modal from "../Modal/Modal";
 import Login from "../HomePage/Login";
 import Notificacion from "../Notificaciones/Notificacion";
 
-
 // CSS
 import "../../css/header.css";
 
@@ -44,8 +43,8 @@ const Header = ({
         {/* Lado Izquierdo - logo */}
         <div className="barra__left">
           <Link to={"/homePage"}>
-            <h4 className="logo_nombre no-margin"></h4>
-            <img className="logo_img" src="../img/fondo-logo-futbol_1195-244.png" />
+            {/*<h4 className="logo_nombre no-margin">Campeones del Mundo</h4>*/}
+            <img className="logo_img" src="../img/fondo-logo-futbol_1195-244.png" alt="Logo" />
           </Link>
         </div>
         {/* Lado Derecho - Opciones*/}
@@ -86,10 +85,9 @@ const Header = ({
                           </thead>
                           <tbody>
                             {carrito.map((producto) => (
-                              //key={producto.id}
                               <tr key={`${producto.id}-${producto.talle}`}>
                                 <td>
-                                  <img className="img-fluid" src={producto.imagen} alt={`${(producto.id, producto.tipo)} imagen`} />
+                                  <img className="img-fluid" src={producto.imagen} alt={`${producto.tipo} imagen`} />
                                 </td>
                                 <td className="cabecera__texto">{producto.tipo}</td>
                                 <td className="cabecera__texto">{producto.marca}</td>

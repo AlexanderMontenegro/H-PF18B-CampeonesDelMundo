@@ -16,7 +16,12 @@ const Dashboard = () => {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    socket.current = io('http://localhost:3001');
+    /*Deploy */
+    socket.current = io('https://h-pf18b-campeonesdelmundo-b.onrender.com');
+
+
+/*Local */
+   // socket.current = io('http://localhost:3001');
 
     socket.current.on('updateUsers', (count) => {
       setUserCount(count);

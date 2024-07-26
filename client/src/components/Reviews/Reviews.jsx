@@ -47,9 +47,26 @@ const Reviews = ({ productId }) => {
   };
 
   // console.log("Datos de user: ", user.uid);
-
   return (
-    <div>
+    <div className="rev__pp">
+      <div className="review__container">
+        {reviews.map((review, index) => (
+          <div key={index} className="review__list">
+            <h4 className="review__title">{review.nombres}</h4>
+            <p>{review.comment}</p>
+            <span>Valoracion: {review.rating} / 5</span>
+          </div>
+        ))}
+      </div>
+      <ReviewForm handleAddReview={handleAddReview} />
+    </div>
+  );
+  
+
+
+  /*
+  return (
+    <div className="rev__pp" >
       {reviews.map((review, index) => (
         <div key={index} className="review__list">
           <h4 className="review__title">{review.nombres}</h4>
@@ -61,6 +78,8 @@ const Reviews = ({ productId }) => {
       <ReviewForm handleAddReview={handleAddReview} />
     </div>
   );
+
+  */
 };
 
 export default Reviews;

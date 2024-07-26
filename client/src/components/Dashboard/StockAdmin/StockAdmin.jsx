@@ -54,7 +54,7 @@ if(response.payload.data)
   
   return (
     <div className="stock">
-      <h1>Lista de Productos a Actualizar Stock</h1>
+      <h1>Lista Stock de Productos</h1>
       <ul>
         {data.map((obj) => (
           <li key={obj.id} onClick={() => handleSelect(obj)} >
@@ -62,7 +62,8 @@ if(response.payload.data)
             <img
               src={obj.imagen}
               alt="Vista previa de la imagen"
-              style={{ maxWidth: "100px", maxHeight: "auto" }}
+              /*style={{ maxWidth: "100px", maxHeight: "auto" }}*/
+              className="obj_imagen"
             />
           </li>
         ))}
