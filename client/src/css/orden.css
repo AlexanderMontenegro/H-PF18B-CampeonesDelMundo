@@ -127,10 +127,9 @@
   color: var(--blanco);
   border: none;
 }
-/*
-
-
-*/
+.Header__orden{
+  background-color: var(--azulOscuro);
+}
 .btn__or_2{
         color: var(--rojo);
         display: flex;

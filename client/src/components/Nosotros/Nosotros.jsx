@@ -53,11 +53,11 @@ function Nosotros() {
 
   return (
 <div>
-  {/*
-<div>
+
+<div  className='header__nos'  >
 <Header/>
 </div>
-*/}
+
      
 
     <div className="container__ns">

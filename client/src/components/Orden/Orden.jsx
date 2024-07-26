@@ -49,6 +49,9 @@ const Orden = ({
 
     return (
         <>
+
+        <div   className='Header__orden'     >
+
             <Header 
                 carrito={carrito}
                 addToCarrito={addToCarrito}
@@ -57,7 +60,8 @@ const Orden = ({
                 decreaseQuantity={decreaseQuantity}
                 clearCarrito={clearCarrito}
                 notificaciones={notificaciones}
-            />
+                />
+                </div>
 
             <main className='contenedor__or'>
                 <div className='contenido_principal__or'>
