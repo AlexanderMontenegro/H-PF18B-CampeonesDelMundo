@@ -11,13 +11,13 @@ import Register from "../HomePage/Register";
 
 /*Deploy */
 
-const socket = io("https://h-pf18b-campeonesdelmundo-b.onrender.com");
+//const socket = io("https://h-pf18b-campeonesdelmundo-b.onrender.com");
 
 
 
 /*Local */
 
-//onst socket = io("http://localhost:3001");
+const socket = io("http://localhost:3001");
 
 
 
