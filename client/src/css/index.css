@@ -20,6 +20,10 @@
   --rojoOscuro: #c70039;
   --colorFondo: #a5a3a3;
 
+  --celeste-transparente: rgba(0, 194, 255, 0.6); 
+  --negro-transparente: rgba(0, 0, 0, 0.6);
+
+
   --banner: url("/img/img3.jpg");
   --imgfondo: url("/img/papelitosDark.png");
 
