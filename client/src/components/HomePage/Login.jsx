@@ -21,7 +21,7 @@ const Login = ({ onClose }) => {
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
   const handleAuthSuccess = (user) => {
-    if (user?.name) {
+    if (!user.name) {
       const { displayName } = user;
       user = { ...user, name: displayName };
     }
