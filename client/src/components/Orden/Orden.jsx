@@ -55,7 +55,7 @@ const Orden = ({
 
   return (
     <>
-      <div className="hhh" >
+      <div className="hhh">
         <Header
           carrito={carrito}
           addToCarrito={addToCarrito}
@@ -157,10 +157,9 @@ const Orden = ({
           </div>
         </div>
       </main>
-<div  className="hhh"  >
-
-      <Footer />
-</div>
+      <div className="hhh">
+        <Footer />
+      </div>
     </>
   );
 };
