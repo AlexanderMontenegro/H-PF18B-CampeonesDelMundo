@@ -1,0 +1,139 @@
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 25px auto;
+  width: 100vw;
+  max-width: 80%;
+  padding: 2rem;
+  border: 1px solid var(--negro);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  background-color: var(--azulOscuro);
+  color: var(--blanco);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  color: var(--negro);
+  align-items: center;
+  width: 100%;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--azul_Oscuro);
+  width: 100%;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--negro);
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.dashboard-statistics {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.dashboard-statistics-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--crema);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 200px;
+}
+
+.dashboard-statistics-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.dashboard-statistics-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--azul_Oscuro);
+}
+
+/* Media queries para diseño responsivo */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .dashboard-statistics {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-statistics-item {
+    padding: 1rem;
+  }
+
+  .options {
+    flex-direction: column;
+  }
+
+  .gestion {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.p__d {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 200px;
+  height: auto;
+  padding: 1rem;
+  border: 1px solid var(--negro);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  background-color: var(--crema);
+  color: var(--negro); 
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.gestion {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  width: 100%;
+  justify-content: space-between;
+}
