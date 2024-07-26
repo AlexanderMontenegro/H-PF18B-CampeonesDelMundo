@@ -21,8 +21,7 @@
   text-align: center;
   color: var(--crema);
   margin-top: 8rem;
-  text-shadow: 1px 0px 0px black, 0px 1px 0px black, -1px 0px 0px black,
-    0px -1px 0px black;
+  text-shadow: 1px 0px 0px black, 0px 1px 0px black, -1px 0px 0px black, 0px -1px 0px black;
 }
 
 .logo_img {
@@ -31,6 +30,7 @@
   padding: 0;
   margin: 0;
   border: 0;
+  
 }
 
 .icono__fluid {
@@ -62,7 +62,7 @@
   background-color: white;
   padding: 10px;
   height: fit-content;
-  min-width: 350px;
+  min-width: 250px; 
   width: fit-content;
   top: 100%;
   right: 0;
@@ -189,12 +189,13 @@
   text-align: center;
 }
 
-/* Tabla */
+
 table.paleBlueRows {
   font-family: "Times New Roman", Times, serif;
   border: 1px solid #ffffff;
-  width: 350px;
-  height: 200px;
+  width: 100%; 
+  max-width: 600px; 
+  height: auto; 
   text-align: center;
   border-collapse: collapse;
 }
@@ -234,6 +235,96 @@ table.paleBlueRows tfoot td {
   font-size: 14px;
 }
 
+/* Media Queries */
+@media (max-width: 1200px) {
+  .logo_img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .navegacion {
+    gap: 3rem;
+  }
+
+  .barra__container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .cabecera__container {
+    padding: 1rem;
+  }
+
+  table.paleBlueRows {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .header_titulo {
+    margin-top: 5rem;
+    font-size: 1.5rem;
+  }
+
+  .navegacion_enlaceC {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  .icon__button {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  .carrito,
+  .notificaciones,
+  .usuario {
+    max-width: 6rem;
+  }
+
+  table.paleBlueRows {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header_titulo {
+    margin-top: 3rem;
+    font-size: 1.2rem;
+  }
+
+  .logo_img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .navegacion {
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .navegacion_enlaceC {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+
+  .icon__button {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+
+  .carrito,
+  .notificaciones,
+  .usuario {
+    max-width: 5rem;
+  }
+
+  table.paleBlueRows {
+    font-size: 10px;
+  }
+}
+
 @keyframes slide-bottom {
   0% {
     transform: translateY(0);
@@ -255,8 +346,7 @@ table.paleBlueRows tfoot td {
   }
 }
 
-
-.icon__user{
+.icon__user {
   width: 90%;
   font-size: 1.8rem;
   color: var(--negro);
@@ -265,8 +355,6 @@ table.paleBlueRows tfoot td {
   font-weight: bold;
   padding: 0.7rem 0.7rem;
   text-align: center;
-  margin: 10px;
+  margin: auto;
   border: 2px solid;
- 
 }
-
