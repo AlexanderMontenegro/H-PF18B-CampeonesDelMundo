@@ -31,8 +31,8 @@ const Login = ({ onClose }) => {
       text: "",
       timer: 3000,
     }).then(() => {
-      navigate("/homePage");
       window.location.reload();
+      navigate("/#");
     });
   };
 
@@ -71,14 +71,15 @@ const Login = ({ onClose }) => {
       handleAuthFailure(response.payload.message);
     }
   };
-
+  
+/*
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/homePage");
-      window.location.reload();;
+      navigate("/#");
+     
     }
   }, [isAuthenticated, navigate]);
-
+*/
   const handleChange = (event) => {
     event.preventDefault();
     setErrors(
