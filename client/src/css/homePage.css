@@ -61,9 +61,15 @@ main {
 
 @media (max-width: 768px) {
   .product__list {
+    display: flex;
     padding: 0 10px;
-    gap: 10px; 
-  }
+    gap: 10px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    align-items: stretch;
+}
+
 
   .product__list .product-card {
     width: 100%; 
@@ -74,8 +80,8 @@ main {
   }
 
   .icono__fluid {
-    width: 20px;
-    height: 20px; 
+    width: 40px;
+    height: 40px; 
   }
 }
 

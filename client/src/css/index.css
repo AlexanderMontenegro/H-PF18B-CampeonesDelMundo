@@ -142,11 +142,13 @@ a {
 
 @media (max-width: 768px) {
   body {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
     padding: 1rem;
-  }
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
 }
 
 
