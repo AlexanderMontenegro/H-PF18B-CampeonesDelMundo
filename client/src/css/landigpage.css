@@ -1,12 +1,9 @@
-
-
 body {
     font-family: 'Heebo', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(20px); }
@@ -26,16 +23,14 @@ body {
 
 .landing-page {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    background: url(/img/img3.jpg) no-repeat center center / cover;
+   /* background: url('/img/img3.jpg') no-repeat center center / cover;*/
     color: #fff;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
-    align-items: center;
-    flex-wrap: wrap;
-    align-content: stretch;
-    justify-content: space-evenly;
 }
 
 .landing-header {
@@ -62,13 +57,6 @@ body {
     padding: 2rem;
     border-radius: 10px;
     animation: fadeIn 1.5s ease-in-out;
- 
-}
-
-.landing-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: var(--color-white);
 }
 
 .enter-button {
@@ -82,10 +70,10 @@ body {
     border-radius: 100px;
     transition: background-color 0.3s ease, transform 0.3s ease;
     animation: buttonPulse 2s infinite;
-    width: 25%; 
-    display: block; 
-    margin: 0 auto; 
-    text-align: center; 
+    width: 25%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 
@@ -100,25 +88,10 @@ body {
     height: auto;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 100px;
-    
-
 }
 
-.enter-button img:hover{
-    animation:rotate-horizontal-center 0.4s
-}
-
-
-
-
-@keyframes rotate-horizontal-center
-{0%{transform:rotateX(0)}
-100%{transform:rotateX(-360deg)}}
-
-
-@keyframes rotate-center {
-    0% { transform: rotate(0); }
-    100% { transform: rotate(360deg); }
+.enter-button img:hover {
+    animation: rotate-horizontal-center 0.4s;
 }
 
 @keyframes rotate-horizontal-center {
@@ -126,3 +99,30 @@ body {
     100% { transform: rotateX(-360deg); }
 }
 
+@media (max-width: 768px) {
+    .landing-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .landing-header p {
+        font-size: 1.2rem;
+    }
+    
+    .enter-button {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing-header h1 {
+        font-size: 2rem;
+    }
+    
+    .landing-header p {
+        font-size: 1rem;
+    }
+    
+    .enter-button {
+        width: 75%;
+    }
+}

@@ -114,13 +114,13 @@ function ChampionsApp() {
   const addToCarrito = (item) => {
     console.log("CARRITO: ", item)
 
+    const nuevoKey = `${item.id}-${item.talle}`;
 
-    const itemExist = carrito.findIndex((producto) => producto.id === item.id);
-    //const talleExist = carrito.findIndex((producto) => producto.talle === item.talle);
-
-    // console.log("Indices de TALLE: ", talleExist)
-    // Agregando Talles
-    const updateTalle = []  
+    const itemExist = carrito.findIndex(
+      (producto) => `${producto.id}-${producto.talle}` === nuevoKey
+    );
+    //const itemExist = carrito.findIndex((producto) => producto.id === item.id && producto.talle === item.talle);
+    //const talleExist = carrito.find((producto) => producto.talle === item.talle);
 
     if (itemExist >= 0) {
       // el item ya existe
@@ -149,7 +149,8 @@ function ChampionsApp() {
 
   const removeFromCarrito = (id) => {
     setCarrito((prevCarrito) =>
-      prevCarrito.filter((producto) => producto.id !== id)
+      // prevCarrito.filter((producto) => producto.id !== id)
+      prevCarrito.filter((producto) => `${producto.id}-${producto.talle}` !== id)
     );
   };
 

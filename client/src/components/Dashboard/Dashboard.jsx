@@ -16,7 +16,12 @@ const Dashboard = () => {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    socket.current = io('http://localhost:3001');
+    /*Deploy */
+    socket.current = io('https://h-pf18b-campeonesdelmundo-b.onrender.com');
+
+
+/*Local */
+   // socket.current = io('http://localhost:3001');
 
     socket.current.on('updateUsers', (count) => {
       setUserCount(count);
@@ -65,7 +70,7 @@ const Dashboard = () => {
             <p className="p__d">Gestion Stock</p>
           </Link>
           <Link to={"updateproduct"}>
-            <p className="p__d">Actualizar Producto</p>
+            <p className="p__d">Gestion Productos</p>
           </Link>
         </div>
       </div>

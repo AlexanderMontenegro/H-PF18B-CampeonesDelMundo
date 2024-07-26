@@ -61,14 +61,11 @@
 }
 
 .card__buttons {
- 
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    flex-direction: row;
-    align-items: baseline;
-
- 
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  flex-direction: row;
+  align-items: baseline;
 }
 
 .card__cart-button {
@@ -83,83 +80,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; 
+  margin: 0 auto;
   height: 50px;
 }
 
-
-.card__cart-button:hover{
-  background-color: gray
+.card__cart-button:hover {
+  background-color: gray;
 }
 
 
+.carrito_img {
+  transition: transform 0.2s ease;
+  margin: 5px;
+}
+
+.carrito_img:hover {
+  transform: translateX(30px);
+}
+
 .card__fav-button {
-  display: flex;
+  border: none;
   background: none;
-  border: none;
+  cursor: pointer;
   font-size: 1.5rem;
-  cursor: pointer;
+  color: #ccc; /* color para no favorito */
 }
 
-.card__fav-button:hover {
-  color: red;
+.card__fav-button.favorite {
+  color: red; /* color para favorito */
 }
 
-/*
-.card__fav-button {
-  background-color: transparent;
-  color: var(--azul_Oscuro);
+.corazon {
   border: none;
-  padding: 20px 30px; 
-  border-radius: 5px;
+  background: none;
   cursor: pointer;
-  transition: color 0.3s ease, background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position:relative;
-  margin-left: 20px;
-}
-
-.card__fav-button:hover {
-  color: red;
-}
-
-.card__fav-button::before {
-  content: "\2665"; 
-  position: absolute;
-  left: 10px;
-  color: var(--negro);
-  transition: color 0.3s ease;
-  font-size: 2rem; 
-}
-
-.card__fav-button:hover::before {
-  color: red;
-}
-*/
-
-/**/
-.ico_detalle {
-  width: 10%;
-  height: 10%;
-  padding: 0;
-  margin: 0;
-  border-radius: 4px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
-}
-
-.product__list {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(var(--celeste), var(--negro));
-  gap: 2rem;
-  flex-wrap: wrap;
-  padding: 20px;
-height: 100%;
-margin: 0;
+  font-size: 3.5rem;
 }
 
 

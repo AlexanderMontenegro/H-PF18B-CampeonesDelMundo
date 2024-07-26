@@ -39,6 +39,8 @@ export const POST_REVIEW = 'POST_REVIEW';
 export const PUT_REVIEW = 'PUT_REVIEW';
 export const DELETE_REVIEW = "DELETE_REVIEW";
 
+export const SEND_CONFIRMATION_EMAIL = "SEND_CONFIRMATION_EMAIL";
+
 
 
 
@@ -60,6 +62,26 @@ export const fetchPreferenceId = (carrito) => async dispatch => {
 }
 };
 
+// PARA EMAIL_CONFIRMACION
+// SEND CONFIRMATION
+export const sendConfirmationEmail = (email, username) => {
+  const endpoint = '/emails/send-account-creation';
+  console.log("Email: ", email )
+  console.log("Name: ", username )
+  
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(endpoint, { email, username });
+      return dispatch({
+        type: SEND_CONFIRMATION_EMAIL,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error("Error sending confirmation email:", error);
+    }
+  };
+};
+
 // PARA REVIEWS
 // GET_REVIEWS
 export const fetchReviews = (productId) => async (dispatch) => {
@@ -67,7 +89,7 @@ export const fetchReviews = (productId) => async (dispatch) => {
   console.log(`Fetching reviews for productId: ${productId}`);
   try {
     const response = await axios.get(`/reviews/producto/${productId}`);
-    console.log(`Action response: ${response.data}`);
+    //console.log(`Action response: ${response.data}`);
     dispatch({
       type: GET_REVIEWS,
       payload: {
@@ -76,7 +98,7 @@ export const fetchReviews = (productId) => async (dispatch) => {
       },
     });
   } catch (error) {
-    console.error('Error fetching reviews:', error);
+    //console.error('Error fetching reviews:', error);
   }
 };
 

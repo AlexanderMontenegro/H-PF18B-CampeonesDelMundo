@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.favorites-page_f {
+.mi_f{
   display: flex;
   text-align: center;
   padding: 20px;
@@ -15,6 +15,23 @@
   border-radius: 30px;
   background: var(--degradado);
   box-shadow: 7px 7px 15px #bebebe, -3px -3px 7px #ffffff;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 90%;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+
+}
+
+.favorites-page_f {
+  display: flex;
+  text-align: center;
+  padding: 20px;
+  color: var(--piel);
+  border-radius: 30px;
+  /*background: var(--degradado);
+  box-shadow: 7px 7px 15px #bebebe, -3px -3px 7px #ffffff;*/
   width: 100%;
   max-width: 1200px;
   min-height: 90%;
@@ -91,6 +108,7 @@
 
 .header_img {
   background-color: var(--azulOscuro);
+  width: 100vw;
 }
 
 /* Media Queries */

@@ -6,7 +6,20 @@ import Modal from "../Modal/Modal";
 import Login from "../HomePage/Login";
 import Register from "../HomePage/Register";
 
-const socket = io("http://localhost:3001");
+
+
+
+/*Deploy */
+
+const socket = io("https://h-pf18b-campeonesdelmundo-b.onrender.com");
+
+
+
+/*Local */
+
+//onst socket = io("http://localhost:3001");
+
+
 
 const ChatModal = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState([]);

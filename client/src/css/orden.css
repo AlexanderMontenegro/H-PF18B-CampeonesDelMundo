@@ -127,10 +127,9 @@
   color: var(--blanco);
   border: none;
 }
-/*
-
-
-*/
+.Header__orden{
+  background-color: var(--azulOscuro);
+}
 .btn__or_2{
         color: var(--rojo);
         display: flex;
@@ -141,7 +140,10 @@
     font-size: 3.2rem;
 }
 
-
+.hhh{
+  width: 100vw;
+  background-color: var(--azulOscuro);
+}
 
 /* Media query para estilos responsivos */
 @media (max-width: 768px) {
