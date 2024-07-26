@@ -236,6 +236,20 @@ table.paleBlueRows tfoot td {
   font-size: 14px;
 }
 
+.icon__user {
+  width: 90%;
+  font-size: 1.8rem;
+  color: var(--negro);
+  background-color: var(--amarillo);
+  border-radius: 0.5rem;
+  font-weight: bold;
+  padding: 0.7rem 0.7rem;
+  text-align: center;
+  margin: auto;
+  border: 2px solid;
+}
+
+
 /* Media Queries */
 @media (max-width: 1200px) {
   .header__homePage {
@@ -299,7 +313,7 @@ table.paleBlueRows tfoot td {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .header_titulo {
     margin-top: 3rem;
     font-size: 1.2rem;
@@ -357,15 +371,4 @@ table.paleBlueRows tfoot td {
   }
 }
 
-.icon__user {
-  width: 90%;
-  font-size: 1.8rem;
-  color: var(--negro);
-  background-color: var(--amarillo);
-  border-radius: 0.5rem;
-  font-weight: bold;
-  padding: 0.7rem 0.7rem;
-  text-align: center;
-  margin: auto;
-  border: 2px solid;
-}
+
