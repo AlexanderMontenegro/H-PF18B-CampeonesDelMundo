@@ -31,7 +31,7 @@ const Login = ({ onClose }) => {
       text: "",
       timer: 3000,
     }).then(() => {
-      navigate("/");
+      navigate("/#");
     });
   };
 

@@ -32,7 +32,7 @@ const Header = ({
       title: "Cerrando sesión...",
       timer: 3000,
     }).then(() => {
-      navigate("/homePage");
+      navigate("/#");
       window.location.reload();
     });
   };
