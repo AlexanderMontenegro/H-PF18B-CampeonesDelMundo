@@ -11,6 +11,7 @@ const Favoritos = () => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("User"));
   const favorites = useSelector((state) => state.favorites);
+  
 
   useEffect(() => {
     if (user && user.email) {

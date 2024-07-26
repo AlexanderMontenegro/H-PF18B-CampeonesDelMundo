@@ -31,7 +31,8 @@ const Login = ({ onClose }) => {
       text: "",
       timer: 3000,
     }).then(() => {
-      navigate("/#");
+      navigate("/homePage");
+      window.location.reload();
     });
   };
 
@@ -73,7 +74,8 @@ const Login = ({ onClose }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/#");
+      navigate("/homePage");
+      window.location.reload();;
     }
   }, [isAuthenticated, navigate]);
 
