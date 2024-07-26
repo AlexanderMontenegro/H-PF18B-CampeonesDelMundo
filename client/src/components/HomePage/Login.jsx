@@ -21,8 +21,11 @@ const Login = ({ onClose }) => {
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
   const handleAuthSuccess = (user) => {
-    const { displayName } = user;
-    user = { ...user, name: displayName };
+    if (user?.name) {
+      const { displayName } = user;
+      user = { ...user, name: displayName };
+    }
+   
     console.log(user);
     window.localStorage.setItem("User", JSON.stringify(user));
     Swal.fire({
