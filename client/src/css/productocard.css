@@ -1,4 +1,5 @@
 .card__container {
+
   border: 1px solid var(--negro);
   border-radius: 10px;
   overflow: hidden;
@@ -87,44 +88,6 @@
   background-color: gray;
 }
 
-.card__fav-button {
-  display: flex;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.card__fav-button:hover {
-  color: red;
-}
-
-.ico_detalle {
-  width: 10%;
-  height: 10%;
-  padding: 0;
-  margin: 0;
-  border-radius: 4px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 1);
-}
-
-.product__list {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  /*background: linear-gradient(var(--celeste), var(--negro));*/
-  /*background: linear-gradient(
-    var(--negro-transparente),
-    var(--celeste-transparente)
-  );*/
-  gap: 2rem;
-  flex-wrap: wrap;
-  padding: 20px;
-  height: 100%;
-  margin: 0;
-  
-}
 
 .carrito_img {
   transition: transform 0.2s ease;
@@ -152,4 +115,36 @@
   background: none;
   cursor: pointer;
   font-size: 3.5rem;
+}
+
+
+.carrito_img {
+  transition: transform 0.2s ease;
+  margin: 5px;
+}
+
+.carrito_img:hover {
+  transform: translateX(30px); 
+}
+
+
+.card__fav-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #ccc; /* color para no favorito */
+}
+
+.card__fav-button.favorite {
+  color: red; /* color para favorito */
+}
+
+.corazon{
+
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 3.5rem;
+
 }

@@ -1,9 +1,10 @@
+
 .dashboard {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin: 25px auto;
-  width: 90%;
+  width: 100vw;
   max-width: 80%;
   padding: 2rem;
   border: 1px solid var(--negro);
@@ -15,6 +16,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
 }
 
 .options {

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { getDetails } from "../../Redux/actions";
-import axios from "axios";  
+
 
 import "../../css/productdetails.css";
 import "../../css/header.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Reviews from "../Reviews/Reviews";
+import ReviewForm from "../Reviews/ReviewForm";
 
 const ProductDetails = ({
   carrito,
@@ -22,7 +23,6 @@ const ProductDetails = ({
   getDetails,
 }) => {
   const { id } = useParams();
-  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     getDetails(id);
@@ -31,27 +31,10 @@ const ProductDetails = ({
   // PARA TALLES
   // State y Effect
   const [selecciontalle, setSeleccionTalle] = useState("");
-  const [isOn, setIsOn] = useState(true);
-
-  useEffect(() => {
-    if (product) {
-      setIsOn(!product.isDeleted);
-    }
-  }, [product]);
-
-  const toggleButton = async () => {
-    const newState = !isOn;
-    setIsOn(newState);
-    try {
-      if (newState) {
-        await axios.put(`http://localhost:3001/productos/restore/${id}`);
-      } else {
-        await axios.put(`http://localhost:3001/productos/delete/${id}`);
-      }
-    } catch (error) {
-      console.error("Error updating product status:", error);
-      setIsOn(!newState); 
-    }
+  const [hasChanged, setHasChanged] = useState(false);
+  const [isOn, setIsOn] = useState(false);
+  const toggleButton = () => {
+    setIsOn(!isOn);
   };
 
   if (!product) {
@@ -61,22 +44,29 @@ const ProductDetails = ({
   // Funciones
   const handleSelectChange = (event) => {
     const nuevoTalle = event.target.value;
+
     setSeleccionTalle(nuevoTalle);
+    //product.talle = nuevoTalle;
   };
+
+  if (!product) {
+    return <p>Producto no encontrado</p>;
+  }
 
   return (
     <div>
-      <div className="barra">
-        <Header
-          carrito={carrito}
-          addToCarrito={addToCarrito}
-          removeFromCarrito={removeFromCarrito}
-          increaseQuantity={increaseQuantity}
-          decreaseQuantity={decreaseQuantity}
-          clearCarrito={clearCarrito}
-          notificaciones={notificaciones}
+      <div className="barra" >
+
+      <Header 
+        carrito={carrito}
+        addToCarrito={addToCarrito}
+        removeFromCarrito={removeFromCarrito}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+        clearCarrito={clearCarrito}
+        notificaciones={notificaciones}
         />
-      </div>
+        </div>
       <div className="container__pd">
         <div className="product-details-container">
           <div className="product-image">
@@ -92,33 +82,29 @@ const ProductDetails = ({
               Descripción <br /> {product.descripcion}
             </p>
 
-            {(user?.role === "admin" || user?.role === "super-admin") && (
-              <button className={`toggle-button ${isOn ? 'on' : 'off'}`} onClick={toggleButton}>
-                {isOn ? 'On' : 'Off'}
-              </button>
-            )}
+            <button className={`toggle-button ${isOn ? 'on' : 'off'}`} onClick={toggleButton}>
+              {isOn ? 'On' : 'Off'}
+            </button>
+
+       
+
             <div className="product-sizes">
-              <select
-                className="select_s"
-                id="sizes"
-                onChange={handleSelectChange}
-              >
+             {/*} <label htmlFor="sizes">Talles:</label>*/}
+              
+              <select className="select_s" id="sizes" onChange={handleSelectChange}>
                 <option value="Seleccione talle">Talles</option>
-                {product.talles.map(
-                  (obj, index) =>
-                    obj.stock > 0 && (
-                      <option key={index} value={obj.talle}>
-                        {obj.talle + " - " + obj.stock}
-                      </option>
-                    )
-                )}
+                {product.talles.map((obj, index) => (
+                  obj.stock>0&&
+                  
+                  <option key={index} value={obj.talle}>
+                    {obj.talle + " - " + obj.stock}
+                  </option>
+                ))}
               </select>
             </div>
             <button
               className="product-add-to-cart"
-              onClick={() =>
-                addToCarrito({ ...product, talle: selecciontalle })
-              }
+              onClick={() => addToCarrito({...product, talle: selecciontalle})}
               disabled={!selecciontalle}
             >
               {" "}
@@ -132,7 +118,7 @@ const ProductDetails = ({
             {/* Lista de comentarios y puntuaciones */}
 
             <section className="reviews__content">
-              <Reviews productId={product.id} />
+              <Reviews productId={product.id}/>
             </section>
           </div>
         </div>
@@ -151,4 +137,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
-
