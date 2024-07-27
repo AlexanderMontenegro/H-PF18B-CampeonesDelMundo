@@ -149,8 +149,32 @@ a {
     flex-wrap: nowrap;
     align-items: stretch;
 }
+
+.product__list {
+  display: flex;
+  padding: 0 10px;
+  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  align-items: stretch;
+  justify-content: flex-start;
+}
 }
 
+
+
+
+@media (max-width: 1000px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    flex-wrap: nowrap;
+    align-items: stretch;
+}
+}
 
 @media (min-width: 1024px) {
   body {
