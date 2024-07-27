@@ -64,7 +64,7 @@ if(existe)
             />
 
             <button onClick={handleSubmit} className="button__cc">Crear Categoria </button>
-            <button className="button__cc">Eliminar Categoria </button>
+            {/*<button className="button__cc">Eliminar Categoria </button>*/}
         </form>
         <div className="categoryList">
             {arrayCategory.map((category) => (

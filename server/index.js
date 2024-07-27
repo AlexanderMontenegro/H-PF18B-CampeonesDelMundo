@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
       });
 });
 
-conn.sync({ alter:true}).then(() => {
+conn.sync({ force:false}).then(() => {
   httpServer.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
   });
