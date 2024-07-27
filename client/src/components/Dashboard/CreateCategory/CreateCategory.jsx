@@ -29,7 +29,7 @@ function createCategory(){
     text: "",
     timer: 3000
   }).then(() => {
-navigate("/dashboard/createcategory");
+navigate("/#");
   });         
     }
 }else{
