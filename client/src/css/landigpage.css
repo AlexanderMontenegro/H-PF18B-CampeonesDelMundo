@@ -27,7 +27,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-   /* background: url('/img/img3.jpg') no-repeat center center / cover;*/
     color: #fff;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
@@ -78,7 +77,7 @@ body {
 }
 
 .enter-button:hover {
-    background-color: rgba(15, 12, 0, 0.7);
+    background-color: var(--blanco-opaco);
     animation: none;
     transform: scale(1.1);
 }

@@ -3,6 +3,7 @@
   --fuenteParrafos: "Noto Sans", sans-serif;
 
   --blanco: #ffffff;
+  --blanco-opaco: rgba(255, 255, 255, 0.5);
   --negro: #000814;
   --azulOscuro: #001d3d;
   --azul: #003566;
@@ -36,6 +37,7 @@ html {
 :root[data-theme="dark"] {
   --blanco: #000814;
   --negro: #ffffff;
+  --blanco-opaco: rgba(0, 8, 20, 0.5);
   --azulOscuro: #085ba8;
   --azul: #001d3d;
   --crema: #ffc300;
