@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -19,6 +19,7 @@ const Orden = ({
 }) => {
   const dispatch = useDispatch();
   const preferenceId = useSelector((state) => state.preferenceId);
+  const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
     // Inicializa Mercado Pago SDK con la clave pública
@@ -51,6 +52,7 @@ const Orden = ({
     addToCompras(carrito, carritoTotal());
     notificacionCompra(carrito, carritoTotal());
     dispatch(fetchPreferenceId(carrito));
+    setShowButton(false); // Oculta el botón después de hacer clic
   };
 
   return (
@@ -120,11 +122,11 @@ const Orden = ({
                         <td>
                           <button
                             type="button"
-                            className="btn btn-danger"
-                            onClick={() => removeFromCarrito(producto.id)}
-                          >
-                            X
-                          </button>
+                              className="btn btn-danger"
+                              onClick={() => removeFromCarrito(producto.id)}
+                            >
+                              X
+                            </button>
                         </td>
                       </tr>
                     ))}
@@ -148,9 +150,11 @@ const Orden = ({
 
             <div id="wallet_container">
               {preferenceId && <Wallet initialization={{ preferenceId }} />}
-              <button className="btn__or" onClick={handleComprar}>
-                Comprar
-              </button>
+              {showButton && (
+                <button className="btn__or" onClick={handleComprar}>
+                  Comprar
+                </button>
+              )}
             </div>
 
             <h3></h3>

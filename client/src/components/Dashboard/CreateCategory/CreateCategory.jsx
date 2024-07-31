@@ -140,10 +140,10 @@ function CreateCategory() {
                     value={categoryName}
                     onChange={(e) => setCategoryName(e.target.value)}
                     className="input"
-                    placeholder="Nombre Categoria"
+                    placeholder="Nombre de la Categoria"
                 />
                 <button onClick={handleSubmit} className="button__cc">Crear Categoria</button>
-                <button className="button__cc">Eliminar Categoria</button>
+               {/*} <button className="button__cc">Eliminar Categoria</button>*/}
             </form>
             <div className="categoryList">
                 {localCategories.map((category) => (
